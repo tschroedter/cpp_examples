@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\DisplayFieldObjects">
+      <UniqueIdentifier>{33590ba7-bec6-4290-a303-d91161fa3ac4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DisplayFieldObjects">
+      <UniqueIdentifier>{731bcfa4-539a-48df-ae1f-3e73c3c37860}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingFieldObjectTypeToCharMapping.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IPlayingFieldObjectTypeToCharMapping.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayPlayingField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayPlayingFieldException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayMax.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayMonster.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayPacMan.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="DIsplayUnknown.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IDisplayMax.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IDisplayMonster.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IDisplayPacMan.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IDisplayUnknown.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IDisplayPlayingFieldObject.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IDisplayPlayingField.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayDot.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IDisplayDot.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayObjectType.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectToDisplayFieldObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IObjectToDisplayFieldObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectToDisplayFieldObjectException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayPlayingField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayDot.cpp">
+      <Filter>Source Files\DisplayFieldObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayMax.cpp">
+      <Filter>Source Files\DisplayFieldObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayMonster.cpp">
+      <Filter>Source Files\DisplayFieldObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayPacMan.cpp">
+      <Filter>Source Files\DisplayFieldObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayUnknown.cpp">
+      <Filter>Source Files\DisplayFieldObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectToDisplayFieldObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
