@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Development\C++\Katas\KataPacMan\PacMan.Common;C:\Development\C++\Katas\KataPacMan\PacMan.View;C:\Development\C++\Katas\boost_1_63_0;C:\Development\C++\Katas\Hypodermic-master;C:\Development\C++\Katas\KataPacMan\PacMan.Logic;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Development\C++\Katas\KataPacMan\Debug;C:\Development\C++\Katas\KataPacMan\PacMan.Common\Debug;C:\Development\C++\Katas\KataPacMan\PacMan.View\Debug;C:\Development\C++\Katas\boost_1_63_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>../PacMan.Common;../PacMan.View;../../boost_1_63_0;../../Hypodermic-master;../PacMan.Logic;$(IncludePath)</IncludePath>
+    <LibraryPath>../Debug;../PacMan.Common\Debug;../PacMan.View\Debug;../../boost_1_63_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

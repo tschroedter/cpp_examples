@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Development\C++\Katas\KataPacMan\PacMan.Common;C:\Development\C++\Katas\Hypodermic-master;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Development\C++\Katas\KataPacMan\PacMan.Common\Debug;C:\Development\C++\Katas\KataPacMan\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>../PacMan.Common/;../../Hypodermic-master;$(IncludePath)</IncludePath>
+    <LibraryPath>../PacMan.Common\Debug;../../KataPacMan\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

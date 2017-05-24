@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Development\C++\Katas\KataPacMan\PacMan.Common;C:\Development\C++\Katas\Hypodermic-master;C:\Development\C++\Katas\KataPacMan\PacMan.View;C:\Development\C++\Katas\KataPacMan\PacMan.Logic;C:\Development\C++\Katas\googletest-master\googlemock\include;C:\Development\C++\Katas\googletest-master\googlemock;C:\Development\C++\Katas\googletest-master\googletest\include;C:\Development\C++\Katas\googletest-master\googletest;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Development\C++\Katas\googletest-master\googlemock\msvc\2015\Debug;C:\Development\C++\Katas\KataPacMan\PacMan.Common\Debug;C:\Development\C++\Katas\boost_1_63_0\stage\lib;C:\Development\C++\Katas\KataPacMan\Debug;C:\Development\C++\Katas\KataPacMan\PacMan.View\Debug;C:\Development\C++\Katas\KataPacMan\PacMan.Logic\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>../PacMan.Common;../../Hypodermic-master;../PacMan.View;../PacMan.Logic;../../googletest-master/googlemock/include;../../googletest-master/googlemock;../../googletest-master/googletest\include;../../googletest-master/googletest;$(IncludePath)</IncludePath>
+    <LibraryPath>../../googletest-master/googlemock/msvc/2015/Debug;../PacMan.Common/Debug;../../boost_1_63_0/stage/lib;../Debug;../PacMan.View\Debug;../PacMan.Logic\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
