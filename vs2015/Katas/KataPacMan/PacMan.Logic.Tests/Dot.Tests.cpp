@@ -32,6 +32,25 @@ TEST(Dot, constructor_sets_heading)
     EXPECT_EQ(Heading_Down, actual);
 }
 
+TEST(Dot, is_moving_returns_false)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    ILocation_Ptr location = std::make_shared<MockILocation>();
+    IDirection_Ptr direction = std::make_shared<MockIDirection>();
+
+    Dot sut
+    {
+        location,
+        direction
+    };
+
+    // Act
+    // Assert
+    EXPECT_FALSE(sut.is_moving());
+}
+
 TEST(Dot, constructor_sets_type)
 {
     using namespace PacMan::Logic;

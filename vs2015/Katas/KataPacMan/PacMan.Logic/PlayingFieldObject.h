@@ -27,7 +27,8 @@ namespace PacMan
 
             PlayingFieldObjectType get_type () const override;
             Heading get_heading () const override;
-            virtual void tick () override;
+            virtual bool is_moving() const override;
+            virtual void tick () override;  // todo check if we still need this
         };
     };
 };

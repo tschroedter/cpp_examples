@@ -15,6 +15,15 @@ namespace PacMan
             return PlayingFieldObject::get_heading();
         }
 
+        bool Monster::is_moving() const
+        {
+            auto heading = get_heading();
+
+            return
+                (heading != Heading_Unknown) &&
+                (heading != Heading_Max);
+        }
+
         void Monster::tick ()
         {
         }

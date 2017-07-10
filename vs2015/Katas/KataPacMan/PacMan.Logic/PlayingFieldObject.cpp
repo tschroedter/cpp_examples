@@ -18,5 +18,10 @@ namespace PacMan
         void PlayingFieldObject::tick ()
         {
         }
+
+        bool PlayingFieldObject::is_moving() const
+        {
+            return false;
+        }
     }
 }

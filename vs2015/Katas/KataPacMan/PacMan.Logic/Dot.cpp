@@ -15,6 +15,11 @@ namespace PacMan
             return PlayingFieldObject::get_heading();
         }
 
+        bool Dot::is_moving() const
+        {
+            return false;
+        }
+
         void Dot::tick ()
         {
         }
