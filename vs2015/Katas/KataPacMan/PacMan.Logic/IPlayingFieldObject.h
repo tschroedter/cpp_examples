@@ -14,7 +14,6 @@ namespace PacMan
             virtual ~IPlayingFieldObject () = default;
 
             virtual PlayingFieldObjectType get_type () const = 0;
-            virtual ILocation_Ptr get_location () const = 0;
             virtual Heading get_heading () const = 0;
             virtual void tick () = 0;
         };

@@ -26,7 +26,6 @@ namespace PacMan
             }
 
             PlayingFieldObjectType get_type () const override;
-            ILocation_Ptr get_location () const override;
             Heading get_heading () const override;
             void tick () override;
         };

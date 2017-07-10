@@ -10,11 +10,6 @@ namespace PacMan
             return m_type;
         }
 
-        ILocation_Ptr PlayingFieldObject::get_location () const
-        {
-            return m_location;
-        }
-
         Heading PlayingFieldObject::get_heading () const
         {
             return m_direction->get_heading();

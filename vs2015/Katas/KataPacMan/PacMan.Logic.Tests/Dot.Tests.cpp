@@ -5,26 +5,6 @@
 #include "IDirection.h"
 #include "MockIDirection.h"
 
-TEST(Dot, constructor_sets_location)
-{
-    using namespace PacMan::Logic;
-
-    // Arrange
-    ILocation_Ptr location = std::make_shared<MockILocation>();
-    IDirection_Ptr direction = std::make_shared<MockIDirection>();
-    Dot sut
-    {
-        location,
-        direction
-    };
-
-    // Act
-    ILocation_Ptr actual = sut.get_location();
-
-    // Assert
-    EXPECT_EQ(location, actual);
-}
-
 TEST(Dot, constructor_sets_heading)
 {
     using namespace PacMan::Logic;
