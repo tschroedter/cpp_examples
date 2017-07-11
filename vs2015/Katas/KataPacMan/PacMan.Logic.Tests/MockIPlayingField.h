@@ -30,5 +30,11 @@ public:
             const PacMan::Logic::IPlayingFieldObject_Ptr,
             const size_t rows,
             const size_t columns));
+    MOCK_METHOD4(
+        move_object_from_to, void(
+            const size_t from_row,
+            const size_t from_column,
+            const size_t to_row,
+            const size_t to_column));
     // ReSharper restore CppOverridingFunctionWithoutOverrideSpecifier
 };

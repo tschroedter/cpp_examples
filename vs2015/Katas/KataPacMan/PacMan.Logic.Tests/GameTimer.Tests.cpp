@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 #include "MockIPlayingField.h"
 #include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
+#include "MockIObjectMover.h"
 
 TEST(GameTimer, tick_calls_tick_on_all_objects)
 {
@@ -21,11 +22,14 @@ TEST(GameTimer, tick_calls_tick_on_all_objects)
     MockIPlayingFieldObject* mock_object_1_1 = new MockIPlayingFieldObject{};
     IPlayingFieldObject_Ptr object_1_1 ( mock_object_1_1 );
 
+    MockIObjectMover* mock_object_mover = new MockIObjectMover{};
+    IObjectMover_Ptr object_mover(mock_object_mover);
+
     MockIPlayingField* mock_playing_field = new MockIPlayingField{};
     IPlayingField_Ptr playing_field ( mock_playing_field );
 
     GameTimer sut {};
-    sut.initialize ( playing_field );
+    sut.initialize ( playing_field, object_mover);
 
     EXPECT_CALL(*mock_playing_field,
         get_rows())

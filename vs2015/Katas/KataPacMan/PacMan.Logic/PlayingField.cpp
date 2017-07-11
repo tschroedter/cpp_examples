@@ -33,7 +33,9 @@ namespace PacMan
             return field;
         }
 
-        void PlayingField::initialize ( const size_t rows, const size_t columns )
+        void PlayingField::initialize ( 
+            const size_t rows, 
+            const size_t columns )
         {
             m_rows = rows;
             m_columns = columns;
@@ -84,6 +86,25 @@ namespace PacMan
 
             IPlayingFieldObject_Ptr* selected_row = m_field [ row ];
             selected_row [ column ] = object;
+        }
+
+        void PlayingField::move_object_from_to(
+            const size_t from_row,
+            const size_t from_column,
+            const size_t to_row,
+            const size_t to_column)
+        {
+            m_validator->validate_row(from_row);
+            m_validator->validate_column(from_column);
+
+            m_validator->validate_row(to_row);
+            m_validator->validate_column(to_column);
+
+            auto object = get_object_at(from_row, from_column);
+            put_object_at(object, to_row, to_column);
+
+            IDot_Ptr dot = m_factory();
+            put_object_at(dot, from_row, from_column);
         }
     }
 }

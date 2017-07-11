@@ -35,8 +35,8 @@ std::unique_ptr<PacMan::Logic::PlayingField> create_sut_using_mock ()
                                                validator );
 
     sut->initialize (
-                     size_t ( 1 ),
-                     size_t ( 2 ) );
+                     size_t ( 3 ),
+                     size_t ( 4 ) );
 
     return sut;
 }
@@ -70,7 +70,7 @@ TEST(PlayingField, constructor_sets_rows)
     using namespace PacMan::Logic;
 
     // Arrange
-    size_t expected { 1 };
+    size_t expected { 3 };
 
     auto sut = create_sut_using_mock();
 
@@ -86,7 +86,7 @@ TEST(PlayingField, constructor_sets_columns)
     using namespace PacMan::Logic;
 
     // Arrange
-    size_t expected { 2 };
+    size_t expected { 4 };
 
     auto sut = create_sut_using_mock();
 
@@ -160,3 +160,40 @@ TEST(PlayingField, put_object_at_puts_object_at_given_row_column)
 
     EXPECT_EQ(expected, actual);
 }
+
+TEST(PlayingField, move_object_from_to_moves_object)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    IPlayingFieldObject_Ptr expected{};
+    auto sut = create_sut_using_mock();
+    sut->put_object_at(expected, 0, 0);
+
+    // Act
+    sut->move_object_from_to(0, 0, 1, 1);
+
+    // Assert
+    auto actual = sut->get_object_at(1, 1);
+
+    EXPECT_EQ(expected, actual);
+}
+
+TEST(PlayingField, move_object_from_to_fills_empty_spot_with_dot)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    IPlayingFieldObject_Ptr expected{};
+    auto sut = create_sut_using_mock();
+    sut->put_object_at(expected, 0, 0);
+
+    // Act
+    sut->move_object_from_to(0, 0, 1, 1);
+
+    // Assert
+    auto actual = sut->get_object_at(0, 0);
+
+    EXPECT_EQ(PlayingFieldObjectType::PlayingFieldObjectType_Dot, actual->get_type());
+}
+

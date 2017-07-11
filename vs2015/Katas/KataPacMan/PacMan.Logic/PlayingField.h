@@ -58,6 +58,12 @@ namespace PacMan
                 const IPlayingFieldObject_Ptr object,
                 const size_t row,
                 const size_t column ) override;
+
+            virtual void move_object_from_to(
+                const size_t from_row,
+                const size_t from_column,
+                const size_t to_row,
+                const size_t to_column) override;
         };
     };
 };

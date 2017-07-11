@@ -1,7 +1,6 @@
 #pragma once
 #include <gtest/gtest.h>
 #include <gmock/gmock-generated-function-mockers.h>
-#include "IDot.h"
 
 class MockILocation
         :public PacMan::Logic::ILocation

@@ -22,6 +22,7 @@
 #include "DisplayPacMan.h"
 #include "InputMoveForPacMan.h"
 #include "GameTimer.h"
+#include "ObjectMover.h"
 
 namespace PacMan
 {
@@ -47,6 +48,9 @@ namespace PacMan
 
             builder.registerType<PlayingFieldValidator>()
                    .as<IPlayingFieldValidator>();
+
+            builder.registerType<ObjectMover>()
+                   .as<IObjectMover>();
 
             builder.registerType<PlayingField>()
                    .as<IPlayingField>();
@@ -100,7 +104,7 @@ namespace PacMan
 
             using namespace Match;
             {
-                register_components ( builder );
+                register_components(builder);
 
                 Container_Ptr container = builder.build();
 
