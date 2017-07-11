@@ -6,7 +6,7 @@ namespace PacMan
 {
     namespace Logic
     {
-        class ObjectMover   // todo testing
+        class ObjectMover
             : public IObjectMover
         {
         private:
@@ -19,8 +19,7 @@ namespace PacMan
             size_t move_down(const size_t& row) const;
 
         public:
-            ObjectMover::ObjectMover(
-                IPlayingField_Ptr playing_field);
+            ObjectMover::ObjectMover();
 
             ~ObjectMover();
 
@@ -28,7 +27,7 @@ namespace PacMan
                 const size_t from_row,
                 const size_t from_columns) override;
 
-            void initialize(const IPlayingField_Ptr& playing_field) override;
+            void initialize(const IPlayingField_Ptr& playing_field) override;   // todo move into constuctor
         };
     };
 };

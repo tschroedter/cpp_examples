@@ -9,8 +9,7 @@ namespace PacMan
 {
     namespace Logic
     {
-        ObjectMover::ObjectMover (
-            IPlayingField_Ptr playing_field ) : m_playing_field(playing_field)
+        ObjectMover::ObjectMover ()
         {
         }
 
