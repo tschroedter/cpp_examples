@@ -15,6 +15,11 @@ namespace PacMan
             return PlayingFieldObject::get_heading();
         }
 
+        void Monster::set_heading ( Heading heading )
+        {
+            PlayingFieldObject::set_heading(heading);  // todo testing
+        }
+
         bool Monster::is_moving() const
         {
             auto heading = get_heading();
@@ -25,7 +30,8 @@ namespace PacMan
         }
 
         void Monster::tick ()
-        {
+        {       
+            // todo remove??
         }
     }
 }

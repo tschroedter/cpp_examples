@@ -94,6 +94,12 @@ namespace PacMan
             const size_t to_row,
             const size_t to_column)
         {
+            if (from_row == to_row &&
+                from_column == to_column)
+            {
+                return; // todo testing
+            }
+
             m_validator->validate_row(from_row);
             m_validator->validate_column(from_column);
 

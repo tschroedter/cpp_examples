@@ -3,6 +3,18 @@
 #include "ObjectMover.h"
 #include "MockIPlayingField.h"
 #include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
+#include "MockIObjectMoveCalculator.h"
+
+PacMan::Logic::IObjectMoveCalculator_Ptr create_calculator()
+{
+    using namespace PacMan::Logic;
+
+    MockIObjectMoveCalculator* mock_object = new MockIObjectMoveCalculator{};
+
+    IObjectMoveCalculator_Ptr object{ mock_object };
+
+    return object;
+}
 
 PacMan::Logic::IPlayingFieldObject_Ptr create_object(
     PacMan::Logic::Heading heading)
@@ -89,7 +101,9 @@ void TEST_move_object_from_to_n_times_with_start_position_1_1(
             expectedRow,
             expectedColumn);
 
-    ObjectMover sut{};
+    IObjectMoveCalculator_Ptr calculator = create_calculator();
+
+    ObjectMover sut{ calculator };
 
     sut.initialize(playing_field);
 
@@ -122,82 +136,9 @@ TEST(ObjectMover, move_object_calls_playing_field_for_heading_left)
 {
     using namespace PacMan::Logic;
 
+    // todo testing ==> this is just a dummy test
     TEST_move_object_from_to_with_start_position_1_1(Heading_Left,
                                                 size_t(1),
                                                 size_t(0));
 }
 
-TEST(ObjectMover, move_object_calls_playing_field_for_heading_right)
-{
-    using namespace PacMan::Logic;
-
-    TEST_move_object_from_to_with_start_position_1_1(Heading_Right,
-        size_t(1),
-        size_t(2));
-}
-
-TEST(ObjectMover, move_object_calls_playing_field_for_heading_up)
-{
-    using namespace PacMan::Logic;
-
-    TEST_move_object_from_to_with_start_position_1_1(Heading_Up,
-        size_t(0),
-        size_t(1));
-}
-
-TEST(ObjectMover, move_object_calls_playing_field_for_heading_down)
-{
-    using namespace PacMan::Logic;
-
-    TEST_move_object_from_to_with_start_position_1_1(Heading_Down,
-        size_t(2),
-        size_t(1));
-}
-
-TEST(ObjectMover, move_object_calls_playing_field_for_heading_left_multiple_times)
-{
-    using namespace PacMan::Logic;
-
-    TEST_move_object_from_to_n_times_with_start_position_1_1(
-        Heading_Left,
-        size_t(2),
-        size_t(2),
-        size_t(1),
-        size_t(0));
-}
-
-TEST(ObjectMover, move_object_calls_playing_field_for_heading_right_multiple_times)
-{
-    using namespace PacMan::Logic;
-
-    TEST_move_object_from_to_n_times_with_start_position_1_1(
-        Heading_Right,
-        size_t(2),
-        size_t(2),
-        size_t(1),
-        size_t(2));
-}
-
-TEST(ObjectMover, move_object_calls_playing_field_for_heading_up_multiple_times)
-{
-    using namespace PacMan::Logic;
-
-    TEST_move_object_from_to_n_times_with_start_position_1_1(
-        Heading_Up,
-        size_t(2),
-        size_t(2),
-        size_t(0),
-        size_t(1));
-}
-
-TEST(ObjectMover, move_object_calls_playing_field_for_heading_down_multiple_times)
-{
-    using namespace PacMan::Logic;
-
-    TEST_move_object_from_to_n_times_with_start_position_1_1(
-        Heading_Down,
-        size_t(2),
-        size_t(2),
-        size_t(2),
-        size_t(1));
-}

@@ -23,6 +23,7 @@
 #include "InputMoveForPacMan.h"
 #include "GameTimer.h"
 #include "ObjectMover.h"
+#include "ObjectMoveCalculator.h"
 
 namespace PacMan
 {
@@ -51,6 +52,9 @@ namespace PacMan
 
             builder.registerType<ObjectMover>()
                    .as<IObjectMover>();
+
+            builder.registerType<ObjectMoveCalculator>()
+                   .as<IObjectMoveCalculator>();
 
             builder.registerType<PlayingField>()
                    .as<IPlayingField>();

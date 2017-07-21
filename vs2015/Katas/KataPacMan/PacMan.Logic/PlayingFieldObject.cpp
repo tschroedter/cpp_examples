@@ -15,6 +15,11 @@ namespace PacMan
             return m_direction->get_heading();
         }
 
+        void PlayingFieldObject::set_heading ( Heading heading )
+        {
+            m_direction->set_heading(heading);
+        }
+
         void PlayingFieldObject::tick ()
         {
         }

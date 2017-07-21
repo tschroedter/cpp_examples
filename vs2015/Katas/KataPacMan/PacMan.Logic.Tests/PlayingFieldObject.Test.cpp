@@ -96,3 +96,28 @@ TEST(PlayingFieldObject, tick_calls_tick)
     // Assert
     EXPECT_EQ(true, sut.was_tick_called);
 }
+
+TEST(PlayingFieldObject, set_heading_calls_direction)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    ILocation_Ptr location = std::make_shared<MockILocation>();
+    MockIDirection* mock_direction = new MockIDirection{};
+    IDirection_Ptr direction(mock_direction);
+
+    TestPlayingFieldObject sut
+    {
+        location,
+        direction
+    };
+
+    EXPECT_CALL(*mock_direction,
+        set_heading(Heading_Left))
+        .Times(1);
+
+    // Act
+    sut.set_heading(Heading_Left);
+
+    // Assert
+}

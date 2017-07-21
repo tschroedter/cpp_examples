@@ -22,6 +22,7 @@ namespace PacMan
             {
                 for (size_t column = 0; column < number_of_columns; column++)
                 {
+                    // todo move object only once
                     m_object_mover->move_object(row, column);
                 }
             }

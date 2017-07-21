@@ -19,6 +19,7 @@ namespace PacMan
             }
 
             Heading get_heading () const override;
+            void set_heading(Heading heading) override;
         };
     };
 };

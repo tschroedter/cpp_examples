@@ -15,6 +15,11 @@ namespace PacMan
             return PlayingFieldObject::get_heading();
         }
 
+        void PacMan::set_heading ( Heading heading )
+        {
+            PlayingFieldObject::set_heading(heading);   // todo testing
+        }
+
         bool PacMan::is_moving() const
         {
             auto heading = get_heading();

@@ -19,6 +19,7 @@ namespace PacMan
                                       location,
                                       direction )
             {
+                PlayingFieldObject::set_heading(Heading_Down); // todo testing, plus initialize method
             };
 
             ~Monster ()
@@ -27,6 +28,7 @@ namespace PacMan
 
             PlayingFieldObjectType get_type () const override;
             Heading get_heading () const override;
+            void set_heading(Heading heading) override;
             bool Monster::is_moving() const override;
             void tick () override;
         };

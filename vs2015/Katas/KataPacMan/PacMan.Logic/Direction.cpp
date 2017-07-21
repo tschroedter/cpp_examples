@@ -10,5 +10,10 @@ namespace PacMan
         {
             return m_heading;
         }
+
+        void Direction::set_heading ( Heading heading )
+        {
+            m_heading = heading;
+        }
     };
 };

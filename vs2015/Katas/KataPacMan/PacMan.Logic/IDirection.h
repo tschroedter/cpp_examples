@@ -13,6 +13,7 @@ namespace PacMan
             virtual ~IDirection () = default;
 
             virtual Heading get_heading () const = 0;
+            virtual void set_heading ( Heading heading ) = 0;
         };
 
         typedef std::shared_ptr<IDirection> IDirection_Ptr;
