@@ -24,6 +24,11 @@ namespace PacMan
         {
         }
 
+        bool PlayingFieldObject::is_moveable () const
+        {
+            return false;
+        }
+
         bool PlayingFieldObject::is_moving() const
         {
             return false;

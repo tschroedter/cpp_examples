@@ -28,5 +28,10 @@ namespace PacMan
         void Dot::tick ()
         {
         }
+
+        bool Dot::is_moveable () const
+        {
+            return false; // todo testing
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace PacMan
             void set_heading(Heading heading) override;
             bool is_moving() const override;
             void tick () override;
+            bool is_moveable() const override;
         };
     };
 };

@@ -120,6 +120,21 @@
     <ClInclude Include="IObjectMoveCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectsMover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IObjectsMover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveObjectInformation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingObjectsRepository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IMovingObjectsRepository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -159,6 +174,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ObjectMoveCalculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectsMover.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveObjectInformation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingObjectsRepository.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

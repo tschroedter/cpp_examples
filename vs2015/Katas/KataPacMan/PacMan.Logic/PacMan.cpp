@@ -32,5 +32,10 @@ namespace PacMan
         void PacMan::tick ()
         {
         }
+
+        bool PacMan::is_moveable () const
+        {
+            return true; // todo testing
+        }
     }
 }

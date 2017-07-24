@@ -33,5 +33,10 @@ namespace PacMan
         {       
             // todo remove??
         }
+
+        bool Monster::is_moveable () const
+        {
+            return true; // todo testing
+        }
     }
 }

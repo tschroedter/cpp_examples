@@ -14,7 +14,6 @@ namespace PacMan
             IObjectMoveCalculator_Ptr m_calculator;
             IPlayingField_Ptr m_playing_field;
 
-            bool is_moveable_object(const IPlayingFieldObject_Ptr object);
             size_t move_left(const size_t& column) const;
             size_t move_right(const size_t& column) const;
             size_t move_up(const size_t& row) const;

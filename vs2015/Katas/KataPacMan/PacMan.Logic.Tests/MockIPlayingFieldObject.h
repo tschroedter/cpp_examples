@@ -15,5 +15,6 @@ public:
     MOCK_METHOD1(set_heading, void(PacMan::Logic::Heading));
     MOCK_CONST_METHOD0(is_moving, bool());
     MOCK_METHOD0(tick, void());
+    MOCK_CONST_METHOD0(is_moveable, bool());
     // ReSharper restore CppOverridingFunctionWithoutOverrideSpecifier
 };

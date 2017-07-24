@@ -18,6 +18,7 @@ namespace PacMan
             virtual void set_heading(Heading heading) = 0;
             virtual bool is_moving() const = 0;
             virtual void tick () = 0;
+            virtual bool is_moveable () const = 0;
         };
 
         typedef std::shared_ptr<IPlayingFieldObject> IPlayingFieldObject_Ptr;
