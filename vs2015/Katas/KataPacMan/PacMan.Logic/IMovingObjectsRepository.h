@@ -1,17 +1,22 @@
 #pragma once
 #include <memory>
-#include "PlayingFieldObjectType.h"
+#include "IMoveObjectInformation.h"
+#include <vector>
 
 namespace PacMan
 {
     namespace Logic
     {
+        typedef std::vector<IMoveObjectInformation_Ptr> MovingObjectsInformationVector;
+        typedef std::shared_ptr<MovingObjectsInformationVector>  MovingObjectsInformationVector_Ptr;
+
         class IMovingObjectsRepository
         {
         public:
             virtual ~IMovingObjectsRepository () = default;
-            virtual void add ( size_t row, size_t column, size_t to_row, size_t to_column, PlayingFieldObjectType get_type ) = 0;
-            void clear ();
+            virtual void add(const IMoveObjectInformation_Ptr information) = 0;
+            virtual void clear() = 0;
+            virtual MovingObjectsInformationVector_Ptr get_all() = 0;
         };
 
         typedef std::shared_ptr<IMovingObjectsRepository> IMovingObjectsRepository_Ptr;

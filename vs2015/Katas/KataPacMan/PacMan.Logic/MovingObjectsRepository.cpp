@@ -5,17 +5,38 @@ namespace PacMan
 {
     namespace Logic
     {
-        MovingObjectsRepository::MovingObjectsRepository ()
+        MovingObjectsRepository::MovingObjectsRepository (
+            MovingObjectsInformationVector_Ptr vector)
+            : m_informations(vector)
         {
         }
 
-        void MovingObjectsRepository::add ( size_t row,
-                                            size_t column,
-                                            size_t to_row,
-                                            size_t to_column,
-                                            PlayingFieldObjectType get_type )
+        void MovingObjectsRepository::add ( 
+            const IMoveObjectInformation_Ptr information)
         {
-            // todo
+            m_informations->push_back(information);
+        }
+
+        void MovingObjectsRepository::clear ()
+        {
+            m_informations->clear();
+        }
+
+        MovingObjectsInformationVector_Ptr MovingObjectsRepository::get_all ()
+        {
+            MovingObjectsInformationVector* p_vector = new MovingObjectsInformationVector();
+
+            for (auto iter = m_informations->begin(); iter != m_informations->end();
+                iter++)
+            {
+                IMoveObjectInformation_Ptr info = (*iter);
+
+                p_vector->push_back(info);
+            }
+
+            auto all = std::shared_ptr<MovingObjectsInformationVector>(p_vector);
+
+            return (all);
         }
     }
 }

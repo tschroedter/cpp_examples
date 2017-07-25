@@ -24,6 +24,7 @@
 #include "GameTimer.h"
 #include "ObjectMover.h"
 #include "ObjectMoveCalculator.h"
+#include "ObjectsMover.h"
 
 namespace PacMan
 {
@@ -53,8 +54,14 @@ namespace PacMan
             builder.registerType<ObjectMover>()
                    .as<IObjectMover>();
 
+            builder.registerType<ObjectsMover>()
+                   .as<IObjectsMover>();
+
             builder.registerType<ObjectMoveCalculator>()
                    .as<IObjectMoveCalculator>();
+
+            builder.registerType<MovingObjectsRepository>()
+                .as<IMovingObjectsRepository>();
 
             builder.registerType<PlayingField>()
                    .as<IPlayingField>();

@@ -138,6 +138,7 @@
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="IGameTimer.h" />
     <ClInclude Include="IInputPacManMove.h" />
+    <ClInclude Include="IMoveObjectInformation.h" />
     <ClInclude Include="IMovingObjectsRepository.h" />
     <ClInclude Include="InputMoveForPacMan.h" />
     <ClInclude Include="IObjectMoveCalculator.h" />

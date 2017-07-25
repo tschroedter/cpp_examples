@@ -4,6 +4,7 @@
 #include "MockIPlayingField.h"
 #include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
 #include "MockIObjectMover.h"
+#include "MockIObjectsMover.h"
 
 TEST(GameTimer, tick_calls_tick_on_all_objects)
 {
@@ -28,8 +29,11 @@ TEST(GameTimer, tick_calls_tick_on_all_objects)
     MockIPlayingField* mock_playing_field = new MockIPlayingField{};
     IPlayingField_Ptr playing_field ( mock_playing_field );
 
+    MockIObjectsMover* mock_objects_mover = new MockIObjectsMover{};
+    IObjectsMover_Ptr objects_mover(mock_objects_mover);
+
     GameTimer sut {};
-    sut.initialize ( playing_field, object_mover);
+    sut.initialize ( playing_field, object_mover, objects_mover);
 
     EXPECT_CALL(*mock_playing_field,
         get_rows())

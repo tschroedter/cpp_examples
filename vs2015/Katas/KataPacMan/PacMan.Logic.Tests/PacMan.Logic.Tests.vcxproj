@@ -155,6 +155,7 @@
     <ClInclude Include="MockILogger.h" />
     <ClInclude Include="MockIObjectMoveCalculator.h" />
     <ClInclude Include="MockIObjectMover.h" />
+    <ClInclude Include="MockIObjectsMover.h" />
     <ClInclude Include="MockIPlayingField.h" />
     <ClInclude Include="MockIPlayingFieldObject.h" />
     <ClInclude Include="MockIPlayingFieldValidator.h" />
