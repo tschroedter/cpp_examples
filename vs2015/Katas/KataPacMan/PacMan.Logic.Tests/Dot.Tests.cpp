@@ -90,3 +90,48 @@ TEST(Dot, tick_calls_tick)
     // Assert
     EXPECT_NO_THROW (sut.tick());
 }
+
+TEST(Dot, set_heading_sets_heading)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    ILocation_Ptr location = std::make_shared<MockILocation>();
+    MockIDirection* mock_direction = new MockIDirection{};
+    IDirection_Ptr direction(mock_direction);
+
+    Dot sut
+    {
+        location,
+        direction
+    };
+
+    EXPECT_CALL(*mock_direction,
+        set_heading(Heading_Right))
+                                   .Times(1);
+
+    // Act
+    sut.set_heading(Heading_Right);
+
+    // Assert
+}
+
+TEST(Dot, is_moveable_returns_false)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    ILocation_Ptr location = std::make_shared<MockILocation>();
+    MockIDirection* mock_direction = new MockIDirection{};
+    IDirection_Ptr direction(mock_direction);
+
+    Dot sut
+    {
+        location,
+        direction
+    };
+
+    // Act
+    // Assert
+    EXPECT_FALSE(sut.is_moveable());
+}

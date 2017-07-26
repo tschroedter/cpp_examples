@@ -24,7 +24,7 @@ namespace PacMan
             MovingObjectsInformationVector_Ptr m_informations;
 
             MovingObjectsInformationVector_Ptr MovingObjectsRepository::get_all_with_filter (
-                std::function<bool ( IMoveObjectInformation_Ptr& )> func ) const;
+                std::function<bool  ( IMoveObjectInformation_Ptr& )> func ) const;
         };
     }
 }

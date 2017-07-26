@@ -17,7 +17,7 @@ namespace PacMan
 
         void Monster::set_heading ( Heading heading )
         {
-            PlayingFieldObject::set_heading(heading); // todo testing
+            PlayingFieldObject::set_heading(heading);
         }
 
         bool Monster::is_moving () const
@@ -36,7 +36,7 @@ namespace PacMan
 
         bool Monster::is_moveable () const
         {
-            return true; // todo testing
+            return true;
         }
     }
 }

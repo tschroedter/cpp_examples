@@ -166,6 +166,7 @@
     <ClCompile Include="Dot.Tests.cpp" />
     <ClCompile Include="GameTimer.Tests.cpp" />
     <ClCompile Include="InputPacManMove.Tests.cpp" />
+    <ClCompile Include="Monster.Tests.cpp" />
     <ClCompile Include="ObjectMoveCalculator.Tests.cpp" />
     <ClCompile Include="ObjectMover.Tests.cpp" />
     <ClCompile Include="PacMan.Logic.Tests.cpp" />
