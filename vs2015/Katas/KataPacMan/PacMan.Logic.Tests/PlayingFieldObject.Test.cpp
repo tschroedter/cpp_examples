@@ -7,16 +7,16 @@
 #include "MockILocation.h"
 
 class TestPlayingFieldObject
-        : public PacMan::Logic::PlayingFieldObject
+    : public PacMan::Logic::PlayingFieldObject
 {
 public:
     TestPlayingFieldObject (
         PacMan::Logic::ILocation_Ptr location,
         PacMan::Logic::IDirection_Ptr direction )
-        : PlayingFieldObject (
-                              PacMan::Logic::PlayingFieldObjectType_Unknown,
-                              location,
-                              direction )
+        : PlayingFieldObject(
+                             PacMan::Logic::PlayingFieldObjectType_Unknown,
+                             location,
+                             direction)
     {
     }
 
@@ -35,7 +35,7 @@ TEST(PlayingFieldObject, constructor_sets_heading)
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     MockIDirection* mock_direction = new MockIDirection{};
-    IDirection_Ptr direction ( mock_direction );
+    IDirection_Ptr direction(mock_direction);
 
     TestPlayingFieldObject sut
     {
@@ -45,8 +45,8 @@ TEST(PlayingFieldObject, constructor_sets_heading)
 
     EXPECT_CALL(*mock_direction,
         get_heading())
-                      .Times ( 1 )
-                      .WillOnce ( testing::Return ( Heading_Down ) );
+                      .Times(1)
+                      .WillOnce(testing::Return(Heading_Down));
 
     // Act
     Heading actual = sut.get_heading();
@@ -114,7 +114,7 @@ TEST(PlayingFieldObject, set_heading_calls_direction)
 
     EXPECT_CALL(*mock_direction,
         set_heading(Heading_Left))
-        .Times(1);
+                                  .Times(1);
 
     // Act
     sut.set_heading(Heading_Left);

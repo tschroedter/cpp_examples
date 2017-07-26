@@ -7,7 +7,7 @@ TEST(DisplayDot, to_string_returns_string)
     using namespace PacMan::View;
 
     // Arrange
-    DisplayDot sut {};
+    DisplayDot sut{};
 
     // Act
     auto actual = sut.to_string();

@@ -18,7 +18,7 @@ namespace PacMan
 
         public:
             ObjectsMover ( const IObjectMoveCalculator_Ptr calculator,
-                           const IMovingObjectsRepository_Ptr repository);
+                           const IMovingObjectsRepository_Ptr repository );
             ~ObjectsMover () = default;
 
             void ObjectsMover::initialize ( const IPlayingField_Ptr& playing_field ) override;

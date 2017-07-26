@@ -8,16 +8,16 @@ namespace PacMan
     namespace Logic
     {
         class PacMan
-                : public PlayingFieldObject
-                  , public IPacMan
+            : public PlayingFieldObject
+              , public IPacMan
         {
         public:
             PacMan ( ILocation_Ptr location,
                      IDirection_Ptr direction )
-                : PlayingFieldObject (
-                                      PlayingFieldObjectType_PacMan,
-                                      location,
-                                      direction )
+                : PlayingFieldObject(
+                                     PlayingFieldObjectType_PacMan,
+                                     location,
+                                     direction)
             {
             };
 
@@ -27,10 +27,10 @@ namespace PacMan
 
             PlayingFieldObjectType get_type () const override;
             Heading get_heading () const override;
-            void set_heading(Heading heading) override;
-            bool is_moving() const override;
+            void set_heading ( Heading heading ) override;
+            bool is_moving () const override;
             void tick () override;
-            bool is_moveable() const override;
+            bool is_moveable () const override;
         };
     };
 };

@@ -8,7 +8,7 @@ namespace PacMan
     namespace Logic
     {
         class PlayingFieldObject
-                : public IPlayingFieldObject
+            : public IPlayingFieldObject
         {
         protected:
             PlayingFieldObjectType m_type;
@@ -19,18 +19,18 @@ namespace PacMan
                 PlayingFieldObjectType type,
                 ILocation_Ptr location,
                 IDirection_Ptr direction )
-                : m_type ( type )
-                , m_location ( location )
-                , m_direction ( direction )
+                : m_type(type)
+                  , m_location(location)
+                  , m_direction(direction)
             {
             }
 
             PlayingFieldObjectType get_type () const override;
             Heading get_heading () const override;
-            void set_heading(Heading heading) override;
-            virtual bool is_moving() const override;
-            virtual void tick () override;  // todo check if we still need this
-            bool is_moveable() const override;
+            void set_heading ( Heading heading ) override;
+            bool is_moving () const override;
+            void tick () override; // todo check if we still need this
+            bool is_moveable () const override;
         };
     };
 };

@@ -10,7 +10,7 @@ namespace PacMan
     namespace Logic
     {
         class PlayingField
-                : public IPlayingField
+            : public IPlayingField
         {
         private:
             IPlayingFieldValidator_Ptr m_validator;
@@ -26,11 +26,11 @@ namespace PacMan
             PlayingField (
                 const Hypodermic::FactoryWrapper<IDot>& factory_wrapper,
                 IPlayingFieldValidator_Ptr validator )
-                : m_validator ( validator )
-                , m_field ( nullptr )
-                , m_rows ( size_t ( 0 ) )
-                , m_columns ( size_t ( 0 ) )
-                , m_factory ( factory_wrapper.getFactory() )
+                : m_validator(validator)
+                  , m_field(nullptr)
+                  , m_rows(size_t(0))
+                  , m_columns(size_t(0))
+                  , m_factory(factory_wrapper.getFactory())
             {
             }
 
@@ -59,11 +59,11 @@ namespace PacMan
                 const size_t row,
                 const size_t column ) override;
 
-            virtual void move_object_from_to(
+            void move_object_from_to (
                 const size_t from_row,
                 const size_t from_column,
                 const size_t to_row,
-                const size_t to_column) override;
+                const size_t to_column ) override;
         };
     };
 };

@@ -8,11 +8,11 @@ namespace PacMan
     namespace View
     {
         class ObjectToDisplayFieldObjectException
-                : public Common::BaseException
+            : public Common::BaseException
         {
         public:
             explicit ObjectToDisplayFieldObjectException ( const std::string& error )
-                : BaseException ( error )
+                : BaseException(error)
             {
             }
         };

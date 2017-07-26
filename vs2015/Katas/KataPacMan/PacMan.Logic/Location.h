@@ -7,7 +7,7 @@ namespace PacMan
     namespace Logic
     {
         class Location
-                : public ILocation
+            : public ILocation
         {
         private:
             size_t m_row = 3;
@@ -20,8 +20,8 @@ namespace PacMan
             Location (
                 size_t row,
                 size_t column )
-                : m_row ( row )
-                , m_column ( column )
+                : m_row(row)
+                  , m_column(column)
             {
             }
 

@@ -15,22 +15,22 @@ namespace PacMan
 
         void Logger::debug ( const std::string message ) const
         {
-            log ( "DEBUG:", message );
+            log("DEBUG:", message);
         }
 
         void Logger::error ( const std::string message ) const
         {
-            log ( "ERROR:", message );
+            log("ERROR:", message);
         }
 
         void Logger::info ( const std::string message ) const
         {
-            log ( "INFO:", message );
+            log("INFO:", message);
         }
 
         void Logger::warning ( const std::string message ) const
         {
-            log ( "WARNING:", message );
+            log("WARNING:", message);
         }
     };
 };

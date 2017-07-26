@@ -7,7 +7,7 @@ TEST(DisplayMonster, to_string_returns_string)
     using namespace PacMan::View;
 
     // Arrange
-    DisplayMonster sut {};
+    DisplayMonster sut{};
 
     // Act
     auto actual = sut.to_string();

@@ -7,7 +7,7 @@ namespace PacMan
     namespace View
     {
         class IDisplayPacMan
-                : public IDisplayPlayingFieldObject
+            : public IDisplayPlayingFieldObject
         {
         public:
             virtual ~IDisplayPacMan () = default;

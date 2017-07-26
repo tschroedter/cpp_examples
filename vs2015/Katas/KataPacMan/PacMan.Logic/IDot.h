@@ -8,7 +8,7 @@ namespace PacMan
     namespace Logic
     {
         class IDot
-                :public IPlayingFieldObject
+            :public IPlayingFieldObject
         {
         public:
             virtual ~IDot () = default;

@@ -14,10 +14,10 @@ namespace PacMam
         };
 
         class PlayingFieldObjectTypeToCharMapping
-                : IPlayingFieldObjectTypeToCharMapping
+            : IPlayingFieldObjectTypeToCharMapping
         {
         private:
-            std::vector<PlayingFieldObjectTypeToCharMappingItem> m_mapping {};
+            std::vector<PlayingFieldObjectTypeToCharMappingItem> m_mapping{};
         public:
             void initialize () override
             {

@@ -26,7 +26,7 @@ PacMan::Logic::IPlayingField_Ptr create_playing_field_for_ObjectMoveCalculator (
     return playing_field;
 }
 
-void TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator(
+void TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator (
     const PacMan::Logic::Heading heading,
     const size_t times,
     const size_t expectedCalledTimes,
@@ -48,8 +48,8 @@ void TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalc
     // Arrange
     IPlayingField_Ptr playing_field =
         create_playing_field_for_ObjectMoveCalculator(expectedCalledTimes,
-                             expectedRow,
-                             expectedColumn);
+                                                      expectedRow,
+                                                      expectedColumn);
 
     ObjectMoveCalculator sut{};
 
@@ -68,7 +68,7 @@ void TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalc
     }
 }
 
-void TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator(
+void TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator (
     const PacMan::Logic::Heading heading,
     const size_t expectedRow,
     const size_t expectedColumn )
@@ -76,11 +76,11 @@ void TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator(
     using namespace PacMan::Logic;
 
     TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator(
-                                                             heading,
-                                                             size_t(1),
-                                                             size_t(1),
-                                                             expectedRow,
-                                                             expectedColumn);
+                                                                                      heading,
+                                                                                      size_t(1),
+                                                                                      size_t(1),
+                                                                                      expectedRow,
+                                                                                      expectedColumn);
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_left)
@@ -88,8 +88,8 @@ TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_left)
     using namespace PacMan::Logic;
 
     TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator(Heading_Left,
-                                                     size_t(1),
-                                                     size_t(0));
+                                                                              size_t(1),
+                                                                              size_t(0));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_right)
@@ -97,8 +97,8 @@ TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_right)
     using namespace PacMan::Logic;
 
     TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator(Heading_Right,
-                                                     size_t(1),
-                                                     size_t(2));
+                                                                              size_t(1),
+                                                                              size_t(2));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_up)
@@ -106,8 +106,8 @@ TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_up)
     using namespace PacMan::Logic;
 
     TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator(Heading_Up,
-                                                     size_t(0),
-                                                     size_t(1));
+                                                                              size_t(0),
+                                                                              size_t(1));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_down)
@@ -115,8 +115,8 @@ TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_down)
     using namespace PacMan::Logic;
 
     TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator(Heading_Down,
-                                                     size_t(2),
-                                                     size_t(1));
+                                                                              size_t(2),
+                                                                              size_t(1));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_left_multiple_times)
@@ -124,11 +124,11 @@ TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_left_mult
     using namespace PacMan::Logic;
 
     TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator(
-                                                             Heading_Left,
-                                                             size_t(2),
-                                                             size_t(2),
-                                                             size_t(1),
-                                                             size_t(0));
+                                                                                      Heading_Left,
+                                                                                      size_t(2),
+                                                                                      size_t(2),
+                                                                                      size_t(1),
+                                                                                      size_t(0));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_right_multiple_times)
@@ -136,11 +136,11 @@ TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_right_mul
     using namespace PacMan::Logic;
 
     TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator(
-                                                             Heading_Right,
-                                                             size_t(2),
-                                                             size_t(2),
-                                                             size_t(1),
-                                                             size_t(2));
+                                                                                      Heading_Right,
+                                                                                      size_t(2),
+                                                                                      size_t(2),
+                                                                                      size_t(1),
+                                                                                      size_t(2));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_up_multiple_times)
@@ -148,11 +148,11 @@ TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_up_multip
     using namespace PacMan::Logic;
 
     TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator(
-                                                             Heading_Up,
-                                                             size_t(2),
-                                                             size_t(2),
-                                                             size_t(0),
-                                                             size_t(1));
+                                                                                      Heading_Up,
+                                                                                      size_t(2),
+                                                                                      size_t(2),
+                                                                                      size_t(0),
+                                                                                      size_t(1));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_down_multiple_times)
@@ -160,9 +160,9 @@ TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_down_mult
     using namespace PacMan::Logic;
 
     TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator(
-                                                             Heading_Down,
-                                                             size_t(2),
-                                                             size_t(2),
-                                                             size_t(2),
-                                                             size_t(1));
+                                                                                      Heading_Down,
+                                                                                      size_t(2),
+                                                                                      size_t(2),
+                                                                                      size_t(2),
+                                                                                      size_t(1));
 }

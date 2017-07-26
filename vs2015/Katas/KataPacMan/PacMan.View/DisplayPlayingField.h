@@ -11,7 +11,7 @@ namespace PacMan
     namespace View
     {
         class DisplayPlayingField // todo testing, todo template see playingfield
-                : public IDisplayPlayingField
+            : public IDisplayPlayingField
         {
         private:
             Logic::IPlayingFieldValidator_Ptr m_validator;
@@ -44,10 +44,10 @@ namespace PacMan
                 IObjectToDisplayFieldObject_Ptr mapping,
                 Logic::IPlayingFieldValidator_Ptr validator,
                 std::ostream& out = std::cout )
-                : m_validator ( validator )
-                , m_mapping ( mapping )
-                , m_out ( out )
-                , m_field ( nullptr )
+                : m_validator(validator)
+                  , m_mapping(mapping)
+                  , m_out(out)
+                  , m_field(nullptr)
             {
             }
 

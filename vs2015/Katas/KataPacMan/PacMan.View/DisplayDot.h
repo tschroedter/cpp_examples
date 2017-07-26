@@ -6,7 +6,7 @@ namespace PacMan
     namespace View
     {
         class DisplayDot
-                : public IDisplayDot
+            : public IDisplayDot
         {
         private:
             Logic::IPlayingFieldObject_Ptr m_object = nullptr;

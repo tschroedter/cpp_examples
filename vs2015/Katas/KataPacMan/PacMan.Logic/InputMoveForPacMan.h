@@ -10,7 +10,7 @@ namespace PacMan
     namespace Logic
     {
         class InputPacManMove
-                : public IInputPacManMove
+            : public IInputPacManMove
         {
         private:
             std::istream& m_in;
@@ -30,8 +30,8 @@ namespace PacMan
             InputPacManMove (
                 std::ostream& out = std::cout,
                 std::istream& in = std::cin )
-                : m_in ( in )
-                , m_out ( out )
+                : m_in(in)
+                  , m_out(out)
             {
             }
 

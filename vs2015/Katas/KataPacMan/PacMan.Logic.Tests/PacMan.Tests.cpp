@@ -5,9 +5,9 @@
 #include "IDirection.h"
 #include "MockIDirection.h"
 
-void is_moving_test_for_heading(
+void is_moving_test_for_heading (
     PacMan::Logic::Heading heading,
-    bool expected)
+    bool expected )
 {
     using namespace ::PacMan::Logic;
 
@@ -24,8 +24,8 @@ void is_moving_test_for_heading(
 
     EXPECT_CALL(*mock_direction,
         get_heading())
-        .Times(1)
-        .WillOnce(testing::Return(heading));
+                      .Times(1)
+                      .WillOnce(testing::Return(heading));
 
     // Act
     // Assert
@@ -83,7 +83,7 @@ TEST(PacMan, constructor_sets_heading)
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     MockIDirection* mock_direction = new MockIDirection{};
-    IDirection_Ptr direction ( mock_direction );
+    IDirection_Ptr direction(mock_direction);
 
     ::PacMan::Logic::PacMan sut
     {
@@ -93,8 +93,8 @@ TEST(PacMan, constructor_sets_heading)
 
     EXPECT_CALL(*mock_direction,
         get_heading())
-                      .Times ( 1 )
-                      .WillOnce ( testing::Return ( Heading_Down ) );
+                      .Times(1)
+                      .WillOnce(testing::Return(Heading_Down));
 
     // Act
     Heading actual = sut.get_heading();

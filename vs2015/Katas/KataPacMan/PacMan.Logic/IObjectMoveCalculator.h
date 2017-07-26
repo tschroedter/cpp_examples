@@ -17,7 +17,7 @@ namespace PacMan
                                      const size_t from_column,
                                      const Heading heading ) = 0;
 
-            virtual void initialize(const IPlayingField_Ptr& playing_field) = 0;
+            virtual void initialize ( const IPlayingField_Ptr& playing_field ) = 0;
 
             size_t to_row = 0;
             size_t to_column = 0;

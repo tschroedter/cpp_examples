@@ -61,7 +61,7 @@ namespace PacMan
                    .as<IObjectMoveCalculator>();
 
             builder.registerType<MovingObjectsRepository>()
-                .as<IMovingObjectsRepository>();
+                   .as<IMovingObjectsRepository>();
 
             builder.registerType<PlayingField>()
                    .as<IPlayingField>();

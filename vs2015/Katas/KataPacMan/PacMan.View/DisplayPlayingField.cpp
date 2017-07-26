@@ -13,16 +13,16 @@ namespace PacMan
         {
             IDisplayPlayingFieldObject_Ptr** field = new IDisplayPlayingFieldObject_Ptr*[rows];
 
-            for ( size_t i = 0 ; i < rows ; i++ )
+            for (size_t i = 0; i < rows; i++)
             {
                 IDisplayPlayingFieldObject_Ptr* row = new IDisplayPlayingFieldObject_Ptr[columns];
 
-                for ( size_t j = 0 ; j < columns ; j++ )
+                for (size_t j = 0; j < columns; j++)
                 {
-                    row [ j ] = nullptr;
+                    row[j] = nullptr;
                 }
 
-                field [ i ] = row;
+                field[i] = row;
             }
 
             return field;
@@ -36,15 +36,15 @@ namespace PacMan
             size_t rows = playing_field->get_rows();
             size_t columns = playing_field->get_columns();
 
-            m_validator->initialize (
-                                     rows,
-                                     columns );
+            m_validator->initialize(
+                                    rows,
+                                    columns);
 
             m_mapping->initialize();
 
-            m_field = create_field (
-                                    rows,
-                                    columns );
+            m_field = create_field(
+                                   rows,
+                                   columns);
         }
 
         size_t DisplayPlayingField::get_rows () const
@@ -59,39 +59,39 @@ namespace PacMan
 
         void DisplayPlayingField::update_field () const
         {
-            using namespace PacMan::Logic;
+            using namespace Logic;
 
             size_t rows = m_playing_field->get_rows();
             size_t columns = m_playing_field->get_columns();
 
-            for ( size_t row = 0 ; row < rows ; row++ )
+            for (size_t row = 0; row < rows; row++)
             {
-                for ( size_t column = 0 ; column < columns ; column++ )
+                for (size_t column = 0; column < columns; column++)
                 {
                     IPlayingFieldObject_Ptr object =
-                            m_playing_field->get_object_at ( row, column );
+                        m_playing_field->get_object_at(row, column);
 
                     IDisplayPlayingFieldObject_Ptr display_object =
-                            m_mapping->get_object_for ( object );
+                        m_mapping->get_object_for(object);
 
-                    put_object_at ( display_object, row, column );
+                    put_object_at(display_object, row, column);
                 }
             }
         }
 
         void DisplayPlayingField::display_field () const
         {
-            using namespace PacMan::Logic;
+            using namespace Logic;
 
             size_t rows = m_playing_field->get_rows();
             size_t columns = m_playing_field->get_columns();
 
-            for ( size_t row = 0 ; row < rows ; row++ )
+            for (size_t row = 0; row < rows; row++)
             {
-                for ( size_t column = 0 ; column < columns ; column++ )
+                for (size_t column = 0; column < columns; column++)
                 {
                     IDisplayPlayingFieldObject_Ptr object =
-                            get_object_at ( row, column );
+                        get_object_at(row, column);
 
                     m_out << object->to_string();
                 }
@@ -102,9 +102,9 @@ namespace PacMan
 
         void DisplayPlayingField::print ()
         {
-            if ( m_playing_field == nullptr )
+            if (m_playing_field == nullptr)
             {
-                throw DisplayPlayingFieldException ( "Given IPlayingField_Ptr is nullptr!" );
+                throw DisplayPlayingFieldException("Given IPlayingField_Ptr is nullptr!");
             }
 
             update_field();
@@ -115,11 +115,11 @@ namespace PacMan
             const size_t row,
             const size_t column ) const
         {
-            m_validator->validate_row ( row );
-            m_validator->validate_column ( column );
+            m_validator->validate_row(row);
+            m_validator->validate_column(column);
 
-            IDisplayPlayingFieldObject_Ptr* selected_row = m_field [ row ];
-            IDisplayPlayingFieldObject_Ptr object = selected_row [ column ];
+            IDisplayPlayingFieldObject_Ptr* selected_row = m_field[row];
+            IDisplayPlayingFieldObject_Ptr object = selected_row[column];
 
             return object;
         }
@@ -130,11 +130,11 @@ namespace PacMan
             const size_t column ) const
         {
             // todo m_validator->validate_object(object);
-            m_validator->validate_row ( row );
-            m_validator->validate_column ( column );
+            m_validator->validate_row(row);
+            m_validator->validate_column(column);
 
-            IDisplayPlayingFieldObject_Ptr* selected_row = m_field [ row ];
-            selected_row [ column ] = object;
+            IDisplayPlayingFieldObject_Ptr* selected_row = m_field[row];
+            selected_row[column] = object;
         }
     }
 }

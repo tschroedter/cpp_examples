@@ -5,7 +5,7 @@
 #include "IPlayingFieldObject.h"
 
 class MockIPlayingFieldValidator
-        :public PacMan::Logic::IPlayingFieldValidator
+    :public PacMan::Logic::IPlayingFieldValidator
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier

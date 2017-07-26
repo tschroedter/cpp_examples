@@ -8,7 +8,7 @@ namespace PacMan
     namespace Logic
     {
         class PlayingFieldValidator
-                : public IPlayingFieldValidator
+            : public IPlayingFieldValidator
         {
         private:
             size_t m_rows;
@@ -16,8 +16,8 @@ namespace PacMan
 
         public:
             PlayingFieldValidator ()
-                : m_rows ( size_t ( 0 ) )
-                , m_columns ( size_t ( 0 ) )
+                : m_rows(size_t(0))
+                  , m_columns(size_t(0))
             {
             }
 

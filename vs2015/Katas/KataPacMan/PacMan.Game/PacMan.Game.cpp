@@ -15,7 +15,7 @@ void play_game ()
     IOCContainerBuilder builder;
     Container_Ptr container = builder.build();
 
-    Game game { container };
+    Game game{container};
 
     game.run();
 };
@@ -24,7 +24,7 @@ int main ()
 {
     using namespace PacMan::Common;
 
-    Logger logger { std::cout };
+    Logger logger{std::cout};
 
     int return_value = 0;
 
@@ -33,18 +33,18 @@ int main ()
         // memory_leak_test();
         play_game();
     }
-    catch ( BaseException exception )
+    catch (BaseException exception)
     {
-        logger.error (
-                      "Abnormal termination: "
-                      + exception.get_error()
-                      + "\n" );
+        logger.error(
+                     "Abnormal termination: "
+                     + exception.get_error()
+                     + "\n");
 
         return_value = 1;
     }
-    catch ( ... )
+    catch (...)
     {
-        logger.error ( "Abnormal termination!!!\n" );
+        logger.error("Abnormal termination!!!\n");
 
         return_value = 1;
     }

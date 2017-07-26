@@ -9,7 +9,7 @@ PacMan::Logic::IPlayingFieldValidator_Ptr create_sut ()
     using namespace PacMan::Logic;
 
     IPlayingFieldValidator_Ptr sut = std::make_shared<PlayingFieldValidator>();
-    sut->initialize ( size_t ( 1 ), size_t ( 2 ) );
+    sut->initialize(size_t(1), size_t(2));
 
     return sut;
 }
@@ -19,7 +19,7 @@ TEST(PlayingFieldValidator, constructor_sets_rows)
     using namespace PacMan::Logic;
 
     // Arrange
-    size_t expected { 1 };
+    size_t expected{1};
 
     IPlayingFieldValidator_Ptr sut = create_sut();
 
@@ -35,7 +35,7 @@ TEST(PlayingFieldValidator, constructor_sets_columns)
     using namespace PacMan::Logic;
 
     // Arrange
-    size_t expected { 2 };
+    size_t expected{2};
 
     IPlayingFieldValidator_Ptr sut = create_sut();
 
@@ -51,8 +51,8 @@ TEST(PlayingFieldValidator, validate_rows_and_columns_throws_for_row_is_invalid)
     using namespace PacMan::Logic;
 
     // Arrange
-    size_t row_invalid ( 100 );
-    size_t column_valid ( 0 );
+    size_t row_invalid(100);
+    size_t column_valid(0);
 
     IPlayingFieldValidator_Ptr sut = create_sut();
 
@@ -70,8 +70,8 @@ TEST(PlayingFieldValidator, validate_rows_and_columns_throws_for_column_is_inval
     using namespace PacMan::Logic;
 
     // Arrange
-    size_t row_valid ( 0 );
-    size_t column_invalid ( 100 );
+    size_t row_valid(0);
+    size_t column_invalid(100);
 
     IPlayingFieldValidator_Ptr sut = create_sut();
 
@@ -89,8 +89,8 @@ TEST(PlayingFieldValidator, validate_rows_and_columns_does_not_throws_for_valid_
     using namespace PacMan::Logic;
 
     // Arrange
-    size_t row_valid ( 1 );
-    size_t column_valid ( 1 );
+    size_t row_valid(1);
+    size_t column_valid(1);
 
     IPlayingFieldValidator_Ptr sut = create_sut();
 

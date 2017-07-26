@@ -4,7 +4,7 @@
 #include "IDot.h"
 
 class MockILocation
-        :public PacMan::Logic::ILocation
+    :public PacMan::Logic::ILocation
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier

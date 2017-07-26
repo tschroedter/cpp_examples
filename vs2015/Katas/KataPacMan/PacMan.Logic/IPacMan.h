@@ -7,7 +7,7 @@ namespace PacMan
     namespace Logic
     {
         class IPacMan
-                : public IPlayingFieldObject
+            : public IPlayingFieldObject
         {
         public:
             virtual ~IPacMan () = default;

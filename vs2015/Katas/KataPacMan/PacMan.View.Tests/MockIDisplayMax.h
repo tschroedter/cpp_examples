@@ -4,7 +4,7 @@
 #include "IDisplayMax.h"
 
 class MockIDisplayMax
-        :public PacMan::View::IDisplayMax
+    :public PacMan::View::IDisplayMax
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier

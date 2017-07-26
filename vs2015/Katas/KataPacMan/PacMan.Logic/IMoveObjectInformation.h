@@ -9,7 +9,7 @@ namespace PacMan
         class IMoveObjectInformation
         {
         public:
-            virtual ~IMoveObjectInformation() = default;
+            virtual ~IMoveObjectInformation () = default;
 
             size_t from_row;
             size_t from_column;

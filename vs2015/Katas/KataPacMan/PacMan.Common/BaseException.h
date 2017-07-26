@@ -12,7 +12,7 @@ namespace PacMan
         public:
             explicit BaseException (
                 const std::string error )
-                : m_error ( error )
+                : m_error(error)
             {
             }
 

@@ -12,37 +12,37 @@ namespace PacMan
             const size_t rows,
             const size_t columns ) const
         {
-            m_validator->validate_rows_and_columns ( rows, columns );
+            m_validator->validate_rows_and_columns(rows, columns);
 
             IPlayingFieldObject_Ptr** field = new IPlayingFieldObject_Ptr*[rows];
 
-            for ( size_t i = 0 ; i < rows ; i++ )
+            for (size_t i = 0; i < rows; i++)
             {
                 IPlayingFieldObject_Ptr* row = new IPlayingFieldObject_Ptr[columns];
 
-                for ( size_t j = 0 ; j < columns ; j++ )
+                for (size_t j = 0; j < columns; j++)
                 {
                     IDot_Ptr dot = m_factory();
                     // todo dot.initialize();
-                    row [ j ] = dot;
+                    row[j] = dot;
                 }
 
-                field [ i ] = row;
+                field[i] = row;
             }
 
             return field;
         }
 
-        void PlayingField::initialize ( 
-            const size_t rows, 
+        void PlayingField::initialize (
+            const size_t rows,
             const size_t columns )
         {
             m_rows = rows;
             m_columns = columns;
 
-            m_field = create_field ( rows, columns );
+            m_field = create_field(rows, columns);
 
-            m_validator->initialize ( rows, columns );
+            m_validator->initialize(rows, columns);
         }
 
         size_t PlayingField::get_rows () const
@@ -59,18 +59,18 @@ namespace PacMan
             const size_t row,
             const size_t column )
         {
-            m_validator->validate_row ( row );
-            m_validator->validate_column ( column );
+            m_validator->validate_row(row);
+            m_validator->validate_column(column);
 
-            IPlayingFieldObject_Ptr* selected_row = m_field [ row ];
-            IPlayingFieldObject_Ptr object = selected_row [ column ];
+            IPlayingFieldObject_Ptr* selected_row = m_field[row];
+            IPlayingFieldObject_Ptr object = selected_row[column];
 
             return object;
         }
 
         PlayingFieldObjectType PlayingField::get_object_type_at ( const size_t row, const size_t column )
         {
-            IPlayingFieldObject_Ptr object = get_object_at ( row, column );
+            IPlayingFieldObject_Ptr object = get_object_at(row, column);
 
             return object->get_type();
         }
@@ -80,19 +80,19 @@ namespace PacMan
             const size_t row,
             const size_t column )
         {
-            m_validator->validate_object ( object );
-            m_validator->validate_row ( row );
-            m_validator->validate_column ( column );
+            m_validator->validate_object(object);
+            m_validator->validate_row(row);
+            m_validator->validate_column(column);
 
-            IPlayingFieldObject_Ptr* selected_row = m_field [ row ];
-            selected_row [ column ] = object;
+            IPlayingFieldObject_Ptr* selected_row = m_field[row];
+            selected_row[column] = object;
         }
 
-        void PlayingField::move_object_from_to(
+        void PlayingField::move_object_from_to (
             const size_t from_row,
             const size_t from_column,
             const size_t to_row,
-            const size_t to_column)
+            const size_t to_column )
         {
             if (from_row == to_row &&
                 from_column == to_column)

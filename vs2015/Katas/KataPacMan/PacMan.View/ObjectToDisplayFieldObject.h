@@ -17,7 +17,7 @@ namespace PacMan
     namespace View
     {
         class ObjectToDisplayFieldObject // todo testing
-                : public IObjectToDisplayFieldObject
+            : public IObjectToDisplayFieldObject
         {
         private:
             std::map<Logic::PlayingFieldObjectType,
@@ -41,11 +41,11 @@ namespace PacMan
                 factory_wrapper_monster,
                 const Hypodermic::FactoryWrapper<IDisplayMax>&
                 factory_wrapper_max )
-                : m_factory_unknown ( factory_wrapper_unknown.getFactory() )
-                , m_factory_dot ( factory_wrapper_dot.getFactory() )
-                , m_factory_pac_man ( factory_wrapper_pac_man.getFactory() )
-                , m_factory_monster ( factory_wrapper_monster.getFactory() )
-                , m_factory_max ( factory_wrapper_max.getFactory() )
+                : m_factory_unknown(factory_wrapper_unknown.getFactory())
+                  , m_factory_dot(factory_wrapper_dot.getFactory())
+                  , m_factory_pac_man(factory_wrapper_pac_man.getFactory())
+                  , m_factory_monster(factory_wrapper_monster.getFactory())
+                  , m_factory_max(factory_wrapper_max.getFactory())
             {
             }
 
@@ -57,7 +57,7 @@ namespace PacMan
             void add_mapping (
                 const Logic::PlayingFieldObjectType object_type,
                 const DisplayObjectFactory factory ) override;
-            View::IDisplayPlayingFieldObject_Ptr get_object_for (
+            IDisplayPlayingFieldObject_Ptr get_object_for (
                 const Logic::IPlayingFieldObject_Ptr playing_field ) const override;
         };
     };

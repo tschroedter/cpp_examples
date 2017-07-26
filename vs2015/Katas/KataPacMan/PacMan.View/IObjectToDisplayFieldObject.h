@@ -19,7 +19,7 @@ namespace PacMan
             virtual void add_mapping (
                 const Logic::PlayingFieldObjectType object_type,
                 const DisplayObjectFactory factory ) = 0;
-            virtual View::IDisplayPlayingFieldObject_Ptr get_object_for (
+            virtual IDisplayPlayingFieldObject_Ptr get_object_for (
                 const Logic::IPlayingFieldObject_Ptr playing_field ) const = 0;
         };
 

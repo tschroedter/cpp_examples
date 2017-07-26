@@ -7,7 +7,7 @@ namespace PacMan
     namespace View
     {
         class DisplayMonster
-                : public IDisplayMonster
+            : public IDisplayMonster
         {
         private:
             Logic::IPlayingFieldObject_Ptr m_object = nullptr;

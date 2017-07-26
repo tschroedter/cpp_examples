@@ -6,7 +6,7 @@ namespace PacMan
     namespace View
     {
         class IDisplayMonster
-                : public IDisplayPlayingFieldObject
+            : public IDisplayPlayingFieldObject
         {
         public:
             virtual ~IDisplayMonster () = default;

@@ -18,23 +18,23 @@ namespace PacMan
             IObjectsMover_Ptr m_objects_mover;
 
         public:
-            GameTimer()
-                : m_playing_field ( nullptr )
-                , m_object_mover(nullptr)
-                , m_objects_mover(nullptr)
+            GameTimer ()
+                : m_playing_field(nullptr)
+                  , m_object_mover(nullptr)
+                  , m_objects_mover(nullptr)
             {
             }
 
-            ~GameTimer()
+            ~GameTimer ()
             {
             }
 
-            void initialize(
+            void initialize (
                 const IPlayingField_Ptr playing_field,
                 const IObjectMover_Ptr object_mover,
-                const IObjectsMover_Ptr objects_mover) override; // todo move into constructor
+                const IObjectsMover_Ptr objects_mover ) override; // todo move into constructor
 
-            void tick() override;
+            void tick () override;
         };
     };
 };

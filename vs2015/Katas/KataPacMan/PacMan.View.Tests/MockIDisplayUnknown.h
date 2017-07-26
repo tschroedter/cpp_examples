@@ -4,7 +4,7 @@
 #include "IDisplayUnknown.h"
 
 class MockIDisplayUnknown
-        :public PacMan::View::IDisplayUnknown
+    :public PacMan::View::IDisplayUnknown
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier

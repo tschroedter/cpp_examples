@@ -7,7 +7,7 @@ namespace PacMan
     namespace Common
     {
         class Logger
-                : public ILogger
+            : public ILogger
         {
         private:
             std::ostream& m_ostream;
@@ -18,7 +18,7 @@ namespace PacMan
 
         public:
             Logger ( std::ostream& out = std::cout )
-                : m_ostream ( out )
+                : m_ostream(out)
             {
             }
 

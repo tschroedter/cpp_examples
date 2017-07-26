@@ -19,8 +19,8 @@ namespace PacMan
             size_t move_down ( const size_t& row ) const;
 
         public:
-            ObjectMoveCalculator();
-            ~ObjectMoveCalculator();
+            ObjectMoveCalculator ();
+            ~ObjectMoveCalculator ();
 
             void calculate ( size_t from_row,
                              size_t from_column,

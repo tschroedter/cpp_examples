@@ -18,19 +18,19 @@ namespace PacMan
 
         void InputPacManMove::initialize ()
         {
-            m_char_to_heading [ Input_PacMan_Up ] = Heading_Up;
-            m_char_to_heading [ Input_PacMan_Down ] = Heading_Down;
-            m_char_to_heading [ Input_PacMan_Left ] = Heading_Left;
-            m_char_to_heading [ Input_PacMan_Right ] = Heading_Right;
+            m_char_to_heading[Input_PacMan_Up] = Heading_Up;
+            m_char_to_heading[Input_PacMan_Down] = Heading_Down;
+            m_char_to_heading[Input_PacMan_Left] = Heading_Left;
+            m_char_to_heading[Input_PacMan_Right] = Heading_Right;
         }
 
         Heading InputPacManMove::convert_char_to_heading ( const char input ) const
         {
-            auto pair = m_char_to_heading.find ( input );
+            auto pair = m_char_to_heading.find(input);
 
             Heading heading = Heading_Unknown;
 
-            if ( pair != m_char_to_heading.end() )
+            if (pair != m_char_to_heading.end())
             {
                 heading = pair->second;
             }
@@ -48,9 +48,9 @@ namespace PacMan
 
                 char input = get_char();
 
-                heading = convert_char_to_heading ( input );
+                heading = convert_char_to_heading(input);
             }
-            while ( heading == Heading_Unknown );
+            while (heading == Heading_Unknown);
 
             return heading;
         }

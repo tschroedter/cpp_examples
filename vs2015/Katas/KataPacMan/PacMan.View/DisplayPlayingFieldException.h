@@ -8,11 +8,11 @@ namespace PacMan
     namespace View
     {
         class DisplayPlayingFieldException
-                : public Common::BaseException
+            : public Common::BaseException
         {
         public:
             explicit DisplayPlayingFieldException ( const std::string& error )
-                : BaseException ( error )
+                : BaseException(error)
             {
             }
         };

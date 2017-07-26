@@ -10,7 +10,7 @@ namespace PacMan
         typedef std::shared_ptr<Hypodermic::Container> Container_Ptr;
 
         class IOCContainerBuilder
-                : public IIOCContainerBuilder
+            : public IIOCContainerBuilder
         {
         private:
             static void register_components ( Hypodermic::ContainerBuilder& builder );

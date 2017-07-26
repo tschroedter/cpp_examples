@@ -9,7 +9,7 @@ namespace PacMan
     namespace View
     {
         class DisplayPacMan
-                : public IDisplayPacMan
+            : public IDisplayPacMan
         {
         private:
             Logic::IPlayingFieldObject_Ptr m_object = nullptr;

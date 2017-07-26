@@ -7,7 +7,7 @@ TEST(DisplayUnknown, to_string_returns_string)
     using namespace PacMan::View;
 
     // Arrange
-    DisplayUnknown sut {};
+    DisplayUnknown sut{};
 
     // Act
     auto actual = sut.to_string();

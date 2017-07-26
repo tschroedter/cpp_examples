@@ -12,7 +12,7 @@ TEST(Dot, constructor_sets_heading)
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     MockIDirection* mock_direction = new MockIDirection{};
-    IDirection_Ptr direction ( mock_direction );
+    IDirection_Ptr direction(mock_direction);
 
     Dot sut
     {
@@ -22,8 +22,8 @@ TEST(Dot, constructor_sets_heading)
 
     EXPECT_CALL(*mock_direction,
         get_heading())
-                      .Times ( 1 )
-                      .WillOnce ( testing::Return ( Heading_Down ) );
+                      .Times(1)
+                      .WillOnce(testing::Return(Heading_Down));
 
     // Act
     Heading actual = sut.get_heading();

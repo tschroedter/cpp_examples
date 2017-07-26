@@ -8,7 +8,7 @@ TEST(BaseException, get_error_returns_string)
 
     // Arrange
     // Act
-    BaseException sut { "Message" };
+    BaseException sut{"Message"};
 
     // Assert
     EXPECT_EQ("Message", sut.get_error());

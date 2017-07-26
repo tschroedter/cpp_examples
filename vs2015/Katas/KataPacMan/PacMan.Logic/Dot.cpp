@@ -17,10 +17,10 @@ namespace PacMan
 
         void Dot::set_heading ( Heading heading )
         {
-            PlayingFieldObject::set_heading(heading);   // todo testing
+            PlayingFieldObject::set_heading(heading); // todo testing
         }
 
-        bool Dot::is_moving() const
+        bool Dot::is_moving () const
         {
             return false;
         }

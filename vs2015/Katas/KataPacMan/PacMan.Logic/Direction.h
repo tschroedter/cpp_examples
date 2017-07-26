@@ -8,7 +8,7 @@ namespace PacMan
     namespace Logic
     {
         class Direction
-                : public IDirection
+            : public IDirection
         {
         private:
             Heading m_heading = Heading_Up;
@@ -19,7 +19,7 @@ namespace PacMan
             }
 
             Heading get_heading () const override;
-            void set_heading(Heading heading) override;
+            void set_heading ( Heading heading ) override;
         };
     };
 };

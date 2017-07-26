@@ -1,18 +1,19 @@
 ﻿#include "stdafx.h"
 #include "MovingObjectsRepository.h"
+#include <functional>
 
 namespace PacMan
 {
     namespace Logic
     {
         MovingObjectsRepository::MovingObjectsRepository (
-            MovingObjectsInformationVector_Ptr vector)
+            MovingObjectsInformationVector_Ptr vector )
             : m_informations(vector)
         {
         }
 
-        void MovingObjectsRepository::add ( 
-            const IMoveObjectInformation_Ptr information)
+        void MovingObjectsRepository::add (
+            const IMoveObjectInformation_Ptr information )
         {
             m_informations->push_back(information);
         }
@@ -22,19 +23,49 @@ namespace PacMan
             m_informations->clear();
         }
 
-        MovingObjectsInformationVector_Ptr MovingObjectsRepository::get_all ()
+        MovingObjectsInformationVector_Ptr MovingObjectsRepository::get_all_with_filter (
+            std::function<bool ( IMoveObjectInformation_Ptr& )> func ) const
         {
             MovingObjectsInformationVector* p_vector = new MovingObjectsInformationVector();
 
             for (auto iter = m_informations->begin(); iter != m_informations->end();
-                iter++)
+                 ++iter)
             {
                 IMoveObjectInformation_Ptr info = (*iter);
 
-                p_vector->push_back(info);
+                if (func(info))
+                {
+                    p_vector->push_back(info);
+                }
             }
 
             auto all = std::shared_ptr<MovingObjectsInformationVector>(p_vector);
+
+            return (all);
+        }
+
+        MovingObjectsInformationVector_Ptr MovingObjectsRepository::get_all () const
+        {
+            auto lambda =
+                [](const IMoveObjectInformation_Ptr& ptr)
+            {
+                return true;
+            };
+
+            auto all = get_all_with_filter(lambda);
+
+            return (all);
+        }
+
+        MovingObjectsInformationVector_Ptr MovingObjectsRepository::get_all_of_type ( PlayingFieldObjectType type ) const
+        {
+            auto lambda =
+                [type](const IMoveObjectInformation_Ptr& ptr)
+            {
+                return ptr->playing_field_object_type == type;
+            };
+
+            auto all = get_all_with_filter(lambda);
 
             return (all);
         }

@@ -4,7 +4,7 @@
 #include "ILogger.h"
 
 class MockILogger
-        :public PacMan::Logic::ILogger
+    :public PacMan::Logic::ILogger
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier

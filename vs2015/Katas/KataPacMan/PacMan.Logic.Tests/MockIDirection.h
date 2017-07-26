@@ -5,7 +5,7 @@
 #include "Heading.h"
 
 class MockIDirection // todo common test lib
-        :public PacMan::Logic::IDirection
+    :public PacMan::Logic::IDirection
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier

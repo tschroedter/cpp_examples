@@ -6,7 +6,7 @@ namespace PacMan
     namespace View
     {
         class DisplayMax
-                : public IDisplayMax
+            : public IDisplayMax
         {
         private:
             Logic::IPlayingFieldObject_Ptr m_object = nullptr;

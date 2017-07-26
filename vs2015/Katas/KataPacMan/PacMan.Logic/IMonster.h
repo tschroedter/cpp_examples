@@ -7,7 +7,7 @@ namespace PacMan
     namespace Logic
     {
         class IMonster
-                : public IPlayingFieldObject
+            : public IPlayingFieldObject
         {
         public:
             virtual ~IMonster () = default;

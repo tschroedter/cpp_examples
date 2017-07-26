@@ -31,11 +31,11 @@ namespace PacMan
                 const size_t row,
                 const size_t column ) = 0;
 
-            virtual void move_object_from_to(
+            virtual void move_object_from_to (
                 const size_t from_row,
                 const size_t from_column,
                 const size_t to_row,
-                const size_t to_column) = 0;
+                const size_t to_column ) = 0;
         };
 
         typedef std::shared_ptr<IPlayingField> IPlayingField_Ptr;

@@ -13,7 +13,7 @@ namespace PacMan
 
         public:
             Game ( Container_Ptr container )
-                : m_container ( container )
+                : m_container(container)
             {
             }
 

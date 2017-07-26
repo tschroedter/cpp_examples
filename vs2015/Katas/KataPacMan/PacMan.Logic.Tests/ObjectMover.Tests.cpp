@@ -5,19 +5,19 @@
 #include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
 #include "MockIObjectMoveCalculator.h"
 
-PacMan::Logic::IObjectMoveCalculator_Ptr create_calculator()
+PacMan::Logic::IObjectMoveCalculator_Ptr create_calculator ()
 {
     using namespace PacMan::Logic;
 
     MockIObjectMoveCalculator* mock_object = new MockIObjectMoveCalculator{};
 
-    IObjectMoveCalculator_Ptr object{ mock_object };
+    IObjectMoveCalculator_Ptr object{mock_object};
 
     return object;
 }
 
-PacMan::Logic::IPlayingFieldObject_Ptr create_object(
-    PacMan::Logic::Heading heading)
+PacMan::Logic::IPlayingFieldObject_Ptr create_object (
+    PacMan::Logic::Heading heading )
 {
     using namespace PacMan::Logic;
 
@@ -25,26 +25,26 @@ PacMan::Logic::IPlayingFieldObject_Ptr create_object(
 
     EXPECT_CALL(*mock_object,
         get_type())
-        .WillRepeatedly(testing::Return(PlayingFieldObjectType_PacMan));
+                   .WillRepeatedly(testing::Return(PlayingFieldObjectType_PacMan));
 
     EXPECT_CALL(*mock_object,
         is_moving())
-        .WillRepeatedly(testing::Return(true));
+                    .WillRepeatedly(testing::Return(true));
 
     EXPECT_CALL(*mock_object,
         get_heading())
-        .WillRepeatedly(testing::Return(heading));
+                      .WillRepeatedly(testing::Return(heading));
 
-    IPlayingFieldObject_Ptr object{ mock_object };
+    IPlayingFieldObject_Ptr object{mock_object};
 
     return object;
 }
 
-PacMan::Logic::IPlayingField_Ptr create_playing_field(
+PacMan::Logic::IPlayingField_Ptr create_playing_field (
     PacMan::Logic::IPlayingFieldObject_Ptr object,
     const size_t expectedCalledTimes,
     const size_t expectedRow,
-    const size_t expectedColumn)
+    const size_t expectedColumn )
 {
     using namespace PacMan::Logic;
 
@@ -52,33 +52,33 @@ PacMan::Logic::IPlayingField_Ptr create_playing_field(
 
     EXPECT_CALL(*mock_playing_field,
         get_object_at(size_t(1), size_t(1)))
-        .WillRepeatedly(testing::Return(object));
+                                            .WillRepeatedly(testing::Return(object));
 
     EXPECT_CALL(*mock_playing_field,
         get_rows())
-        .WillRepeatedly(testing::Return(size_t(3)));
+                   .WillRepeatedly(testing::Return(size_t(3)));
     EXPECT_CALL(*mock_playing_field,
         get_columns())
-        .WillRepeatedly(testing::Return(size_t(3)));
+                      .WillRepeatedly(testing::Return(size_t(3)));
     EXPECT_CALL(*mock_playing_field,
         move_object_from_to(
             size_t(1),
-            size_t(1),
-            expectedRow,
-            expectedColumn))
-        .Times(expectedCalledTimes);
+        size_t(1),
+        expectedRow,
+        expectedColumn))
+                        .Times(expectedCalledTimes);
 
-    IPlayingField_Ptr playing_field{ mock_playing_field };
+    IPlayingField_Ptr playing_field{mock_playing_field};
 
     return playing_field;
 }
 
-void TEST_move_object_from_to_n_times_with_start_position_1_1(
+void TEST_move_object_from_to_n_times_with_start_position_1_1 (
     const PacMan::Logic::Heading heading,
     const size_t times,
     const size_t expectedCalledTimes,
     const size_t expectedRow,
-    const size_t expectedColumn)
+    const size_t expectedColumn )
 {
     using namespace PacMan::Logic;
 
@@ -96,14 +96,14 @@ void TEST_move_object_from_to_n_times_with_start_position_1_1(
     IPlayingFieldObject_Ptr object = create_object(heading);
     IPlayingField_Ptr playing_field =
         create_playing_field(
-            object,
-            expectedCalledTimes,
-            expectedRow,
-            expectedColumn);
+                             object,
+                             expectedCalledTimes,
+                             expectedRow,
+                             expectedColumn);
 
     IObjectMoveCalculator_Ptr calculator = create_calculator();
 
-    ObjectMover sut{ calculator };
+    ObjectMover sut{calculator};
 
     sut.initialize(playing_field);
 
@@ -116,20 +116,19 @@ void TEST_move_object_from_to_n_times_with_start_position_1_1(
     // Assert
 }
 
-void TEST_move_object_from_to_with_start_position_1_1(
+void TEST_move_object_from_to_with_start_position_1_1 (
     const PacMan::Logic::Heading heading,
     const size_t expectedRow,
-    const size_t expectedColumn)
+    const size_t expectedColumn )
 {
     using namespace PacMan::Logic;
 
     TEST_move_object_from_to_n_times_with_start_position_1_1(
-        heading,
-        size_t(1),
-        size_t(1),
-        expectedRow,
-        expectedColumn);
-
+                                                             heading,
+                                                             size_t(1),
+                                                             size_t(1),
+                                                             expectedRow,
+                                                             expectedColumn);
 }
 
 TEST(ObjectMover, move_object_calls_playing_field_for_heading_left)
@@ -138,7 +137,6 @@ TEST(ObjectMover, move_object_calls_playing_field_for_heading_left)
 
     // todo testing ==> this is just a dummy test
     TEST_move_object_from_to_with_start_position_1_1(Heading_Left,
-                                                size_t(1),
-                                                size_t(0));
+                                                     size_t(1),
+                                                     size_t(0));
 }
-

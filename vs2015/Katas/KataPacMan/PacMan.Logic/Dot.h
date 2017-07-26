@@ -8,16 +8,16 @@ namespace PacMan
     namespace Logic
     {
         class Dot
-                : public PlayingFieldObject
-                  , public IDot
+            : public PlayingFieldObject
+              , public IDot
         {
         public:
             Dot ( ILocation_Ptr location,
                   IDirection_Ptr direction )
-                : PlayingFieldObject (
-                                      PlayingFieldObjectType_Dot,
-                                      location,
-                                      direction )
+                : PlayingFieldObject(
+                                     PlayingFieldObjectType_Dot,
+                                     location,
+                                     direction)
             {
             };
 
@@ -26,11 +26,11 @@ namespace PacMan
             }
 
             PlayingFieldObjectType get_type () const override;
-            Heading  get_heading() const override;
-            void set_heading(Heading heading) override;
-            bool is_moving() const override;
+            Heading get_heading () const override;
+            void set_heading ( Heading heading ) override;
+            bool is_moving () const override;
             void tick () override;
-            bool is_moveable() const override;
+            bool is_moveable () const override;
         };
     };
 };

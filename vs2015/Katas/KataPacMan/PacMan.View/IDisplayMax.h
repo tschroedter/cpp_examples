@@ -7,7 +7,7 @@ namespace PacMan
     namespace View
     {
         class IDisplayMax
-                : public IDisplayPlayingFieldObject
+            : public IDisplayPlayingFieldObject
         {
         public:
             virtual ~IDisplayMax () = default;
