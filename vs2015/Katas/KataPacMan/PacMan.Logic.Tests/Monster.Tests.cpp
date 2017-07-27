@@ -6,34 +6,6 @@
 #include "MockIDirection.h"
 #include "Monster.h"
 
-TEST(Monster, constructor_sets_heading)
-{
-    using namespace PacMan::Logic;
-
-    // Arrange
-    MockILocation* mock_location = new MockILocation{};
-    ILocation_Ptr location(mock_location);
-    MockIDirection* mock_direction = new MockIDirection{};
-    IDirection_Ptr direction(mock_direction);
-
-    Monster sut
-    {
-        location,
-        direction
-    };
-
-    EXPECT_CALL(*mock_direction,
-        get_heading())
-                      .Times(1)
-                      .WillOnce(testing::Return(Heading_Down));
-
-    // Act
-    Heading actual = sut.get_heading();
-
-    // Assert
-    EXPECT_EQ(Heading_Down, actual);
-}
-
 TEST(Monster, is_moveable_returns_true)
 {
     using namespace PacMan::Logic;

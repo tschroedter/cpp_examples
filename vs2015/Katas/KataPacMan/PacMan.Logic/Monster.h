@@ -19,7 +19,6 @@ namespace PacMan
                                      location,
                                      direction)
             {
-                PlayingFieldObject::set_heading(Heading_Down); // todo testing, plus initialize method
             };
 
             ~Monster ()

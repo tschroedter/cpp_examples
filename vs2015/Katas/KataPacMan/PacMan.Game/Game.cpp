@@ -29,6 +29,7 @@ namespace PacMan
 
             IMonster_Ptr monster =
                 m_container->resolve<IMonster>();
+            monster->set_heading(Heading_Down);
 
             playing_field->put_object_at(
                                          monster,
