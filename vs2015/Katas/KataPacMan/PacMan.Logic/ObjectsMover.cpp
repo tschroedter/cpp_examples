@@ -30,11 +30,11 @@ namespace PacMan
 
         std::ostream& ObjectsMover::print_moves ( std::ostream& out ) const
         {
-            return m_repository->print_moves(out); // todo testing
+            return m_repository->print_moves(out);
         }
 
         void ObjectsMover::move_objects () const
-        { // todo testing
+        { // todo testing and move into class
             auto all_pac_mans = m_repository->get_all_of_type(PlayingFieldObjectType_PacMan); // there should be only one
 
             for (auto info : (*all_pac_mans))
