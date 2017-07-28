@@ -153,9 +153,11 @@
     <ClInclude Include="MockIDirection.h" />
     <ClInclude Include="MockILocation.h" />
     <ClInclude Include="MockILogger.h" />
+    <ClInclude Include="MockIMovingObjectsRepository.h" />
     <ClInclude Include="MockIObjectMoveCalculator.h" />
     <ClInclude Include="MockIObjectMover.h" />
     <ClInclude Include="MockIObjectsMover.h" />
+    <ClInclude Include="MockIObjectsMoverCalculator.h" />
     <ClInclude Include="MockIPlayingField.h" />
     <ClInclude Include="MockIPlayingFieldObject.h" />
     <ClInclude Include="MockIPlayingFieldValidator.h" />
@@ -170,6 +172,8 @@
     <ClCompile Include="MovingObjectsRepository.Tests.cpp" />
     <ClCompile Include="ObjectMoveCalculator.Tests.cpp" />
     <ClCompile Include="ObjectMover.Tests.cpp" />
+    <ClCompile Include="ObjectsMover.Tests.cpp" />
+    <ClCompile Include="ObjectsMoverCalculator.Tests.cpp" />
     <ClCompile Include="PacMan.Logic.Tests.cpp" />
     <ClCompile Include="PacMan.Tests.cpp" />
     <ClCompile Include="PlayingField.Tests.cpp" />

@@ -25,6 +25,7 @@
 #include "ObjectMover.h"
 #include "ObjectMoveCalculator.h"
 #include "ObjectsMover.h"
+#include "ObjectsMoverCalculator.h"
 
 namespace PacMan
 {
@@ -56,6 +57,12 @@ namespace PacMan
 
             builder.registerType<ObjectsMover>()
                    .as<IObjectsMover>();
+
+            builder.registerType<ObjectsMoverCalculator>()
+                   .as<IObjectsMoverCalculator>();
+
+            builder.registerType<ObjectMoveCalculator>()
+                   .as<IObjectMoveCalculator>();
 
             builder.registerType<ObjectMoveCalculator>()
                    .as<IObjectMoveCalculator>();

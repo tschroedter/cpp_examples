@@ -129,3 +129,31 @@ TEST(MovingObjectsRepository, get_all_of_type_returns_items_with_given_type)
     EXPECT_EQ(object_one, (*all)[0]);
     EXPECT_EQ(object_two, (*all)[1]);
 }
+
+TEST(MovingObjectsRepository, clear_removes_all_items)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    IMoveObjectInformation_Ptr object_one =
+        create_move_object_information(PlayingFieldObjectType_Monster);
+    IMoveObjectInformation_Ptr object_two =
+        create_move_object_information(PlayingFieldObjectType_Monster);
+
+    MovingObjectsInformationVector* p_vector = new MovingObjectsInformationVector{};
+    MovingObjectsInformationVector_Ptr vector(p_vector);
+
+    MovingObjectsRepository sut
+    {
+        vector
+    };
+
+    sut.add(object_one);
+    sut.add(object_two);
+
+    // Act
+    sut.clear();
+
+    // Assert
+    EXPECT_EQ(0, vector->size());
+}

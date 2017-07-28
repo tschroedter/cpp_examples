@@ -7,7 +7,7 @@ namespace PacMan
 {
     namespace Logic
     {
-        class MovingObjectsRepository // todo testing
+        class MovingObjectsRepository
             : public IMovingObjectsRepository
         {
         public:
@@ -19,6 +19,7 @@ namespace PacMan
             void clear () override;
             MovingObjectsInformationVector_Ptr get_all () const override;
             MovingObjectsInformationVector_Ptr get_all_of_type ( PlayingFieldObjectType type ) const override;
+            std::ostream& print_moves ( std::ostream& out ) const override;
 
         private:
             MovingObjectsInformationVector_Ptr m_informations;

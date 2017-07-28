@@ -28,7 +28,7 @@ namespace PacMan
                 const size_t from_row,
                 const size_t from_columns ) override;
 
-            void initialize ( const IPlayingField_Ptr& playing_field ) override; // todo move into constuctor
+            void initialize ( const IPlayingField_Ptr& playing_field ) override;
         };
     };
 };

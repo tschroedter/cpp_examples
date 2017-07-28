@@ -14,7 +14,7 @@ namespace PacMan
 
             virtual void initialize ( const IPlayingField_Ptr& playing_field ) = 0;
             virtual void calculate () = 0;
-            virtual void print_moves () const = 0;
+            virtual std::ostream& print_moves ( std::ostream& out ) const = 0;
             virtual void move_objects () const = 0;
         };
 

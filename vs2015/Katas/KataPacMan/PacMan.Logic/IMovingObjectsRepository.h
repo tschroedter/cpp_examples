@@ -18,6 +18,7 @@ namespace PacMan
             virtual void clear () = 0;
             virtual MovingObjectsInformationVector_Ptr get_all () const = 0;
             virtual MovingObjectsInformationVector_Ptr get_all_of_type ( PlayingFieldObjectType type ) const = 0;
+            virtual std::ostream& print_moves ( std::ostream& out ) const = 0;
         };
 
         typedef std::shared_ptr<IMovingObjectsRepository> IMovingObjectsRepository_Ptr;

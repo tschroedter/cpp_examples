@@ -9,7 +9,7 @@ class MockIObjectsMover // todo common test lib
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier
     MOCK_METHOD0(calculate, void());
-    MOCK_CONST_METHOD0(print_moves, void());
+    MOCK_CONST_METHOD1(print_moves, std::ostream&(std::ostream &out));
     MOCK_CONST_METHOD0(move_objects, void());
     MOCK_METHOD1(
         initialize,

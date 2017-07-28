@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "MovingObjectsRepository.h"
 #include <functional>
+#include <iostream>
 
 namespace PacMan
 {
@@ -68,6 +69,30 @@ namespace PacMan
             auto all = get_all_with_filter(lambda);
 
             return (all);
+        }
+
+        std::ostream& MovingObjectsRepository::print_moves ( std::ostream& out ) const
+        { // todo testing
+            int counter = 0;
+            auto all = get_all();
+
+            for (auto iter = all->begin(); iter != all->end();
+                 ++iter)
+            {
+                IMoveObjectInformation_Ptr info = (*iter);
+
+                out << "[" << counter << "]"
+                    << " (" << info->from_row
+                    << " , " << info->from_column
+                    << ") --> (" << info->to_row
+                    << ", " << info->to_column
+                    << ") Type: " << info->playing_field_object_type
+                    << "\n";
+
+                counter++;
+            }
+
+            return out;
         }
     }
 }

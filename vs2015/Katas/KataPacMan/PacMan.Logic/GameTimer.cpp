@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameTimer.h"
 #include "IObjectsMover.h"
+#include <iostream>
 
 namespace PacMan
 {
@@ -19,7 +20,7 @@ namespace PacMan
         void GameTimer::tick ()
         {
             m_objects_mover->calculate();
-            m_objects_mover->print_moves();
+            m_objects_mover->print_moves(std::cout);
             m_objects_mover->move_objects();
             // todo continue here check for objects on same field
         }

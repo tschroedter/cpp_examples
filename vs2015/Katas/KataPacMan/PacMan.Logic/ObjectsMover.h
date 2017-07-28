@@ -2,7 +2,7 @@
 #include "IObjectsMover.h"
 #include "IObjectMoveCalculator.h"
 #include "MovingObjectsRepository.h"
-#include "IObjectMover.h"
+#include "IObjectsMoverCalculator.h"
 
 namespace PacMan
 {
@@ -12,20 +12,28 @@ namespace PacMan
             : public IObjectsMover
         {
         private:
+            IObjectsMoverCalculator_Ptr m_calculator;
             IPlayingField_Ptr m_playing_field;
-            IObjectMoveCalculator_Ptr m_calculator;
             IMovingObjectsRepository_Ptr m_repository;
 
         public:
-            ObjectsMover ( const IObjectMoveCalculator_Ptr calculator,
+            ObjectsMover ( const IObjectsMoverCalculator_Ptr calculator,
                            const IMovingObjectsRepository_Ptr repository );
             ~ObjectsMover () = default;
 
-            void ObjectsMover::initialize ( const IPlayingField_Ptr& playing_field ) override;
-            void add_move_to_repository ( size_t row, size_t column, IPlayingFieldObject_Ptr object ) const;
+            void ObjectsMover::initialize (
+                const IPlayingField_Ptr& playing_field ) override;
             void calculate () override;
-            void print_moves () const override;
+            std::ostream& print_moves ( std::ostream& out ) const override;
             void move_objects () const override;
+
+            friend std::ostream& operator<< (
+                std::ostream& out,
+                const IObjectsMover& mover )
+            {
+                // Delegate printing responsibility for printing to member function print()
+                return mover.print_moves(out);
+            }
         };
     }
 }
