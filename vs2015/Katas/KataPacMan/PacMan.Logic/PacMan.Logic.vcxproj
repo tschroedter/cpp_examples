@@ -143,6 +143,7 @@
     <ClInclude Include="InputMoveForPacMan.h" />
     <ClInclude Include="IObjectMoveCalculator.h" />
     <ClInclude Include="IObjectMover.h" />
+    <ClInclude Include="IObjectsMoveExecuter.h" />
     <ClInclude Include="IObjectsMover.h" />
     <ClInclude Include="IObjectsMoverCalculator.h" />
     <ClInclude Include="IPlayingFieldValidator.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="MovingObjectsRepository.h" />
     <ClInclude Include="ObjectMoveCalculator.h" />
     <ClInclude Include="ObjectMover.h" />
+    <ClInclude Include="ObjectsMoveExecuter.h" />
     <ClInclude Include="ObjectsMover.h" />
     <ClInclude Include="ObjectsMoverCalculator.h" />
     <ClInclude Include="PacMan.h" />
@@ -186,6 +188,7 @@
     <ClCompile Include="MovingObjectsRepository.cpp" />
     <ClCompile Include="ObjectMoveCalculator.cpp" />
     <ClCompile Include="ObjectMover.cpp" />
+    <ClCompile Include="ObjectsMoveExecuter.cpp" />
     <ClCompile Include="ObjectsMover.cpp" />
     <ClCompile Include="ObjectsMoverCalculator.cpp" />
     <ClCompile Include="PlayingFieldObject.cpp" />

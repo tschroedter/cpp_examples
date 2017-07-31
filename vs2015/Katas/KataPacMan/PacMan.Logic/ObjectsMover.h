@@ -3,6 +3,7 @@
 #include "IObjectMoveCalculator.h"
 #include "MovingObjectsRepository.h"
 #include "IObjectsMoverCalculator.h"
+#include "IObjectsMoveExecuter.h"
 
 namespace PacMan
 {
@@ -15,10 +16,12 @@ namespace PacMan
             IObjectsMoverCalculator_Ptr m_calculator;
             IPlayingField_Ptr m_playing_field;
             IMovingObjectsRepository_Ptr m_repository;
+            IObjectsMoveExecuter_Ptr m_executer;
 
         public:
             ObjectsMover ( const IObjectsMoverCalculator_Ptr calculator,
-                           const IMovingObjectsRepository_Ptr repository );
+                           const IMovingObjectsRepository_Ptr repository,
+                           const IObjectsMoveExecuter_Ptr executer );
             ~ObjectsMover () = default;
 
             void ObjectsMover::initialize (

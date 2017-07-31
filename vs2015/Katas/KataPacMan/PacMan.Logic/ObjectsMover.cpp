@@ -2,6 +2,7 @@
 #include "ObjectsMover.h"
 #include "IPlayingField.h"
 #include <iostream>
+#include "IObjectsMoveExecuter.h"
 
 namespace PacMan
 {
@@ -9,9 +10,11 @@ namespace PacMan
     {
         ObjectsMover::ObjectsMover (
             const IObjectsMoverCalculator_Ptr calculator,
-            const IMovingObjectsRepository_Ptr repository )
+            const IMovingObjectsRepository_Ptr repository,
+            const IObjectsMoveExecuter_Ptr executer )
             : m_calculator(calculator),
-              m_repository(repository) // todo check this
+              m_repository(repository),
+              m_executer(executer)
         {
         }
 
@@ -20,7 +23,9 @@ namespace PacMan
         {
             m_playing_field = playing_field;
             m_calculator->initialize(playing_field,
-                                     m_repository);// todo and this
+                                     m_repository);
+            m_executer->initialize(playing_field,
+                                   m_repository);
         }
 
         void ObjectsMover::calculate ()
@@ -34,26 +39,8 @@ namespace PacMan
         }
 
         void ObjectsMover::move_objects () const
-        { // todo testing and move into class
-            auto all_pac_mans = m_repository->get_all_of_type(PlayingFieldObjectType_PacMan); // there should be only one
-
-            for (auto info : (*all_pac_mans))
-            {
-                m_playing_field->move_object_from_to(info->from_row,
-                                                     info->from_column,
-                                                     info->to_row,
-                                                     info->to_column);
-            }
-
-            auto all_monsters = m_repository->get_all_of_type(PlayingFieldObjectType_Monster);
-
-            for (auto info : (*all_monsters))
-            {
-                m_playing_field->move_object_from_to(info->from_row,
-                                                     info->from_column,
-                                                     info->to_row,
-                                                     info->to_column);
-            }
+        {
+            m_executer->move_objects();
         }
     }
 }
