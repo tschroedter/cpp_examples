@@ -46,8 +46,8 @@ namespace PacMan
             IInputPacManMove_Ptr input_pac_man_move =
                 m_container->resolve<IInputPacManMove>();
             input_pac_man_move->initialize();
-
-            input_pac_man_move->get_heading();
+            Heading new_heading = input_pac_man_move->get_heading();
+            pac_man->set_heading(new_heading);
 
             IObjectMover_Ptr object_mover =
                 m_container->resolve<IObjectMover>();

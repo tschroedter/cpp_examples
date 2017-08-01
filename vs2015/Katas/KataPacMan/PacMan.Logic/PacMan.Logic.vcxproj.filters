@@ -150,6 +150,12 @@
     <ClInclude Include="IObjectsMoveExecuter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectsMoveValidator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IObjectsMoveValidator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -204,6 +210,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ObjectsMoveExecuter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectsMoveValidator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

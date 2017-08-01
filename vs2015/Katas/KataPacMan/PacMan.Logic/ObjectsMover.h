@@ -4,6 +4,7 @@
 #include "MovingObjectsRepository.h"
 #include "IObjectsMoverCalculator.h"
 #include "IObjectsMoveExecuter.h"
+#include "IObjectsMoveValidator.h"
 
 namespace PacMan
 {
@@ -17,11 +18,13 @@ namespace PacMan
             IPlayingField_Ptr m_playing_field;
             IMovingObjectsRepository_Ptr m_repository;
             IObjectsMoveExecuter_Ptr m_executer;
+            IObjectsMoveValidator_Ptr m_validator;
 
         public:
             ObjectsMover ( const IObjectsMoverCalculator_Ptr calculator,
                            const IMovingObjectsRepository_Ptr repository,
-                           const IObjectsMoveExecuter_Ptr executer );
+                           const IObjectsMoveExecuter_Ptr executer,
+                           const IObjectsMoveValidator_Ptr validator);
             ~ObjectsMover () = default;
 
             void ObjectsMover::initialize (
@@ -34,7 +37,6 @@ namespace PacMan
                 std::ostream& out,
                 const IObjectsMover& mover )
             {
-                // Delegate printing responsibility for printing to member function print()
                 return mover.print_moves(out);
             }
         };

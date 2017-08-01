@@ -13,6 +13,7 @@
 #include "MockIMovingObjectsRepository.h"
 #include "MockIObjectsMoverCalculator.h"
 #include "MockIObjectsMoveExecuter.h"
+#include "MockIObjectsMoveValidator.h"
 
 TEST(ObjectsMover, initialize_calls_calculator_initialize)
 {
@@ -34,18 +35,68 @@ TEST(ObjectsMover, initialize_calls_calculator_initialize)
         new MockIObjectsMoveExecuter{};
     IObjectsMoveExecuter_Ptr executer(mock_executer);
 
+    MockIObjectsMoveValidator* mock_validator =
+        new MockIObjectsMoveValidator{};
+    IObjectsMoveValidator_Ptr validtor(mock_validator);
+
     IDirection_Ptr direction = std::make_shared<MockIDirection>();
 
     ObjectsMover sut
     {
         calculator,
         repository,
-        executer
+        executer,
+        validtor
     };
 
     EXPECT_CALL(*mock_calculator,
         initialize(
             playing_field,
+            repository))
+                        .Times(1);
+
+    // Act
+    sut.initialize(playing_field);
+
+    // Assert
+}
+
+TEST(ObjectsMover, initialize_calls_validator_initialize)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    MockIPlayingField* mock_playing_field = new MockIPlayingField{};
+    IPlayingField_Ptr playing_field(mock_playing_field);
+
+    MockIObjectsMoverCalculator* mock_calculator =
+        new MockIObjectsMoverCalculator{};
+    IObjectsMoverCalculator_Ptr calculator(mock_calculator);
+
+    MockIMovingObjectsRepository* mock_repository =
+        new MockIMovingObjectsRepository{};
+    IMovingObjectsRepository_Ptr repository(mock_repository);
+
+    MockIObjectsMoveExecuter* mock_executer =
+        new MockIObjectsMoveExecuter{};
+    IObjectsMoveExecuter_Ptr executer(mock_executer);
+
+    MockIObjectsMoveValidator* mock_validator =
+        new MockIObjectsMoveValidator{};
+    IObjectsMoveValidator_Ptr validtor(mock_validator);
+
+    IDirection_Ptr direction = std::make_shared<MockIDirection>();
+
+    ObjectsMover sut
+    {
+        calculator,
+        repository,
+        executer,
+        validtor
+    };
+
+    EXPECT_CALL(*mock_validator,
+        initialize(
             repository))
                         .Times(1);
 
@@ -75,13 +126,18 @@ TEST(ObjectsMover, initialize_calls_executer_initialize)
         new MockIObjectsMoveExecuter{};
     IObjectsMoveExecuter_Ptr executer(mock_executer);
 
+    MockIObjectsMoveValidator* mock_validator =
+        new MockIObjectsMoveValidator{};
+    IObjectsMoveValidator_Ptr validtor(mock_validator);
+
     IDirection_Ptr direction = std::make_shared<MockIDirection>();
 
     ObjectsMover sut
     {
         calculator,
         repository,
-        executer
+        executer,
+        validtor
     };
 
     EXPECT_CALL(*mock_executer,
@@ -116,11 +172,16 @@ TEST(ObjectsMover, calculate_call_calculator_calculate)
         new MockIObjectsMoveExecuter{};
     IObjectsMoveExecuter_Ptr executer(mock_executer);
 
+    MockIObjectsMoveValidator* mock_validator =
+        new MockIObjectsMoveValidator{};
+    IObjectsMoveValidator_Ptr validtor(mock_validator);
+
     ObjectsMover sut
     {
         calculator,
         repository,
-        executer
+        executer,
+        validtor
     };
 
     sut.initialize(playing_field);
@@ -155,11 +216,16 @@ TEST(ObjectsMover, move_objects_call_executer_move_objects)
         new MockIObjectsMoveExecuter{};
     IObjectsMoveExecuter_Ptr executer(mock_executer);
 
+    MockIObjectsMoveValidator* mock_validator =
+        new MockIObjectsMoveValidator{};
+    IObjectsMoveValidator_Ptr validtor(mock_validator);
+
     ObjectsMover sut
     {
         calculator,
         repository,
-        executer
+        executer,
+        validtor
     };
 
     sut.initialize(playing_field);
@@ -194,11 +260,16 @@ TEST(ObjectsMover, print_moves_call_repositories_print_moves)
         new MockIObjectsMoveExecuter{};
     IObjectsMoveExecuter_Ptr executer(mock_executer);
 
+    MockIObjectsMoveValidator* mock_validator =
+        new MockIObjectsMoveValidator{};
+    IObjectsMoveValidator_Ptr validtor(mock_validator);
+
     ObjectsMover sut
     {
         calculator,
         repository,
-        executer
+        executer,
+        validtor
     };
 
     sut.initialize(playing_field);
