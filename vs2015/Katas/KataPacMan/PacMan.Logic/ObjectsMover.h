@@ -32,6 +32,7 @@ namespace PacMan
             void calculate () override;
             std::ostream& print_moves ( std::ostream& out ) const override;
             void move_objects () const override;
+            ValidationStatus get_status () const override;
 
             friend std::ostream& operator<< (
                 std::ostream& out,

@@ -47,5 +47,10 @@ namespace PacMan
             m_validator->validate_moves();
             m_executer->move_objects();
         }
+
+        ValidationStatus ObjectsMover::get_status() const
+        {
+            return m_validator->get_status();
+        }
     }
 }

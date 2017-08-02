@@ -15,5 +15,8 @@ public:
     MOCK_METHOD1(
         initialize,
         void(const PacMan::Logic::IMovingObjectsRepository_Ptr& playing_field));
+    MOCK_CONST_METHOD0(
+        get_status,
+        ValidationStatus());
     // ReSharper restore CppOverridingFunctionWithoutOverrideSpecifier
 };

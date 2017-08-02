@@ -35,6 +35,7 @@ namespace PacMan
                 const IObjectsMover_Ptr objects_mover ) override; // todo move into constructor
 
             void tick () override;
+            ValidationStatus get_status () const override; // todo testing
         };
     };
 };

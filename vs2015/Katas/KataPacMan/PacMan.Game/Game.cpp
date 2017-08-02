@@ -6,6 +6,7 @@
 #include "IMonster.h"
 #include "IInputPacManMove.h"
 #include "IGameTimer.h"
+#include <iostream>
 
 namespace PacMan
 {
@@ -64,6 +65,14 @@ namespace PacMan
                                    objects_mover);
 
             game_timer->tick();
+            auto status = game_timer->get_status();
+
+            if (ValidationStatus_PacMan_Death == status)
+            {
+                std::cout
+                    << "GAME OVER!\n"
+                    << "PacMan got eaten by a Monster!\n";
+            }
 
             display->print();
         }
