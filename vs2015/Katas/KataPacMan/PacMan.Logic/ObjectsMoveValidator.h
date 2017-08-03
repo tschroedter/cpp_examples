@@ -14,14 +14,14 @@ namespace PacMan
             ~ObjectsMoveValidator () = default;
 
             void initialize ( const IMovingObjectsRepository_Ptr& repository ) override;
-            void validate_moves () override;
             ValidationStatus get_status () const override;
+            void validate_moves () override;
 
         private:
             IMovingObjectsRepository_Ptr m_repository;
             ValidationStatus m_status;
 
-            ValidationStatus check_move_against_all_other_moves (
+            ValidationStatus calculate_status_depending_on_move (
                 const IMoveObjectInformation_Ptr info ) const;
         };
     }

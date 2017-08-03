@@ -15,8 +15,7 @@ void ObjectsMoveValidator::initialize (
     m_repository = repository;
 }
 
-
-ValidationStatus ObjectsMoveValidator::check_move_against_all_other_moves (
+ValidationStatus ObjectsMoveValidator::calculate_status_depending_on_move (
     const IMoveObjectInformation_Ptr info ) const
 {
     auto all_other = m_repository->get_all();
@@ -31,7 +30,9 @@ ValidationStatus ObjectsMoveValidator::check_move_against_all_other_moves (
         if (info->to_row == other_info->to_row &&
             info->to_column == other_info->to_column)
         {
-            if (info->playing_field_object_type == PlayingFieldObjectType_PacMan)
+            if (info->playing_field_object_type == PlayingFieldObjectType_PacMan &&
+                other_info->playing_field_object_type ==
+                PlayingFieldObjectType_Monster)
             {
                 return ValidationStatus_PacMan_Death;
             }
@@ -48,7 +49,7 @@ void ObjectsMoveValidator::validate_moves ()
 
     for (IMoveObjectInformation_Ptr info : (*all))
     {
-        m_status = check_move_against_all_other_moves(info);
+        m_status = calculate_status_depending_on_move(info);
 
         if (ValidationStatus_PacMan_Death == m_status)
         {

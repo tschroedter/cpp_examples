@@ -113,5 +113,8 @@
     <ClCompile Include="ObjectsMoverCalculator.Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectsMoveValidator.Tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
