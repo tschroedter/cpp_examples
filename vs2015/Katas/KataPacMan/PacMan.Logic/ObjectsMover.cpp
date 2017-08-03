@@ -13,7 +13,7 @@ namespace PacMan
             const IObjectsMoverCalculator_Ptr calculator,
             const IMovingObjectsRepository_Ptr repository,
             const IObjectsMoveExecuter_Ptr executer,
-            const IObjectsMoveValidator_Ptr validator)
+            const IObjectsMoveValidator_Ptr validator )
             : m_calculator(calculator),
               m_repository(repository),
               m_executer(executer),
@@ -23,7 +23,7 @@ namespace PacMan
 
         void ObjectsMover::initialize (
             const IPlayingField_Ptr& playing_field )
-        {   // todo use singeltons ?
+        { // todo use singeltons ?
             m_playing_field = playing_field;
             m_calculator->initialize(playing_field,
                                      m_repository);
@@ -48,7 +48,7 @@ namespace PacMan
             m_executer->move_objects();
         }
 
-        ValidationStatus ObjectsMover::get_status() const
+        ValidationStatus ObjectsMover::get_status () const
         {
             return m_validator->get_status();
         }

@@ -73,7 +73,7 @@ namespace PacMan
                    .as<IObjectMoveCalculator>();
 
             builder.registerType<ObjectsMoveValidator>()
-                .as<IObjectsMoveValidator>();
+                   .as<IObjectsMoveValidator>();
 
             builder.registerType<MovingObjectsRepository>()
                    .as<IMovingObjectsRepository>();

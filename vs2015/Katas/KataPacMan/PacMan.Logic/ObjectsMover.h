@@ -24,7 +24,7 @@ namespace PacMan
             ObjectsMover ( const IObjectsMoverCalculator_Ptr calculator,
                            const IMovingObjectsRepository_Ptr repository,
                            const IObjectsMoveExecuter_Ptr executer,
-                           const IObjectsMoveValidator_Ptr validator);
+                           const IObjectsMoveValidator_Ptr validator );
             ~ObjectsMover () = default;
 
             void ObjectsMover::initialize (

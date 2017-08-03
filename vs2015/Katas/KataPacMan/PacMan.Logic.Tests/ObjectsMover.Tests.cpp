@@ -142,7 +142,7 @@ TEST(ObjectsMover, get_status_calls_validator_get_status)
 
     EXPECT_CALL(*mock_validator,
         get_status())
-        .Times(1);
+                     .Times(1);
 
     // Act
     sut.get_status();

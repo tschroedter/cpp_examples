@@ -17,7 +17,7 @@ namespace PacMan
             virtual void calculate () = 0;
             virtual std::ostream& print_moves ( std::ostream& out ) const = 0;
             virtual void move_objects () const = 0;
-            virtual ValidationStatus get_status() const = 0;
+            virtual ValidationStatus get_status () const = 0;
         };
 
         typedef std::shared_ptr<IObjectsMover> IObjectsMover_Ptr;

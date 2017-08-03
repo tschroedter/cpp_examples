@@ -26,7 +26,7 @@ namespace PacMan
             // todo continue here check for objects on same field
         }
 
-        ValidationStatus GameTimer::get_status() const
+        ValidationStatus GameTimer::get_status () const
         {
             return m_objects_mover->get_status();
         }
