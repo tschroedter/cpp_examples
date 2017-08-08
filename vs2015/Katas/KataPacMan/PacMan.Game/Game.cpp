@@ -44,12 +44,6 @@ namespace PacMan
 
             display->print();
 
-            IInputPacManMove_Ptr input_pac_man_move =
-                m_container->resolve<IInputPacManMove>();
-            input_pac_man_move->initialize();
-            Heading new_heading = input_pac_man_move->get_heading();
-            pac_man->set_heading(new_heading);
-
             IObjectMover_Ptr object_mover =
                 m_container->resolve<IObjectMover>();
             object_mover->initialize(playing_field);
@@ -58,14 +52,26 @@ namespace PacMan
                 m_container->resolve<IObjectsMover>();
             objects_mover->initialize(playing_field);
 
+            IInputPacManMove_Ptr input_pac_man_move =
+                m_container->resolve<IInputPacManMove>();
+            input_pac_man_move->initialize();
+
             IGameTimer_Ptr game_timer =
                 m_container->resolve<IGameTimer>();
             game_timer->initialize(playing_field,
                                    object_mover,
                                    objects_mover);
 
-            game_timer->tick();
             auto status = game_timer->get_status();
+
+            while (ValidationStatus_PacMan_Death != status)
+            {
+                display->print();
+                Heading new_heading = input_pac_man_move->get_heading();
+                pac_man->set_heading(new_heading);
+                game_timer->tick();
+                status = game_timer->get_status();
+            }
 
             if (ValidationStatus_PacMan_Death == status)
             {
@@ -73,8 +79,6 @@ namespace PacMan
                     << "GAME OVER!\n"
                     << "PacMan got eaten by a Monster!\n";
             }
-
-            display->print();
         }
     }
 }

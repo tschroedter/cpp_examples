@@ -16,10 +16,10 @@ PacMan::Logic::IPlayingField_Ptr create_playing_field_for_ObjectMoveCalculator (
 
     EXPECT_CALL(*mock_playing_field,
         get_rows())
-                   .WillRepeatedly(testing::Return(size_t(3)));
+                   .WillRepeatedly(testing::Return(size_t(4)));
     EXPECT_CALL(*mock_playing_field,
         get_columns())
-                      .WillRepeatedly(testing::Return(size_t(3)));
+                      .WillRepeatedly(testing::Return(size_t(4)));
 
     IPlayingField_Ptr playing_field{mock_playing_field};
 

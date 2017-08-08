@@ -22,8 +22,6 @@ namespace PacMan
             m_objects_mover->calculate();
             m_objects_mover->print_moves(std::cout);
             m_objects_mover->move_objects();
-
-            // todo continue here check for objects on same field
         }
 
         ValidationStatus GameTimer::get_status () const

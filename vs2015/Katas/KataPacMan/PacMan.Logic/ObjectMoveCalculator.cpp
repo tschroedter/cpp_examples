@@ -62,9 +62,9 @@ namespace PacMan
             auto max_columns = m_playing_field->get_columns();
 
             return
-                column > max_columns
-                    ? column + 1
-                    : max_columns - 1;
+                column < (max_columns - 1)
+                ? column + 1
+                : max_columns - 1;
         }
 
         size_t ObjectMoveCalculator::move_up ( const size_t& row ) const
