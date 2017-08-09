@@ -63,8 +63,8 @@ namespace PacMan
 
             return
                 column < (max_columns - 1)
-                ? column + 1
-                : max_columns - 1;
+                    ? column + 1
+                    : max_columns - 1;
         }
 
         size_t ObjectMoveCalculator::move_up ( const size_t& row ) const

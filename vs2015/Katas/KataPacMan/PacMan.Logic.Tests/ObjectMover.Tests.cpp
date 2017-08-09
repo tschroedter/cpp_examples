@@ -62,26 +62,26 @@ TEST(ObjectMover, move_object_does_not_calls_calculator_calculate_for_is_moveabl
 
     EXPECT_CALL(*mock_playing_field,
         get_object_at(row, column))
-        .WillRepeatedly(testing::Return(object));
+                                   .WillRepeatedly(testing::Return(object));
 
     EXPECT_CALL(*mock_object,
         is_moveable())
-        .WillRepeatedly(testing::Return(false));
+                      .WillRepeatedly(testing::Return(false));
 
     EXPECT_CALL(*mock_object,
         is_moving())
-        .WillRepeatedly(testing::Return(true));
+                    .WillRepeatedly(testing::Return(true));
 
     EXPECT_CALL(*mock_object,
         get_type())
-        .WillRepeatedly(testing::Return(PlayingFieldObjectType_Unknown));
+                   .WillRepeatedly(testing::Return(PlayingFieldObjectType_Unknown));
 
     EXPECT_CALL(*mock_calculator,
         calculate(
             row,
             column,
             heading))
-        .Times(0);
+                     .Times(0);
 
     // Act
     sut.move_object(row, column);
@@ -117,26 +117,26 @@ TEST(ObjectMover, move_object_does_not_calls_calculator_calculate_for_is_moving_
 
     EXPECT_CALL(*mock_playing_field,
         get_object_at(row, column))
-        .WillRepeatedly(testing::Return(object));
+                                   .WillRepeatedly(testing::Return(object));
 
     EXPECT_CALL(*mock_object,
         is_moveable())
-        .WillRepeatedly(testing::Return(true));
+                      .WillRepeatedly(testing::Return(true));
 
     EXPECT_CALL(*mock_object,
         is_moving())
-        .WillRepeatedly(testing::Return(false));
+                    .WillRepeatedly(testing::Return(false));
 
     EXPECT_CALL(*mock_object,
         get_type())
-        .WillRepeatedly(testing::Return(PlayingFieldObjectType_Unknown));
+                   .WillRepeatedly(testing::Return(PlayingFieldObjectType_Unknown));
 
     EXPECT_CALL(*mock_calculator,
         calculate(
             row,
             column,
             heading))
-        .Times(0);
+                     .Times(0);
 
     // Act
     sut.move_object(row, column);
@@ -176,15 +176,15 @@ TEST(ObjectMover, move_object_calls_calculator_calculate)
 
     EXPECT_CALL(*mock_object,
         is_moveable())
-        .WillRepeatedly(testing::Return(true));
+                      .WillRepeatedly(testing::Return(true));
 
     EXPECT_CALL(*mock_object,
         is_moving())
-        .WillRepeatedly(testing::Return(true));
+                    .WillRepeatedly(testing::Return(true));
 
     EXPECT_CALL(*mock_object,
         get_type())
-        .WillRepeatedly(testing::Return(PlayingFieldObjectType_Unknown));
+                   .WillRepeatedly(testing::Return(PlayingFieldObjectType_Unknown));
 
     EXPECT_CALL(*mock_object,
         get_heading())
@@ -233,30 +233,30 @@ TEST(ObjectMover, move_object_calls_playing_field_move_object_from_to)
 
     EXPECT_CALL(*mock_playing_field,
         get_object_at(from_row, from_column))
-        .WillRepeatedly(testing::Return(object));
+                                             .WillRepeatedly(testing::Return(object));
 
     EXPECT_CALL(*mock_object,
         is_moveable())
-        .WillRepeatedly(testing::Return(true));
+                      .WillRepeatedly(testing::Return(true));
 
     EXPECT_CALL(*mock_object,
         is_moving())
-        .WillRepeatedly(testing::Return(true));
+                    .WillRepeatedly(testing::Return(true));
 
     EXPECT_CALL(*mock_object,
         get_type())
-        .WillRepeatedly(testing::Return(PlayingFieldObjectType_Unknown));
+                   .WillRepeatedly(testing::Return(PlayingFieldObjectType_Unknown));
 
     EXPECT_CALL(*mock_object,
         get_heading())
-        .WillRepeatedly(testing::Return(heading));
+                      .WillRepeatedly(testing::Return(heading));
 
     EXPECT_CALL(*mock_calculator,
         calculate(
             from_row,
             from_column,
             heading))
-        .Times(1);
+                     .Times(1);
 
     mock_calculator->to_row = to_row;
     mock_calculator->to_column = to_column;
@@ -267,7 +267,7 @@ TEST(ObjectMover, move_object_calls_playing_field_move_object_from_to)
             from_column,
             to_row,
             to_column))
-        .Times(1);
+                       .Times(1);
     // Act
     sut.move_object(from_row, from_column);
 

@@ -34,7 +34,6 @@ namespace PacMan
 
         void ObjectsMover::calculate ()
         {
-
             m_calculator->calculate();
         }
 
