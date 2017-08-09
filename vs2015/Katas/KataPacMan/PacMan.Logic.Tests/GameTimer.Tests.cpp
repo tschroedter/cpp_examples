@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameTimer.h"
+#include <iostream>
 #include <gtest/gtest.h>
 #include "MockIPlayingField.h"
 #include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
@@ -23,17 +24,14 @@ TEST(GameTimer, tick_calls_tick_on_all_objects)
     MockIPlayingFieldObject* mock_object_1_1 = new MockIPlayingFieldObject{};
     IPlayingFieldObject_Ptr object_1_1(mock_object_1_1);
 
-    MockIObjectMover* mock_object_mover = new MockIObjectMover{};
-    IObjectMover_Ptr object_mover(mock_object_mover);
-
     MockIPlayingField* mock_playing_field = new MockIPlayingField{};
     IPlayingField_Ptr playing_field(mock_playing_field);
 
     MockIObjectsMover* mock_objects_mover = new MockIObjectsMover{};
     IObjectsMover_Ptr objects_mover(mock_objects_mover);
 
-    GameTimer sut{};
-    sut.initialize(playing_field, object_mover, objects_mover);
+    GameTimer sut{objects_mover};
+    sut.initialize(playing_field);
 
     EXPECT_CALL(*mock_playing_field,
         get_rows())
@@ -84,4 +82,97 @@ TEST(GameTimer, tick_calls_tick_on_all_objects)
     // Act
     // Assert
     sut.tick();
+}
+
+TEST(GameTimer, initialize_calls_object_movers_initialize)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    MockIPlayingField* mock_playing_field = new MockIPlayingField{};
+    IPlayingField_Ptr playing_field(mock_playing_field);
+
+    MockIObjectsMover* mock_objects_mover = new MockIObjectsMover{};
+    IObjectsMover_Ptr objects_mover(mock_objects_mover);
+
+    GameTimer sut{objects_mover};
+    sut.initialize(playing_field);
+
+    EXPECT_CALL(*mock_objects_mover,
+        initialize(playing_field))
+                                  .Times(1);
+
+    // Act
+    sut.initialize(playing_field);
+
+    // Assert
+}
+
+TEST(GameTimer, get_status_calls_get_status)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    MockIPlayingField* mock_playing_field = new MockIPlayingField{};
+    IPlayingField_Ptr playing_field(mock_playing_field);
+
+    MockIObjectsMover* mock_objects_mover = new MockIObjectsMover{};
+    IObjectsMover_Ptr objects_mover(mock_objects_mover);
+
+    GameTimer sut{objects_mover};
+    sut.initialize(playing_field);
+
+    EXPECT_CALL(*mock_objects_mover,
+        get_status())
+                     .WillRepeatedly(testing::Return(ValidationStatus_PacMan_ALive));
+
+    // Act
+    auto actual = sut.get_status();
+
+    // Assert
+    EXPECT_EQ(ValidationStatus_PacMan_ALive,
+        actual);
+}
+
+TEST(GameTimer, tick_calls_move_objects_calculate_print_moves_move_objects)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    MockIPlayingField* mock_playing_field = new MockIPlayingField{};
+    IPlayingField_Ptr playing_field(mock_playing_field);
+
+    MockIObjectsMover* mock_objects_mover = new MockIObjectsMover{};
+    IObjectsMover_Ptr objects_mover(mock_objects_mover);
+
+    GameTimer sut{objects_mover};
+    sut.initialize(playing_field);
+
+    EXPECT_CALL(*mock_playing_field,
+        get_rows())
+                   .WillRepeatedly(testing::Return(0));
+
+    EXPECT_CALL(*mock_playing_field,
+        get_columns())
+                      .WillRepeatedly(testing::Return(0));
+
+    EXPECT_CALL(*mock_objects_mover,
+        calculate())
+                    .Times(1);
+
+    std::stringstream stream;
+
+    EXPECT_CALL(*mock_objects_mover,
+        print_moves(testing::A<std::ostream&>()))
+                                                 .Times(1)
+                                                 .WillOnce(testing::ReturnRef(stream));
+
+    EXPECT_CALL(*mock_objects_mover,
+        move_objects())
+                       .Times(1);
+
+    // Act
+    sut.tick();
+
+    // Assert
 }

@@ -2,7 +2,6 @@
 
 #include <memory>
 #include "IPlayingField.h"
-#include "IObjectMover.h"
 #include "IObjectsMover.h"
 
 namespace PacMan
@@ -14,9 +13,7 @@ namespace PacMan
         public:
             virtual ~IGameTimer () = default;
 
-            virtual void initialize ( const IPlayingField_Ptr playing_field,
-                                      const IObjectMover_Ptr object_mover,
-                                      const IObjectsMover_Ptr objects_mover ) = 0;
+            virtual void initialize ( const IPlayingField_Ptr playing_field ) = 0;
             virtual void tick () = 0;
             virtual virtual ValidationStatus get_status () const = 0;
         };

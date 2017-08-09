@@ -44,23 +44,13 @@ namespace PacMan
 
             display->print();
 
-            IObjectMover_Ptr object_mover =
-                m_container->resolve<IObjectMover>();
-            object_mover->initialize(playing_field);
-
-            IObjectsMover_Ptr objects_mover =
-                m_container->resolve<IObjectsMover>();
-            objects_mover->initialize(playing_field);
-
             IInputPacManMove_Ptr input_pac_man_move =
                 m_container->resolve<IInputPacManMove>();
             input_pac_man_move->initialize();
 
             IGameTimer_Ptr game_timer =
                 m_container->resolve<IGameTimer>();
-            game_timer->initialize(playing_field,
-                                   object_mover,
-                                   objects_mover);
+            game_timer->initialize(playing_field);
 
             auto status = game_timer->get_status();
 

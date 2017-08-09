@@ -8,17 +8,15 @@ namespace PacMan
     namespace Logic
     {
         void GameTimer::initialize (
-            const IPlayingField_Ptr playing_field,
-            const IObjectMover_Ptr object_mover,
-            const IObjectsMover_Ptr objects_mover )
+            const IPlayingField_Ptr playing_field )
         {
             m_playing_field = playing_field;
-            m_object_mover = object_mover;
-            m_objects_mover = objects_mover;
+            m_objects_mover->initialize(playing_field);
         }
 
         void GameTimer::tick ()
         {
+            // todo call tick on all objects
             m_objects_mover->calculate();
             m_objects_mover->print_moves(std::cout);
             m_objects_mover->move_objects();
