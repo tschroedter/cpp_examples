@@ -26,7 +26,7 @@ namespace PacMan
         void ObjectMover::move_object (
             const size_t from_row,
             const size_t from_column )
-        { // todo split-up into calculate and move => caclulate all move first, to make sure we don't do a double move like current
+        {
             const IPlayingFieldObject_Ptr object =
                 m_playing_field->get_object_at(from_row,
                                                from_column);
