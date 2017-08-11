@@ -28,6 +28,8 @@
 #include "ObjectsMoverCalculator.h"
 #include "ObjectsMoveExecuter.h"
 #include "ObjectsMoveValidator.h"
+#include "IGame.h"
+#include "Game.h"
 
 namespace PacMan
 {
@@ -122,6 +124,9 @@ namespace PacMan
 
             builder.registerType<View::DisplayPlayingField>()
                    .as<View::IDisplayPlayingField>();
+
+            builder.registerType<Game>()
+                   .as<IGame>();
         }
 
         Container_Ptr IOCContainerBuilder::build ()

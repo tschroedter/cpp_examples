@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="IGame.h" />
     <ClInclude Include="IIOCContainerBuilder.h" />
     <ClInclude Include="IOCContainerBuilder.h" />
     <ClInclude Include="stdafx.h" />

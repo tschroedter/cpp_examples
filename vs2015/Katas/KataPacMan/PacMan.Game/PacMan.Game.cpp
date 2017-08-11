@@ -10,14 +10,14 @@
 
 void play_game ()
 {
-    using namespace PacMan::Match;
+    using namespace PacMan;
 
-    IOCContainerBuilder builder;
-    Container_Ptr container = builder.build();
+    Match::IOCContainerBuilder builder;
+    Match::Container_Ptr container = builder.build();
 
-    Game game{container};
+    Logic::IGame_Ptr game = container->resolve<Logic::IGame>();
 
-    game.run();
+    game->run();
 };
 
 int main ()

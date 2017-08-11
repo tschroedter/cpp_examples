@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "IPlayingField.h"
-#include "IPacMan.h"
 #include "IDisplayPlayingField.h"
-#include "IMonster.h"
 #include "IInputPacManMove.h"
 #include "IGameTimer.h"
 #include <iostream>
@@ -15,52 +13,36 @@ namespace PacMan
         void Game::run () const
         {
             using namespace Logic;
-            IPlayingField_Ptr playing_field = m_container->resolve<IPlayingField>();
-            playing_field->initialize(
-                                      size_t(3),
-                                      size_t(3));
+            // todo
+            m_monster->set_heading(Heading_Down);
 
-            IPacMan_Ptr pac_man =
-                m_container->resolve<IPacMan>();
+            m_playing_field->initialize(
+                                        size_t(3),
+                                        size_t(3));
 
-            playing_field->put_object_at(
-                                         pac_man,
-                                         size_t(1),
-                                         size_t(1));
+            m_playing_field->put_object_at(
+                                           m_pac_man,
+                                           size_t(1),
+                                           size_t(1));
 
-            IMonster_Ptr monster =
-                m_container->resolve<IMonster>();
-            monster->set_heading(Heading_Down);
+            m_playing_field->put_object_at(
+                                           m_monster,
+                                           size_t(0),
+                                           size_t(0));
 
-            playing_field->put_object_at(
-                                         monster,
-                                         size_t(0),
-                                         size_t(0));
+            m_display->initialize(m_playing_field);
+            m_input->initialize();
+            m_game_timer->initialize(m_playing_field);
 
-            View::IDisplayPlayingField_Ptr display =
-                m_container->resolve<View::IDisplayPlayingField>();
-
-            display->initialize(playing_field);
-
-            display->print();
-
-            IInputPacManMove_Ptr input_pac_man_move =
-                m_container->resolve<IInputPacManMove>();
-            input_pac_man_move->initialize();
-
-            IGameTimer_Ptr game_timer =
-                m_container->resolve<IGameTimer>();
-            game_timer->initialize(playing_field);
-
-            auto status = game_timer->get_status();
+            auto status = m_game_timer->get_status();
 
             while (ValidationStatus_PacMan_Death != status)
             {
-                display->print();
-                Heading new_heading = input_pac_man_move->get_heading();
-                pac_man->set_heading(new_heading);
-                game_timer->tick();
-                status = game_timer->get_status();
+                m_display->print();
+                Heading new_heading = m_input->get_heading();
+                m_pac_man->set_heading(new_heading);
+                m_game_timer->tick();
+                status = m_game_timer->get_status();
             }
 
             if (ValidationStatus_PacMan_Death == status)
