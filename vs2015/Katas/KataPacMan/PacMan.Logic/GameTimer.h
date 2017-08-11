@@ -4,6 +4,7 @@
 #include "IPlayingField.h"
 #include "IObjectMover.h"
 #include "IObjectsMover.h"
+#include "IObjectsTicker.h"
 
 namespace PacMan
 {
@@ -15,12 +16,15 @@ namespace PacMan
         private:
             IPlayingField_Ptr m_playing_field;
             IObjectsMover_Ptr m_objects_mover;
+            IObjectsTicker_Ptr m_objects_ticker;
 
         public:
             GameTimer (
-                IObjectsMover_Ptr objects_mover )
-                : m_playing_field(nullptr)
-                  , m_objects_mover(objects_mover)
+                IObjectsMover_Ptr objects_mover,
+                IObjectsTicker_Ptr objects_ticker)
+                : m_playing_field(nullptr),
+                  m_objects_mover(objects_mover),
+                  m_objects_ticker(objects_ticker)
             {
             }
 

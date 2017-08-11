@@ -12,11 +12,12 @@ namespace PacMan
         {
             m_playing_field = playing_field;
             m_objects_mover->initialize(playing_field);
+            m_objects_ticker->initialize(playing_field);
         }
 
         void GameTimer::tick ()
         {
-            // todo call tick on all objects
+            m_objects_ticker->tick();
             m_objects_mover->calculate();
             m_objects_mover->print_moves(std::cout);
             m_objects_mover->move_objects();
