@@ -147,6 +147,7 @@
     <ClInclude Include="IObjectsMover.h" />
     <ClInclude Include="IObjectsMoverCalculator.h" />
     <ClInclude Include="IObjectsMoveValidator.h" />
+    <ClInclude Include="IObjectsTicker.h" />
     <ClInclude Include="ObjectsMoveValidator.h" />
     <ClInclude Include="IPlayingFieldValidator.h" />
     <ClInclude Include="Monster.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="ObjectsMoveExecuter.h" />
     <ClInclude Include="ObjectsMover.h" />
     <ClInclude Include="ObjectsMoverCalculator.h" />
+    <ClInclude Include="ObjectsTicker.h" />
     <ClInclude Include="PacMan.h" />
     <ClInclude Include="PlayingFieldObject.h" />
     <ClInclude Include="Heading.h" />
@@ -195,6 +197,7 @@
     <ClCompile Include="ObjectsMoveExecuter.cpp" />
     <ClCompile Include="ObjectsMover.cpp" />
     <ClCompile Include="ObjectsMoverCalculator.cpp" />
+    <ClCompile Include="ObjectsTicker.cpp" />
     <ClCompile Include="PlayingFieldObject.cpp" />
     <ClCompile Include="Dot.cpp" />
     <ClCompile Include="Location.cpp" />

@@ -159,6 +159,12 @@
     <ClInclude Include="ValidationStatus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IObjectsTicker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectsTicker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -216,6 +222,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ObjectsMoveValidator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectsTicker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -149,6 +149,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\PacMan.View.Tests\MockIObjectsTicker.h" />
     <ClInclude Include="MockIDot.h" />
     <ClInclude Include="MockIDirection.h" />
     <ClInclude Include="MockILocation.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="ObjectsMover.Tests.cpp" />
     <ClCompile Include="ObjectsMoverCalculator.Tests.cpp" />
     <ClCompile Include="ObjectsMoveValidator.Tests.cpp" />
+    <ClCompile Include="ObjectsTicker.Tests.cpp" />
     <ClCompile Include="PacMan.Logic.Tests.cpp" />
     <ClCompile Include="PacMan.Tests.cpp" />
     <ClCompile Include="PlayingField.Tests.cpp" />

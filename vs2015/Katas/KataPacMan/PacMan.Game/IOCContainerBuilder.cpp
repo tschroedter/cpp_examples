@@ -30,6 +30,8 @@
 #include "ObjectsMoveValidator.h"
 #include "IGame.h"
 #include "Game.h"
+#include "IObjectsTicker.h"
+#include "ObjectsTicker.h"
 
 namespace PacMan
 {
@@ -55,6 +57,9 @@ namespace PacMan
 
             builder.registerType<PlayingFieldValidator>()
                    .as<IPlayingFieldValidator>();
+
+            builder.registerType<ObjectsTicker>()
+                   .as<IObjectsTicker>();
 
             builder.registerType<ObjectMover>()
                    .as<IObjectMover>();
