@@ -21,7 +21,7 @@ namespace PacMan
         public:
             GameTimer (
                 IObjectsMover_Ptr objects_mover,
-                IObjectsTicker_Ptr objects_ticker)
+                IObjectsTicker_Ptr objects_ticker )
                 : m_playing_field(nullptr),
                   m_objects_mover(objects_mover),
                   m_objects_ticker(objects_ticker)

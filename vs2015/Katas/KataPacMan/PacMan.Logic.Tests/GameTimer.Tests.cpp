@@ -50,9 +50,9 @@ TEST(GameTimer, initialize_calls_objects_ticker_initialize)
     MockIObjectsTicker* mock_objects_ticker = new MockIObjectsTicker{};
     IObjectsTicker_Ptr objects_ticker(mock_objects_ticker);
 
-    GameTimer sut{ 
+    GameTimer sut{
         objects_mover,
-        objects_ticker 
+        objects_ticker
     };
 
     EXPECT_CALL(*mock_objects_ticker,
@@ -82,7 +82,8 @@ TEST(GameTimer, get_status_calls_get_status)
     GameTimer sut{
         objects_mover,
         objects_ticker
-    };    sut.initialize(playing_field);
+    };
+    sut.initialize(playing_field);
 
     EXPECT_CALL(*mock_objects_mover,
         get_status())
@@ -121,12 +122,12 @@ TEST(GameTimer, tick_calls_tick)
 
     EXPECT_CALL(*mock_objects_mover,
         print_moves(testing::A<std::ostream&>()))
-        .Times(1)
-        .WillOnce(testing::ReturnRef(stream));
+                                                 .Times(1)
+                                                 .WillOnce(testing::ReturnRef(stream));
 
     EXPECT_CALL(*mock_objects_ticker,
         tick())
-        .Times(1);
+               .Times(1);
 
     // Act
     sut.tick();

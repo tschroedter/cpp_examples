@@ -9,9 +9,9 @@ namespace PacMan
         class IGame
         {
         public:
-            virtual ~IGame() = default;
+            virtual ~IGame () = default;
 
-            virtual void run() const = 0;
+            virtual void run () const = 0;
         };
 
         typedef std::shared_ptr<IGame> IGame_Ptr;

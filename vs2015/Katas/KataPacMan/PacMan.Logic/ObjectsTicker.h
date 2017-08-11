@@ -12,12 +12,12 @@ namespace PacMan
             IPlayingField_Ptr m_playing_field;
 
         public:
-            ObjectsTicker() = default;
-            ~ObjectsTicker() = default;
+            ObjectsTicker () = default;
+            ~ObjectsTicker () = default;
 
-            void initialize(
-                const IPlayingField_Ptr& playing_field) override;
-            void tick() const override;
+            void initialize (
+                const IPlayingField_Ptr& playing_field ) override;
+            void tick () const override;
         };
     };
 };

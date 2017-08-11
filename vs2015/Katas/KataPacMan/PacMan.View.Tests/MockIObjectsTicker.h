@@ -9,7 +9,7 @@ class MockIObjectsTicker
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier
     MOCK_METHOD1(
-        initialize, 
+        initialize,
         void(const PacMan::Logic::IPlayingField_Ptr& playing_field));
     MOCK_CONST_METHOD0(
         tick,
