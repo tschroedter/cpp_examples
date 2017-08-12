@@ -32,6 +32,7 @@
 #include "Game.h"
 #include "IObjectsTicker.h"
 #include "ObjectsTicker.h"
+#include "MonsterHeadingCalculator.h"
 
 namespace PacMan
 {
@@ -99,6 +100,9 @@ namespace PacMan
 
             builder.registerType<PacMan>()
                    .as<IPacMan>();
+
+            builder.registerType<MonsterHeadingCalculator>()
+                   .as<IMonsterHeadingCalculator>();
 
             builder.registerType<Monster>()
                    .as<IMonster>();

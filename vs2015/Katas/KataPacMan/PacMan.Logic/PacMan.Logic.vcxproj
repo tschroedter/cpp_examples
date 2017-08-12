@@ -138,6 +138,7 @@
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="IGameTimer.h" />
     <ClInclude Include="IInputPacManMove.h" />
+    <ClInclude Include="IMonsterHeadingCalculator.h" />
     <ClInclude Include="IMoveObjectInformation.h" />
     <ClInclude Include="IMovingObjectsRepository.h" />
     <ClInclude Include="InputMoveForPacMan.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="IObjectsMoverCalculator.h" />
     <ClInclude Include="IObjectsMoveValidator.h" />
     <ClInclude Include="IObjectsTicker.h" />
+    <ClInclude Include="MonsterHeadingCalculator.h" />
     <ClInclude Include="ObjectsMoveValidator.h" />
     <ClInclude Include="IPlayingFieldValidator.h" />
     <ClInclude Include="Monster.h" />
@@ -188,6 +190,7 @@
     <ClCompile Include="Direction.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="InputPacManMove.cpp" />
+    <ClCompile Include="MonsterHeadingCalculator.cpp" />
     <ClCompile Include="ObjectsMoveValidator.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MoveObjectInformation.cpp" />
