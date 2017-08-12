@@ -83,6 +83,7 @@ TEST(GameTimer, get_status_calls_get_status)
         objects_mover,
         objects_ticker
     };
+
     sut.initialize(playing_field);
 
     EXPECT_CALL(*mock_objects_mover,

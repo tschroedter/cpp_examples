@@ -72,6 +72,9 @@
     <ClInclude Include="MockIMonsterHeadingCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MockILocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -126,6 +129,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MonsterHeadingCalculator.Tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Locator.Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

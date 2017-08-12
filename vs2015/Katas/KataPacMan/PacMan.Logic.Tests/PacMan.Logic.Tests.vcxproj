@@ -153,6 +153,7 @@
     <ClInclude Include="MockIDot.h" />
     <ClInclude Include="MockIDirection.h" />
     <ClInclude Include="MockILocation.h" />
+    <ClInclude Include="MockILocator.h" />
     <ClInclude Include="MockILogger.h" />
     <ClInclude Include="MockIMonsterHeadingCalculator.h" />
     <ClInclude Include="MockIMovingObjectsRepository.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Dot.Tests.cpp" />
     <ClCompile Include="GameTimer.Tests.cpp" />
     <ClCompile Include="InputPacManMove.Tests.cpp" />
+    <ClCompile Include="Locator.Tests.cpp" />
     <ClCompile Include="Monster.Tests.cpp" />
     <ClCompile Include="MonsterHeadingCalculator.Tests.cpp" />
     <ClCompile Include="MovingObjectsRepository.Tests.cpp" />

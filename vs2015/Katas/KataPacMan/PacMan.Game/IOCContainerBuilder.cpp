@@ -33,6 +33,8 @@
 #include "IObjectsTicker.h"
 #include "ObjectsTicker.h"
 #include "MonsterHeadingCalculator.h"
+#include "ILocator.h"
+#include "Locator.h"
 
 namespace PacMan
 {
@@ -55,6 +57,9 @@ namespace PacMan
 
             builder.registerType<Common::Logger>()
                    .as<Common::ILogger>();
+
+            builder.registerType<Locator>()
+                   .as<ILocator>();
 
             builder.registerType<PlayingFieldValidator>()
                    .as<IPlayingFieldValidator>();

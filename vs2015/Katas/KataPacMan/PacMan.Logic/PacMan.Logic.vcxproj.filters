@@ -171,6 +171,24 @@
     <ClInclude Include="MonsterHeadingCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MonstersHeadingUpdater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IMonstersHeadingUpdater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ILocatorInformation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ILocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Locator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LocatorInformation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -234,6 +252,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MonsterHeadingCalculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MonstersHeadingUpdater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Locator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LocatorInformation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
