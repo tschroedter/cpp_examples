@@ -2,16 +2,25 @@
 #include <gtest/gtest.h>
 #include "DisplayMax.h"
 
-TEST(DisplayMax, to_string_returns_string)
+namespace PacMan
 {
-    using namespace PacMan::View;
+    namespace View
+    {
+        namespace Tests
+        {
+            TEST(DisplayMax, to_string_returns_string)
+            {
+                using namespace View;
 
-    // Arrange
-    DisplayMax sut{};
+                // Arrange
+                DisplayMax sut{};
 
-    // Act
-    auto actual = sut.to_string();
+                // Act
+                auto actual = sut.to_string();
 
-    // Assert
-    EXPECT_EQ("MA", actual);
-}
+                // Assert
+                EXPECT_EQ("MA", actual);
+            }
+        };
+    };
+};

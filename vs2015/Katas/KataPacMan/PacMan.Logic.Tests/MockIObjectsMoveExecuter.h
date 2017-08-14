@@ -5,16 +5,25 @@
 #include "IPlayingField.h"
 #include "IMovingObjectsRepository.h"
 
-using namespace PacMan::Logic;
-
-class MockIObjectsMoveExecuter
-    :public IObjectsMoveExecuter
+namespace PacMan
 {
-public:
-    // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier
-    MOCK_METHOD2(initialize, void(
-        const IPlayingField_Ptr playing_field,
-        const IMovingObjectsRepository_Ptr repository));
-    MOCK_CONST_METHOD0(move_objects, void());
-    // ReSharper restore CppOverridingFunctionWithoutOverrideSpecifier
+    namespace Logic
+    {
+        namespace Tests
+        {
+            using namespace Logic;
+
+            class MockIObjectsMoveExecuter
+                :public IObjectsMoveExecuter
+            {
+            public:
+                // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier
+                MOCK_METHOD2(initialize, void(
+                    const IPlayingField_Ptr playing_field,
+                    const IMovingObjectsRepository_Ptr repository));
+                MOCK_CONST_METHOD0(move_objects, void());
+                // ReSharper restore CppOverridingFunctionWithoutOverrideSpecifier
+            };
+        };
+    };
 };

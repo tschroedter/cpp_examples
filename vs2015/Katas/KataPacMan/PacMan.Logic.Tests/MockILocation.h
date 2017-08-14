@@ -4,14 +4,23 @@
 #include "ILocation.h"
 #include "RowAndColumn.h"
 
-using namespace PacMan::Logic;
-
-class MockILocation
-    :public ILocation
+namespace PacMan
 {
-public:
-    // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier
-    MOCK_CONST_METHOD0(get_row, Row());
-    MOCK_CONST_METHOD0(get_column,Column());
-    // ReSharper restore CppOverridingFunctionWithoutOverrideSpecifier
+    namespace Logic
+    {
+        namespace Tests
+        {
+            using namespace Logic;
+
+            class MockILocation
+                :public ILocation
+            {
+            public:
+                // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier
+                MOCK_CONST_METHOD0(get_row, Row());
+                MOCK_CONST_METHOD0(get_column, Column());
+                // ReSharper restore CppOverridingFunctionWithoutOverrideSpecifier
+            };
+        };
+    };
 };

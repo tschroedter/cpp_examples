@@ -8,175 +8,184 @@
 #include "MockIDirection.h"
 #include "MockILocation.h"
 
-using namespace PacMan::Logic;
-
-std::function<std::shared_ptr<IDot>  ()> create_factory ()
+namespace PacMan
 {
-    return []
+    namespace Logic
     {
-        using namespace PacMan::Logic;
-
-        ILocation_Ptr location = std::make_shared<MockILocation>();
-        IDirection_Ptr direction = std::make_shared<MockIDirection>();
-
-        return std::make_shared<Dot>(location,
-                                     direction);
-    };
-}
-
-Hypodermic::FactoryWrapper<IDot> wrapper{create_factory()};
-
-std::unique_ptr<PlayingField> create_sut_using_mock ()
-{
-    MockIPlayingFieldValidator* mock_validator = new MockIPlayingFieldValidator{};
-    IPlayingFieldValidator_Ptr validator(mock_validator);
-    auto sut = std::make_unique<PlayingField>(
-                                              wrapper,
-                                              validator);
-
-    sut->initialize(
-                    Row(3),
-                    Column(4));
-
-    return sut;
-}
-
-TEST(PlayingField, initialize_calls_validator)
-{
-    // Arrange
-    Row rows(1);
-    Column columns(2);
-
-    MockIPlayingFieldValidator* mock_validator = new MockIPlayingFieldValidator{};
-    IPlayingFieldValidator_Ptr validator(mock_validator);
-    auto sut = std::make_unique<PlayingField>(
-                                              wrapper,
-                                              validator);
-
-    EXPECT_CALL(*mock_validator,
-        initialize(rows, columns))
-                                  .Times(1);
-
-    // Act
-    sut->initialize(rows, columns);
-
-    // Assert
-}
-
-TEST(PlayingField, constructor_sets_rows)
-{
-    // Arrange
-    Row expected{3};
-
-    auto sut = create_sut_using_mock();
-
-    // Act
-    Row actual = sut->get_rows();
-
-    // Assert
-    EXPECT_EQ(expected, actual);
-}
-
-TEST(PlayingField, constructor_sets_columns)
-{
-    // Arrange
-    Column expected{4};
-
-    auto sut = create_sut_using_mock();
-
-    // Act
-    Column actual = sut->get_columns();
-
-    // Assert
-    EXPECT_EQ(expected, actual);
-}
-
-TEST(PlayingField, constructor_populates_field_with_dots)
-{
-    // Arrange
-    auto sut = create_sut_using_mock();
-
-    // Act
-    for (Row row = 0; row < sut->get_rows(); row++)
-    {
-        for (Column column = 0; column < sut->get_columns(); column++)
+        namespace Tests
         {
-            std::cout << "["
-                << std::to_string(row)
-                << ","
-                << std::to_string(column)
-                << "] ";
+            using namespace Logic;
 
-            auto actual = sut->get_object_type_at(row, column);
+            std::function<std::shared_ptr<IDot> ()> create_factory ()
+            {
+                return []
+                {
+                    using namespace Logic;
 
-            // Assert
-            EXPECT_EQ(PlayingFieldObjectType_Dot, actual);
+                    ILocation_Ptr location = std::make_shared<MockILocation>();
+                    IDirection_Ptr direction = std::make_shared<MockIDirection>();
 
-            std::cout << "Passed!\n";
-        }
-    }
-}
+                    return std::make_shared<Dot>(location,
+                                                 direction);
+                };
+            }
 
-TEST(PlayingField, get_object_type_at_returns_type)
-{
-    // Arrange
-    Row row(0);
-    Column column(0);
-    auto sut = create_sut_using_mock();
+            Hypodermic::FactoryWrapper<IDot> wrapper{create_factory()};
 
-    // Act
-    char actual = sut->get_object_type_at(row, column);
+            std::unique_ptr<PlayingField> create_sut_using_mock ()
+            {
+                MockIPlayingFieldValidator* mock_validator = new MockIPlayingFieldValidator{};
+                IPlayingFieldValidator_Ptr validator(mock_validator);
+                auto sut = std::make_unique<PlayingField>(
+                                                          wrapper,
+                                                          validator);
 
-    // Assert
-    EXPECT_EQ(PlayingFieldObjectType_Dot, actual);
-}
+                sut->initialize(
+                                Row(3),
+                                Column(4));
 
-TEST(PlayingField, put_object_at_puts_object_at_given_row_column)
-{
-    // Arrange
-    IPlayingFieldObject_Ptr expected{};
-    Row row(0);
-    Column column(1);
+                return sut;
+            }
 
-    auto sut = create_sut_using_mock();
+            TEST(PlayingField, initialize_calls_validator)
+            {
+                // Arrange
+                Row rows(1);
+                Column columns(2);
 
-    // Act
-    sut->put_object_at(expected, row, column);
+                MockIPlayingFieldValidator* mock_validator = new MockIPlayingFieldValidator{};
+                IPlayingFieldValidator_Ptr validator(mock_validator);
+                auto sut = std::make_unique<PlayingField>(
+                                                          wrapper,
+                                                          validator);
 
-    // Assert
-    auto actual = sut->get_object_at(row, column);
+                EXPECT_CALL(*mock_validator,
+                    initialize(rows, columns))
+                                              .Times(1);
 
-    EXPECT_EQ(expected, actual);
-}
+                // Act
+                sut->initialize(rows, columns);
 
-TEST(PlayingField, move_object_from_to_moves_object)
-{
-    // Arrange
-    IPlayingFieldObject_Ptr expected{};
-    auto sut = create_sut_using_mock();
-    sut->put_object_at(expected, 0, 0);
+                // Assert
+            }
 
-    // Act
-    sut->move_object_from_to(0, 0, 1, 1);
+            TEST(PlayingField, constructor_sets_rows)
+            {
+                // Arrange
+                Row expected{3};
 
-    // Assert
-    auto actual = sut->get_object_at(1, 1);
+                auto sut = create_sut_using_mock();
 
-    EXPECT_EQ(expected, actual);
-}
+                // Act
+                Row actual = sut->get_rows();
 
-TEST(PlayingField, move_object_from_to_fills_empty_spot_with_dot)
-{
-    // Arrange
-    IPlayingFieldObject_Ptr expected{};
-    auto sut = create_sut_using_mock();
-    sut->put_object_at(expected, 0, 0);
+                // Assert
+                EXPECT_EQ(expected, actual);
+            }
 
-    // Act
-    sut->move_object_from_to(0, 0, 1, 1);
+            TEST(PlayingField, constructor_sets_columns)
+            {
+                // Arrange
+                Column expected{4};
 
-    // Assert
-    auto actual = sut->get_object_at(0, 0);
+                auto sut = create_sut_using_mock();
 
-    EXPECT_EQ(PlayingFieldObjectType::PlayingFieldObjectType_Dot, actual->get_type());
-}
+                // Act
+                Column actual = sut->get_columns();
+
+                // Assert
+                EXPECT_EQ(expected, actual);
+            }
+
+            TEST(PlayingField, constructor_populates_field_with_dots)
+            {
+                // Arrange
+                auto sut = create_sut_using_mock();
+
+                // Act
+                for (Row row = 0; row < sut->get_rows(); row++)
+                {
+                    for (Column column = 0; column < sut->get_columns(); column++)
+                    {
+                        std::cout << "["
+                            << std::to_string(row)
+                            << ","
+                            << std::to_string(column)
+                            << "] ";
+
+                        auto actual = sut->get_object_type_at(row, column);
+
+                        // Assert
+                        EXPECT_EQ(PlayingFieldObjectType_Dot, actual);
+
+                        std::cout << "Passed!\n";
+                    }
+                }
+            }
+
+            TEST(PlayingField, get_object_type_at_returns_type)
+            {
+                // Arrange
+                Row row(0);
+                Column column(0);
+                auto sut = create_sut_using_mock();
+
+                // Act
+                char actual = sut->get_object_type_at(row, column);
+
+                // Assert
+                EXPECT_EQ(PlayingFieldObjectType_Dot, actual);
+            }
+
+            TEST(PlayingField, put_object_at_puts_object_at_given_row_column)
+            {
+                // Arrange
+                IPlayingFieldObject_Ptr expected{};
+                Row row(0);
+                Column column(1);
+
+                auto sut = create_sut_using_mock();
+
+                // Act
+                sut->put_object_at(expected, row, column);
+
+                // Assert
+                auto actual = sut->get_object_at(row, column);
+
+                EXPECT_EQ(expected, actual);
+            }
+
+            TEST(PlayingField, move_object_from_to_moves_object)
+            {
+                // Arrange
+                IPlayingFieldObject_Ptr expected{};
+                auto sut = create_sut_using_mock();
+                sut->put_object_at(expected, 0, 0);
+
+                // Act
+                sut->move_object_from_to(0, 0, 1, 1);
+
+                // Assert
+                auto actual = sut->get_object_at(1, 1);
+
+                EXPECT_EQ(expected, actual);
+            }
+
+            TEST(PlayingField, move_object_from_to_fills_empty_spot_with_dot)
+            {
+                // Arrange
+                IPlayingFieldObject_Ptr expected{};
+                auto sut = create_sut_using_mock();
+                sut->put_object_at(expected, 0, 0);
+
+                // Act
+                sut->move_object_from_to(0, 0, 1, 1);
+
+                // Assert
+                auto actual = sut->get_object_at(0, 0);
+
+                EXPECT_EQ(PlayingFieldObjectType::PlayingFieldObjectType_Dot, actual->get_type());
+            }
+        };
+    };
+};

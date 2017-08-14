@@ -2,16 +2,25 @@
 #include <gtest/gtest.h>
 #include "DisplayUnknown.h"
 
-TEST(DisplayUnknown, to_string_returns_string)
+namespace PacMan
 {
-    using namespace PacMan::View;
+    namespace View
+    {
+        namespace Tests
+        {
+            TEST(DisplayUnknown, to_string_returns_string)
+            {
+                using namespace View;
 
-    // Arrange
-    DisplayUnknown sut{};
+                // Arrange
+                DisplayUnknown sut{};
 
-    // Act
-    auto actual = sut.to_string();
+                // Act
+                auto actual = sut.to_string();
 
-    // Assert
-    EXPECT_EQ("? ", actual);
-}
+                // Assert
+                EXPECT_EQ("? ", actual);
+            }
+        };
+    };
+};

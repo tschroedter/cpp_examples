@@ -4,140 +4,139 @@
 #include "../PacMan.Logic.Tests/MockIDirection.h"
 #include "../PacMan.Logic.Tests/MockIPlayingFieldObject.h"
 
-TEST(DisplayPacMan, to_string_returns_string_for_Heading_Unknown)
+namespace PacMan
 {
-    using namespace PacMan::View;
+    namespace View
+    {
+        namespace Tests
+        {
+            using namespace Logic::Tests;
 
-    // Arrange
-    MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    IPlayingFieldObject_Ptr object(mock_object);
+            TEST(DisplayPacMan, to_string_returns_string_for_Heading_Unknown)
+            {
+                // Arrange
+                MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
+                IPlayingFieldObject_Ptr object(mock_object);
 
-    DisplayPacMan sut{};
-    sut.initialize(object);
+                DisplayPacMan sut{};
+                sut.initialize(object);
 
-    EXPECT_CALL(*mock_object,
-        get_heading())
-                      .Times(1)
-                      .WillOnce(testing::Return(Heading_Unknown));
+                EXPECT_CALL(*mock_object,
+                    get_heading())
+                    .Times(1)
+                    .WillOnce(testing::Return(Heading_Unknown));
 
-    // Act
-    auto actual = sut.to_string();
+                // Act
+                auto actual = sut.to_string();
 
-    // Assert
-    EXPECT_EQ("UN", actual);
-}
+                // Assert
+                EXPECT_EQ("UN", actual);
+            }
 
-TEST(DisplayPacMan, to_string_returns_string_for_Heading_Up)
-{
-    using namespace PacMan::View;
+            TEST(DisplayPacMan, to_string_returns_string_for_Heading_Up)
+            {
+                // Arrange
+                MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
+                IPlayingFieldObject_Ptr object(mock_object);
 
-    // Arrange
-    MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    IPlayingFieldObject_Ptr object(mock_object);
+                DisplayPacMan sut{};
+                sut.initialize(object);
 
-    DisplayPacMan sut{};
-    sut.initialize(object);
+                EXPECT_CALL(*mock_object,
+                    get_heading())
+                    .Times(1)
+                    .WillOnce(testing::Return(Heading_Up));
 
-    EXPECT_CALL(*mock_object,
-        get_heading())
-                      .Times(1)
-                      .WillOnce(testing::Return(Heading_Up));
+                // Act
+                auto actual = sut.to_string();
 
-    // Act
-    auto actual = sut.to_string();
+                // Assert
+                EXPECT_EQ("\\/", actual);
+            }
 
-    // Assert
-    EXPECT_EQ("\\/", actual);
-}
+            TEST(DisplayPacMan, to_string_returns_string_for_Heading_Down)
+            {
+                // Arrange
+                MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
+                IPlayingFieldObject_Ptr object(mock_object);
 
-TEST(DisplayPacMan, to_string_returns_string_for_Heading_Down)
-{
-    using namespace PacMan::View;
+                DisplayPacMan sut{};
+                sut.initialize(object);
 
-    // Arrange
-    MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    IPlayingFieldObject_Ptr object(mock_object);
+                EXPECT_CALL(*mock_object,
+                    get_heading())
+                    .Times(1)
+                    .WillOnce(testing::Return(Heading_Down));
 
-    DisplayPacMan sut{};
-    sut.initialize(object);
+                // Act
+                auto actual = sut.to_string();
 
-    EXPECT_CALL(*mock_object,
-        get_heading())
-                      .Times(1)
-                      .WillOnce(testing::Return(Heading_Down));
+                // Assert
+                EXPECT_EQ("/\\", actual);
+            }
 
-    // Act
-    auto actual = sut.to_string();
+            TEST(DisplayPacMan, to_string_returns_string_for_Heading_Left)
+            {
+                // Arrange
+                MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
+                IPlayingFieldObject_Ptr object(mock_object);
 
-    // Assert
-    EXPECT_EQ("/\\", actual);
-}
+                DisplayPacMan sut{};
+                sut.initialize(object);
 
-TEST(DisplayPacMan, to_string_returns_string_for_Heading_Left)
-{
-    using namespace PacMan::View;
+                EXPECT_CALL(*mock_object,
+                    get_heading())
+                    .Times(1)
+                    .WillOnce(testing::Return(Heading_Left));
 
-    // Arrange
-    MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    IPlayingFieldObject_Ptr object(mock_object);
+                // Act
+                auto actual = sut.to_string();
 
-    DisplayPacMan sut{};
-    sut.initialize(object);
+                // Assert
+                EXPECT_EQ(" >", actual);
+            }
 
-    EXPECT_CALL(*mock_object,
-        get_heading())
-                      .Times(1)
-                      .WillOnce(testing::Return(Heading_Left));
+            TEST(DisplayPacMan, to_string_returns_string_for_Heading_Right)
+            {
+                // Arrange
+                MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
+                IPlayingFieldObject_Ptr object(mock_object);
 
-    // Act
-    auto actual = sut.to_string();
+                DisplayPacMan sut{};
+                sut.initialize(object);
 
-    // Assert
-    EXPECT_EQ(" >", actual);
-}
+                EXPECT_CALL(*mock_object,
+                    get_heading())
+                    .Times(1)
+                    .WillOnce(testing::Return(Heading_Right));
 
-TEST(DisplayPacMan, to_string_returns_string_for_Heading_Right)
-{
-    using namespace PacMan::View;
+                // Act
+                auto actual = sut.to_string();
 
-    // Arrange
-    MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    IPlayingFieldObject_Ptr object(mock_object);
+                // Assert
+                EXPECT_EQ("< ", actual);
+            }
 
-    DisplayPacMan sut{};
-    sut.initialize(object);
+            TEST(DisplayPacMan, to_string_returns_string_for_Heading_Max)
+            {
+                // Arrange
+                MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
+                IPlayingFieldObject_Ptr object(mock_object);
 
-    EXPECT_CALL(*mock_object,
-        get_heading())
-                      .Times(1)
-                      .WillOnce(testing::Return(Heading_Right));
+                DisplayPacMan sut{};
+                sut.initialize(object);
 
-    // Act
-    auto actual = sut.to_string();
+                EXPECT_CALL(*mock_object,
+                    get_heading())
+                    .Times(1)
+                    .WillOnce(testing::Return(Heading_Max));
 
-    // Assert
-    EXPECT_EQ("< ", actual);
-}
+                // Act
+                auto actual = sut.to_string();
 
-TEST(DisplayPacMan, to_string_returns_string_for_Heading_Max)
-{
-    using namespace PacMan::View;
-
-    // Arrange
-    MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    IPlayingFieldObject_Ptr object(mock_object);
-
-    DisplayPacMan sut{};
-    sut.initialize(object);
-
-    EXPECT_CALL(*mock_object,
-        get_heading())
-                      .Times(1)
-                      .WillOnce(testing::Return(Heading_Max));
-
-    // Act
-    auto actual = sut.to_string();
-
-    // Assert
-    EXPECT_EQ("MA", actual);
-}
+                // Assert
+                EXPECT_EQ("MA", actual);
+            }
+        };
+    };
+};

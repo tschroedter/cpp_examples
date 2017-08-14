@@ -2,16 +2,25 @@
 #include <gtest/gtest.h>
 #include "DisplayMonster.h"
 
-TEST(DisplayMonster, to_string_returns_string)
+namespace PacMan
 {
-    using namespace PacMan::View;
+    namespace View
+    {
+        namespace Tests
+        {
+            TEST(DisplayMonster, to_string_returns_string)
+            {
+                using namespace View;
 
-    // Arrange
-    DisplayMonster sut{};
+                // Arrange
+                DisplayMonster sut{};
 
-    // Act
-    auto actual = sut.to_string();
+                // Act
+                auto actual = sut.to_string();
 
-    // Assert
-    EXPECT_EQ("M ", actual);
-}
+                // Assert
+                EXPECT_EQ("M ", actual);
+            }
+        };
+    };
+};

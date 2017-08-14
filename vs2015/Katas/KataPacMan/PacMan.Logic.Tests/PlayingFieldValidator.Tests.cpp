@@ -4,117 +4,126 @@
 #include "PlayingFieldValidator.h"
 #include "MockIPlayingFieldObject.h"
 
-using namespace PacMan::Logic;
-
-IPlayingFieldValidator_Ptr create_sut ()
+namespace PacMan
 {
-    IPlayingFieldValidator_Ptr sut = std::make_shared<PlayingFieldValidator>();
-    sut->initialize(Row(1), Column(2));
+    namespace Logic
+    {
+        namespace Tests
+        {
+            using namespace Logic;
 
-    return sut;
-}
+            IPlayingFieldValidator_Ptr create_sut ()
+            {
+                IPlayingFieldValidator_Ptr sut = std::make_shared<PlayingFieldValidator>();
+                sut->initialize(Row(1), Column(2));
 
-TEST(PlayingFieldValidator, constructor_sets_rows)
-{
-    // Arrange
-    Row expected{1};
+                return sut;
+            }
 
-    IPlayingFieldValidator_Ptr sut = create_sut();
+            TEST(PlayingFieldValidator, constructor_sets_rows)
+            {
+                // Arrange
+                Row expected{1};
 
-    // Act
-    Row actual = sut->get_rows();
+                IPlayingFieldValidator_Ptr sut = create_sut();
 
-    // Assert
-    EXPECT_EQ(expected, actual);
-}
+                // Act
+                Row actual = sut->get_rows();
 
-TEST(PlayingFieldValidator, constructor_sets_columns)
-{
-    // Arrange
-    Column expected{2};
+                // Assert
+                EXPECT_EQ(expected, actual);
+            }
 
-    IPlayingFieldValidator_Ptr sut = create_sut();
+            TEST(PlayingFieldValidator, constructor_sets_columns)
+            {
+                // Arrange
+                Column expected{2};
 
-    // Act
-    Column actual = sut->get_columns();
+                IPlayingFieldValidator_Ptr sut = create_sut();
 
-    // Assert
-    EXPECT_EQ(expected, actual);
-}
+                // Act
+                Column actual = sut->get_columns();
 
-TEST(PlayingFieldValidator, validate_rows_and_columns_throws_for_row_is_invalid)
-{
-    // Arrange
-    Row row_invalid(100);
-    Column column_valid(0);
+                // Assert
+                EXPECT_EQ(expected, actual);
+            }
 
-    IPlayingFieldValidator_Ptr sut = create_sut();
+            TEST(PlayingFieldValidator, validate_rows_and_columns_throws_for_row_is_invalid)
+            {
+                // Arrange
+                Row row_invalid(100);
+                Column column_valid(0);
 
-    // Act
-    // Assert
-    EXPECT_THROW(
-        sut->validate_rows_and_columns(
-            row_invalid,
-            column_valid),
-        PacMan::Logic::PlayingFieldException);
-}
+                IPlayingFieldValidator_Ptr sut = create_sut();
 
-TEST(PlayingFieldValidator, validate_rows_and_columns_throws_for_column_is_invalid)
-{
-    // Arrange
-    Row row_valid(0);
-    Column column_invalid(100);
+                // Act
+                // Assert
+                EXPECT_THROW(
+                    sut->validate_rows_and_columns(
+                        row_invalid,
+                        column_valid),
+                    PacMan::Logic::PlayingFieldException);
+            }
 
-    IPlayingFieldValidator_Ptr sut = create_sut();
+            TEST(PlayingFieldValidator, validate_rows_and_columns_throws_for_column_is_invalid)
+            {
+                // Arrange
+                Row row_valid(0);
+                Column column_invalid(100);
 
-    // Act
-    // Assert
-    EXPECT_THROW(
-        sut->validate_rows_and_columns(
-            row_valid,
-            column_invalid),
-        PacMan::Logic::PlayingFieldException);
-}
+                IPlayingFieldValidator_Ptr sut = create_sut();
 
-TEST(PlayingFieldValidator, validate_rows_and_columns_does_not_throws_for_valid_row_and_column)
-{
-    // Arrange
-    Row row_valid(1);
-    Column column_valid(1);
+                // Act
+                // Assert
+                EXPECT_THROW(
+                    sut->validate_rows_and_columns(
+                        row_valid,
+                        column_invalid),
+                    PacMan::Logic::PlayingFieldException);
+            }
 
-    IPlayingFieldValidator_Ptr sut = create_sut();
+            TEST(PlayingFieldValidator, validate_rows_and_columns_does_not_throws_for_valid_row_and_column)
+            {
+                // Arrange
+                Row row_valid(1);
+                Column column_valid(1);
 
-    // Act
-    // Assert
-    EXPECT_NO_THROW (
-        sut->validate_rows_and_columns(
-            row_valid,
-            column_valid),
-        PacMan::Logic::PlayingFieldException);
-}
+                IPlayingFieldValidator_Ptr sut = create_sut();
 
-TEST(PlayingFieldValidator, validate_column_throws_for_nullptr)
-{
-    // Arrange
-    IPlayingFieldValidator_Ptr sut = create_sut();
+                // Act
+                // Assert
+                EXPECT_NO_THROW(
+                    sut->validate_rows_and_columns(
+                        row_valid,
+                        column_valid),
+                    PacMan::Logic::PlayingFieldException);
+            }
 
-    // Act
-    // Assert
-    EXPECT_THROW(
-        sut->validate_object(nullptr),
-        PacMan::Logic::PlayingFieldException);
-}
+            TEST(PlayingFieldValidator, validate_column_throws_for_nullptr)
+            {
+                // Arrange
+                IPlayingFieldValidator_Ptr sut = create_sut();
 
-TEST(PlayingFieldValidator, validate_column_does_not_throws_for_object)
-{
-    // Arrange
-    IPlayingFieldObject_Ptr object = std::make_shared<MockIPlayingFieldObject>();
+                // Act
+                // Assert
+                EXPECT_THROW(
+                    sut->validate_object(nullptr),
+                    PacMan::Logic::PlayingFieldException);
+            }
 
-    IPlayingFieldValidator_Ptr sut = create_sut();
+            TEST(PlayingFieldValidator, validate_column_does_not_throws_for_object)
+            {
+                // Arrange
+                IPlayingFieldObject_Ptr object = std::make_shared<MockIPlayingFieldObject>();
 
-    // Act
-    // Assert
-    EXPECT_NO_THROW(
-        sut->validate_object(object),
-        PacMan::Logic::PlayingFieldException);
-}
+                IPlayingFieldValidator_Ptr sut = create_sut();
+
+                // Act
+                // Assert
+                EXPECT_NO_THROW(
+                    sut->validate_object(object),
+                    PacMan::Logic::PlayingFieldException);
+            }
+        };
+    };
+};
