@@ -23,8 +23,8 @@ namespace PacMan
 
                 EXPECT_CALL(*mock_object,
                     get_heading())
-                    .Times(1)
-                    .WillOnce(testing::Return(Heading_Unknown));
+                                  .Times(1)
+                                  .WillOnce(testing::Return(Heading_Unknown));
 
                 // Act
                 auto actual = sut.to_string();
@@ -44,8 +44,8 @@ namespace PacMan
 
                 EXPECT_CALL(*mock_object,
                     get_heading())
-                    .Times(1)
-                    .WillOnce(testing::Return(Heading_Up));
+                                  .Times(1)
+                                  .WillOnce(testing::Return(Heading_Up));
 
                 // Act
                 auto actual = sut.to_string();
@@ -65,8 +65,8 @@ namespace PacMan
 
                 EXPECT_CALL(*mock_object,
                     get_heading())
-                    .Times(1)
-                    .WillOnce(testing::Return(Heading_Down));
+                                  .Times(1)
+                                  .WillOnce(testing::Return(Heading_Down));
 
                 // Act
                 auto actual = sut.to_string();
@@ -86,8 +86,8 @@ namespace PacMan
 
                 EXPECT_CALL(*mock_object,
                     get_heading())
-                    .Times(1)
-                    .WillOnce(testing::Return(Heading_Left));
+                                  .Times(1)
+                                  .WillOnce(testing::Return(Heading_Left));
 
                 // Act
                 auto actual = sut.to_string();
@@ -107,8 +107,8 @@ namespace PacMan
 
                 EXPECT_CALL(*mock_object,
                     get_heading())
-                    .Times(1)
-                    .WillOnce(testing::Return(Heading_Right));
+                                  .Times(1)
+                                  .WillOnce(testing::Return(Heading_Right));
 
                 // Act
                 auto actual = sut.to_string();
@@ -128,8 +128,8 @@ namespace PacMan
 
                 EXPECT_CALL(*mock_object,
                     get_heading())
-                    .Times(1)
-                    .WillOnce(testing::Return(Heading_Max));
+                                  .Times(1)
+                                  .WillOnce(testing::Return(Heading_Max));
 
                 // Act
                 auto actual = sut.to_string();

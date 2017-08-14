@@ -16,7 +16,7 @@ namespace PacMan
         {
             using namespace Logic;
 
-            std::function<std::shared_ptr<IDot> ()> create_factory ()
+            std::function<std::shared_ptr<IDot>  ()> create_factory ()
             {
                 return []
                 {
