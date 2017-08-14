@@ -7,7 +7,7 @@ namespace PacMan
 {
     namespace Logic
     {
-        class MonstersHeadingUpdater // todo testing
+        class MonstersHeadingUpdater
             : public IMonstersHeadingUpdater
         {
         private:

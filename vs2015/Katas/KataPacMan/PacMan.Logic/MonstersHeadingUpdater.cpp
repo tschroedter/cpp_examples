@@ -10,7 +10,6 @@ void PacMan::Logic::MonstersHeadingUpdater::initialize ( const IPlayingField_Ptr
 void PacMan::Logic::MonstersHeadingUpdater::update () const
 {
     // todo maybe nicer to get all monsters from playing field and have method give me position for object on playing field
-    // todo continue here
     auto pacmans = m_locator->get_all_of_type(PlayingFieldObjectType_PacMan);
     auto pacman = (*pacmans)[0]; // todo null checks
 

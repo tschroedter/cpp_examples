@@ -177,6 +177,7 @@
     <ClCompile Include="Locator.Tests.cpp" />
     <ClCompile Include="Monster.Tests.cpp" />
     <ClCompile Include="MonsterHeadingCalculator.Tests.cpp" />
+    <ClCompile Include="MonstersHeadingUpdater.Tests.cpp" />
     <ClCompile Include="MovingObjectsRepository.Tests.cpp" />
     <ClCompile Include="ObjectMoveCalculator.Tests.cpp" />
     <ClCompile Include="ObjectMover.Tests.cpp" />

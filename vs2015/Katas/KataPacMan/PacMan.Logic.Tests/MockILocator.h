@@ -16,10 +16,10 @@ namespace PacMan
             {
             public:
                 // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier
-                MOCK_METHOD0(
+                MOCK_CONST_METHOD0(
                     get_all,
                     PacMan::Logic::LocatorInformationVector_Ptr());
-                MOCK_METHOD1(
+                MOCK_CONST_METHOD1(
                     get_all_of_type,
                     PacMan::Logic::LocatorInformationVector_Ptr(PlayingFieldObjectType type));
                 MOCK_METHOD1(

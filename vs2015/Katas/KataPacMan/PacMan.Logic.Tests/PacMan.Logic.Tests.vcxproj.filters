@@ -137,5 +137,8 @@
     <ClCompile Include="Locator.Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MonstersHeadingUpdater.Tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
