@@ -23,8 +23,8 @@ void ObjectsMoverCalculator::calculate () const
 {
     m_repository->clear();
 
-    size_t number_of_rows = m_playing_field->get_rows();
-    size_t number_of_columns = m_playing_field->get_columns();
+    Row number_of_rows = m_playing_field->get_rows();
+    Column number_of_columns = m_playing_field->get_columns();
 
     for (size_t row = 0; row < number_of_rows; row++)
     {
@@ -46,8 +46,8 @@ void ObjectsMoverCalculator::calculate () const
 }
 
 IMoveObjectInformation_Ptr ObjectsMoverCalculator::create_info (
-    size_t row,
-    size_t column,
+    Row row,
+    Column column,
     IPlayingFieldObject_Ptr object ) const
 {
     Heading heading = object->get_heading();

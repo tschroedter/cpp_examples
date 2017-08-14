@@ -21,8 +21,8 @@ namespace PacMan
         }
 
         void ObjectMoveCalculator::calculate (
-            const size_t from_row,
-            const size_t from_column,
+            const Row from_row,
+            const Column from_column,
             const Heading heading )
         {
             to_row = from_row;
@@ -50,14 +50,14 @@ namespace PacMan
             }
         }
 
-        size_t ObjectMoveCalculator::move_left ( const size_t& column ) const
+        Column ObjectMoveCalculator::move_left ( const Column& column )
         {
             return
                 column >= 1 ? column - 1
                     : 0;
         }
 
-        size_t ObjectMoveCalculator::move_right ( const size_t& column ) const
+        size_t ObjectMoveCalculator::move_right ( const Column& column ) const
         {
             auto max_columns = m_playing_field->get_columns();
 
@@ -67,14 +67,14 @@ namespace PacMan
                     : max_columns - 1;
         }
 
-        size_t ObjectMoveCalculator::move_up ( const size_t& row ) const
+        Row ObjectMoveCalculator::move_up ( const Row& row )
         {
             return
                 row >= 1 ? row - 1
                     : 0;
         }
 
-        size_t ObjectMoveCalculator::move_down ( const size_t& row ) const
+        Row ObjectMoveCalculator::move_down ( const Row& row ) const
         {
             auto max_rows = m_playing_field->get_rows();
 

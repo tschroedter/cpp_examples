@@ -12,8 +12,8 @@ namespace PacMan
             virtual ~IObjectMover () = default;
 
             virtual void move_object (
-                const size_t from_row,
-                const size_t from_columns ) = 0;
+                const Row from_row,
+                const Column from_columns ) = 0;
             virtual void initialize ( const IPlayingField_Ptr& playing_field ) = 0;
         };
 

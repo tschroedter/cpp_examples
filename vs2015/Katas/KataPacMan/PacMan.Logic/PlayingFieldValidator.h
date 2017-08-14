@@ -11,13 +11,13 @@ namespace PacMan
             : public IPlayingFieldValidator
         {
         private:
-            size_t m_rows;
-            size_t m_columns;
+            Row m_rows;
+            Column m_columns;
 
         public:
             PlayingFieldValidator ()
-                : m_rows(size_t(0))
-                  , m_columns(size_t(0))
+                : m_rows(Row(0)),
+                  m_columns(Column(0))
             {
             }
 
@@ -26,18 +26,18 @@ namespace PacMan
             }
 
             void initialize (
-                const size_t rows,
-                const size_t columns ) override;
+                const Row rows,
+                const Column columns ) override;
 
-            size_t get_rows () const override;
-            size_t get_columns () const override;
+            Row get_rows () const override;
+            Column get_columns () const override;
 
             void validate_object ( const IPlayingFieldObject_Ptr object ) const override;
-            void validate_row ( const size_t row ) const override;
-            void validate_column ( const size_t column ) const override;
+            void validate_row ( const Row row ) const override;
+            void validate_column ( const Column column ) const override;
             void validate_rows_and_columns (
-                const size_t rows,
-                const size_t columns ) const override;
+                const Row rows,
+                const Column columns ) const override;
         };
     };
 };

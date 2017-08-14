@@ -15,6 +15,6 @@ namespace PacMan
             virtual void show () = 0;
         };
 
-        typedef IPalyingFieldPresenter* IPalyingFieldPresenter_Ptr;
+        typedef std::shared_ptr<IPalyingFieldPresenter> IPalyingFieldPresenter_Ptr;
     };
 };

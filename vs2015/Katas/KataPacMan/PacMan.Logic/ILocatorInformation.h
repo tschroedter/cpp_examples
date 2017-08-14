@@ -14,8 +14,8 @@ namespace PacMan
             virtual ~ILocatorInformation () = default;
 
             IPlayingFieldObject_Ptr object = nullptr;
-            size_t row{0};
-            size_t column{0};
+            Row row{0};
+            Column column{0};
         };
 
         typedef std::shared_ptr<ILocatorInformation> ILocatorInformation_Ptr;

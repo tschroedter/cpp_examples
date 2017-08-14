@@ -189,6 +189,9 @@
     <ClInclude Include="LocatorInformation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RowAndColumn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

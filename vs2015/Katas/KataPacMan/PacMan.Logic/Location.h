@@ -10,23 +10,24 @@ namespace PacMan
             : public ILocation
         {
         private:
-            size_t m_row = 3;
-            size_t m_column = 3;
+            Row m_row = 3;
+            Column m_column = 3;
+
         public:
             Location ()
             {
             }
 
             Location (
-                size_t row,
-                size_t column )
+                Row row,
+                Column column )
                 : m_row(row)
                   , m_column(column)
             {
             }
 
-            size_t get_row () const override;
-            size_t get_column () const override;
+            Row get_row () const override;
+            Column get_column () const override;
         };
     };
 };

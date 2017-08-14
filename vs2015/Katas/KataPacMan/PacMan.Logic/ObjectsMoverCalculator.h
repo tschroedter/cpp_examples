@@ -22,8 +22,8 @@ namespace PacMan
             void calculate () const override;
 
             IMoveObjectInformation_Ptr create_info (
-                size_t row,
-                size_t column,
+                Row row,
+                Column column,
                 IPlayingFieldObject_Ptr object ) const;
 
         private:

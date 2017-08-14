@@ -20,8 +20,8 @@ namespace PacMan
             ~ObjectMover ();
 
             void ObjectMover::move_object (
-                const size_t from_row,
-                const size_t from_columns ) override;
+                const Row from_row,
+                const Column from_columns ) override;
 
             void initialize ( const IPlayingField_Ptr& playing_field ) override;
         };

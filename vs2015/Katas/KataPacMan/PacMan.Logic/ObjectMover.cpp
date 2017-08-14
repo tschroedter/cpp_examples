@@ -24,8 +24,8 @@ namespace PacMan
         }
 
         void ObjectMover::move_object (
-            const size_t from_row,
-            const size_t from_column )
+            const Row from_row,
+            const Column from_column )
         {
             const IPlayingFieldObject_Ptr object =
                 m_playing_field->get_object_at(from_row,
@@ -54,8 +54,8 @@ namespace PacMan
                                         from_column,
                                         heading);
 
-                size_t to_row = m_calculator->to_row;
-                size_t to_column = m_calculator->to_column;
+                Row to_row = m_calculator->to_row;
+                Column to_column = m_calculator->to_column;
 
                 m_playing_field->move_object_from_to(
                                                      from_row,

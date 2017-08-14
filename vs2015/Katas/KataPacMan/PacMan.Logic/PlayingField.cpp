@@ -9,8 +9,8 @@ namespace PacMan
     namespace Logic
     {
         IPlayingFieldObject_Ptr** PlayingField::create_field (
-            const size_t rows,
-            const size_t columns ) const
+            const Row rows,
+            const Column columns ) const
         {
             m_validator->validate_rows_and_columns(rows, columns);
 
@@ -34,8 +34,8 @@ namespace PacMan
         }
 
         void PlayingField::initialize (
-            const size_t rows,
-            const size_t columns )
+            const Row rows,
+            const Column columns )
         {
             m_rows = rows;
             m_columns = columns;
@@ -45,19 +45,19 @@ namespace PacMan
             m_validator->initialize(rows, columns);
         }
 
-        size_t PlayingField::get_rows () const
+        Row PlayingField::get_rows () const
         {
             return m_rows;
         }
 
-        size_t PlayingField::get_columns () const
+        Column PlayingField::get_columns () const
         {
             return m_columns;
         }
 
         IPlayingFieldObject_Ptr PlayingField::get_object_at (
-            const size_t row,
-            const size_t column )
+            const Row row,
+            const Column column )
         {
             m_validator->validate_row(row);
             m_validator->validate_column(column);
@@ -68,7 +68,7 @@ namespace PacMan
             return object;
         }
 
-        PlayingFieldObjectType PlayingField::get_object_type_at ( const size_t row, const size_t column )
+        PlayingFieldObjectType PlayingField::get_object_type_at ( const Row row, const Column column )
         {
             IPlayingFieldObject_Ptr object = get_object_at(row, column);
 
@@ -77,8 +77,8 @@ namespace PacMan
 
         void PlayingField::put_object_at (
             const IPlayingFieldObject_Ptr object,
-            const size_t row,
-            const size_t column )
+            const Row row,
+            const Column column )
         {
             m_validator->validate_object(object);
             m_validator->validate_row(row);
@@ -89,10 +89,10 @@ namespace PacMan
         }
 
         void PlayingField::move_object_from_to (
-            const size_t from_row,
-            const size_t from_column,
-            const size_t to_row,
-            const size_t to_column )
+            const Row from_row,
+            const Column from_column,
+            const Row to_row,
+            const Column to_column )
         {
             if (from_row == to_row &&
                 from_column == to_column)

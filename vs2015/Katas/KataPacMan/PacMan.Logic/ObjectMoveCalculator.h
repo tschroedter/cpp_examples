@@ -13,17 +13,17 @@ namespace PacMan
         private:
             IPlayingField_Ptr m_playing_field;
 
-            size_t move_left ( const size_t& column ) const;
-            size_t move_right ( const size_t& column ) const;
-            size_t move_up ( const size_t& row ) const;
-            size_t move_down ( const size_t& row ) const;
+            static Column move_left ( const Column& column );
+            Column move_right ( const Column& column ) const;
+            static Row move_up ( const Row& row );
+            Row move_down ( const Row& row ) const;
 
         public:
             ObjectMoveCalculator ();
             ~ObjectMoveCalculator ();
 
-            void calculate ( size_t from_row,
-                             size_t from_column,
+            void calculate ( Row from_row,
+                             Column from_column,
                              Heading heading ) override;
 
             void initialize ( const IPlayingField_Ptr& playing_field ) override;

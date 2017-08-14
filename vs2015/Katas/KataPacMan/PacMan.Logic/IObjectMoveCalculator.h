@@ -19,8 +19,8 @@ namespace PacMan
 
             virtual void initialize ( const IPlayingField_Ptr& playing_field ) = 0;
 
-            size_t to_row = 0;
-            size_t to_column = 0;
+            Row to_row = 0;
+            Column to_column = 0;
         };
 
         typedef std::shared_ptr<IObjectMoveCalculator> IObjectMoveCalculator_Ptr;

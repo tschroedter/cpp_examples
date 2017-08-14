@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include "Heading.h"
+#include "RowAndColumn.h"
 
 namespace PacMan
 {
@@ -14,10 +15,10 @@ namespace PacMan
             virtual void calculate() = 0;
             virtual Heading get_heading() const = 0;
 
-            size_t monster_row{ 0 };
-            size_t monster_column{ 0 };
-            size_t pacman_row{ 0 };
-            size_t pacman_column{ 0 };
+            Row monster_row{ 0 };
+            Column monster_column{ 0 };
+            Row pacman_row{ 0 };
+            Column pacman_column{ 0 };
         };
 
         typedef std::shared_ptr<IMonsterHeadingCalculator> IMonsterHeadingCalculator_Ptr;

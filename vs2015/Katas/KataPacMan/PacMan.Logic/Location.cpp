@@ -5,12 +5,12 @@ namespace PacMan
 {
     namespace Logic
     {
-        size_t Location::get_row () const
+        Row Location::get_row () const
         {
             return m_row;
         }
 
-        size_t Location::get_column () const
+        Column Location::get_column () const
         {
             return m_column;
         }

@@ -9,8 +9,8 @@ namespace PacMan
     namespace Logic
     {
         void PlayingFieldValidator::validate_rows_and_columns (
-            const size_t rows,
-            const size_t columns ) const
+            const Row rows,
+            const Column columns ) const
         {
             if (rows <= 0)
             {
@@ -29,23 +29,23 @@ namespace PacMan
             }
         }
 
-        void PlayingFieldValidator::initialize ( const size_t rows, const size_t columns )
+        void PlayingFieldValidator::initialize ( const Row rows, const Column columns )
         {
             m_rows = rows;
             m_columns = columns;
         }
 
-        size_t PlayingFieldValidator::get_rows () const
+        Row PlayingFieldValidator::get_rows () const
         {
             return m_rows;
         }
 
-        size_t PlayingFieldValidator::get_columns () const
+        Column PlayingFieldValidator::get_columns () const
         {
             return m_columns;
         }
 
-        void PlayingFieldValidator::validate_row ( const size_t row ) const
+        void PlayingFieldValidator::validate_row ( const Row row ) const
         {
             if (row < 0 || row >= m_rows)
             {
@@ -58,7 +58,7 @@ namespace PacMan
             }
         }
 
-        void PlayingFieldValidator::validate_column ( const size_t column ) const
+        void PlayingFieldValidator::validate_column ( const Column column ) const
         {
             if (column < 0 || column >= m_columns)
             {
