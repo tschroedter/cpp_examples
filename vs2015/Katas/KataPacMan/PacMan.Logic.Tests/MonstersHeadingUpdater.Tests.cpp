@@ -141,7 +141,7 @@ namespace PacMan
                     set_heading(Heading_Down))
                                               .Times(1);
 
-                EXPECT_CALL(*mock_monster_one,
+                EXPECT_CALL(*mock_monster_two,
                     set_heading(Heading_Down))
                                               .Times(1);
 
