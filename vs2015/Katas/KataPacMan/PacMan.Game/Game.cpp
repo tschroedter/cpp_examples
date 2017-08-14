@@ -13,7 +13,7 @@ namespace PacMan
         void Game::run () const
         {
             using namespace Logic;
-            // todo
+
             m_monster->set_heading(Heading_Down);
 
             m_playing_field->initialize(
@@ -44,6 +44,8 @@ namespace PacMan
                 m_game_timer->tick();
                 status = m_game_timer->get_status();
             }
+
+            m_display->print();
 
             if (ValidationStatus_PacMan_Death == status)
             {

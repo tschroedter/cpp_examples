@@ -40,7 +40,7 @@ namespace PacMan
                 const IPlayingField_Ptr playing_field ) override;
 
             void tick () override;
-            ValidationStatus get_status () const override; // todo testing
+            ValidationStatus get_status () const override;
         };
     };
 };
