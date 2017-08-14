@@ -35,19 +35,10 @@
 #include "MonsterHeadingCalculator.h"
 #include "ILocator.h"
 #include "Locator.h"
+#include "MonstersHeadingUpdater.h"
 
 namespace PacMan
 {
-    namespace Logic
-    {
-        class IInputPacManMove;
-    }
-
-    namespace View
-    {
-        class IViewPlayingField;
-    }
-
     namespace Match
     {
         void IOCContainerBuilder::register_components (
@@ -108,6 +99,9 @@ namespace PacMan
 
             builder.registerType<MonsterHeadingCalculator>()
                    .as<IMonsterHeadingCalculator>();
+
+            builder.registerType<MonstersHeadingUpdater>()
+                   .as<IMonstersHeadingUpdater>();
 
             builder.registerType<Monster>()
                    .as<IMonster>();

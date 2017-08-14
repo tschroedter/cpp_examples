@@ -7,7 +7,7 @@ namespace PacMan
 {
     namespace Logic
     {
-        class MonstersHeadingUpdater    // todo testing
+        class MonstersHeadingUpdater // todo testing
             : public IMonstersHeadingUpdater
         {
         private:
@@ -16,17 +16,18 @@ namespace PacMan
             IPlayingField_Ptr m_playing_field;
 
         public:
-            MonstersHeadingUpdater(
+            MonstersHeadingUpdater (
                 ILocator_Ptr locator,
-                IMonsterHeadingCalculator_Ptr calculator)
-                : m_calculator(calculator)
+                IMonsterHeadingCalculator_Ptr calculator )
+                : m_locator(locator),
+                  m_calculator(calculator)
             {
             };
 
-            ~MonstersHeadingUpdater() = default;
+            ~MonstersHeadingUpdater () = default;
 
-            void initialize(const IPlayingField_Ptr& playing_field) override;
-            void update() const override;
+            void initialize ( const IPlayingField_Ptr& playing_field ) override;
+            void update () const override;
         };
     };
 };

@@ -6,6 +6,40 @@
 #include "MockIObjectMover.h"
 #include "MockIObjectsMover.h"
 #include "../PacMan.View.Tests/MockIObjectsTicker.h"
+#include "MockIMonstersHeadingUpdater.h"
+
+TEST(GameTimer, initialize_calls_monster_updater_initialize)
+{
+    using namespace PacMan::Logic;
+
+    // Arrange
+    MockIPlayingField* mock_playing_field = new MockIPlayingField{};
+    IPlayingField_Ptr playing_field(mock_playing_field);
+
+    MockIObjectsMover* mock_objects_mover = new MockIObjectsMover{};
+    IObjectsMover_Ptr objects_mover(mock_objects_mover);
+
+    MockIObjectsTicker* mock_objects_ticker = new MockIObjectsTicker{};
+    IObjectsTicker_Ptr objects_ticker(mock_objects_ticker);
+
+    MockIMonstersHeadingUpdater* mock_monster_updater = new MockIMonstersHeadingUpdater{};
+    IMonstersHeadingUpdater_Ptr monster_updater(mock_monster_updater);
+
+    GameTimer sut{
+        monster_updater,
+        objects_mover,
+        objects_ticker
+    };
+
+    EXPECT_CALL(*mock_monster_updater,
+        initialize(playing_field))
+                                  .Times(1);
+
+    // Act
+    sut.initialize(playing_field);
+
+    // Assert
+}
 
 TEST(GameTimer, initialize_calls_objects_movers_initialize)
 {
@@ -21,7 +55,11 @@ TEST(GameTimer, initialize_calls_objects_movers_initialize)
     MockIObjectsTicker* mock_objects_ticker = new MockIObjectsTicker{};
     IObjectsTicker_Ptr objects_ticker(mock_objects_ticker);
 
+    MockIMonstersHeadingUpdater* mock_monster_updater = new MockIMonstersHeadingUpdater{};
+    IMonstersHeadingUpdater_Ptr monster_updater(mock_monster_updater);
+
     GameTimer sut{
+        monster_updater,
         objects_mover,
         objects_ticker
     };
@@ -50,7 +88,11 @@ TEST(GameTimer, initialize_calls_objects_ticker_initialize)
     MockIObjectsTicker* mock_objects_ticker = new MockIObjectsTicker{};
     IObjectsTicker_Ptr objects_ticker(mock_objects_ticker);
 
+    MockIMonstersHeadingUpdater* mock_monster_updater = new MockIMonstersHeadingUpdater{};
+    IMonstersHeadingUpdater_Ptr monster_updater(mock_monster_updater);
+
     GameTimer sut{
+        monster_updater,
         objects_mover,
         objects_ticker
     };
@@ -79,7 +121,11 @@ TEST(GameTimer, get_status_calls_get_status)
     MockIObjectsTicker* mock_objects_ticker = new MockIObjectsTicker{};
     IObjectsTicker_Ptr objects_ticker(mock_objects_ticker);
 
+    MockIMonstersHeadingUpdater* mock_monster_updater = new MockIMonstersHeadingUpdater{};
+    IMonstersHeadingUpdater_Ptr monster_updater(mock_monster_updater);
+
     GameTimer sut{
+        monster_updater,
         objects_mover,
         objects_ticker
     };
@@ -112,7 +158,11 @@ TEST(GameTimer, tick_calls_tick)
     MockIObjectsTicker* mock_objects_ticker = new MockIObjectsTicker{};
     IObjectsTicker_Ptr objects_ticker(mock_objects_ticker);
 
+    MockIMonstersHeadingUpdater* mock_monster_updater = new MockIMonstersHeadingUpdater{};
+    IMonstersHeadingUpdater_Ptr monster_updater(mock_monster_updater);
+
     GameTimer sut{
+        monster_updater,
         objects_mover,
         objects_ticker
     };
@@ -150,7 +200,11 @@ TEST(GameTimer, tick_calls_move_objects_calculate_print_moves_move_objects)
     MockIObjectsTicker* mock_objects_ticker = new MockIObjectsTicker{};
     IObjectsTicker_Ptr objects_ticker(mock_objects_ticker);
 
+    MockIMonstersHeadingUpdater* mock_monster_updater = new MockIMonstersHeadingUpdater{};
+    IMonstersHeadingUpdater_Ptr monster_updater(mock_monster_updater);
+
     GameTimer sut{
+        monster_updater,
         objects_mover,
         objects_ticker
     };
@@ -164,6 +218,10 @@ TEST(GameTimer, tick_calls_move_objects_calculate_print_moves_move_objects)
     EXPECT_CALL(*mock_playing_field,
         get_columns())
                       .WillRepeatedly(testing::Return(0));
+
+    EXPECT_CALL(*mock_monster_updater,
+        update())
+                 .Times(1);
 
     EXPECT_CALL(*mock_objects_mover,
         calculate())

@@ -156,6 +156,7 @@
     <ClInclude Include="MockILocator.h" />
     <ClInclude Include="MockILogger.h" />
     <ClInclude Include="MockIMonsterHeadingCalculator.h" />
+    <ClInclude Include="MockIMonstersHeadingUpdater.h" />
     <ClInclude Include="MockIMovingObjectsRepository.h" />
     <ClInclude Include="MockIObjectMoveCalculator.h" />
     <ClInclude Include="MockIObjectMover.h" />
