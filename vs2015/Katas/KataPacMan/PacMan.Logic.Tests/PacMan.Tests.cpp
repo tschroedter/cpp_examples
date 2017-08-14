@@ -131,6 +131,49 @@ namespace PacMan
                 // Assert
                 EXPECT_NO_THROW(sut.tick());
             }
+
+            TEST(PacMan, set_heading_sets_heading)
+            {
+                // Arrange
+                ILocation_Ptr location = std::make_shared<MockILocation>();
+                MockIDirection* mock_direction = new MockIDirection{};
+                IDirection_Ptr direction(mock_direction);
+
+                PacMan sut
+                {
+                    location,
+                    direction
+                };
+
+                EXPECT_CALL(*mock_direction,
+                    set_heading(Heading_Down))
+                                              .Times(1);
+
+                // Act
+                sut.set_heading(Heading_Down);
+
+                // Assert
+            }
+
+            TEST(PacMan, is_moveable_returns_true)
+            {
+                // Arrange
+                ILocation_Ptr location = std::make_shared<MockILocation>();
+                MockIDirection* mock_direction = new MockIDirection{};
+                IDirection_Ptr direction(mock_direction);
+
+                PacMan sut
+                {
+                    location,
+                    direction
+                };
+
+                // Act
+                bool actual = sut.is_moveable();
+
+                // Assert
+                EXPECT_EQ(true, actual);
+            }
         };
     };
 };

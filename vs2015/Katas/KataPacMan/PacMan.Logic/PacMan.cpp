@@ -17,7 +17,7 @@ namespace PacMan
 
         void PacMan::set_heading ( Heading heading )
         {
-            PlayingFieldObject::set_heading(heading); // todo testing
+            PlayingFieldObject::set_heading(heading);
         }
 
         bool PacMan::is_moving () const
@@ -35,7 +35,7 @@ namespace PacMan
 
         bool PacMan::is_moveable () const
         {
-            return true; // todo testing
+            return true;
         }
     }
 }

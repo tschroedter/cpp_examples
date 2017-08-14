@@ -6,7 +6,7 @@ namespace PacMan
 {
     namespace Logic
     {
-        class ObjectsMoveValidator // todo testing
+        class ObjectsMoveValidator
             : public IObjectsMoveValidator
         {
         public:

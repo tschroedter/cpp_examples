@@ -10,7 +10,7 @@ namespace PacMan
 {
     namespace Logic
     {
-        class ObjectsMover // todo testing
+        class ObjectsMover
             : public IObjectsMover
         {
         private:
