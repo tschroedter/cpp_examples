@@ -72,7 +72,7 @@ namespace PacMan
         }
 
         std::ostream& MovingObjectsRepository::print_moves ( std::ostream& out ) const
-        { // todo testing
+        {
             int counter = 0;
             auto all = get_all();
 

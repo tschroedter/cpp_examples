@@ -3,6 +3,7 @@
 #include "MockIDirection.h"
 #include "MovingObjectsRepository.h"
 #include "MoveObjectInformation.h"
+#include <strstream>
 
 namespace PacMan
 {
@@ -13,13 +14,35 @@ namespace PacMan
             using namespace Logic;
 
             IMoveObjectInformation_Ptr create_move_object_information (
-                PlayingFieldObjectType type )
+                PlayingFieldObjectType type,
+                Row from_row,
+                Column from_column,
+                Row to_row,
+                Column to_column )
             {
                 MoveObjectInformation* p_object = new MoveObjectInformation();
+                p_object->from_row = from_row;
+                p_object->from_column = from_column;
+                p_object->to_row = to_row;
+                p_object->to_column = to_column;
+
                 IMoveObjectInformation_Ptr object{p_object};
                 object->playing_field_object_type = type;
 
                 return object;
+            }
+
+            IMoveObjectInformation_Ptr create_move_object_information (
+                PlayingFieldObjectType type )
+            {
+                auto info =
+                    create_move_object_information(
+                                                   type,
+                                                   Row(0),
+                                                   Column(1),
+                                                   Row(2),
+                                                   Column(3));
+                return info;
             }
 
             TEST(MovingObjectsRepository, add_adds_item_to_vector)
@@ -152,6 +175,47 @@ namespace PacMan
 
                 // Assert
                 EXPECT_EQ(0, vector->size());
+            }
+
+            TEST(MovingObjectsRepository, print_moves_returns_moves)
+            {
+                // Arrange
+                IMoveObjectInformation_Ptr object_one =
+                    create_move_object_information(
+                                                   PlayingFieldObjectType_Monster,
+                                                   Row(0),
+                                                   Column(1),
+                                                   Row(2),
+                                                   Column(3));
+                IMoveObjectInformation_Ptr object_two =
+                    create_move_object_information(
+                                                   PlayingFieldObjectType_PacMan,
+                                                   Row(4),
+                                                   Column(5),
+                                                   Row(6),
+                                                   Column(7));
+
+                MovingObjectsInformationVector* p_vector = new MovingObjectsInformationVector{};
+                MovingObjectsInformationVector_Ptr vector(p_vector);
+
+                MovingObjectsRepository sut
+                {
+                    vector
+                };
+
+                sut.add(object_one);
+                sut.add(object_two);
+
+                std::stringstream out;
+
+                // Act
+                sut.print_moves(out);
+
+                // Assert
+                std::string actual = out.str();
+                std::string expected = "[0] (0 , 1) --> (2, 3) Type: 3\n[1] (4 , 5) --> (6, 7) Type: 2\n";
+
+                EXPECT_EQ(expected, actual);
             }
         };
     };
