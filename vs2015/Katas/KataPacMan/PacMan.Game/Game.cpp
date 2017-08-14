@@ -17,18 +17,18 @@ namespace PacMan
             m_monster->set_heading(Heading_Down);
 
             m_playing_field->initialize(
-                                        size_t(3),
-                                        size_t(3));
+                                        Row(3),
+                                        Column(3));
 
             m_playing_field->put_object_at(
                                            m_pac_man,
-                                           size_t(1),
-                                           size_t(1));
+                                           Row(1),
+                                           Column(1));
 
             m_playing_field->put_object_at(
                                            m_monster,
-                                           size_t(0),
-                                           size_t(0));
+                                           Row(0),
+                                           Column(0));
 
             m_display->initialize(m_playing_field);
             m_input->initialize();

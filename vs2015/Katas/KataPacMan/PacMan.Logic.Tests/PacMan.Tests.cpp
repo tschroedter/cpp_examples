@@ -1,16 +1,17 @@
 #include "stdafx.h"
 #include <gtest/gtest.h>
+#include <memory>
 #include "PacMan.h"
 #include "MockILocation.h"
 #include "IDirection.h"
 #include "MockIDirection.h"
 
+using namespace ::PacMan::Logic;
+
 void is_moving_test_for_heading (
-    PacMan::Logic::Heading heading,
+    Heading heading,
     bool expected )
 {
-    using namespace ::PacMan::Logic;
-
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     MockIDirection* mock_direction = new MockIDirection{};
@@ -36,50 +37,36 @@ void is_moving_test_for_heading (
 
 TEST(PacMan, is_moving_returns_false_for_heading_unknown)
 {
-    using namespace ::PacMan::Logic;
-
     is_moving_test_for_heading(Heading_Unknown, false);
 }
 
 TEST(PacMan, is_moving_returns_false_for_heading_max)
 {
-    using namespace ::PacMan::Logic;
-
     is_moving_test_for_heading(Heading_Max, false);
 }
 
 TEST(PacMan, is_moving_returns_true_for_heading_left)
 {
-    using namespace ::PacMan::Logic;
-
     is_moving_test_for_heading(Heading_Left, true);
 }
 
 TEST(PacMan, is_moving_returns_true_for_heading_right)
 {
-    using namespace ::PacMan::Logic;
-
     is_moving_test_for_heading(Heading_Right, true);
 }
 
 TEST(PacMan, is_moving_returns_true_for_heading_up)
 {
-    using namespace ::PacMan::Logic;
-
     is_moving_test_for_heading(Heading_Up, true);
 }
 
 TEST(PacMan, is_moving_returns_true_for_heading_down)
 {
-    using namespace ::PacMan::Logic;
-
     is_moving_test_for_heading(Heading_Down, true);
 }
 
 TEST(PacMan, constructor_sets_heading)
 {
-    using namespace ::PacMan::Logic;
-
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     MockIDirection* mock_direction = new MockIDirection{};
@@ -105,8 +92,6 @@ TEST(PacMan, constructor_sets_heading)
 
 TEST(PacMan, constructor_sets_type)
 {
-    using namespace ::PacMan::Logic;
-
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     IDirection_Ptr direction = std::make_shared<MockIDirection>();
@@ -126,8 +111,6 @@ TEST(PacMan, constructor_sets_type)
 
 TEST(PacMan, tick_calls_tick)
 {
-    using namespace ::PacMan::Logic;
-
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     IDirection_Ptr direction = std::make_shared<MockIDirection>();

@@ -6,10 +6,10 @@
 #include "MockIPlayingField.h"
 #include "MockIMovingObjectsRepository.h"
 
+using namespace PacMan::Logic;
+
 TEST(ObjectsMoverCalculator, initialize_call_calculator_initialize)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     MockIPlayingField* mock_playing_field = new MockIPlayingField{};
     IPlayingField_Ptr playing_field(mock_playing_field);
@@ -36,13 +36,11 @@ TEST(ObjectsMoverCalculator, initialize_call_calculator_initialize)
 
 TEST(ObjectsMoverCalculator, create_info_returns_new_info_instance)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t from_row(1);
-    size_t from_column(2);
-    size_t to_row(3);
-    size_t to_column(4);
+    Row from_row(1);
+    Column from_column(2);
+    Row to_row(3);
+    Column to_column(4);
     PlayingFieldObjectType type = PlayingFieldObjectType_PacMan;
 
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
@@ -81,11 +79,9 @@ void test_calculate_for_is_moving (
     bool is_moving,
     int expected_number_of_calls )
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t to_row(3);
-    size_t to_column(4);
+    Row to_row(3);
+    Column to_column(4);
     PlayingFieldObjectType type = PlayingFieldObjectType_PacMan;
 
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
@@ -115,11 +111,11 @@ void test_calculate_for_is_moving (
     EXPECT_CALL(
         *mock_playing_field,
         get_rows())
-                   .WillRepeatedly(testing::Return(size_t(3)));
+                   .WillRepeatedly(testing::Return(Row(3)));
     EXPECT_CALL(
         *mock_playing_field,
         get_columns())
-                      .WillRepeatedly(testing::Return(size_t(3)));
+                      .WillRepeatedly(testing::Return(Column(3)));
     EXPECT_CALL(
         *mock_playing_field,
         get_object_at(
@@ -147,27 +143,17 @@ void test_calculate_for_is_moving (
 
 TEST(ObjectsMoverCalculator, calculate_calls_repository_add_for_object_is_moving_true)
 {
-    using namespace PacMan::Logic;
-
     test_calculate_for_is_moving(true, 9);
 }
 
 TEST(ObjectsMoverCalculator, calculate_calls_repository_add_for_object_is_moving_false)
 {
-    using namespace PacMan::Logic;
-
     test_calculate_for_is_moving(false, 0);
 }
 
 TEST(ObjectsMoverCalculator, calculate_calls_repository_clear)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t to_row(3);
-    size_t to_column(4);
-    PlayingFieldObjectType type = PlayingFieldObjectType_PacMan;
-
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
     IPlayingFieldObject_Ptr object(mock_object);
 

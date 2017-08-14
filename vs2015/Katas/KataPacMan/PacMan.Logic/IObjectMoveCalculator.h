@@ -13,8 +13,8 @@ namespace PacMan
         public:
             virtual ~IObjectMoveCalculator () = default;
 
-            virtual void calculate ( const size_t from_row,
-                                     const size_t from_column,
+            virtual void calculate ( const Row from_row,
+                                     const Column from_column,
                                      const Heading heading ) = 0;
 
             virtual void initialize ( const IPlayingField_Ptr& playing_field ) = 0;

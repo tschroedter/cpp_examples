@@ -20,7 +20,7 @@ void PacMan::Logic::MonstersHeadingUpdater::update () const
     auto monsters = m_locator->get_all_of_type(PlayingFieldObjectType_Monster);
 
     for (auto iter = monsters->begin(); iter != monsters->end();
-        ++iter)
+         ++iter)
     {
         ILocatorInformation_Ptr info = (*iter);
 

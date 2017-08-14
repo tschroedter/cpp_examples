@@ -57,7 +57,7 @@ namespace PacMan
                     : 0;
         }
 
-        size_t ObjectMoveCalculator::move_right ( const Column& column ) const
+        Column ObjectMoveCalculator::move_right ( const Column& column ) const
         {
             auto max_columns = m_playing_field->get_columns();
 

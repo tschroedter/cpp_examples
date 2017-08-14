@@ -8,10 +8,10 @@
 #include "MockIObjectsMover.h"
 #include "ObjectsTicker.h"
 
+using namespace PacMan::Logic;
+
 TEST(ObjectsTicker, tick_calls_tick_on_all_objects)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     MockIPlayingFieldObject* mock_object_0_0 = new MockIPlayingFieldObject{};
     IPlayingFieldObject_Ptr object_0_0(mock_object_0_0);
@@ -37,32 +37,32 @@ TEST(ObjectsTicker, tick_calls_tick_on_all_objects)
     EXPECT_CALL(*mock_playing_field,
         get_rows())
                    .Times(1)
-                   .WillOnce(testing::Return(size_t(2)));
+                   .WillOnce(testing::Return(Row(2)));
 
     EXPECT_CALL(*mock_playing_field,
         get_columns())
                       .Times(1)
-                      .WillOnce(testing::Return(size_t(2)));
+                      .WillOnce(testing::Return(Column(2)));
 
     EXPECT_CALL(*mock_playing_field,
-        get_object_at(size_t(0), size_t(0)))
-                                            .Times(1)
-                                            .WillOnce(testing::Return(object_0_0));
+        get_object_at(Row(0), Column(0)))
+                                         .Times(1)
+                                         .WillOnce(testing::Return(object_0_0));
 
     EXPECT_CALL(*mock_playing_field,
-        get_object_at(size_t(0), size_t(1)))
-                                            .Times(1)
-                                            .WillOnce(testing::Return(object_0_1));
+        get_object_at(Row(0), Column(1)))
+                                         .Times(1)
+                                         .WillOnce(testing::Return(object_0_1));
 
     EXPECT_CALL(*mock_playing_field,
-        get_object_at(size_t(1), size_t(0)))
-                                            .Times(1)
-                                            .WillOnce(testing::Return(object_1_0));
+        get_object_at(Row(1), Column(0)))
+                                         .Times(1)
+                                         .WillOnce(testing::Return(object_1_0));
 
     EXPECT_CALL(*mock_playing_field,
-        get_object_at(size_t(1), size_t(1)))
-                                            .Times(1)
-                                            .WillOnce(testing::Return(object_1_1));
+        get_object_at(Row(1), Column(1)))
+                                         .Times(1)
+                                         .WillOnce(testing::Return(object_1_1));
 
     EXPECT_CALL(*mock_object_0_0,
         tick())

@@ -10,7 +10,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Unknown)
 
     // Arrange
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    PacMan::Logic::IPlayingFieldObject_Ptr object(mock_object);
+    IPlayingFieldObject_Ptr object(mock_object);
 
     DisplayPacMan sut{};
     sut.initialize(object);
@@ -18,7 +18,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Unknown)
     EXPECT_CALL(*mock_object,
         get_heading())
                       .Times(1)
-                      .WillOnce(testing::Return(PacMan::Logic::Heading_Unknown));
+                      .WillOnce(testing::Return(Heading_Unknown));
 
     // Act
     auto actual = sut.to_string();
@@ -33,7 +33,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Up)
 
     // Arrange
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    PacMan::Logic::IPlayingFieldObject_Ptr object(mock_object);
+    IPlayingFieldObject_Ptr object(mock_object);
 
     DisplayPacMan sut{};
     sut.initialize(object);
@@ -41,7 +41,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Up)
     EXPECT_CALL(*mock_object,
         get_heading())
                       .Times(1)
-                      .WillOnce(testing::Return(PacMan::Logic::Heading_Up));
+                      .WillOnce(testing::Return(Heading_Up));
 
     // Act
     auto actual = sut.to_string();
@@ -56,7 +56,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Down)
 
     // Arrange
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    PacMan::Logic::IPlayingFieldObject_Ptr object(mock_object);
+    IPlayingFieldObject_Ptr object(mock_object);
 
     DisplayPacMan sut{};
     sut.initialize(object);
@@ -64,7 +64,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Down)
     EXPECT_CALL(*mock_object,
         get_heading())
                       .Times(1)
-                      .WillOnce(testing::Return(PacMan::Logic::Heading_Down));
+                      .WillOnce(testing::Return(Heading_Down));
 
     // Act
     auto actual = sut.to_string();
@@ -79,7 +79,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Left)
 
     // Arrange
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    PacMan::Logic::IPlayingFieldObject_Ptr object(mock_object);
+    IPlayingFieldObject_Ptr object(mock_object);
 
     DisplayPacMan sut{};
     sut.initialize(object);
@@ -87,7 +87,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Left)
     EXPECT_CALL(*mock_object,
         get_heading())
                       .Times(1)
-                      .WillOnce(testing::Return(PacMan::Logic::Heading_Left));
+                      .WillOnce(testing::Return(Heading_Left));
 
     // Act
     auto actual = sut.to_string();
@@ -102,7 +102,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Right)
 
     // Arrange
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    PacMan::Logic::IPlayingFieldObject_Ptr object(mock_object);
+    IPlayingFieldObject_Ptr object(mock_object);
 
     DisplayPacMan sut{};
     sut.initialize(object);
@@ -110,7 +110,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Right)
     EXPECT_CALL(*mock_object,
         get_heading())
                       .Times(1)
-                      .WillOnce(testing::Return(PacMan::Logic::Heading_Right));
+                      .WillOnce(testing::Return(Heading_Right));
 
     // Act
     auto actual = sut.to_string();
@@ -125,7 +125,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Max)
 
     // Arrange
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-    PacMan::Logic::IPlayingFieldObject_Ptr object(mock_object);
+    IPlayingFieldObject_Ptr object(mock_object);
 
     DisplayPacMan sut{};
     sut.initialize(object);
@@ -133,7 +133,7 @@ TEST(DisplayPacMan, to_string_returns_string_for_Heading_Max)
     EXPECT_CALL(*mock_object,
         get_heading())
                       .Times(1)
-                      .WillOnce(testing::Return(PacMan::Logic::Heading_Max));
+                      .WillOnce(testing::Return(Heading_Max));
 
     // Act
     auto actual = sut.to_string();

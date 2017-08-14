@@ -9,18 +9,18 @@ namespace PacMan
         class MonsterHeadingCalculator
             : public IMonsterHeadingCalculator
         {
-        private: 
+        private:
             Heading m_heading = Heading_Unknown;
 
-            int calculate_delta_row() const;
-            int calculate_delta_column() const;
+            int calculate_delta_row () const;
+            int calculate_delta_column () const;
 
         public:
-            MonsterHeadingCalculator() = default;
-            ~MonsterHeadingCalculator() = default;
+            MonsterHeadingCalculator () = default;
+            ~MonsterHeadingCalculator () = default;
 
-            void calculate() override;
-            Heading get_heading() const override;
+            void calculate () override;
+            Heading get_heading () const override;
         };
     };
 };

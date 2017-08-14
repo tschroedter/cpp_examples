@@ -8,7 +8,9 @@
 #include "MockIDirection.h"
 #include "MockILocation.h"
 
-std::function<std::shared_ptr<PacMan::Logic::IDot>  ()> create_factory ()
+using namespace PacMan::Logic;
+
+std::function<std::shared_ptr<IDot>  ()> create_factory ()
 {
     return []
     {
@@ -22,12 +24,10 @@ std::function<std::shared_ptr<PacMan::Logic::IDot>  ()> create_factory ()
     };
 }
 
-Hypodermic::FactoryWrapper<PacMan::Logic::IDot> wrapper{create_factory()};
+Hypodermic::FactoryWrapper<IDot> wrapper{create_factory()};
 
-std::unique_ptr<PacMan::Logic::PlayingField> create_sut_using_mock ()
+std::unique_ptr<PlayingField> create_sut_using_mock ()
 {
-    using namespace PacMan::Logic;
-
     MockIPlayingFieldValidator* mock_validator = new MockIPlayingFieldValidator{};
     IPlayingFieldValidator_Ptr validator(mock_validator);
     auto sut = std::make_unique<PlayingField>(
@@ -35,19 +35,17 @@ std::unique_ptr<PacMan::Logic::PlayingField> create_sut_using_mock ()
                                               validator);
 
     sut->initialize(
-                    size_t(3),
-                    size_t(4));
+                    Row(3),
+                    Column(4));
 
     return sut;
 }
 
 TEST(PlayingField, initialize_calls_validator)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t rows(1);
-    size_t columns(2);
+    Row rows(1);
+    Column columns(2);
 
     MockIPlayingFieldValidator* mock_validator = new MockIPlayingFieldValidator{};
     IPlayingFieldValidator_Ptr validator(mock_validator);
@@ -67,15 +65,13 @@ TEST(PlayingField, initialize_calls_validator)
 
 TEST(PlayingField, constructor_sets_rows)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t expected{3};
+    Row expected{3};
 
     auto sut = create_sut_using_mock();
 
     // Act
-    size_t actual = sut->get_rows();
+    Row actual = sut->get_rows();
 
     // Assert
     EXPECT_EQ(expected, actual);
@@ -83,15 +79,13 @@ TEST(PlayingField, constructor_sets_rows)
 
 TEST(PlayingField, constructor_sets_columns)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t expected{4};
+    Column expected{4};
 
     auto sut = create_sut_using_mock();
 
     // Act
-    size_t actual = sut->get_columns();
+    Column actual = sut->get_columns();
 
     // Assert
     EXPECT_EQ(expected, actual);
@@ -99,15 +93,13 @@ TEST(PlayingField, constructor_sets_columns)
 
 TEST(PlayingField, constructor_populates_field_with_dots)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     auto sut = create_sut_using_mock();
 
     // Act
-    for (size_t row = 0; row < sut->get_rows(); row++)
+    for (Row row = 0; row < sut->get_rows(); row++)
     {
-        for (size_t column = 0; column < sut->get_columns(); column++)
+        for (Column column = 0; column < sut->get_columns(); column++)
         {
             std::cout << "["
                 << std::to_string(row)
@@ -127,11 +119,9 @@ TEST(PlayingField, constructor_populates_field_with_dots)
 
 TEST(PlayingField, get_object_type_at_returns_type)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t row(0);
-    size_t column(0);
+    Row row(0);
+    Column column(0);
     auto sut = create_sut_using_mock();
 
     // Act
@@ -143,12 +133,10 @@ TEST(PlayingField, get_object_type_at_returns_type)
 
 TEST(PlayingField, put_object_at_puts_object_at_given_row_column)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     IPlayingFieldObject_Ptr expected{};
-    size_t row(0);
-    size_t column(1);
+    Row row(0);
+    Column column(1);
 
     auto sut = create_sut_using_mock();
 
@@ -163,8 +151,6 @@ TEST(PlayingField, put_object_at_puts_object_at_given_row_column)
 
 TEST(PlayingField, move_object_from_to_moves_object)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     IPlayingFieldObject_Ptr expected{};
     auto sut = create_sut_using_mock();
@@ -181,8 +167,6 @@ TEST(PlayingField, move_object_from_to_moves_object)
 
 TEST(PlayingField, move_object_from_to_fills_empty_spot_with_dot)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     IPlayingFieldObject_Ptr expected{};
     auto sut = create_sut_using_mock();

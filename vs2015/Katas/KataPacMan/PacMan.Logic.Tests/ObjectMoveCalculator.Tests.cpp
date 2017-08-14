@@ -4,11 +4,12 @@
 #include "MockIPlayingField.h"
 #include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
 
+using namespace PacMan::Logic;
 
-PacMan::Logic::IPlayingField_Ptr create_playing_field_for_ObjectMoveCalculator (
+IPlayingField_Ptr create_playing_field_for_ObjectMoveCalculator (
     const size_t expectedCalledTimes,
-    const size_t expectedRow,
-    const size_t expectedColumn )
+    const Row expectedRow,
+    const Column expectedColumn )
 {
     using namespace PacMan::Logic;
 
@@ -16,10 +17,10 @@ PacMan::Logic::IPlayingField_Ptr create_playing_field_for_ObjectMoveCalculator (
 
     EXPECT_CALL(*mock_playing_field,
         get_rows())
-                   .WillRepeatedly(testing::Return(size_t(4)));
+                   .WillRepeatedly(testing::Return(Row(4)));
     EXPECT_CALL(*mock_playing_field,
         get_columns())
-                      .WillRepeatedly(testing::Return(size_t(4)));
+                      .WillRepeatedly(testing::Return(Column(4)));
 
     IPlayingField_Ptr playing_field{mock_playing_field};
 
@@ -27,11 +28,11 @@ PacMan::Logic::IPlayingField_Ptr create_playing_field_for_ObjectMoveCalculator (
 }
 
 void TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator (
-    const PacMan::Logic::Heading heading,
+    const Heading heading,
     const size_t times,
     const size_t expectedCalledTimes,
-    const size_t expectedRow,
-    const size_t expectedColumn )
+    const Row expectedRow,
+    const Column expectedColumn )
 {
     using namespace PacMan::Logic;
 
@@ -59,8 +60,8 @@ void TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalc
     // Assert
     for (int i = 0; i < times; i++)
     {
-        sut.calculate(size_t(1),
-                      size_t(1),
+        sut.calculate(Row(1),
+                      Column(1),
                       heading);
 
         EXPECT_EQ(expectedRow, sut.to_row);
@@ -69,9 +70,9 @@ void TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalc
 }
 
 void TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator (
-    const PacMan::Logic::Heading heading,
-    const size_t expectedRow,
-    const size_t expectedColumn )
+    const Heading heading,
+    const Row expectedRow,
+    const Column expectedColumn )
 {
     using namespace PacMan::Logic;
 
@@ -85,84 +86,68 @@ void TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator (
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_left)
 {
-    using namespace PacMan::Logic;
-
     TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator(Heading_Left,
-                                                                              size_t(1),
-                                                                              size_t(0));
+                                                                              Row(1),
+                                                                              Column(0));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_right)
 {
-    using namespace PacMan::Logic;
-
     TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator(Heading_Right,
-                                                                              size_t(1),
+                                                                              Column(1),
                                                                               size_t(2));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_up)
 {
-    using namespace PacMan::Logic;
-
     TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator(Heading_Up,
-                                                                              size_t(0),
-                                                                              size_t(1));
+                                                                              Row(0),
+                                                                              Column(1));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_down)
 {
-    using namespace PacMan::Logic;
-
     TEST_move_object_from_to_with_start_position_1_1_for_ObjectMoveCalculator(Heading_Down,
-                                                                              size_t(2),
-                                                                              size_t(1));
+                                                                              Row(2),
+                                                                              Column(1));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_left_multiple_times)
 {
-    using namespace PacMan::Logic;
-
     TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator(
                                                                                       Heading_Left,
                                                                                       size_t(2),
                                                                                       size_t(2),
-                                                                                      size_t(1),
-                                                                                      size_t(0));
+                                                                                      Row(1),
+                                                                                      Column(0));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_right_multiple_times)
 {
-    using namespace PacMan::Logic;
-
     TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator(
                                                                                       Heading_Right,
                                                                                       size_t(2),
                                                                                       size_t(2),
-                                                                                      size_t(1),
-                                                                                      size_t(2));
+                                                                                      Row(1),
+                                                                                      Column(2));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_up_multiple_times)
 {
-    using namespace PacMan::Logic;
-
     TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator(
                                                                                       Heading_Up,
                                                                                       size_t(2),
                                                                                       size_t(2),
-                                                                                      size_t(0),
-                                                                                      size_t(1));
+                                                                                      Row(0),
+                                                                                      Column(1));
 }
 
 TEST(ObjectMoveCalculator, move_object_calls_playing_field_for_heading_down_multiple_times)
 {
-    using namespace PacMan::Logic;
-
     TEST_move_object_from_to_n_times_with_start_position_1_1_for_ObjectMoveCalculator(
                                                                                       Heading_Down,
                                                                                       size_t(2),
                                                                                       size_t(2),
-                                                                                      size_t(2),
-                                                                                      size_t(1));
+                                                                                      Row(2),
+                                                                                      Column(1));
 }

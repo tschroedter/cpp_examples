@@ -6,15 +6,17 @@
 #include "MockIDirection.h"
 #include "MockILocation.h"
 
+using namespace PacMan::Logic;
+
 class TestPlayingFieldObject
-    : public PacMan::Logic::PlayingFieldObject
+    : public PlayingFieldObject
 {
 public:
     TestPlayingFieldObject (
-        PacMan::Logic::ILocation_Ptr location,
-        PacMan::Logic::IDirection_Ptr direction )
+        ILocation_Ptr location,
+        IDirection_Ptr direction )
         : PlayingFieldObject(
-                             PacMan::Logic::PlayingFieldObjectType_Unknown,
+                             PlayingFieldObjectType_Unknown,
                              location,
                              direction)
     {
@@ -30,8 +32,6 @@ public:
 
 TEST(PlayingFieldObject, constructor_sets_heading)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     MockIDirection* mock_direction = new MockIDirection{};
@@ -57,8 +57,6 @@ TEST(PlayingFieldObject, constructor_sets_heading)
 
 TEST(PlayingFieldObject, constructor_sets_type)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     IDirection_Ptr direction = std::make_shared<MockIDirection>();
@@ -78,8 +76,6 @@ TEST(PlayingFieldObject, constructor_sets_type)
 
 TEST(PlayingFieldObject, tick_calls_tick)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     IDirection_Ptr direction = std::make_shared<MockIDirection>();
@@ -99,8 +95,6 @@ TEST(PlayingFieldObject, tick_calls_tick)
 
 TEST(PlayingFieldObject, set_heading_calls_direction)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     ILocation_Ptr location = std::make_shared<MockILocation>();
     MockIDirection* mock_direction = new MockIDirection{};

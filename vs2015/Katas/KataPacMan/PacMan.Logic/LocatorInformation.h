@@ -9,8 +9,8 @@ namespace PacMan
             : public ILocatorInformation
         {
         public:
-            LocatorInformation() = default;
-            ~LocatorInformation() = default;
+            LocatorInformation () = default;
+            ~LocatorInformation () = default;
         };
     };
 };

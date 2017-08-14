@@ -4,7 +4,7 @@
 #include "IObjectsMover.h"
 
 class MockIObjectsMover // todo common test lib
-    :public PacMan::Logic::IObjectsMover
+    :public IObjectsMover
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier

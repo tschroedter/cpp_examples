@@ -6,10 +6,10 @@
 #include "MockIObjectMoveCalculator.h"
 #include "ObjectsMover.h"
 
+using namespace PacMan::Logic;
+
 TEST(ObjectMover, initialize_calls_calculator_initialize)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
     MockIPlayingField* mock_playing_field = new MockIPlayingField{};
     IPlayingField_Ptr playing_field(mock_playing_field);
@@ -36,11 +36,9 @@ TEST(ObjectMover, initialize_calls_calculator_initialize)
 
 TEST(ObjectMover, move_object_does_not_calls_calculator_calculate_for_is_moveable_is_false)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t row(1);
-    size_t column(2);
+    Row row(1);
+    Column column(2);
     Heading heading = Heading_Left;
 
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
@@ -91,11 +89,9 @@ TEST(ObjectMover, move_object_does_not_calls_calculator_calculate_for_is_moveabl
 
 TEST(ObjectMover, move_object_does_not_calls_calculator_calculate_for_is_moving_is_false)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t row(1);
-    size_t column(2);
+    Row row(1);
+    Column column(2);
     Heading heading = Heading_Left;
 
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
@@ -146,11 +142,9 @@ TEST(ObjectMover, move_object_does_not_calls_calculator_calculate_for_is_moving_
 
 TEST(ObjectMover, move_object_calls_calculator_calculate)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t row(1);
-    size_t column(2);
+    Row row(1);
+    Column column(2);
     Heading heading = Heading_Left;
 
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
@@ -205,14 +199,12 @@ TEST(ObjectMover, move_object_calls_calculator_calculate)
 
 TEST(ObjectMover, move_object_calls_playing_field_move_object_from_to)
 {
-    using namespace PacMan::Logic;
-
     // Arrange
-    size_t from_row(1);
-    size_t from_column(2);
+    Row from_row(1);
+    Column from_column(2);
     Heading heading = Heading_Left;
-    size_t to_row(3);
-    size_t to_column(4);
+    Row to_row(3);
+    Column to_column(4);
 
     MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
     IPlayingFieldObject_Ptr object(mock_object);

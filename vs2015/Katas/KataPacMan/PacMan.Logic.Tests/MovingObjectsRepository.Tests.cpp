@@ -4,8 +4,8 @@
 #include "MovingObjectsRepository.h"
 #include "MoveObjectInformation.h"
 
-PacMan::Logic::IMoveObjectInformation_Ptr create_move_object_information (
-    PacMan::Logic::PlayingFieldObjectType type )
+IMoveObjectInformation_Ptr create_move_object_information (
+    PlayingFieldObjectType type )
 {
     using namespace PacMan::Logic;
 

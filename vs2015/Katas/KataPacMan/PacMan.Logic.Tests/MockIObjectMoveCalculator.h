@@ -4,16 +4,18 @@
 #include "IObjectMoveCalculator.h"
 #include "Heading.h"
 
+using namespace PacMan::Logic;
+
 class MockIObjectMoveCalculator // todo common test lib
-    :public PacMan::Logic::IObjectMoveCalculator
+    :public IObjectMoveCalculator
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier
     MOCK_METHOD3(
         calculate,
         void(
-            const size_t from_row,
-            const size_t from_column,
+            const PacMan::Logic::Row from_row,
+            const PacMan::Logic::Column from_column,
             const PacMan::Logic::Heading heading));
     MOCK_METHOD1(
         initialize,

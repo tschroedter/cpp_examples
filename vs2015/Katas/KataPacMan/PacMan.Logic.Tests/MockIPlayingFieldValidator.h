@@ -4,19 +4,25 @@
 #include "IPlayingFieldValidator.h"
 #include "IPlayingFieldObject.h"
 
+using namespace PacMan::Logic;
+
 class MockIPlayingFieldValidator
-    :public PacMan::Logic::IPlayingFieldValidator
+    :public IPlayingFieldValidator
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier
     MOCK_METHOD2(initialize,
-        void(const size_t rows, const size_t columns));
-    MOCK_CONST_METHOD0(get_rows, size_t());
-    MOCK_CONST_METHOD0(get_columns, size_t());
+        void(
+            const PacMan::Logic::Row rows,
+            const PacMan::Logic::Column columns));
+    MOCK_CONST_METHOD0(get_rows, PacMan::Logic::Row());
+    MOCK_CONST_METHOD0(get_columns, PacMan::Logic::Column());
     MOCK_CONST_METHOD1(validate_object, void(const PacMan::Logic::IPlayingFieldObject_Ptr));
-    MOCK_CONST_METHOD1(validate_row, void(const size_t row));
-    MOCK_CONST_METHOD1(validate_column, void(const size_t column));
+    MOCK_CONST_METHOD1(validate_row, void(const PacMan::Logic::Row row));
+    MOCK_CONST_METHOD1(validate_column, void(const PacMan::Logic::Column column));
     MOCK_CONST_METHOD2(validate_rows_and_columns,
-        void(const size_t row, const size_t column));
+        void(
+            const PacMan::Logic::Row row,
+            const PacMan::Logic::Column column));
     // ReSharper restore CppOverridingFunctionWithoutOverrideSpecifier
 };

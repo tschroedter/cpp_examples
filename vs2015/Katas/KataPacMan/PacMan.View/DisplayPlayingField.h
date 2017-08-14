@@ -24,17 +24,17 @@ namespace PacMan
             IDisplayPlayingFieldObject_Ptr** m_field;
 
             static IDisplayPlayingFieldObject_Ptr** create_field (
-                const size_t rows,
-                const size_t columns );
+                const Logic::Row rows,
+                const Logic::Column columns );
 
             IDisplayPlayingFieldObject_Ptr get_object_at (
-                const size_t row,
-                const size_t column ) const;
+                const Logic::Row row,
+                const Logic::Column column ) const;
 
             void put_object_at (
                 const IDisplayPlayingFieldObject_Ptr object,
-                const size_t row,
-                const size_t column ) const;
+                const Logic::Row row,
+                const Logic::Column column ) const;
 
             void update_field () const;
             void display_field () const;
@@ -58,8 +58,8 @@ namespace PacMan
             void initialize (
                 const Logic::IPlayingField_Ptr playing_field ) override;
 
-            size_t get_rows () const override;
-            size_t get_columns () const override;
+            Logic::Row get_rows () const override;
+            Logic::Column get_columns () const override;
             void print () override;
         };
     };

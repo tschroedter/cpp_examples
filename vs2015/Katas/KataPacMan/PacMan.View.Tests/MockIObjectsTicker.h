@@ -4,7 +4,7 @@
 #include "IObjectsTicker.h"
 
 class MockIObjectsTicker
-    :public PacMan::Logic::IObjectsTicker
+    :public IObjectsTicker
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier

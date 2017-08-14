@@ -8,16 +8,16 @@ namespace PacMan
     namespace View
     {
         IDisplayPlayingFieldObject_Ptr** DisplayPlayingField::create_field (
-            const size_t rows,
-            const size_t columns )
+            const Logic::Row rows,
+            const Logic::Column columns )
         {
             IDisplayPlayingFieldObject_Ptr** field = new IDisplayPlayingFieldObject_Ptr*[rows];
 
-            for (size_t i = 0; i < rows; i++)
+            for (Logic::Row i = 0; i < rows; i++)
             {
                 IDisplayPlayingFieldObject_Ptr* row = new IDisplayPlayingFieldObject_Ptr[columns];
 
-                for (size_t j = 0; j < columns; j++)
+                for (Logic::Column j = 0; j < columns; j++)
                 {
                     row[j] = nullptr;
                 }
@@ -31,10 +31,12 @@ namespace PacMan
         void DisplayPlayingField::initialize (
             const Logic::IPlayingField_Ptr playing_field )
         {
+            using namespace Logic;
+
             m_playing_field = playing_field;
 
-            size_t rows = playing_field->get_rows();
-            size_t columns = playing_field->get_columns();
+            Row rows = playing_field->get_rows();
+            Column columns = playing_field->get_columns();
 
             m_validator->initialize(
                                     rows,
@@ -47,12 +49,12 @@ namespace PacMan
                                    columns);
         }
 
-        size_t DisplayPlayingField::get_rows () const
+        Logic::Row DisplayPlayingField::get_rows () const
         {
             return m_playing_field->get_rows();
         }
 
-        size_t DisplayPlayingField::get_columns () const
+        Logic::Column DisplayPlayingField::get_columns () const
         {
             return m_playing_field->get_columns();
         }
@@ -61,12 +63,12 @@ namespace PacMan
         {
             using namespace Logic;
 
-            size_t rows = m_playing_field->get_rows();
-            size_t columns = m_playing_field->get_columns();
+            Row rows = m_playing_field->get_rows();
+            Column columns = m_playing_field->get_columns();
 
-            for (size_t row = 0; row < rows; row++)
+            for (Row row = 0; row < rows; row++)
             {
-                for (size_t column = 0; column < columns; column++)
+                for (Column column = 0; column < columns; column++)
                 {
                     IPlayingFieldObject_Ptr object =
                         m_playing_field->get_object_at(row, column);
@@ -83,12 +85,12 @@ namespace PacMan
         {
             using namespace Logic;
 
-            size_t rows = m_playing_field->get_rows();
-            size_t columns = m_playing_field->get_columns();
+            Row rows = m_playing_field->get_rows();
+            Column columns = m_playing_field->get_columns();
 
-            for (size_t row = 0; row < rows; row++)
+            for (Row row = 0; row < rows; row++)
             {
-                for (size_t column = 0; column < columns; column++)
+                for (Column column = 0; column < columns; column++)
                 {
                     IDisplayPlayingFieldObject_Ptr object =
                         get_object_at(row, column);
@@ -112,8 +114,8 @@ namespace PacMan
         }
 
         IDisplayPlayingFieldObject_Ptr DisplayPlayingField::get_object_at (
-            const size_t row,
-            const size_t column ) const
+            const Logic::Row row,
+            const Logic::Column column ) const
         {
             m_validator->validate_row(row);
             m_validator->validate_column(column);
@@ -126,8 +128,8 @@ namespace PacMan
 
         void DisplayPlayingField::put_object_at (
             const IDisplayPlayingFieldObject_Ptr object,
-            const size_t row,
-            const size_t column ) const
+            const Logic::Row row,
+            const Logic::Column column ) const
         {
             // todo m_validator->validate_object(object);
             m_validator->validate_row(row);

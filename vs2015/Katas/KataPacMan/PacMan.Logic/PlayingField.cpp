@@ -16,11 +16,11 @@ namespace PacMan
 
             IPlayingFieldObject_Ptr** field = new IPlayingFieldObject_Ptr*[rows];
 
-            for (size_t i = 0; i < rows; i++)
+            for (Row i = 0; i < rows; i++)
             {
                 IPlayingFieldObject_Ptr* row = new IPlayingFieldObject_Ptr[columns];
 
-                for (size_t j = 0; j < columns; j++)
+                for (Column j = 0; j < columns; j++)
                 {
                     IDot_Ptr dot = m_factory();
                     // todo dot.initialize();

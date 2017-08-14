@@ -4,37 +4,39 @@
 #include "IPlayingField.h"
 #include "IPlayingFieldObject.h"
 
+using namespace PacMan::Logic;
+
 class MockIPlayingField
-    :public PacMan::Logic::IPlayingField
+    :public IPlayingField
 {
 public:
     // ReSharper disable CppOverridingFunctionWithoutOverrideSpecifier
     MOCK_METHOD2(
         initialize, void(
-            const size_t rows,
-            const size_t columns));
+            const PacMan::Logic::Row rows,
+            const PacMan::Logic::Column columns));
     MOCK_CONST_METHOD0(
-        get_rows, size_t());
+        get_rows, PacMan::Logic::Row());
     MOCK_CONST_METHOD0(
-        get_columns, size_t());
+        get_columns, PacMan::Logic::Column());
     MOCK_METHOD2(
         get_object_at, PacMan::Logic::IPlayingFieldObject_Ptr(
-            const size_t rows,
-            const size_t columns));
+            const PacMan::Logic::Row rows,
+            const PacMan::Logic::Column columns));
     MOCK_METHOD2(
         get_object_type_at, PacMan::Logic::PlayingFieldObjectType(
-            const size_t rows,
-            const size_t columns));
+            const PacMan::Logic::Row rows,
+            const PacMan::Logic::Column columns));
     MOCK_METHOD3(
         put_object_at, void(
             const PacMan::Logic::IPlayingFieldObject_Ptr,
-            const size_t rows,
-            const size_t columns));
+            const PacMan::Logic::Row rows,
+            const PacMan::Logic::Column columns));
     MOCK_METHOD4(
         move_object_from_to, void(
-            const size_t from_row,
-            const size_t from_column,
-            const size_t to_row,
-            const size_t to_column));
+            const PacMan::Logic::Row from_row,
+            const PacMan::Logic::Column from_column,
+            const PacMan::Logic::Row to_row,
+            const PacMan::Logic::Column to_column));
     // ReSharper restore CppOverridingFunctionWithoutOverrideSpecifier
 };

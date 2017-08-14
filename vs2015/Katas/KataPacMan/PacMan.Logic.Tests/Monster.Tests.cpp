@@ -96,7 +96,7 @@ TEST(Monster, set_heading_sets_heading)
 }
 
 void test_is_moveable_for_heading (
-    PacMan::Logic::Heading heading,
+    Heading heading,
     bool expected )
 {
     using namespace PacMan::Logic;

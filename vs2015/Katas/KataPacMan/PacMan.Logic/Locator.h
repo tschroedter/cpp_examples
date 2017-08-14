@@ -11,8 +11,8 @@ namespace PacMan
         {
         private:
             IPlayingField_Ptr m_playing_field;
-            LocatorInformationVector_Ptr get_all_with_filter(
-                std::function<bool(IPlayingFieldObject_Ptr&)> func) const;
+            LocatorInformationVector_Ptr get_all_with_filter (
+                std::function<bool  ( IPlayingFieldObject_Ptr& )> func ) const;
 
         public:
             Locator () = default;

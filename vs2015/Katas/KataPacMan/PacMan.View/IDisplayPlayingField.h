@@ -13,8 +13,8 @@ namespace PacMan
             virtual void initialize (
                 const Logic::IPlayingField_Ptr playing_field ) = 0;
 
-            virtual size_t get_rows () const = 0;
-            virtual size_t get_columns () const = 0;
+            virtual Logic::Row get_rows () const = 0;
+            virtual Logic::Column get_columns () const = 0;
             virtual void print () = 0;
         };
 
