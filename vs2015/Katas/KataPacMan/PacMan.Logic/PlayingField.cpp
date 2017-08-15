@@ -97,7 +97,7 @@ namespace PacMan
             if (from_row == to_row &&
                 from_column == to_column)
             {
-                return; // todo testing
+                return;
             }
 
             m_validator->validate_row(from_row);

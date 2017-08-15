@@ -171,6 +171,30 @@ namespace PacMan
                 EXPECT_EQ(expected, actual);
             }
 
+            TEST(PlayingField, move_object_from_to_does_not_moves_object_for_same_row_column)
+            {
+                // Arrange
+                MockIPlayingFieldValidator* mock_validator = new MockIPlayingFieldValidator{};
+                IPlayingFieldValidator_Ptr validator(mock_validator);
+                auto sut = std::make_unique<PlayingField>(
+                                                          wrapper,
+                                                          validator);
+
+                EXPECT_CALL(*mock_validator,
+                    validate_row(testing::A<Row>()))
+                                                    .Times(0);
+
+                // Act
+                sut->move_object_from_to(
+                                         Row(0),
+                                         Column(0),
+                                         Row(0),
+                                         Column(0));
+
+
+                // Assert
+            }
+
             TEST(PlayingField, move_object_from_to_fills_empty_spot_with_dot)
             {
                 // Arrange
