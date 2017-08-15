@@ -4,8 +4,8 @@
 
 using namespace PacMan::Logic;
 
-void ObjectsMoveExecuter::initialize ( 
-    const IPlayingField_Ptr playing_field, 
+void ObjectsMoveExecuter::initialize (
+    const IPlayingField_Ptr playing_field,
     const IMovingObjectsRepository_Ptr repository )
 {
     m_playing_field = playing_field;

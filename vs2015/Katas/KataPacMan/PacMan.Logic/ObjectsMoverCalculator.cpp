@@ -5,8 +5,10 @@
 using namespace PacMan::Logic;
 
 ObjectsMoverCalculator::ObjectsMoverCalculator (
+    const Hypodermic::FactoryWrapper<IMoveObjectInformation>& factory_wrapper,
     const IObjectMoveCalculator_Ptr calculator )
-    : m_calculator(calculator)
+    : m_factory(factory_wrapper.getFactory()),
+      m_calculator(calculator)
 {
 }
 
@@ -56,7 +58,7 @@ IMoveObjectInformation_Ptr ObjectsMoverCalculator::create_info (
                             column,
                             heading);
 
-    auto p_info = new MoveObjectInformation{}; // todo use factory
+    auto p_info = m_factory();
     IMoveObjectInformation_Ptr shared(p_info);
 
     shared->from_row = row;

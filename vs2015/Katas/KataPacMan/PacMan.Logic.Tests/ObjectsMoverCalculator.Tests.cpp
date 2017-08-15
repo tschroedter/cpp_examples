@@ -5,6 +5,7 @@
 #include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
 #include "MockIPlayingField.h"
 #include "MockIMovingObjectsRepository.h"
+#include "MoveObjectInformation.h"
 
 namespace PacMan
 {
@@ -13,6 +14,25 @@ namespace PacMan
         namespace Tests
         {
             using namespace Logic;
+
+            std::function<std::shared_ptr<IMoveObjectInformation>  ()> create_factory ()
+            {
+                return []
+                {
+                    using namespace Logic;
+
+                    MoveObjectInformation* p_info = new MoveObjectInformation{};
+
+                    IMoveObjectInformation_Ptr info{p_info};
+
+                    return info;
+                };
+            }
+
+            Hypodermic::FactoryWrapper<IMoveObjectInformation> wrapper
+            {
+                create_factory()
+            };
 
             TEST(ObjectsMoverCalculator, initialize_call_calculator_initialize)
             {
@@ -31,7 +51,11 @@ namespace PacMan
                     initialize(playing_field))
                                               .Times(1);
 
-                ObjectsMoverCalculator sut{calculator};
+                ObjectsMoverCalculator sut
+                {
+                    wrapper,
+                    calculator
+                };
 
                 // Act
                 sut.initialize(playing_field,
@@ -66,7 +90,11 @@ namespace PacMan
                 mock_calculator->to_row = to_row;
                 mock_calculator->to_column = to_column;
 
-                ObjectsMoverCalculator sut{calculator};
+                ObjectsMoverCalculator sut
+                {
+                    wrapper,
+                    calculator
+                };
 
                 // Act
                 auto actual = sut.create_info(from_row,
@@ -137,7 +165,11 @@ namespace PacMan
                     add(testing::A<IMoveObjectInformation_Ptr>()))
                                                                   .Times(expected_number_of_calls);
 
-                ObjectsMoverCalculator sut{calculator};
+                ObjectsMoverCalculator sut
+                {
+                    wrapper,
+                    calculator
+                };
 
                 sut.initialize(playing_field,
                                repository);
@@ -177,7 +209,11 @@ namespace PacMan
                     clear())
                             .Times(1);
 
-                ObjectsMoverCalculator sut{calculator};
+                ObjectsMoverCalculator sut
+                {
+                    wrapper,
+                    calculator
+                };
 
                 sut.initialize(playing_field,
                                repository);
