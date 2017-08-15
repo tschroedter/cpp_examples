@@ -5,7 +5,7 @@
 
 namespace PacMan
 {
-    namespace Logic
+    namespace View
     {
         namespace Tests
         {

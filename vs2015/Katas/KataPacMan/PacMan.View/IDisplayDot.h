@@ -13,6 +13,6 @@ namespace PacMan
             virtual ~IDisplayDot () = default;
         };
 
-        typedef std::shared_ptr<IDisplayDot> IDisplayPlayingFieldDot_Ptr;
+        typedef std::shared_ptr<IDisplayDot> IDisplayDot_Ptr;
     };
 };

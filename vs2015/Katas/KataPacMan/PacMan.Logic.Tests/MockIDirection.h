@@ -12,7 +12,7 @@ namespace PacMan
         {
             using namespace Logic;
 
-            class MockIDirection // todo common test lib
+            class MockIDirection
                 :public IDirection
             {
             public:

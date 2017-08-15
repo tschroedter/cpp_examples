@@ -20,7 +20,7 @@ namespace PacMan
 
             DisplayObjectType get_type () const override;
             void initialize ( const Logic::IPlayingFieldObject_Ptr object ) override;
-            std::string to_string () override;
+            std::string to_string () const override;
         };
     };
 };

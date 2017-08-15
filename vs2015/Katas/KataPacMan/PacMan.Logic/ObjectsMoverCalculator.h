@@ -30,7 +30,7 @@ namespace PacMan
                 IPlayingFieldObject_Ptr object ) const;
 
         private:
-            std::function<std::shared_ptr<IMoveObjectInformation> ()> m_factory;
+            std::function<std::shared_ptr<IMoveObjectInformation>  ()> m_factory;
             IPlayingField_Ptr m_playing_field;
             IObjectMoveCalculator_Ptr m_calculator;
             IMovingObjectsRepository_Ptr m_repository;

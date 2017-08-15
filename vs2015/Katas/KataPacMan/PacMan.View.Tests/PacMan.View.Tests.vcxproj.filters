@@ -51,6 +51,9 @@
     <ClInclude Include="MockIDisplayUnknown.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MockIObjectsTicker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -73,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="DisplayDot.Tests.cpp">
       <Filter>Source Files\DisplayFieldObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectToDisplayFieldObject.Tests.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include "ObjectsMoverCalculator.h"
 #include "MockIObjectMoveCalculator.h"
-#include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
+#include "MockIPlayingFieldObject.h"
 #include "MockIPlayingField.h"
 #include "MockIMovingObjectsRepository.h"
 #include "MoveObjectInformation.h"

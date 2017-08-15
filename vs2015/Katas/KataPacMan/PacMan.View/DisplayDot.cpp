@@ -15,7 +15,7 @@ namespace PacMan
             m_object = object;
         }
 
-        std::string DisplayDot::to_string ()
+        std::string DisplayDot::to_string () const
         {
             return m_to_string;
         }

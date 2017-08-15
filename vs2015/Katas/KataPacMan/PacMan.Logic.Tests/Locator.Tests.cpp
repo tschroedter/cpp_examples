@@ -5,7 +5,7 @@
 #include "LocatorInformation.h"
 #include "Locator.h"
 #include "MockIPlayingField.h"
-#include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
+#include "MockIPlayingFieldObject.h"
 
 namespace PacMan
 {

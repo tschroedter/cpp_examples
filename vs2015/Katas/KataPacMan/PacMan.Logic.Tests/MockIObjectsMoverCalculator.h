@@ -11,7 +11,7 @@ namespace PacMan
         {
             using namespace Logic;
 
-            class MockIObjectsMoverCalculator // todo common test lib
+            class MockIObjectsMoverCalculator
                 :public IObjectsMoverCalculator
             {
             public:

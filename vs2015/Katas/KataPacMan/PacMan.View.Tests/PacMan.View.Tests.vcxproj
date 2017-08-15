@@ -156,6 +156,7 @@
     <ClInclude Include="MockIDisplayPacMan.h" />
     <ClInclude Include="MockIDisplayUnknown.h" />
     <ClInclude Include="MockILocation.h" />
+    <ClInclude Include="MockIObjectsTicker.h" />
     <ClInclude Include="MockIPlayingFieldObject.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="DisplayMonster.cpp" />
     <ClCompile Include="DisplayPacMan.cpp" />
     <ClCompile Include="DisplayUnknown.cpp" />
+    <ClCompile Include="ObjectToDisplayFieldObject.Tests.cpp" />
     <ClCompile Include="PacMan.View.Tests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

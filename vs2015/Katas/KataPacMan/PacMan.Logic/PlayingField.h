@@ -37,7 +37,6 @@ namespace PacMan
 
             ~PlayingField ()
             {
-                // todo free memory
             }
 
             void initialize (

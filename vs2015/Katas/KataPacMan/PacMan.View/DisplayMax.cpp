@@ -15,7 +15,7 @@ namespace PacMan
             m_object = object;
         }
 
-        std::string DisplayMax::to_string ()
+        std::string DisplayMax::to_string () const
         {
             return m_to_string;
         }

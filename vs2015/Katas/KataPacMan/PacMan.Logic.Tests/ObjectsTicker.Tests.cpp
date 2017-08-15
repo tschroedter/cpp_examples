@@ -3,10 +3,10 @@
 #include <iostream>
 #include <gtest/gtest.h>
 #include "MockIPlayingField.h"
-#include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
 #include "MockIObjectMover.h"
 #include "MockIObjectsMover.h"
 #include "ObjectsTicker.h"
+#include "MockIPlayingFieldObject.h"
 
 namespace PacMan
 {

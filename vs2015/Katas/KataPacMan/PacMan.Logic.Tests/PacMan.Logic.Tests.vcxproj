@@ -149,7 +149,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\PacMan.View.Tests\MockIObjectsTicker.h" />
+    <ClInclude Include="MockIObjectsTicker.h" />
     <ClInclude Include="MockIDot.h" />
     <ClInclude Include="MockIDirection.h" />
     <ClInclude Include="MockILocation.h" />

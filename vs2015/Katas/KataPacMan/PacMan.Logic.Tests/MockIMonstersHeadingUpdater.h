@@ -12,7 +12,7 @@ namespace PacMan
         {
             using namespace Logic;
 
-            class MockIMonstersHeadingUpdater // todo common test lib
+            class MockIMonstersHeadingUpdater
                 :public IMonstersHeadingUpdater
             {
             public:

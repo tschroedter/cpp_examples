@@ -22,11 +22,13 @@ namespace PacMan
             m_heading_to_string[Logic::Heading_Max] = PacMan_Max;
         }
 
-        std::string DisplayPacMan::to_string ()
+        std::string DisplayPacMan::to_string () const
         {
-            Logic::Heading heading = m_object->get_heading();
-            std::string cs = m_heading_to_string[heading];
-            return cs;
+            const Logic::Heading heading = m_object->get_heading();
+
+            std::string text = m_heading_to_string.at(heading);
+
+            return text;
         }
     };
 };

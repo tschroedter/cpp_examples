@@ -7,7 +7,7 @@
 #include "MonstersHeadingUpdater.h"
 #include "MockILocator.h"
 #include "MockIMonsterHeadingCalculator.h"
-#include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
+#include "MockIPlayingFieldObject.h"
 
 namespace PacMan
 {

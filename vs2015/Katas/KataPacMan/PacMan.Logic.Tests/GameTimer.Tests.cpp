@@ -2,11 +2,10 @@
 #include "GameTimer.h"
 #include <gtest/gtest.h>
 #include "MockIPlayingField.h"
-#include "../PacMan.View.Tests/MockIPlayingFieldObject.h"
 #include "MockIObjectMover.h"
 #include "MockIObjectsMover.h"
-#include "../PacMan.View.Tests/MockIObjectsTicker.h"
 #include "MockIMonstersHeadingUpdater.h"
+#include "MockIObjectsTicker.h"
 
 namespace PacMan
 {

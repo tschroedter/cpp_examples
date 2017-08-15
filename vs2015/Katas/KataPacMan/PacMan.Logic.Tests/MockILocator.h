@@ -11,7 +11,7 @@ namespace PacMan
         {
             using namespace Logic;
 
-            class MockILocator // todo common test lib
+            class MockILocator
                 :public ILocator
             {
             public:

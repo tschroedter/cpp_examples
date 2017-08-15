@@ -66,9 +66,6 @@
     <ClInclude Include="MockIObjectsMoveValidator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\PacMan.View.Tests\MockIObjectsTicker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MockIMonsterHeadingCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -76,6 +73,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MockIMonstersHeadingUpdater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MockIObjectsTicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

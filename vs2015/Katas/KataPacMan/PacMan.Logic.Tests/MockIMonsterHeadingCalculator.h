@@ -11,7 +11,7 @@ namespace PacMan
         {
             using namespace Logic;
 
-            class MockIMonsterHeadingCalculator // todo common test lib
+            class MockIMonsterHeadingCalculator
                 :public IMonsterHeadingCalculator
             {
             public:

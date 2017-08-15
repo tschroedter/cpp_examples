@@ -22,7 +22,7 @@ namespace PacMan
 
             void initialize ( const Logic::IPlayingFieldObject_Ptr object ) override;
 
-            std::string to_string () override;
+            std::string to_string () const override;
         };
     };
 };

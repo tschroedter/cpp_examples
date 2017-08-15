@@ -14,7 +14,7 @@ namespace PacMan
             virtual ~IDisplayPlayingFieldObject () = default;
 
             virtual DisplayObjectType get_type () const = 0;
-            virtual std::string to_string () = 0;
+            virtual std::string to_string () const = 0;
             virtual void initialize ( const Logic::IPlayingFieldObject_Ptr object ) = 0;
         };
 
