@@ -2,14 +2,21 @@
 #include <gtest/gtest.h>
 #include "BaseException.h"
 
-TEST(BaseException, get_error_returns_string)
+namespace PacMan
 {
-    using namespace PacMan::Common;
+    namespace Common
+    {
+        namespace Tests
+        {
+            TEST(BaseException, get_error_returns_string)
+            {
+                // Arrange
+                // Act
+                BaseException sut{ "Message" };
 
-    // Arrange
-    // Act
-    BaseException sut{"Message"};
-
-    // Assert
-    EXPECT_EQ("Message", sut.get_error());
-}
+                // Assert
+                EXPECT_EQ("Message", sut.get_error());
+            }
+        };
+    };
+};

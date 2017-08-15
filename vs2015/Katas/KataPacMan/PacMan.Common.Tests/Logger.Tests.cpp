@@ -2,74 +2,76 @@
 #include <gtest/gtest.h>
 #include "Logger.h"
 
-TEST(Logger, debug_writes_message_to_ostream)
+namespace PacMan
 {
-    using namespace PacMan::Common;
+    namespace Common
+    {
+        namespace Tests
+        {
 
-    // Arrange
-    std::stringstream ostream;
+            TEST(Logger, debug_writes_message_to_ostream)
+            {
+                // Arrange
+                std::stringstream ostream;
 
-    Logger sut{ostream};
+                Logger sut{ ostream };
 
-    // Act
-    sut.debug("Test");
+                // Act
+                sut.debug("Test");
 
-    // Assert
-    std::string actual = ostream.str();
+                // Assert
+                std::string actual = ostream.str();
 
-    EXPECT_EQ("DEBUG: Test\n", actual);
-}
+                EXPECT_EQ("DEBUG: Test\n", actual);
+            }
 
-TEST(Logger, error_writes_message_to_ostream)
-{
-    using namespace PacMan::Common;
+            TEST(Logger, error_writes_message_to_ostream)
+            {
+                // Arrange
+                std::stringstream ostream;
 
-    // Arrange
-    std::stringstream ostream;
+                Logger sut{ ostream };
 
-    Logger sut{ostream};
+                // Act
+                sut.error("Test");
 
-    // Act
-    sut.error("Test");
+                // Assert
+                std::string actual = ostream.str();
 
-    // Assert
-    std::string actual = ostream.str();
+                EXPECT_EQ("ERROR: Test\n", actual);
+            }
 
-    EXPECT_EQ("ERROR: Test\n", actual);
-}
+            TEST(Logger, info_writes_message_to_ostream)
+            {
+                // Arrange
+                std::stringstream ostream;
 
-TEST(Logger, info_writes_message_to_ostream)
-{
-    using namespace PacMan::Common;
+                Logger sut{ ostream };
 
-    // Arrange
-    std::stringstream ostream;
+                // Act
+                sut.info("Test");
 
-    Logger sut{ostream};
+                // Assert
+                std::string actual = ostream.str();
 
-    // Act
-    sut.info("Test");
+                EXPECT_EQ("INFO: Test\n", actual);
+            }
 
-    // Assert
-    std::string actual = ostream.str();
+            TEST(Logger, warning_writes_message_to_ostream)
+            {
+                // Arrange
+                std::stringstream ostream;
 
-    EXPECT_EQ("INFO: Test\n", actual);
-}
+                Logger sut{ ostream };
 
-TEST(Logger, warning_writes_message_to_ostream)
-{
-    using namespace PacMan::Common;
+                // Act
+                sut.warning("Test");
 
-    // Arrange
-    std::stringstream ostream;
+                // Assert
+                std::string actual = ostream.str();
 
-    Logger sut{ostream};
-
-    // Act
-    sut.warning("Test");
-
-    // Assert
-    std::string actual = ostream.str();
-
-    EXPECT_EQ("WARNING: Test\n", actual);
-}
+                EXPECT_EQ("WARNING: Test\n", actual);
+            }
+        };
+    };
+};
