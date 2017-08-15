@@ -31,7 +31,6 @@ namespace PacMan
 
         void Monster::tick ()
         {
-            // todo remove??
         }
 
         bool Monster::is_moveable () const

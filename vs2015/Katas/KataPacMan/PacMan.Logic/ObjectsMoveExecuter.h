@@ -7,7 +7,7 @@ namespace PacMan
 {
     namespace Logic
     {
-        class ObjectsMoveExecuter // todo testing and move into class
+        class ObjectsMoveExecuter
             : public IObjectsMoveExecuter
         {
         public:
@@ -20,6 +20,7 @@ namespace PacMan
             void initialize (
                 const IPlayingField_Ptr playing_field,
                 const IMovingObjectsRepository_Ptr repository ) override;
+            void move_objects_in_vector ( MovingObjectsInformationVector_Ptr all_pac_mans ) const;
             void move_objects () const override;
 
         private:

@@ -181,6 +181,7 @@
     <ClCompile Include="MovingObjectsRepository.Tests.cpp" />
     <ClCompile Include="ObjectMoveCalculator.Tests.cpp" />
     <ClCompile Include="ObjectMover.Tests.cpp" />
+    <ClCompile Include="ObjectsMoveExecuter.Tests.cpp" />
     <ClCompile Include="ObjectsMover.Tests.cpp" />
     <ClCompile Include="ObjectsMoverCalculator.Tests.cpp" />
     <ClCompile Include="ObjectsMoveValidator.Tests.cpp" />

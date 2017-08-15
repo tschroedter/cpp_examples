@@ -23,7 +23,6 @@ namespace PacMan
                 for (Column j = 0; j < columns; j++)
                 {
                     IDot_Ptr dot = m_factory();
-                    // todo dot.initialize();
                     row[j] = dot;
                 }
 
