@@ -27,7 +27,7 @@ namespace PacMan
                                                           "Given factory for mapping is nullptr!");
             }
 
-            m_play_to_display[object_type] = factory; // todo find out how to call this
+            m_play_to_display[object_type] = factory;
         }
 
         IDisplayPlayingFieldObject_Ptr

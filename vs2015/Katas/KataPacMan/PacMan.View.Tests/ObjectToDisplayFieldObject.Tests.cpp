@@ -183,8 +183,6 @@ namespace PacMan
                                 PlayingFieldObjectType_Max,
                                 DisplayObjectType_Max);
             }
-
-            // todo add_mapping
         };
     };
 };
