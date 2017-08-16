@@ -12,7 +12,7 @@ namespace PacMan
             {
                 // Arrange
                 // Act
-                BaseException sut{ "Message" };
+                BaseException sut{"Message"};
 
                 // Assert
                 EXPECT_EQ("Message", sut.get_error());

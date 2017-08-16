@@ -8,13 +8,12 @@ namespace PacMan
     {
         namespace Tests
         {
-
             TEST(Logger, debug_writes_message_to_ostream)
             {
                 // Arrange
                 std::stringstream ostream;
 
-                Logger sut{ ostream };
+                Logger sut{ostream};
 
                 // Act
                 sut.debug("Test");
@@ -30,7 +29,7 @@ namespace PacMan
                 // Arrange
                 std::stringstream ostream;
 
-                Logger sut{ ostream };
+                Logger sut{ostream};
 
                 // Act
                 sut.error("Test");
@@ -46,7 +45,7 @@ namespace PacMan
                 // Arrange
                 std::stringstream ostream;
 
-                Logger sut{ ostream };
+                Logger sut{ostream};
 
                 // Act
                 sut.info("Test");
@@ -62,7 +61,7 @@ namespace PacMan
                 // Arrange
                 std::stringstream ostream;
 
-                Logger sut{ ostream };
+                Logger sut{ostream};
 
                 // Act
                 sut.warning("Test");

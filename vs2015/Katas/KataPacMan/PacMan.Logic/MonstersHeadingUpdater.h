@@ -15,6 +15,10 @@ namespace PacMan
             IMonsterHeadingCalculator_Ptr m_calculator;
             IPlayingField_Ptr m_playing_field;
 
+            ILocatorInformation_Ptr get_pacman () const;
+            void calculate_and_update_monster ( ILocatorInformation_Ptr info ) const;
+            void calculate_and_update_all_monsters () const;
+
         public:
             MonstersHeadingUpdater (
                 ILocator_Ptr locator,
