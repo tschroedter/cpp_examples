@@ -155,6 +155,7 @@
     <ClInclude Include="IObjectsMoverCalculator.h" />
     <ClInclude Include="IObjectsMoveValidator.h" />
     <ClInclude Include="IObjectsTicker.h" />
+    <ClInclude Include="IWall.h" />
     <ClInclude Include="Locator.h" />
     <ClInclude Include="LocatorInformation.h" />
     <ClInclude Include="MonsterHeadingCalculator.h" />
@@ -195,6 +196,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ValidationStatus.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Direction.cpp" />
@@ -226,6 +228,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

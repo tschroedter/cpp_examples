@@ -17,7 +17,7 @@ namespace PacMan
 
         void Dot::set_heading ( Heading heading )
         {
-            PlayingFieldObject::set_heading(heading);
+            // nothing to do here
         }
 
         bool Dot::is_moving () const

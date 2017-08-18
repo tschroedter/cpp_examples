@@ -8,6 +8,7 @@ namespace PacMan
         {
             PlayingFieldObjectType_Unknown,
             PlayingFieldObjectType_Dot,
+            PlayingFieldObjectType_Wall,
             PlayingFieldObjectType_PacMan,
             PlayingFieldObjectType_Monster,
             PlayingFieldObjectType_Max
