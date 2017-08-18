@@ -10,20 +10,54 @@ namespace PacMan
 {
     namespace Match
     {
+        using namespace Logic;
+
+        void Game::create_walls () const
+        {
+            auto rows = m_playing_field->get_rows() - Row(1);
+            auto columns = m_playing_field->get_columns() - Column(1);
+
+            for (Column j = 1; j < columns; j++)
+            {
+                if (j % 3 != 0)
+                {
+                    continue;
+                }
+
+                for (Row i = 1; i < rows; i++)
+                {
+                    if (i % 3 == 0)
+                    {
+                        continue;
+                    }
+
+                    IWall_Ptr one = m_factory();
+
+                    m_playing_field->put_object_at(
+                        one,
+                        Row(i),
+                        Column(j));
+                }
+            }
+        }
+
         void Game::run () const
         {
-            using namespace Logic;
-
             m_monster->set_heading(Heading_Down);
 
             m_playing_field->initialize(
-                                        Row(3),
-                                        Column(3));
+                                        Row(10),
+                                        Column(10));
+
+            create_walls();
+
+            auto pacman_row = m_playing_field->get_rows() - Row(1);
+            auto pacman_column = m_playing_field->get_columns() - Column(1);
 
             m_playing_field->put_object_at(
                                            m_pac_man,
-                                           Row(1),
-                                           Column(1));
+                                           pacman_row,
+                                           pacman_column);
 
             m_playing_field->put_object_at(
                                            m_monster,
