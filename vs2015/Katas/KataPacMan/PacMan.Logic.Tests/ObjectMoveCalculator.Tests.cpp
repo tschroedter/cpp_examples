@@ -61,7 +61,7 @@ namespace PacMan
 
                 // Act
                 // Assert
-                for (int i = 0; i < times; i++)
+                for (size_t i = 0; i < times; i++)
                 {
                     sut.calculate(Row(1),
                                   Column(1),

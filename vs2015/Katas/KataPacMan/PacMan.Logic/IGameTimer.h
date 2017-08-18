@@ -15,7 +15,7 @@ namespace PacMan
 
             virtual void initialize ( const IPlayingField_Ptr playing_field ) = 0;
             virtual void tick () = 0;
-            virtual virtual ValidationStatus get_status () const = 0;
+            virtual ValidationStatus get_status () const = 0;
         };
 
         typedef std::shared_ptr<IGameTimer> IGameTimer_Ptr;

@@ -53,7 +53,7 @@ namespace PacMan
 
             Hypodermic::FactoryWrapper<IDisplayDot> wrapper_dot{create_factory_dot()};
 
-            std::function<IDisplayWall_Ptr()> create_factory_wall()
+            std::function<IDisplayWall_Ptr ()> create_factory_wall ()
             {
                 return []
                 {
@@ -61,7 +61,7 @@ namespace PacMan
 
                     EXPECT_CALL(*p_mock,
                         get_type())
-                        .WillRepeatedly(testing::Return(DisplayObjectType_Wall));
+                                   .WillRepeatedly(testing::Return(DisplayObjectType_Wall));
 
                     IDisplayWall_Ptr display(p_mock);
 
@@ -69,7 +69,7 @@ namespace PacMan
                 };
             }
 
-            Hypodermic::FactoryWrapper<IDisplayWall> wrapper_wall{ create_factory_wall() };
+            Hypodermic::FactoryWrapper<IDisplayWall> wrapper_wall{create_factory_wall()};
 
             std::function<IDisplayPacMan_Ptr  ()> create_factory_pac_man ()
             {

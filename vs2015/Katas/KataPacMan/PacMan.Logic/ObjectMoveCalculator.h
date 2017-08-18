@@ -22,9 +22,9 @@ namespace PacMan
             ObjectMoveCalculator ();
             ~ObjectMoveCalculator ();
 
-            void calculate ( Row from_row,
-                             Column from_column,
-                             Heading heading ) override;
+            void calculate ( const Row from_row,
+                             const Column from_column,
+                             const Heading heading ) override;
 
             void initialize ( const IPlayingField_Ptr& playing_field ) override;
         };

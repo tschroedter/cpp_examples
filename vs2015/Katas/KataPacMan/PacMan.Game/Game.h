@@ -5,9 +5,9 @@
 #include "IGame.h"
 #include "IPacMan.h"
 #include "IMonster.h"
-#include "IDisplayPlayingField.h"
 #include "IInputPacManMove.h"
 #include "IGameTimer.h"
+#include "IDisplayPlayingField.h"
 
 namespace PacMan
 {

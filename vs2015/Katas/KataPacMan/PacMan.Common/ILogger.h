@@ -12,10 +12,10 @@ namespace PacMan
         public:
             virtual ~ILogger () = default;
 
-            virtual void debug ( std::string message ) const = 0;
-            virtual void error ( std::string message ) const = 0;
-            virtual void info ( std::string message ) const = 0;
-            virtual void warning ( std::string message ) const = 0;
+            virtual void debug ( const std::string message ) const = 0;
+            virtual void error ( const std::string message ) const = 0;
+            virtual void info ( const std::string message ) const = 0;
+            virtual void warning ( const std::string message ) const = 0;
         };
 
         typedef std::shared_ptr<ILogger> ILogger_Ptr;

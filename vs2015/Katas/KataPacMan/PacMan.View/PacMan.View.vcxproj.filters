@@ -96,6 +96,9 @@
     <ClInclude Include="IDisplayWall.h">
       <Filter>Header Files\DisplayFieldObjects</Filter>
     </ClInclude>
+    <ClInclude Include="InstallerView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="DisplayWall.cpp">
       <Filter>Source Files\DisplayFieldObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="InstallerView.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

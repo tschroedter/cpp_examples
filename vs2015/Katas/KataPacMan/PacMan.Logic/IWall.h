@@ -11,7 +11,7 @@ namespace PacMan
             :public IPlayingFieldObject
         {
         public:
-            virtual ~IWall() = default;
+            virtual ~IWall () = default;
         };
 
         typedef std::shared_ptr<IWall> IWall_Ptr;

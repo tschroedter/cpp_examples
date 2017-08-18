@@ -14,15 +14,15 @@ namespace PacMan
             const std::string m_to_string = "# ";
 
         public:
-            ~DisplayWall()
+            ~DisplayWall ()
             {
             }
 
-            DisplayObjectType get_type() const override;
+            DisplayObjectType get_type () const override;
 
-            void initialize(const Logic::IPlayingFieldObject_Ptr object) override;
+            void initialize ( const Logic::IPlayingFieldObject_Ptr object ) override;
 
-            std::string to_string() const override;
+            std::string to_string () const override;
         };
     };
 };

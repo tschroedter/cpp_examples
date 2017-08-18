@@ -2,40 +2,11 @@
 #include <Hypodermic/ContainerBuilder.h>
 #include "IIOCContainerBuilder.h"
 #include "IOCContainerBuilder.h"
-#include "ILogger.h"
-#include "Logger.h"
-#include "PlayingFieldValidator.h"
-#include "PlayingField.h"
-#include "Dot.h"
-#include "IPacMan.h"
-#include "PacMan.h"
-#include "DisplayPlayingField.h"
-#include "Location.h"
-#include "Direction.h"
-#include "DisplayUnknown.h"
-#include "DisplayMonster.h"
-#include "DisplayMax.h"
-#include "Monster.h"
-#include "IObjectToDisplayFieldObject.h"
-#include "ObjectToDisplayFieldObject.h"
-#include "DisplayDot.h"
-#include "DisplayPacMan.h"
-#include "InputMoveForPacMan.h"
-#include "GameTimer.h"
-#include "ObjectMover.h"
-#include "ObjectMoveCalculator.h"
-#include "ObjectsMover.h"
-#include "ObjectsMoverCalculator.h"
-#include "ObjectsMoveExecuter.h"
-#include "ObjectsMoveValidator.h"
 #include "IGame.h"
+#include "InstallerLogic.h"
+#include "InstallerView.h"
 #include "Game.h"
-#include "IObjectsTicker.h"
-#include "ObjectsTicker.h"
-#include "MonsterHeadingCalculator.h"
-#include "ILocator.h"
-#include "Locator.h"
-#include "MonstersHeadingUpdater.h"
+#include "InstallerCommon.h"
 
 namespace PacMan
 {
@@ -46,95 +17,17 @@ namespace PacMan
         {
             using namespace Logic;
 
-            builder.registerType<Common::Logger>()
-                   .as<Common::ILogger>();
-
-            builder.registerType<Locator>()
-                   .as<ILocator>();
-
-            builder.registerType<PlayingFieldValidator>()
-                   .as<IPlayingFieldValidator>();
-
-            builder.registerType<ObjectsTicker>()
-                   .as<IObjectsTicker>();
-
-            builder.registerType<ObjectMover>()
-                   .as<IObjectMover>();
-
-            builder.registerType<ObjectsMover>()
-                   .as<IObjectsMover>();
-
-            builder.registerType<ObjectsMoveExecuter>()
-                   .as<IObjectsMoveExecuter>();
-
-            builder.registerType<ObjectsMoverCalculator>()
-                   .as<IObjectsMoverCalculator>();
-
-            builder.registerType<ObjectMoveCalculator>()
-                   .as<IObjectMoveCalculator>();
-
-            builder.registerType<ObjectMoveCalculator>()
-                   .as<IObjectMoveCalculator>();
-
-            builder.registerType<ObjectsMoveValidator>()
-                   .as<IObjectsMoveValidator>();
-
-            builder.registerType<MovingObjectsRepository>()
-                   .as<IMovingObjectsRepository>();
-
-            builder.registerType<PlayingField>()
-                   .as<IPlayingField>();
-
-            builder.registerType<Location>()
-                   .as<ILocation>();
-
-            builder.registerType<Direction>()
-                   .as<IDirection>();
-
-            builder.registerType<Dot>()
-                   .as<IDot>();
-
-            builder.registerType<PacMan>()
-                   .as<IPacMan>();
-
-            builder.registerType<MonsterHeadingCalculator>()
-                   .as<IMonsterHeadingCalculator>();
-
-            builder.registerType<MonstersHeadingUpdater>()
-                   .as<IMonstersHeadingUpdater>();
-
-            builder.registerType<Monster>()
-                   .as<IMonster>();
-
-            builder.registerType<InputPacManMove>()
-                   .as<IInputPacManMove>();
-
-            builder.registerType<GameTimer>()
-                   .as<IGameTimer>();
-
-            builder.registerType<View::DisplayUnknown>()
-                   .as<View::IDisplayUnknown>();
-
-            builder.registerType<View::DisplayDot>()
-                   .as<View::IDisplayDot>();
-
-            builder.registerType<View::DisplayPacMan>()
-                   .as<View::IDisplayPacMan>();
-
-            builder.registerType<View::DisplayMonster>()
-                   .as<View::IDisplayMonster>();
-
-            builder.registerType<View::DisplayMax>()
-                   .as<View::IDisplayMax>();
-
-            builder.registerType<View::ObjectToDisplayFieldObject>()
-                   .as<View::IObjectToDisplayFieldObject>();
-
-            builder.registerType<View::DisplayPlayingField>()
-                   .as<View::IDisplayPlayingField>();
-
             builder.registerType<Game>()
                    .as<IGame>();
+
+            Common::InstallerCommon installer_common;
+            installer_common.register_components(builder);
+
+            InstallerLogic installer_logic;
+            installer_logic.register_components(builder);
+
+            InstallerView installer_view;
+            installer_view.register_components(builder);
         }
 
         Container_Ptr IOCContainerBuilder::build ()

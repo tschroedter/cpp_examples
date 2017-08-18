@@ -10,7 +10,7 @@ namespace PacMan
             : public IDisplayPlayingFieldObject
         {
         public:
-            virtual ~IDisplayWall() = default;
+            virtual ~IDisplayWall () = default;
         };
 
         typedef std::shared_ptr<IDisplayWall> IDisplayWall_Ptr;

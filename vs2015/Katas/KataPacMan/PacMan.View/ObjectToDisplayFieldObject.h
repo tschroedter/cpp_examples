@@ -26,7 +26,7 @@ namespace PacMan
 
             std::function<std::shared_ptr<IDisplayUnknown>  ()> m_factory_unknown;
             std::function<std::shared_ptr<IDisplayDot>  ()> m_factory_dot;
-            std::function<std::shared_ptr<IDisplayWall> ()> m_factory_wall;
+            std::function<std::shared_ptr<IDisplayWall>  ()> m_factory_wall;
             std::function<std::shared_ptr<IDisplayPacMan>  ()> m_factory_pac_man;
             std::function<std::shared_ptr<IDisplayMonster>  ()> m_factory_monster;
             std::function<std::shared_ptr<IDisplayMax>  ()> m_factory_max;

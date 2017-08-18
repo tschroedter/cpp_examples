@@ -28,8 +28,8 @@ namespace PacMan
 
                 EXPECT_CALL(*mock_direction,
                     get_heading())
-                    .Times(1)
-                    .WillOnce(testing::Return(Heading_Unknown));
+                                  .Times(1)
+                                  .WillOnce(testing::Return(Heading_Unknown));
 
                 // Act
                 Heading actual = sut.get_heading();
@@ -106,7 +106,7 @@ namespace PacMan
 
                 EXPECT_CALL(*mock_direction,
                     set_heading(Heading_Right))
-                    .Times(0);
+                                               .Times(0);
 
                 // Act
                 sut.set_heading(Heading_Right);

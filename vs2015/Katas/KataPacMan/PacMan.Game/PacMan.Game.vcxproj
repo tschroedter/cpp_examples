@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>../PacMan.Common;../PacMan.View;../../boost_1_63_0;../../Hypodermic-master;../PacMan.Logic;$(IncludePath)</IncludePath>
-    <LibraryPath>../Debug;../PacMan.Common\Debug;../PacMan.View\Debug;../../boost_1_63_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>../PacMan.Common;../PacMan.Logic;../PacMan.View;../../boost_1_63_0;../../Hypodermic-master;$(IncludePath)</IncludePath>
+    <LibraryPath>../Debug;../PacMan.Common\Debug;../PacMan.Logic/Debug;../PacMan.View\Debug;../../boost_1_63_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -91,6 +91,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
