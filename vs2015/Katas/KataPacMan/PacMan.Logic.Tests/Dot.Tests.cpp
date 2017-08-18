@@ -106,7 +106,7 @@ namespace PacMan
 
                 EXPECT_CALL(*mock_direction,
                     set_heading(Heading_Right))
-                                               .Times(1);
+                                               .Times(0);
 
                 // Act
                 sut.set_heading(Heading_Right);

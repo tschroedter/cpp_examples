@@ -213,7 +213,7 @@ namespace PacMan
 
                 // Assert
                 std::string actual = out.str();
-                std::string expected = "[0] (0 , 1) --> (2, 3) Type: 3\n[1] (4 , 5) --> (6, 7) Type: 2\n";
+                std::string expected = "[0] (0 , 1) --> (2, 3) Type: 4\n[1] (4 , 5) --> (6, 7) Type: 3\n";
 
                 EXPECT_EQ(expected, actual);
             }
