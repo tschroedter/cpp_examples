@@ -12,6 +12,7 @@ namespace PacMan
         {
             add_mapping(Logic::PlayingFieldObjectType_Unknown, m_factory_unknown);
             add_mapping(Logic::PlayingFieldObjectType_Dot, m_factory_dot);
+            add_mapping(Logic::PlayingFieldObjectType_Wall, m_factory_wall);
             add_mapping(Logic::PlayingFieldObjectType_PacMan, m_factory_pac_man);
             add_mapping(Logic::PlayingFieldObjectType_Monster, m_factory_monster);
             add_mapping(Logic::PlayingFieldObjectType_Max, m_factory_max);

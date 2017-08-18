@@ -141,6 +141,7 @@
     <ClInclude Include="DisplayDot.h" />
     <ClInclude Include="DisplayObjectType.h" />
     <ClInclude Include="DIsplayUnknown.h" />
+    <ClInclude Include="DisplayWall.h" />
     <ClInclude Include="IDisplayMax.h" />
     <ClInclude Include="IDisplayMonster.h" />
     <ClInclude Include="IDisplayPacMan.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="IDisplayDot.h" />
     <ClInclude Include="IDisplayPlayingFieldObject.h" />
     <ClInclude Include="IDisplayUnknown.h" />
+    <ClInclude Include="IDisplayWall.h" />
     <ClInclude Include="IPlayingFieldObjectTypeToCharMapping.h" />
     <ClInclude Include="IObjectToDisplayFieldObject.h" />
     <ClInclude Include="ObjectToDisplayFieldObject.h" />
@@ -164,6 +166,7 @@
     <ClCompile Include="DisplayPlayingField.cpp" />
     <ClCompile Include="DisplayDot.cpp" />
     <ClCompile Include="DisplayUnknown.cpp" />
+    <ClCompile Include="DisplayWall.cpp" />
     <ClCompile Include="ObjectToDisplayFieldObject.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

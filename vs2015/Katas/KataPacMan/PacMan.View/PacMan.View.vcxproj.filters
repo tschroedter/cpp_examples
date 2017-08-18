@@ -90,6 +90,12 @@
     <ClInclude Include="ObjectToDisplayFieldObjectException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DisplayWall.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IDisplayWall.h">
+      <Filter>Header Files\DisplayFieldObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -115,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="ObjectToDisplayFieldObject.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayWall.cpp">
+      <Filter>Source Files\DisplayFieldObjects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

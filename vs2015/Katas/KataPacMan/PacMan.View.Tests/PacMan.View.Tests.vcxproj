@@ -155,6 +155,7 @@
     <ClInclude Include="MockIDisplayMonster.h" />
     <ClInclude Include="MockIDisplayPacMan.h" />
     <ClInclude Include="MockIDisplayUnknown.h" />
+    <ClInclude Include="MockIDisplayWall.h" />
     <ClInclude Include="MockILocation.h" />
     <ClInclude Include="MockIObjectsTicker.h" />
     <ClInclude Include="MockIPlayingFieldObject.h" />

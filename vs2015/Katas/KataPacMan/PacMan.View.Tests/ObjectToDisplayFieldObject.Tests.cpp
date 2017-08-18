@@ -9,6 +9,7 @@
 #include "MockIPlayingFieldObject.h"
 #include "DisplayObjectType.h"
 #include "MockIDisplayPacMan.h"
+#include "MockIDisplayWall.h"
 
 namespace PacMan
 {
@@ -51,6 +52,24 @@ namespace PacMan
             }
 
             Hypodermic::FactoryWrapper<IDisplayDot> wrapper_dot{create_factory_dot()};
+
+            std::function<IDisplayWall_Ptr()> create_factory_wall()
+            {
+                return []
+                {
+                    auto p_mock = new MockIDisplayWall{};
+
+                    EXPECT_CALL(*p_mock,
+                        get_type())
+                        .WillRepeatedly(testing::Return(DisplayObjectType_Wall));
+
+                    IDisplayWall_Ptr display(p_mock);
+
+                    return display;
+                };
+            }
+
+            Hypodermic::FactoryWrapper<IDisplayWall> wrapper_wall{ create_factory_wall() };
 
             std::function<IDisplayPacMan_Ptr  ()> create_factory_pac_man ()
             {
@@ -120,6 +139,7 @@ namespace PacMan
                 {
                     wrapper_unknown,
                     wrapper_dot,
+                    wrapper_wall,
                     wrapper_pac_man,
                     wrapper_monster,
                     wrapper_max

@@ -54,6 +54,9 @@
     <ClInclude Include="MockIObjectsTicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MockIDisplayWall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
