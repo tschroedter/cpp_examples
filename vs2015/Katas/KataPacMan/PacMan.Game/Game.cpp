@@ -34,9 +34,9 @@ namespace PacMan
                     IWall_Ptr one = m_factory();
 
                     m_playing_field->put_object_at(
-                        one,
-                        Row(i),
-                        Column(j));
+                                                   one,
+                                                   Row(i),
+                                                   Column(j));
                 }
             }
         }

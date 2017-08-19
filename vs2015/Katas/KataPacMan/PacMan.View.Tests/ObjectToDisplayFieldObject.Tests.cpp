@@ -53,7 +53,7 @@ namespace PacMan
 
             Hypodermic::FactoryWrapper<IDisplayDot> wrapper_dot{create_factory_dot()};
 
-            std::function<IDisplayWall_Ptr ()> create_factory_wall ()
+            std::function<IDisplayWall_Ptr  ()> create_factory_wall ()
             {
                 return []
                 {
