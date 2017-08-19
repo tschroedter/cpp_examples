@@ -23,6 +23,7 @@ namespace PacMan
                 const IMovingObjectsRepository_Ptr repository ) override;
 
             void calculate () const override;
+            bool is_target_a_wall ( const Row row, const Column column ) const;
 
             IMoveObjectInformation_Ptr create_info (
                 Row row,
@@ -34,6 +35,23 @@ namespace PacMan
             IPlayingField_Ptr m_playing_field;
             IObjectMoveCalculator_Ptr m_calculator;
             IMovingObjectsRepository_Ptr m_repository;
+
+            Row calculate_to_row (
+                const Row row,
+                const Column column,
+                const Row to_row,
+                const Column to_column ) const;
+            Row calculate_to_column (
+                const Row row,
+                const Column column,
+                const Row to_row,
+                const Column to_column ) const;
+            IMoveObjectInformation_Ptr ObjectsMoverCalculator::create_info_instance (
+                IPlayingFieldObject_Ptr object,
+                Row row,
+                Column column,
+                Row to_row,
+                Column to_column ) const;
         };
     }
 }
