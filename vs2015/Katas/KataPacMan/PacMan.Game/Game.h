@@ -22,7 +22,7 @@ namespace PacMan
             Logic::IPlayingField_Ptr m_playing_field;
             Logic::IPacMan_Ptr m_pac_man;
             Logic::IMonster_Ptr m_monster;
-            std::function<std::shared_ptr<Logic::IWall> ()> m_factory;
+            std::function<std::shared_ptr<Logic::IWall>  ()> m_factory;
             Logic::IInputPacManMove_Ptr m_input;
             Logic::IGameTimer_Ptr m_game_timer;
             View::IDisplayPlayingField_Ptr m_display;

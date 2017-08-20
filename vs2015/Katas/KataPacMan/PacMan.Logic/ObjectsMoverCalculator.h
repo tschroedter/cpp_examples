@@ -3,6 +3,7 @@
 #include "IMovingObjectsRepository.h"
 #include "IObjectMoveCalculator.h"
 #include <Hypodermic/FactoryWrapper.h>
+#include "IToRowAnToColumnCalculator.h"
 
 namespace PacMan
 {
@@ -14,7 +15,7 @@ namespace PacMan
         public:
             ObjectsMoverCalculator (
                 const Hypodermic::FactoryWrapper<IMoveObjectInformation>& factory_wrapper,
-                const IObjectMoveCalculator_Ptr calculator );
+                const IToRowAnToColumnCalculator_Ptr calculator );
 
             ~ObjectsMoverCalculator () = default;
 
@@ -23,7 +24,6 @@ namespace PacMan
                 const IMovingObjectsRepository_Ptr repository ) override;
 
             void calculate () const override;
-            bool is_target_a_wall ( const Row row, const Column column ) const;
 
             IMoveObjectInformation_Ptr create_info (
                 Row row,
@@ -33,19 +33,9 @@ namespace PacMan
         private:
             std::function<std::shared_ptr<IMoveObjectInformation>  ()> m_factory;
             IPlayingField_Ptr m_playing_field;
-            IObjectMoveCalculator_Ptr m_calculator;
+            IToRowAnToColumnCalculator_Ptr m_calculator;
             IMovingObjectsRepository_Ptr m_repository;
 
-            Row calculate_to_row (
-                const Row row,
-                const Column column,
-                const Row to_row,
-                const Column to_column ) const;
-            Row calculate_to_column (
-                const Row row,
-                const Column column,
-                const Row to_row,
-                const Column to_column ) const;
             IMoveObjectInformation_Ptr ObjectsMoverCalculator::create_info_instance (
                 IPlayingFieldObject_Ptr object,
                 Row row,

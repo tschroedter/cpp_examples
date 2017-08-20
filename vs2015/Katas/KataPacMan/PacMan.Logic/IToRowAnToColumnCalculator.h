@@ -19,8 +19,8 @@ namespace PacMan
 
             Heading heading = Heading_Unknown;
 
-            Row row{0};
-            Row column{0};
+            Row from_row{0};
+            Row from_column{0};
 
             Row to_row{0};
             Row to_column{0};

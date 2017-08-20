@@ -8,7 +8,7 @@ namespace PacMan
     namespace Logic
     {
         class ToRowAnToColumnCalculator
-            : IToRowAnToColumnCalculator
+            : public IToRowAnToColumnCalculator
         {
         private:
             IObjectMoveCalculator_Ptr m_calculator;
@@ -23,20 +23,13 @@ namespace PacMan
                   m_playing_field{nullptr}
             {
             };
+
             ~ToRowAnToColumnCalculator () = default;
 
             void initialize (
                 const IPlayingField_Ptr playing_field ) override;
 
-            void caclulate() override;
-
-            Heading heading = Heading_Unknown;
-
-            Row from_row{ 0 };
-            Row from_column{ 0 };
-
-            Row to_row{ 0 };
-            Row to_column{ 0 };
+            void caclulate () override;
         };
     };
 };

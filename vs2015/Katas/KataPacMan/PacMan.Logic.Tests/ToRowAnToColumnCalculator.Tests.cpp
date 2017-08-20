@@ -92,6 +92,31 @@ namespace PacMan
                                                Row{3},
                                                Column{4});
             }
+
+            TEST(ToRowAnToColumnCalculator, initialize_call_calculator_initialize)
+            {
+                // Arrange
+                MockIObjectMoveCalculator* mock_calculator = new MockIObjectMoveCalculator{};
+                IObjectMoveCalculator_Ptr calculator(mock_calculator);
+
+                MockIPlayingField* mock_playing_field = new MockIPlayingField{};
+                IPlayingField_Ptr playing_field(mock_playing_field);
+
+                ToRowAnToColumnCalculator sut
+                {
+                    calculator
+                };
+
+                EXPECT_CALL(
+                    *mock_calculator,
+                    initialize(playing_field))
+                                              .Times(1);
+
+                // Act
+                sut.initialize(playing_field);
+
+                // Assert
+            }
         };
     };
 };

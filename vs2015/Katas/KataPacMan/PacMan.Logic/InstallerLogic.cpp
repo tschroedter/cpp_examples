@@ -23,6 +23,7 @@
 #include "InputMoveForPacMan.h"
 #include "GameTimer.h"
 #include "PacMan.h"
+#include "ToRowAnToColumnCalculator.h"
 
 using namespace ::PacMan::Logic;
 
@@ -91,4 +92,7 @@ void InstallerLogic::register_components (
 
     builder.registerType<GameTimer>()
            .as<IGameTimer>();
+
+    builder.registerType<ToRowAnToColumnCalculator>()
+           .as<IToRowAnToColumnCalculator>();
 }

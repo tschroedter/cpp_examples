@@ -6,6 +6,7 @@
 #include "MockIPlayingField.h"
 #include "MockIMovingObjectsRepository.h"
 #include "MoveObjectInformation.h"
+#include "MockIToRowAnToColumnCalculator.h"
 
 namespace PacMan
 {
@@ -43,8 +44,9 @@ namespace PacMan
                 MockIMovingObjectsRepository* mock_repository = new MockIMovingObjectsRepository{};
                 IMovingObjectsRepository_Ptr repository(mock_repository);
 
-                MockIObjectMoveCalculator* mock_calculator = new MockIObjectMoveCalculator{};
-                IObjectMoveCalculator_Ptr calculator(mock_calculator);
+                MockIToRowAnToColumnCalculator* mock_calculator = new
+                    MockIToRowAnToColumnCalculator();
+                IToRowAnToColumnCalculator_Ptr calculator(mock_calculator);
 
                 EXPECT_CALL(
                     *mock_calculator,
@@ -84,12 +86,6 @@ namespace PacMan
                     get_type())
                                .WillRepeatedly(testing::Return(type));
 
-                MockIObjectMoveCalculator* mock_calculator = new MockIObjectMoveCalculator{};
-                IObjectMoveCalculator_Ptr calculator(mock_calculator);
-
-                mock_calculator->to_row = to_row;
-                mock_calculator->to_column = to_column;
-
                 MockIPlayingField* mock_playing_field = new MockIPlayingField{};
                 IPlayingField_Ptr playing_field(mock_playing_field);
 
@@ -102,6 +98,13 @@ namespace PacMan
 
                 MockIMovingObjectsRepository* mock_repository = new MockIMovingObjectsRepository{};
                 IMovingObjectsRepository_Ptr repository(mock_repository);
+
+                MockIToRowAnToColumnCalculator* mock_calculator = new
+                    MockIToRowAnToColumnCalculator();
+                IToRowAnToColumnCalculator_Ptr calculator(mock_calculator);
+
+                mock_calculator->to_row = to_row;
+                mock_calculator->to_column = to_column;
 
                 ObjectsMoverCalculator sut
                 {
@@ -122,67 +125,6 @@ namespace PacMan
                 EXPECT_EQ(from_column, actual->from_column);
                 EXPECT_EQ(to_row, actual->to_row);
                 EXPECT_EQ(to_column, actual->to_column);
-                EXPECT_EQ(type, actual->playing_field_object_type);
-            }
-
-            TEST(ObjectsMoverCalculator, create_info_returns_new_info_instance_for_moving_into_wall)
-            {
-                // Arrange
-                Row from_row(1);
-                Column from_column(2);
-                Row to_row(3);
-                Column to_column(4);
-                PlayingFieldObjectType type = PlayingFieldObjectType_PacMan;
-
-                MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
-                IPlayingFieldObject_Ptr object(mock_object);
-
-                EXPECT_CALL(*mock_object,
-                    get_heading())
-                                  .WillRepeatedly(testing::Return(Heading_Left));
-
-                EXPECT_CALL(*mock_object,
-                    get_type())
-                               .WillRepeatedly(testing::Return(type));
-
-                MockIObjectMoveCalculator* mock_calculator = new MockIObjectMoveCalculator{};
-                IObjectMoveCalculator_Ptr calculator(mock_calculator);
-
-                mock_calculator->to_row = to_row;
-                mock_calculator->to_column = to_column;
-
-                MockIPlayingField* mock_playing_field = new MockIPlayingField{};
-                IPlayingField_Ptr playing_field(mock_playing_field);
-
-                EXPECT_CALL(
-                    *mock_playing_field,
-                    get_object_type_at(
-                        testing::_,
-                        testing::_))
-                                    .WillRepeatedly(testing::Return(PlayingFieldObjectType_Wall));
-
-                MockIMovingObjectsRepository* mock_repository = new MockIMovingObjectsRepository{};
-                IMovingObjectsRepository_Ptr repository(mock_repository);
-
-                ObjectsMoverCalculator sut
-                {
-                    wrapper,
-                    calculator
-                };
-
-                sut.initialize(playing_field,
-                               repository);
-
-                // Act
-                auto actual = sut.create_info(from_row,
-                                              from_column,
-                                              object);
-
-                // Assert
-                EXPECT_EQ(from_row, actual->from_row);
-                EXPECT_EQ(from_column, actual->from_column);
-                EXPECT_EQ(from_row, actual->to_row);
-                EXPECT_EQ(from_column, actual->to_column);
                 EXPECT_EQ(type, actual->playing_field_object_type);
             }
 
@@ -209,12 +151,6 @@ namespace PacMan
                 EXPECT_CALL(*mock_object,
                     is_moving())
                                 .WillRepeatedly(testing::Return(is_moving));
-
-                MockIObjectMoveCalculator* mock_calculator = new MockIObjectMoveCalculator{};
-                IObjectMoveCalculator_Ptr calculator(mock_calculator);
-
-                mock_calculator->to_row = to_row;
-                mock_calculator->to_column = to_column;
 
                 MockIPlayingField* mock_playing_field = new MockIPlayingField{};
                 IPlayingField_Ptr playing_field(mock_playing_field);
@@ -249,6 +185,13 @@ namespace PacMan
                     add(testing::A<IMoveObjectInformation_Ptr>()))
                                                                   .Times(expected_number_of_calls);
 
+                MockIToRowAnToColumnCalculator* mock_calculator = new
+                    MockIToRowAnToColumnCalculator();
+                IToRowAnToColumnCalculator_Ptr calculator(mock_calculator);
+
+                mock_calculator->to_row = to_row;
+                mock_calculator->to_column = to_column;
+
                 ObjectsMoverCalculator sut
                 {
                     wrapper,
@@ -279,9 +222,6 @@ namespace PacMan
                 MockIPlayingFieldObject* mock_object = new MockIPlayingFieldObject{};
                 IPlayingFieldObject_Ptr object(mock_object);
 
-                MockIObjectMoveCalculator* mock_calculator = new MockIObjectMoveCalculator{};
-                IObjectMoveCalculator_Ptr calculator(mock_calculator);
-
                 MockIPlayingField* mock_playing_field = new MockIPlayingField{};
                 IPlayingField_Ptr playing_field(mock_playing_field);
 
@@ -292,6 +232,10 @@ namespace PacMan
                     *mock_repository,
                     clear())
                             .Times(1);
+
+                MockIToRowAnToColumnCalculator* mock_calculator = new
+                    MockIToRowAnToColumnCalculator();
+                IToRowAnToColumnCalculator_Ptr calculator(mock_calculator);
 
                 ObjectsMoverCalculator sut
                 {
