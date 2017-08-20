@@ -78,6 +78,9 @@
     <ClInclude Include="MockIObjectsTicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MockIToRowAnToColumnCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -144,6 +147,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Wall.Tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ToRowAnToColumnCalculator.Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

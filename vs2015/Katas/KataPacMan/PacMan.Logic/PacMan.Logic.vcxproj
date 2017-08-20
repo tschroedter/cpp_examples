@@ -157,6 +157,7 @@
     <ClInclude Include="IObjectsMoverCalculator.h" />
     <ClInclude Include="IObjectsMoveValidator.h" />
     <ClInclude Include="IObjectsTicker.h" />
+    <ClInclude Include="IToRowAnToColumnCalculator.h" />
     <ClInclude Include="IWall.h" />
     <ClInclude Include="Locator.h" />
     <ClInclude Include="LocatorInformation.h" />
@@ -195,6 +196,7 @@
     <ClInclude Include="PossibleHeadings.h" />
     <ClInclude Include="Rotate.h" />
     <ClInclude Include="RowAndColumn.h" />
+    <ClInclude Include="ToRowAnToColumnCalculator.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ValidationStatus.h" />
@@ -225,6 +227,7 @@
     <ClCompile Include="PacMan.cpp" />
     <ClCompile Include="PlayingField.cpp" />
     <ClCompile Include="PlayingFieldValidator.cpp" />
+    <ClCompile Include="ToRowAnToColumnCalculator.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
