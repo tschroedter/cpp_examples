@@ -15,7 +15,7 @@ namespace InMemoryBusExample
 {
 
     ComponentA::ComponentA(InMemoryBus::MessageBus* messageBus) :
-            InMemoryBus::BusNode("ComponentA", messageBus)
+            InMemoryBus::BusNode("ComponentA", "Message", messageBus)
     {
     }
 

@@ -6,15 +6,23 @@
  */
 #include <iostream>
 #include <gtest/gtest.h>
+#include "subscribers/SubscriberInformation.h"
 #include "MessageBus.h"
 #include "Message.h"
 #include "Typedefs.h"
 #include "TestSubscriber.h"
-#include "subscribers/SubscriberInformation.h"
-#include "TestSubscriber.h"
+#include "exceptions/ArgumentInvalidException.h"
 
 namespace InMemoryBusTests
 {
+    void expect_std_strings_are_equal(const std::string & expected,
+            const std::string & actual)
+    {
+        std::cout << "Actual  : " << actual << "\n";
+        std::cout << "Expected: " << expected << "\n";
+
+        EXPECT_EQ(0, expected.compare(actual));
+    }
 
     TEST(SubscriberInformationTest, constructor_sets_subscriber_id)
     {
@@ -27,13 +35,30 @@ namespace InMemoryBusTests
 
         // Act
         SubscriberInformation sut
-        { "id", subscriber.getNotifyFunc() };
+        { "id", "message_type", subscriber.getNotifyFunc() };
 
         // Assert
         EXPECT_EQ(0, expected.compare(sut.subscriber_id));
     }
 
-    TEST(SubscriberInformationTest, constructor_sets_function)
+    TEST(SubscriberInformationTest, constructor_sets_message_type)
+    {
+        using namespace InMemoryBus;
+
+        // Arrange
+        std::string expected("message_type");
+        InMemoryBusTests::TestSubscriber subscriber
+        { };
+
+        // Act
+        SubscriberInformation sut
+        { "id", "message_type", subscriber.getNotifyFunc() };
+
+        // Assert
+        EXPECT_EQ(0, expected.compare(sut.message_type));
+    }
+
+    TEST(SubscriberInformationTest, constructor_sets_subscriber_function)
     {
         using namespace InMemoryBus;
 
@@ -45,8 +70,8 @@ namespace InMemoryBusTests
 
         // Act
         SubscriberInformation sut
-        { "id", subscriber.getNotifyFunc() };
-        sut.function(p_message);
+        { "id", "message_type", subscriber.getNotifyFunc() };
+        sut.subscriber_function(p_message);
 
         // Assert
         EXPECT_TRUE(subscriber.wasCalledOnNotify());
@@ -60,9 +85,9 @@ namespace InMemoryBusTests
         InMemoryBusTests::TestSubscriber subscriber
         { };
         SubscriberInformation a
-        { "a", subscriber.getNotifyFunc() };
+        { "a", "message_type", subscriber.getNotifyFunc() };
         SubscriberInformation b
-        { "b", subscriber.getNotifyFunc() };
+        { "b", "message_type", subscriber.getNotifyFunc() };
 
         // Act
         // Assert
@@ -77,7 +102,7 @@ namespace InMemoryBusTests
         InMemoryBusTests::TestSubscriber subscriber
         { };
         SubscriberInformation a
-        { "a", subscriber.getNotifyFunc() };
+        { "a", "message_type", subscriber.getNotifyFunc() };
 
         // Act
         // Assert
@@ -92,13 +117,80 @@ namespace InMemoryBusTests
         InMemoryBusTests::TestSubscriber subscriber
         { };
         SubscriberInformation a
-        { "a", subscriber.getNotifyFunc() };
+        { "a", "message_type", subscriber.getNotifyFunc() };
         SubscriberInformation b
-        { "b", subscriber.getNotifyFunc() };
+        { "b", "message_type", subscriber.getNotifyFunc() };
 
         // Act
         // Assert
         EXPECT_TRUE(a < b);
     }
 
-} /* namespace InMemoryBus */
+    TEST(SubscriberInformationTest, constructor_throws_for_subscriber_id_is_empty)
+    {
+        using namespace InMemoryBus;
+
+        try
+        {
+            InMemoryBusTests::TestSubscriber subscriber
+            { };
+
+            SubscriberInformation a
+            { "", "message_type", subscriber.getNotifyFunc() };
+
+            FAIL()<< "Expected ArgumentInvalidException";
+        }
+        catch(ArgumentInvalidException const & ex)
+        {
+            auto actual = ex.get_message();
+            auto expected = std::string("Parameter 'subscriber_id' is invalid! Can't create SubscriberInformation because 'subscriber_id' is empty!");
+
+            expect_std_strings_are_equal(expected, actual);
+        }
+    }
+
+    TEST(SubscriberInformationTest, constructor_throws_for_message_type_is_empty)
+    {
+        using namespace InMemoryBus;
+
+        try
+        {
+            InMemoryBusTests::TestSubscriber subscriber
+            { };
+
+            SubscriberInformation a
+            { "id", "", subscriber.getNotifyFunc() };
+
+            FAIL()<< "Expected ArgumentInvalidException";
+        }
+        catch(ArgumentInvalidException const & ex)
+        {
+            auto actual = ex.get_message();
+            auto expected = std::string("Parameter 'message_type' is invalid! Can't create SubscriberInformation because 'message_type' is empty!");
+
+            expect_std_strings_are_equal(expected, actual);
+        }
+    }
+
+    TEST(SubscriberInformationTest, constructor_throws_for_subscriber_function_is_null)
+    {
+        using namespace InMemoryBus;
+
+        try
+        {
+            SubscriberInformation a
+            { "id", "type", nullptr };
+
+            FAIL()<<"Expected ArgumentInvalidException";
+    }
+    catch(ArgumentInvalidException const & ex)
+    {
+        auto actual = ex.get_message();
+        auto expected = std::string("Parameter 'subscriberFunction' is invalid! Can't create SubscriberInformation because 'subscriber_function' is null!");
+
+        expect_std_strings_are_equal(expected, actual);
+    }
+}
+
+}
+/* namespace InMemoryBus */

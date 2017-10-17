@@ -13,10 +13,11 @@
 #include <vector>
 #include "BaseMessage.h"
 
-namespace InMemoryBus {
+namespace InMemoryBus
+{
 
-typedef std::queue<BaseMessage*> Messages;
-typedef std::function<void(BaseMessage*)> SubscriberFunction;
+    typedef std::queue<BaseMessage*> Messages;
+    typedef std::function<void(BaseMessage*)> SubscriberFunction;
 
 } /* namespace InMemoryBus */
 

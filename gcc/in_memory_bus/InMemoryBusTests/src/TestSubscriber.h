@@ -9,7 +9,6 @@
 #define TESTSUBSCRIBER_H_
 
 #include "Message.h"
-#include "subscribers/SubscriberInformation.h"
 #include "Typedefs.h"
 
 namespace InMemoryBusTests

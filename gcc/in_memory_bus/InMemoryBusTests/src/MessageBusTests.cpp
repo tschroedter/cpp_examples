@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <gtest/gtest.h>
+#include <subscribers/SubscriberInformationRepository.h>
 #include "MessageBus.h"
 #include "Message.h"
 #include "Typedefs.h"
@@ -14,6 +15,17 @@
 
 namespace InMemoryBusTests
 {
+    InMemoryBus::SubscriberInformationRepository_SPtr MessageBusTest_create_subscribers_repository()
+    {
+        InMemoryBus::SubscriberInformationVector_SPtr informations =
+                std::make_shared<InMemoryBus::SubscriberInformationVector>();
+
+        InMemoryBus::SubscriberInformationRepository_SPtr subscribers =
+                std::make_shared<InMemoryBus::SubscriberInformationRepository>(
+                        informations);
+
+        return subscribers;
+    }
 
     TEST(MessageBusTest, subscribe_adds_to_subscribers)
     {
@@ -22,16 +34,18 @@ namespace InMemoryBusTests
 
         using namespace InMemoryBus;
 
-        Subscribers subscribers;
+        SubscriberInformationRepository_SPtr subscribers =
+                MessageBusTest_create_subscribers_repository();
+
         Messages messages;
         MessageBus sut
-        { &subscribers, &messages };
+        { subscribers, &messages };
 
         // Act
-        sut.subscribe("id", subscriber.getNotifyFunc());
+        sut.subscribe("id", "type", subscriber.getNotifyFunc());
 
         // Assert
-        EXPECT_EQ(1, subscribers.size());
+        EXPECT_EQ(1, subscribers->size());
     }
 
     TEST(MessageBusTest, unsubscribe_removes_from_subscribers)
@@ -41,18 +55,20 @@ namespace InMemoryBusTests
 
         using namespace InMemoryBus;
 
-        Subscribers subscribers;
+        SubscriberInformationRepository_SPtr subscribers =
+                MessageBusTest_create_subscribers_repository();
         Messages messages;
         MessageBus sut
-        { &subscribers, &messages };
+        { subscribers, &messages };
 
-        sut.subscribe("id", subscriber.getNotifyFunc());
+        sut.subscribe("id", "type", subscriber.getNotifyFunc());
+        EXPECT_EQ(1, subscribers->size());
 
         // Act
-        sut.unsubscribe("id");
+        sut.unsubscribe("id", "type");
 
         // Assert
-        EXPECT_EQ(0, subscribers.size());
+        EXPECT_EQ(0, subscribers->size());
     }
 
     TEST(MessageBusTest, publish_adds_message_to_queue)
@@ -64,12 +80,13 @@ namespace InMemoryBusTests
 
         using namespace InMemoryBus;
 
-        Subscribers subscribers;
+        SubscriberInformationRepository_SPtr subscribers =
+                MessageBusTest_create_subscribers_repository();
         Messages messages;
         MessageBus sut
-        { &subscribers, &messages };
+        { subscribers, &messages };
 
-        sut.subscribe("id", subscriber.getNotifyFunc());
+        sut.subscribe("id", "type", subscriber.getNotifyFunc());
 
         // Act
         sut.publish(&message);
@@ -88,13 +105,16 @@ namespace InMemoryBusTests
 
         using namespace InMemoryBus;
 
-        Subscribers subscribers;
+        SubscriberInformationRepository_SPtr subscribers =
+                MessageBusTest_create_subscribers_repository();
         Messages messages;
         MessageBus sut
-        { &subscribers, &messages };
+        { subscribers, &messages };
 
-        sut.subscribe("idOne", subscriberOne.getNotifyFunc());
-        sut.subscribe("idTwo", subscriberTwo.getNotifyFunc());
+        sut.subscribe("idOne", message.getType(),
+                subscriberOne.getNotifyFunc());
+        sut.subscribe("idTwo", message.getType(),
+                subscriberTwo.getNotifyFunc());
 
         sut.publish(&message);
 

@@ -15,7 +15,7 @@ namespace InMemoryBusExample
 {
 
     ComponentB::ComponentB(InMemoryBus::MessageBus* messageBus) :
-            InMemoryBus::BusNode("ComponentB", messageBus)
+            InMemoryBus::BusNode("ComponentB", "Message", messageBus)
     {
     }
     ComponentB::~ComponentB()
@@ -26,6 +26,9 @@ namespace InMemoryBusExample
     {
         Message* p_greeting = new Message("Hello"); // todo memory leak
         send(p_greeting);
+
+        std::cout << "[ComponentB] I sending: " << p_greeting->getEvent()
+                << std::endl;
     }
 
     void ComponentB::onNotify(InMemoryBus::BaseMessage* p_base_message)

@@ -1,22 +1,22 @@
 /*
- * SubscriptionsRepository.cpp
+ * NewSubscriberInformationRepository.cpp
  *
- *  Created on: 3Jul.,2017
+ *  Created on: 29 Aug. 2017
  *      Author: tom
  */
 
-#include <string>
-#include <memory>
-#include "SubscriberInformation.h"
+#include <vector>
+#include "uuid/uuid.h"
 #include "SubscriberInformationRepository.h"
 
 namespace InMemoryBus
 {
-
     SubscriberInformationRepository::SubscriberInformationRepository(
             SubscriberInformationVector_SPtr informations)
     {
-        m_informations = informations;
+        m_informations =
+                std::make_shared<BaseRepository<SubscriberInformation>>(
+                        informations);
 
         m_unknown = std::make_shared<UnknownSubscriberInformation>();
     }
@@ -25,73 +25,45 @@ namespace InMemoryBus
     {
     }
 
-    SubscriberInformationVector_SPtr SubscriberInformationRepository::getAll()
+    void SubscriberInformationRepository::add(
+            const SubscriberInformation_SPtr entity)
     {
-        SubscriberInformationVector* p_vector = new SubscriberInformationVector();
-
-        for (auto iter = m_informations->begin(); iter != m_informations->end();
-                iter++)
-        {
-            SubscriberInformation_SPtr info = (*iter);
-
-            p_vector->push_back(info);
-        }
-
-        auto all = std::shared_ptr<SubscriberInformationVector>(p_vector);
-
-        return (all);
+        m_informations->add(entity);
     }
 
-    int SubscriberInformationRepository::findIndexBySubscriberId(
-            const std::string& subscriber_id)
+    void SubscriberInformationRepository::remove(
+            const SubscriberInformation_SPtr entity)
     {
-        int indexToFind = -1;
-        int currentIndex = 0;
+        m_informations->remove(entity);
+    }
 
-        for (auto iter = m_informations->begin(); iter != m_informations->end();
-                iter++)
-        {
-            SubscriberInformation_SPtr info = (*iter);
-            std::string id = info->subscriber_id;
-            if (id.compare(subscriber_id) == 0)
-            {
-                indexToFind = currentIndex;
-                break;
-            }
-            currentIndex++;
-        }
-
-        return (indexToFind);
+    SubscriberInformationVector_SPtr SubscriberInformationRepository::getAll()
+    {
+        return (m_informations->getAll());
     }
 
     SubscriberInformation_SPtr SubscriberInformationRepository::findBySubscriberId(
-            const std::string subscriber_id)
+            const std::string& subscriber_id)
     {
-        int indexToFind = findIndexBySubscriberId(subscriber_id);
+        auto all = m_informations->getAll();
 
-        if (indexToFind > -1)
+        for (auto iter = all->begin(); iter != all->end(); iter++)
         {
-            return (m_informations->at(indexToFind));
+            SubscriberInformation_SPtr info = (*iter);
+
+            std::string id = info->subscriber_id;
+
+            if (id.compare(subscriber_id) == 0)
+            {
+                return (info);
+            }
         }
 
         return (m_unknown);
     }
 
-    void SubscriberInformationRepository::remove(
-            const SubscriberInformation_SPtr information)
+    size_t SubscriberInformationRepository::size()
     {
-        int index = this->findIndexBySubscriberId(information->subscriber_id);
-
-        if (index >= 0)
-        {
-            m_informations->erase(m_informations->begin() + index);
-        }
+        return m_informations->size();
     }
-
-    void SubscriberInformationRepository::add(
-            const SubscriberInformation_SPtr information)
-    {
-        m_informations->push_back(information);
-    }
-
 } /* namespace InMemoryBus */

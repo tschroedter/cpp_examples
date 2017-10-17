@@ -1,17 +1,19 @@
 /*
- * UnknownSubscriberInformation.cpp
+ * NewUnknownSubscriberInformation.cpp
  *
- *  Created on: 4Jul.,2017
+ *  Created on: 29 Aug. 2017
  *      Author: tom
  */
 
 #include "UnknownSubscriberInformation.h"
 
+#include "SubscriberInformation.h"
+
 namespace InMemoryBus
 {
 
     UnknownSubscriberInformation::UnknownSubscriberInformation() :
-            SubscriberInformation("Unknown", getNotifyFunc())
+            SubscriberInformation("Unknown", "Unknown", getNotifyFunc())
     {
     }
 

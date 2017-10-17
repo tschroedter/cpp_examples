@@ -14,26 +14,32 @@
 #include <map>
 #include "IBus.h"
 #include "subscribers/SubscriberInformation.h"
+#include "subscribers/SubscriberInformationRepository.h"
 #include "Typedefs.h"
 
-namespace InMemoryBus {
+namespace InMemoryBus
+{
+    // TODO use newsubrepo!!!
+    // typedef std::map<std::string, Subscribers*> MessagesToSubscribers;
 
-typedef std::map<std::string, Subscribers*> MessagesToSubscribers;
+    class MessageBus: public IBus
+    {
+        public:
+            MessageBus(SubscriberInformationRepository_SPtr subscribers,
+                    Messages* messages);
+            virtual ~MessageBus();
+            void subscribe(std::string subscriber_id, std::string message_type,
+                    SubscriberFunction messageReceiver);
+            void unsubscribe(std::string subscriber_id,
+                    std::string message_type);
+            void publish(BaseMessage* p_message);
+            void notify();
 
-class MessageBus: public IBus {
-public:
-	MessageBus(Subscribers* subscribers, Messages* messages);
-	virtual ~MessageBus();
-	void subscribe(std::string subscriber_id, SubscriberFunction messageReceiver);
-	void unsubscribe(std::string subscriber_id);
-	void publish(BaseMessage* p_message);
-	void notify();
-
-private:
-	Subscribers* m_subsribers;
-	Messages* m_messages;
-	MessagesToSubscribers m_messages_to_subscribers;
-};
+        private:
+            SubscriberInformationRepository_SPtr m_subscribers;
+            Messages* m_messages;
+            // MessagesToSubscribers m_messages_to_subscribers; // todo create mapping message to subscribers
+    };
 
 } /* namespace InMemoryBus */
 

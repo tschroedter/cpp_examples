@@ -15,10 +15,12 @@
 namespace InMemoryBus
 {
 
-    BusNode::BusNode(std::string subscriber_id, MessageBus *messageBus)
+    BusNode::BusNode(std::string subscriber_id, std::string message_type,
+            MessageBus *messageBus)
     {
         this->messageBus = messageBus;
-        this->messageBus->subscribe(subscriber_id, this->getNotifyFunc());
+        this->messageBus->subscribe(subscriber_id, message_type,
+                this->getNotifyFunc());
     }
 
     BusNode::~BusNode()

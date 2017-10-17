@@ -18,7 +18,8 @@ namespace InMemoryBusExample
     {
         public:
             Message(const std::string event = "Unknown");
-            virtual ~Message();
+            ~Message();
+
             std::string getEvent();
         private:
             std::string m_MessageEvent;

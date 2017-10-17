@@ -1,12 +1,12 @@
 /*
- * UnknownSubscriberInformation.h
+ * NewUnknownSubscriberInformation.h
  *
- *  Created on: 4Jul.,2017
+ *  Created on: 29 Aug. 2017
  *      Author: tom
  */
 
-#ifndef UNKNOWNSUBSCRIBERINFORMATION_H_
-#define UNKNOWNSUBSCRIBERINFORMATION_H_
+#ifndef SUBSCRIBERS_UNKNOWNSUBSCRIBERINFORMATION_H_
+#define SUBSCRIBERS_UNKNOWNSUBSCRIBERINFORMATION_H_
 
 #include "../BaseMessage.h"
 #include "SubscriberInformation.h"
@@ -14,8 +14,7 @@
 namespace InMemoryBus
 {
 
-    class UnknownSubscriberInformation  // todo testing
-        : public SubscriberInformation
+    class UnknownSubscriberInformation: public SubscriberInformation
     {
         public:
             UnknownSubscriberInformation();
@@ -25,8 +24,8 @@ namespace InMemoryBus
 
         private:
             void onNotify(BaseMessage* p_message);
+
     };
-
-} /* namespace InMemoryBus */
-
-#endif /* UNKNOWNSUBSCRIBERINFORMATION_H_ */
+/* namespace InMemoryBus */
+}
+#endif /* SUBSCRIBERS_UNKNOWNSUBSCRIBERINFORMATION_H_ */

@@ -5,42 +5,36 @@
  *      Author: tom
  */
 
-#ifndef SUBSCRIBERINFORMATION_H_
-#define SUBSCRIBERINFORMATION_H_
+#ifndef NEWSUBSCRIBERINFORMATION_H_
+#define NEWSUBSCRIBERINFORMATION_H_
 
 #include <memory>
 #include <string>
 #include <vector>
+#include "../BaseEntity.h"
 #include "../Typedefs.h"
 
 namespace InMemoryBus
 {
-
-    class SubscriberInformation
+    class SubscriberInformation: public BaseEntity
     {
         public:
-            SubscriberInformation(
-                    const std::string id,
+            SubscriberInformation(const std::string id,
+                    const std::string message_type,
                     const SubscriberFunction function);
             virtual ~SubscriberInformation();
 
-            friend bool operator<(
-                    const SubscriberInformation& one,
+            friend bool operator<(const SubscriberInformation& one,
                     const SubscriberInformation& two);
 
             std::string subscriber_id;
-            SubscriberFunction function;
+            std::string message_type;
+            SubscriberFunction subscriber_function;
     };
 
-    typedef SubscriberInformation* SubscriberInformation_Ptr;
-    typedef std::vector<SubscriberInformation_Ptr> Subscribers;
-    typedef Subscribers* Subscribers_Ptr;
-
-    // --- new
     typedef std::shared_ptr<SubscriberInformation> SubscriberInformation_SPtr;
     typedef std::vector<SubscriberInformation_SPtr> SubscriberInformationVector;
     typedef std::shared_ptr<SubscriberInformationVector> SubscriberInformationVector_SPtr;
-
 } /* namespace InMemoryBus */
 
-#endif /* SUBSCRIBERINFORMATION_H_ */
+#endif /* NEWSUBSCRIBERINFORMATION_H_ */

@@ -10,23 +10,25 @@
 
 #include "MessageBus.h"
 
-namespace InMemoryBus {
+namespace InMemoryBus
+{
 
-class BusNode {
-public:
-	BusNode(std::string subscriber_id,
-	        MessageBus *messageBus);
-	virtual ~BusNode();
+    class BusNode
+    {
+        public:
+            BusNode(std::string subscriber_id, std::string message_type,
+                    MessageBus *messageBus);
+            virtual ~BusNode();
 
-	virtual void update();
+            virtual void update();
 
-protected:
-	MessageBus *messageBus;
+        protected:
+            MessageBus *messageBus;
 
-	std::function<void(BaseMessage*)> getNotifyFunc();
-	void send(BaseMessage* p_message);
-	virtual void onNotify(BaseMessage* p_message);
-};
+            std::function<void(BaseMessage*)> getNotifyFunc();
+            void send(BaseMessage* p_message);
+            virtual void onNotify(BaseMessage* p_message);
+    };
 } /* namespace InMemoryBus */
 
 #endif /* BUSNODE_H_ */

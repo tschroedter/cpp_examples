@@ -12,15 +12,18 @@
 #include <iostream>
 #include <string>
 #include "MessageBus.h"
+
 #include "subscribers/SubscriberInformation.h"
+#include "subscribers/SubscriberInformationRepository.h"
 #include "Typedefs.h"
 
 namespace InMemoryBus
 {
 
-    MessageBus::MessageBus(Subscribers* subscribers, Messages* messages)
+    MessageBus::MessageBus(SubscriberInformationRepository_SPtr subscribers,
+            Messages* messages)
     {
-        m_subsribers = subscribers;
+        m_subscribers = subscribers;
         m_messages = messages;
     }
 
@@ -28,44 +31,33 @@ namespace InMemoryBus
     {
     }
 
-    void MessageBus::subscribe(
-            std::string subscriber_id,
-            SubscriberFunction messageReceiver)
+    void MessageBus::subscribe(std::string subscriber_id,
+            std::string message_type, SubscriberFunction messageReceiver)
     {
-        SubscriberInformation_Ptr info =
-                new SubscriberInformation(
-                        subscriber_id,
-                        messageReceiver);
+        SubscriberInformation_SPtr info =
+                std::make_shared<SubscriberInformation>(subscriber_id,
+                        message_type, messageReceiver);
 
-        m_subsribers->push_back(info);
+        m_subscribers->add(info);
     }
 
-    void MessageBus::unsubscribe(
-            std::string subscriber_id)
+    void MessageBus::unsubscribe(std::string subscriber_id,
+            std::string message_type)
     {
-        int indexToBeRemoved = -1;
-        int currentIndex = 0;
+        SubscriberInformation_SPtr info = m_subscribers->findBySubscriberId(
+                subscriber_id);
 
-        for (auto iter = m_subsribers->begin(); iter != m_subsribers->end(); iter++)
+        if (info == nullptr)
         {
-            SubscriberInformation_Ptr info = (*iter);
-            std::string id = info->subscriber_id;
-
-            if (id.compare(subscriber_id) == 0)
-            {
-                indexToBeRemoved = currentIndex;
-                break;
-            }
-
-            currentIndex++;
+            return;
         }
 
-        if (indexToBeRemoved > -1)
+        if (message_type.compare(info->message_type) != 0)
         {
-            SubscriberInformation_Ptr toBeFreed = m_subsribers->at(indexToBeRemoved);
-            m_subsribers->erase(m_subsribers->begin() + indexToBeRemoved);
-            delete toBeFreed;
+            return; // todo testing
         }
+
+        m_subscribers->remove(info);
     }
 
     void MessageBus::publish(BaseMessage* p_message)
@@ -75,14 +67,24 @@ namespace InMemoryBus
 
     void MessageBus::notify()
     {
+        // todo notify only subscribers to message, one repository for all or repo per message type
+        SubscriberInformationVector_SPtr infos = m_subscribers->getAll();
+
         while (!m_messages->empty())
         {
-            for (auto iter = m_subsribers->begin(); iter != m_subsribers->end(); iter++)
+            for (auto iter = infos->begin(); iter != infos->end(); iter++)
             {
-                SubscriberInformation_Ptr info = (*iter);
-                SubscriberFunction func = info->function;
-
                 auto p_message = m_messages->front();
+                SubscriberInformation_SPtr info = (*iter);
+
+                auto message_type = p_message->getType();
+
+                if (message_type.compare(info->message_type) != 0)
+                {
+                    continue;
+                }
+
+                SubscriberFunction func = info->subscriber_function;
 
                 func(p_message);
             }
