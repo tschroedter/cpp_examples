@@ -78,7 +78,7 @@ int main()
         }
     } catch (InMemoryBus::ArgumentInvalidException const & ex)
     {
-        std::cout << "Exception: " << ex.create_message();
+        std::cout << "Exception: " << ex.get_message();
     }
 
     return (0);

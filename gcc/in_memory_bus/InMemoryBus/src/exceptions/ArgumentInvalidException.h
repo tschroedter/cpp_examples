@@ -33,11 +33,6 @@ namespace InMemoryBus
             {
             }
 
-            const char* what()
-            {
-                return (m_message.c_str());
-            }
-
             std::string get_message() const
             {
                 return (m_message);
