@@ -10,8 +10,8 @@
 #include <chrono>
 #include <ctime>
 #include "TemperaturesMonitor.h"
-#include "../../Exceptions/ArgumentInvalidExceptions.h"
-#include "../../Interfaces/IO/Sensors/ITemperatureSensor.h"
+#include "./Common/Exceptions/ArgumentInvalidExceptions.h"
+#include "./Hardware/Interfaces/IO/Sensors/ITemperatureSensor.h"
 #include "../../Interfaces/IO/Sensors/ITemperatureInside.h"
 #include "../../Interfaces/IO/Sensors/ITemperatureOutside.h"
 #include "../../Interfaces/IO/Monitors/ITemperatureSensorToStringConverter.h"

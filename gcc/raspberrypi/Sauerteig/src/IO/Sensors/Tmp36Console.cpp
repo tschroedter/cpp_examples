@@ -7,9 +7,9 @@
 
 #include <iostream>
 #include <thread>
-#include "../../CommonTypes.h"
+#include "./Common/CommonTypes.h"
 #include "Tmp36Console.h"
-#include "../../Interfaces/IO/Sensors/ITmp36.h"
+#include "./Hardware/Interfaces/IO/Sensors/ITmp36.h"
 
 Tmp36Console::Tmp36Console(ITmp36_SPtr tmp36)
         : m_tmp36(tmp36) {

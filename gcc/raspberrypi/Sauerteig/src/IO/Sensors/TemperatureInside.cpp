@@ -7,8 +7,8 @@
 #define CHANNEL_0 ((uint) 0)
 
 #include "TemperatureInside.h"
-#include "../../Exceptions/ArgumentInvalidExceptions.h"
-#include "../../Interfaces/IO/Sensors/ITmp36.h"
+#include "./Common/Exceptions/ArgumentInvalidExceptions.h"
+#include "./Hardware/Interfaces/IO/Sensors/ITmp36.h"
 
 TemperatureInside::TemperatureInside(ITmp36_SPtr tmp36)
         : m_tmp36(tmp36) {

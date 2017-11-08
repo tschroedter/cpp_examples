@@ -5,10 +5,9 @@
  *      Author: tom
  */
 
-#include "Interfaces/IO/AnalogeDigitalConverters/IADC0832.h"
-#include "IO/AnalogeDigitalConverters/ADC0832.h"
 #include "IOCContainerBuilder.h"
-#include "IO/InstallerIO.h"
+#include "IO/Installer.h"
+#include "Hardware/HarwareInstaller.h"
 
 IOCContainerBuilder::IOCContainerBuilder() {
 
@@ -20,9 +19,11 @@ IOCContainerBuilder::~IOCContainerBuilder() {
 void IOCContainerBuilder::register_components(
         Hypodermic::ContainerBuilder& builder) {
 
-    InstallerIO installer_adc0832 { };
-    installer_adc0832.register_components(builder);
+    Installer installer { };
+    installer.register_components(builder);
 
+    HardwareInstaller hardware_installer { };
+    hardware_installer.register_components(builder);
 }
 
 Container_SPtr IOCContainerBuilder::build() {

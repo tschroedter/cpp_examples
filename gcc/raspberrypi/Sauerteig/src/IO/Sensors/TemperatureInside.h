@@ -8,7 +8,7 @@
 #ifndef IO_SENSORS_TEMPERATUREINSIDE_H_
 #define IO_SENSORS_TEMPERATUREINSIDE_H_
 
-#include "../../Interfaces/IO/Sensors/ITmp36.h"
+#include "./Hardware/Interfaces/IO/Sensors/ITmp36.h"
 #include "../../Interfaces/IO/Sensors/ITemperatureInside.h"
 
 class TemperatureInside : public ITemperatureInside {

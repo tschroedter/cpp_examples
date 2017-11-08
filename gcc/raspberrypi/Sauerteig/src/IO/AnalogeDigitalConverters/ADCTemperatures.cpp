@@ -6,10 +6,10 @@
  */
 
 #include <mutex>
-#include "../../Exceptions/ArgumentInvalidExceptions.h"
+#include "./Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "ADCTemperatures.h"
-#include "../../Interfaces/IO/AnalogeDigitalConverters/IADCTemperatures.h"
-#include "../../CommonTypes.h"
+#include "Hardware/Interfaces/IO/AnalogeDigitalConverters/IADCTemperatures.h"
+#include "./Common/CommonTypes.h"
 
 #define DEFAULT_NUMBER_OF_CHANNELS ((uint)2)
 #define DEFAULT_ADC_PIN_CS    ((uint)0)

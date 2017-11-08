@@ -8,8 +8,8 @@
 #define CHANNEL_1 ((uint) 1)
 
 #include "TemperatureOutside.h"
-#include "../../Exceptions/ArgumentInvalidExceptions.h"
-#include "../../Interfaces/IO/Sensors/ITmp36.h"
+#include "./Common/Exceptions/ArgumentInvalidExceptions.h"
+#include "./Hardware/Interfaces/IO/Sensors/ITmp36.h"
 
 TemperatureOutside::TemperatureOutside(ITmp36_SPtr tmp36)
         : m_tmp36(tmp36) {

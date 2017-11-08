@@ -9,7 +9,7 @@
 #define INTERFACES_IO_MONITORS_ITEMPERATURESENSORTOSTRINGCONVERTER_H_
 
 #include <string>
-#include "../Sensors/ITemperatureSensor.h"
+#include "./Hardware/Interfaces/IO/Sensors/ITemperatureSensor.h"
 
 class ITemperatureSensorToStringConverter {
  public:

@@ -10,7 +10,7 @@
 
 #include <chrono>
 #include <thread>
-#include "../../Interfaces/IO/Sensors/ITmp36.h"
+#include "./Hardware/Interfaces/IO/Sensors/ITmp36.h"
 #include "../../Interfaces/IO/Sensors/ITmp36Console.h"
 
 class Tmp36Console : public ITmp36Console {

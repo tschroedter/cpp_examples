@@ -9,7 +9,7 @@
 #define IO_SENSORS_TEMPERATUREOUTSIDE_H_
 
 #include "../../Interfaces/IO/Sensors/ITemperatureOutside.h"
-#include "../../Interfaces/IO/Sensors/ITmp36.h"
+#include "./Hardware/Interfaces/IO/Sensors/ITmp36.h"
 
 class TemperatureOutside : public ITemperatureOutside {
  public:

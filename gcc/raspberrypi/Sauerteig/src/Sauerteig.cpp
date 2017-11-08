@@ -16,6 +16,8 @@
 #include "IOCContainerBuilder.h"
 #include "Interfaces/IO/Sensors/ITmp36Console.h"
 #include "Interfaces/IO/Monitors/ITemperaturesMonitor.h"
+#include "Hardware/Interfaces/IO/SerialShiftRegister/I74HC595.h"
+#include "Common/CommonTypes.h"
 
 #define CHANNEL_0 ((uint) 0)
 #define CHANNEL_1 ((uint) 1)
@@ -31,6 +33,9 @@ int main(void) {
         std::cout << "setup wiringPi failed !\n";
         return -1;
     }
+
+    I74HC595_SPtr ssr = container->resolve<I74HC595>();
+    ssr->initialize((uint)23, (uint)24, (uint)25);
 
     ITemperaturesMonitor_SPtr monitor =
             container->resolve<ITemperaturesMonitor>();

@@ -8,8 +8,8 @@
 #ifndef INTERFACES_IO_SENSORS_ITMP36CONSOLE_H_
 #define INTERFACES_IO_SENSORS_ITMP36CONSOLE_H_
 
-#include "ITmp36.h"
-#include "../../../CommonTypes.h"
+#include "./Hardware/Interfaces/IO/Sensors/ITmp36.h"
+#include "./Common/CommonTypes.h"
 
 class ITmp36Console {
  public:

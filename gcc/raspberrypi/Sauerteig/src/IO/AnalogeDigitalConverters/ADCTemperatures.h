@@ -8,8 +8,8 @@
 #ifndef IO_ANALOGEDIGITALCONVERTERS__ADCTEMPERATURES_H_
 #define IO_ANALOGEDIGITALCONVERTERS__ADCTEMPERATURES_H_
 
-#include "../../Interfaces/IO/AnalogeDigitalConverters/IADCTemperatures.h"
-#include "../../Interfaces/IO/AnalogeDigitalConverters/ThreadSafe/IThreadSafeADC0832.h"
+#include "./Hardware/Interfaces/IO/AnalogeDigitalConverters/IADCTemperatures.h"
+#include "./Hardware/Interfaces/IO/AnalogeDigitalConverters/ThreadSafe/IThreadSafeADC0832.h"
 
 class ADCTemperatures : public IADCTemperatures {
  public:
