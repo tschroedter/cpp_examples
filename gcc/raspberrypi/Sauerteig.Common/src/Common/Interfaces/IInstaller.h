@@ -10,11 +10,15 @@
 
 #include <Hypodermic/ContainerBuilder.h>
 
+namespace Common {
+namespace Interfaces {
 class IInstaller {
  public:
     virtual ~IInstaller() = default;
 
     virtual void register_components(Hypodermic::ContainerBuilder& builder) = 0;
 };
+}
+}
 
 #endif /* IINSTALLER_H_ */

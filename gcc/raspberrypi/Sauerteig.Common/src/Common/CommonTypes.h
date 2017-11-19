@@ -10,5 +10,10 @@
 
 typedef unsigned char uchar;
 typedef unsigned int uint;
+typedef unsigned int wiringpipin;
+typedef double adcchannel;
+typedef unsigned int ssroutputpin;
+typedef double celsius;
+typedef double voltage;
 
 #endif /* COMMONTYPES_H_ */

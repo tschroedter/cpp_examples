@@ -5,37 +5,43 @@
  *      Author: tom
  */
 
-#ifndef HARDWARE_IO_ANALOGEDIGITALCONVERTERS_ADC0832_H_
-#define HARDWARE_IO_ANALOGEDIGITALCONVERTERS_ADC0832_H_
+#ifndef SRC_HARDWARE_IO_ANALOGEDIGITALCONVERTERS_ADC0832_H_
+#define SRC_HARDWARE_IO_ANALOGEDIGITALCONVERTERS_ADC0832_H_
 
 #include <vector>
+#include "Common/CommonTypes.h"
 #include "../../Interfaces/IO/AnalogeDigitalConverters/IADC0832.h"
 
 #define DEFAULT_ADC_PIN_CS  0
 #define DEFAULT_ADC_PIN_DIO 1
 #define DEFAULT_ADC_CLK     2
 
-class ADC0832 : public IADC0832 {
+namespace Hardware {
+namespace IO {
+namespace AnalogeDigitalConverters {
+class ADC0832 :
+        public Hardware::Interfaces::IO::AnalogeDigitalConverters::IADC0832 {
  public:
     ADC0832();
-    ADC0832(uint number_of_channels, uint pin_cs, uint pin_dio, uint pin_clk);
+    ADC0832(adcchannel number_of_channels, wiringpipin pin_cs,
+            wiringpipin pin_dio, wiringpipin pin_clk);
     virtual ~ADC0832();
 
-    void read_value_for_channel(uint channel) override;
-    bool is_value_valid_for_channel(uint channel) const override;
-    uchar get_value_for_channel(uint channel) const override;
-    uint get_number_of_channels() const override;
-    uint get_pin_cs() const override;
-    uint get_pin_dio() const override;
-    uint get_pin_clk() const override;
-    void initialize(uint number_of_channels, uint pin_cs, uint pin_dio,
-                    uint pin_clk) override;
+    void read_value_for_channel(adcchannel channel) override;
+    bool is_value_valid_for_channel(adcchannel channel) const override;
+    uchar get_value_for_channel(adcchannel channel) const override;
+    adcchannel get_number_of_channels() const override;
+    wiringpipin get_pin_cs() const override;
+    wiringpipin get_pin_dio() const override;
+    wiringpipin get_pin_clk() const override;
+    void initialize(adcchannel number_of_channels, wiringpipin pin_cs,
+                    wiringpipin pin_dio, wiringpipin pin_clk) override;
 
  private:
-    uint m_number_of_channels = 2;
-    uint m_pin_cs = DEFAULT_ADC_PIN_CS;
-    uint m_pin_dio = DEFAULT_ADC_PIN_DIO;
-    uint m_pin_clk = DEFAULT_ADC_CLK;
+    adcchannel m_number_of_channels = 2;
+    wiringpipin m_pin_cs = DEFAULT_ADC_PIN_CS;
+    wiringpipin m_pin_dio = DEFAULT_ADC_PIN_DIO;
+    wiringpipin m_pin_clk = DEFAULT_ADC_CLK;
 
     std::vector<uchar> m_data;
     std::vector<bool> m_is_data_valid;
@@ -43,8 +49,12 @@ class ADC0832 : public IADC0832 {
     uchar read_value_for_channel_1();
     uchar read_value_for_channel_2();
     void after_read_value();
-    void before_for_read_value(uint channel);
+    void before_for_read_value(adcchannel channel);
     void initialize_with_default_values();
+    void validate_channel(adcchannel channel) const;
 };
+}
+}
+}
 
-#endif /* ADC0832_H_ */
+#endif /* SRC_HARDWARE_IO_ANALOGEDIGITALCONVERTERS_ADC0832_H_ */

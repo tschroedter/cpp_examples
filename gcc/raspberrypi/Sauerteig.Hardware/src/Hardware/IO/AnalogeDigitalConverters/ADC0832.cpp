@@ -9,11 +9,16 @@
 #include <stdio.h>
 #include <vector>
 #include "ADC0832.h"
-#include "../../Interfaces/IO/AnalogeDigitalConverters/IADC0832.h"
-#include "./Common/Exceptions/ArgumentInvalidExceptions.h"
 
-void ADC0832::initialize(uint number_of_channels, uint pin_cs, uint pin_dio,
-                         uint pin_clk) {
+#include <Common/Exceptions/ADCChannelInvalidException.h>
+
+#include "../../Interfaces/IO/AnalogeDigitalConverters/IADC0832.h"
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
+
+using namespace Hardware::IO::AnalogeDigitalConverters;
+
+void ADC0832::initialize(adcchannel number_of_channels, wiringpipin pin_cs,
+                         wiringpipin pin_dio, wiringpipin pin_clk) {
     m_number_of_channels = number_of_channels;
     m_pin_cs = pin_cs;
     m_pin_dio = pin_dio;
@@ -35,8 +40,8 @@ void ADC0832::initialize_with_default_values() {
 ADC0832::ADC0832() {
 }
 
-ADC0832::ADC0832(uint number_of_channels, uint pin_cs, uint pin_dio,
-                 uint pin_clk)
+ADC0832::ADC0832(adcchannel number_of_channels, wiringpipin pin_cs,
+                 wiringpipin pin_dio, wiringpipin pin_clk)
         : m_number_of_channels(number_of_channels),
           m_pin_cs(pin_cs),
           m_pin_dio(pin_dio),
@@ -48,7 +53,18 @@ ADC0832::~ADC0832() {
     m_is_data_valid.clear();
 }
 
-bool ADC0832::is_value_valid_for_channel(uint channel) const {
+void ADC0832::validate_channel(adcchannel channel) const {
+    if (channel >= m_number_of_channels || channel < 0) {
+        throw Common::Exceptions::ADCChannelInvalidException(
+                "Invalid channel '" + std::to_string(channel)
+                        + "'! Channel must 0 <= channel < "
+                        + std::to_string(m_number_of_channels) + "!");
+    }
+}
+
+bool ADC0832::is_value_valid_for_channel(adcchannel channel) const {
+    validate_channel(channel);
+
     return (m_is_data_valid[channel]);
 }
 
@@ -90,7 +106,7 @@ uchar ADC0832::read_value_for_channel_2() {
     return dat2;
 }
 
-void ADC0832::before_for_read_value(uint channel) {
+void ADC0832::before_for_read_value(adcchannel channel) {
     digitalWrite(m_pin_cs, 0);
     digitalWrite(m_pin_clk, 0);
     digitalWrite(m_pin_dio, 1);
@@ -120,16 +136,9 @@ void ADC0832::after_read_value() {
     pinMode(m_pin_dio, OUTPUT);
 }
 
-void ADC0832::read_value_for_channel(uint channel) {
-    if (channel >= m_number_of_channels) {
-        std::string message =
-                "ADC0832: Can't read value from channel '"
-                        + std::to_string(channel)
-                        + "' because channel needs to be less than number of channels ' "
-                        + std::to_string(m_number_of_channels) + "'!";
-
-        throw ArgumentInvalidException(message.c_str(), "channel");
-    }
+void ADC0832::read_value_for_channel(adcchannel channel) {
+    // TODO add timeout
+    validate_channel(channel);
 
     before_for_read_value(channel);
 
@@ -143,10 +152,12 @@ void ADC0832::read_value_for_channel(uint channel) {
     after_read_value();
 }
 
-uint ADC0832::get_number_of_channels() const {
+adcchannel ADC0832::get_number_of_channels() const {
     return (m_number_of_channels);
 }
 
-uchar ADC0832::get_value_for_channel(uint channel) const {
+uchar ADC0832::get_value_for_channel(adcchannel channel) const {
+    validate_channel(channel);
+
     return (m_data[channel]);
 }

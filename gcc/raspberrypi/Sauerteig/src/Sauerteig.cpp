@@ -10,23 +10,20 @@
 #include <iostream>
 #include <memory>
 #include <thread>
-#include <vector>
-#include <string.h>
+#include <string>
+#include <exception>
 #include "Hypodermic/ContainerBuilder.h"
 #include "IOCContainerBuilder.h"
-#include "Interfaces/IO/Sensors/ITmp36Console.h"
-#include "Interfaces/IO/Monitors/ITemperaturesMonitor.h"
-#include "Hardware/Interfaces/IO/SerialShiftRegister/I74HC595.h"
 #include "Common/CommonTypes.h"
-
-#define CHANNEL_0 ((uint) 0)
-#define CHANNEL_1 ((uint) 1)
+#include "Common/Interfaces/ILogger.h"
+#include "Interfaces/Monitors/ITemperaturesMonitor.h"
+#include "Hardware/Abstract/Interfaces/IO/IFlashable.h"
+#include "Hardware/Abstract/Interfaces/IO/LEDs/ISSRLEDFlashing.h"
 
 int main(void) {
 
-// todo use BOOST.DI
-
-    IOCContainerBuilder builder { };
+    // TODO use BOOST.DI
+    Sauerteig::IOCContainerBuilder builder { };
     Container_SPtr container = builder.build();
 
     if (wiringPiSetup() == -1) {
@@ -34,15 +31,42 @@ int main(void) {
         return -1;
     }
 
-    I74HC595_SPtr ssr = container->resolve<I74HC595>();
-    ssr->initialize((uint)23, (uint)24, (uint)25);
+    try {
+        using namespace Hardware::Abstract::Interfaces::IO::LEDs;
 
-    ITemperaturesMonitor_SPtr monitor =
-            container->resolve<ITemperaturesMonitor>();
-    std::thread thread { std::thread([monitor]() {(*monitor)();}) };
+        ISSRLEDFlashing_SPtr led_power = container->resolve<ISSRLEDFlashing>();
+        led_power->initialize((ssroutputpin) 0);
+        led_power->start();
 
-    while (1) {
-        delay(10000);
+        ISSRLEDFlashing_SPtr led_cooling =
+                container->resolve<ISSRLEDFlashing>();
+        led_cooling->initialize((ssroutputpin) 1);
+        led_cooling->set_on_interval_in_msec(2000);
+        led_cooling->set_off_interval_in_msec(2000);
+        led_cooling->start();
+
+        ISSRLEDFlashing_SPtr led_heating =
+                container->resolve<ISSRLEDFlashing>();
+        led_heating->initialize((ssroutputpin) 2);
+        led_heating->set_on_interval_in_msec(3000);
+        led_heating->set_off_interval_in_msec(3000);
+        led_heating->start();
+
+        ITemperaturesMonitor_SPtr monitor =
+                container
+                        ->resolve<
+                                Sauerteig::Interfaces::Monitors::ITemperaturesMonitor>();
+        std::thread thread { std::thread([monitor]() {(*monitor)();}) };
+
+        ILogger_SPtr logger = container->resolve<Common::Interfaces::ILogger>();
+
+        while (1) {
+            logger->info("main...");
+            std::this_thread::sleep_for(std::chrono::seconds(10));
+        }
+    } catch (std::exception & ex) {
+        std::cout << "Exception: " << ex.what() << std::endl;
+        return -1;
     }
 
     return (0);

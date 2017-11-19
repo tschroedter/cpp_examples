@@ -12,6 +12,8 @@
 #include <string>
 #include <exception>
 
+namespace Common {
+namespace Exceptions {
 class ArgumentInvalidException : public std::exception {
  public:
     ArgumentInvalidException(const std::string & parameter_name) {
@@ -51,5 +53,7 @@ class ArgumentInvalidException : public std::exception {
     }
 
 };
+}
+}
 
 #endif /* EXCEPTIONS_ARGUMENTINVALIDEXCEPTIONS_H_ */

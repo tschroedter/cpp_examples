@@ -12,15 +12,17 @@
 
 typedef std::shared_ptr<Hypodermic::Container> Container_SPtr;
 
+namespace Sauerteig {
 class IOCContainerBuilder {
  public:
-    IOCContainerBuilder();
-    virtual ~IOCContainerBuilder();
+    IOCContainerBuilder() = default;
+    virtual ~IOCContainerBuilder() = default;
 
     Container_SPtr build();
 
  private:
     void register_components(Hypodermic::ContainerBuilder& builder);
 };
+}
 
 #endif /* IOCCONTAINERBUILDER_H_ */

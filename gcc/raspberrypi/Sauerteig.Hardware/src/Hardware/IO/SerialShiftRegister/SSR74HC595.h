@@ -11,21 +11,34 @@
 #include "Common/CommonTypes.h"
 #include "../../Interfaces/IO/SerialShiftRegister/I74HC595.h"
 
-// todo finish this class
-class SSR74HC595 : public I74HC595 {
+namespace Hardware {
+namespace IO {
+namespace SerialShiftRegisters {
+class SSR74HC595 :
+        public Hardware::Interfaces::IO::SerialShiftRegister::I74HC595 {
  public:
     SSR74HC595();
     virtual ~SSR74HC595() = default;
 
-    uint get_pin_ds() const override;
-    uint get_pin_st_cp() const override;
-    uint get_pin_sh_cp() const override;
-    void initialize(uint pin_ds, uint pin_sh_dp, uint pin_sh_cp) override;
+    wiringpipin get_pin_ds() const override;
+    wiringpipin get_pin_st_cp() const override;
+    wiringpipin get_pin_sh_cp() const override;
+    void initialize(wiringpipin pin_ds, wiringpipin pin_sh_cp,
+                    wiringpipin pin_sh_dp) override;
+
+    void set_value(int value) override;
+    int get_value() const override;
 
  private:
-    uint m_pin_ds;
-    uint m_pin_st_cp;
-    uint m_pin_sh_cp;
+    wiringpipin m_pin_ds;
+    wiringpipin m_pin_st_cp;
+    wiringpipin m_pin_sh_cp;
+    int m_value;
+
+    void write_value();
 };
+}
+}
+}
 
 #endif /* SRC_HARDWARE_IO_SERIALSHIFTREGISTER_SSR74HC595_H_ */

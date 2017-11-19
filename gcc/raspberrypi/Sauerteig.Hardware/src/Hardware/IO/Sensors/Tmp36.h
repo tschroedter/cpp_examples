@@ -5,29 +5,40 @@
  *      Author: tom
  */
 
-#ifndef HARDWARE_IO_SENSORS_TMP36_H_
-#define HARDWARE_IO_SENSORS_TMP36_H_
+#ifndef SRC_HARDWARE_IO_SENSORS_TMP36_H_
+#define SRC_HARDWARE_IO_SENSORS_TMP36_H_
 
 #include "../../Interfaces/IO/Sensors/ITmp36.h"
-#include "../../Interfaces/IO/AnalogeDigitalConverters/IADCTemperatures.h"
+#include "../../Interfaces/IO/Sensors/ITmp36Logic.h"
+#include "../../Interfaces/IO/AnalogeDigitalConverters/IADC.h"
 
-class Tmp36 : public ITmp36 {
+namespace Hardware {
+namespace IO {
+namespace Sensors {
+class Tmp36 : public Hardware::Interfaces::IO::Sensors::ITmp36 {
  public:
-    Tmp36(IADCTemperatures_SPtr adc);
+    Tmp36(ITmp36Logic_SPtr logic);
     virtual ~Tmp36();
 
-    void initialize(uint channel) override;
+    void initialize(IADC_SPtr adc, adcchannel channel) override;
     bool is_value_valid() const override;
-    uint get_value() const override;
+    celsius get_value() const override;
     uint get_value_raw() const override;
     void refresh() override;
 
- private:
-    IADCTemperatures_SPtr m_adc = nullptr;
+ protected:
+    IADC_SPtr m_adc = nullptr;
+    ITmp36Logic_SPtr m_logic;
     uint m_channel = 0;
-    uint m_value = 0;
+    celsius m_value = 0;
     uint m_value_raw = 0;
     bool m_is_valid = 0;
-};
 
-#endif /* TMP36_H_ */
+ private:
+    void do_refresh();
+};
+}
+}
+}
+
+#endif /* SRC_TMP36_H_ */

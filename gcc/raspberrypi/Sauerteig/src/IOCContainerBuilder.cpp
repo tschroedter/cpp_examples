@@ -6,15 +6,13 @@
  */
 
 #include "IOCContainerBuilder.h"
-#include "IO/Installer.h"
-#include "Hardware/HarwareInstaller.h"
+#include "Installer.h"
+#include "Common/Installer.h"
+#include "Hardware/Installer.h"
+#include "Hardware/Abstract/Installer.h"
+#include "Hardware/Abstract/IO/PulseGeneratoreServer.h"
 
-IOCContainerBuilder::IOCContainerBuilder() {
-
-}
-
-IOCContainerBuilder::~IOCContainerBuilder() {
-}
+using namespace Sauerteig;
 
 void IOCContainerBuilder::register_components(
         Hypodermic::ContainerBuilder& builder) {
@@ -22,8 +20,14 @@ void IOCContainerBuilder::register_components(
     Installer installer { };
     installer.register_components(builder);
 
-    HardwareInstaller hardware_installer { };
+    Common::Installer common_installer { };
+    common_installer.register_components(builder);
+
+    Hardware::Installer hardware_installer { };
     hardware_installer.register_components(builder);
+
+    Hardware::Abstract::Installer hardware_abstract_installer { };
+    hardware_abstract_installer.register_components(builder);
 }
 
 Container_SPtr IOCContainerBuilder::build() {
