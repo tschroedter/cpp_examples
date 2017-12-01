@@ -1,34 +1,34 @@
 /*
- * ComponentOtherB.cpp
+ * ComponentOther.cpp
  *
- *  Created on: 4 Oct. 2017
+ *  Created on: 22 Aug. 2017
  *      Author: tom
  */
 
-#include <iostream>
-#include "ComponentA.h"
-#include "BusNode.h"
-#include "BaseMessage.h"
-#include "OtherMessage.h"
 #include "ComponentOtherA.h"
 
-namespace InMemoryBusExample
-{
+#include <iostream>
+#include "InMemoryBus/IBus.h"
+#include "OtherMessage.h"
 
-    ComponentOtherA::ComponentOtherA(InMemoryBus::MessageBus* messageBus) :
-            InMemoryBus::BusNode("ComponentOtherA", "OtherMessage", messageBus)
-    {
-    }
+using namespace std;
 
-    ComponentOtherA::~ComponentOtherA()
-    {
-    }
+namespace InMemoryBusExample {
+ComponentOtherA::ComponentOtherA(IBus_SPtr bus)
+    : InMemoryBus::BusNode(bus, "ComponentOtherA", "OtherMessage") {
+}
 
-    void ComponentOtherA::onNotify(InMemoryBus::BaseMessage* p_base_message)
-    {
-        auto p_message = dynamic_cast<OtherMessage*>(p_base_message);
+ComponentOtherA::~ComponentOtherA() {
+  cout << "[ComponentOtherA::~ComponentOtherA] Destroyed!" << endl;
+}
 
-        std::cout << "[ComponentOtherA] I received: " << p_message->getType()
-                << std::endl;
-    }
+void ComponentOtherA::update() {
+  OtherMessage* message = new OtherMessage();
+
+  for (int i = 0; i < 3; i++) {
+    cout << "[ComponentOtherA::update] Sending OtherMessage..." << endl;
+
+    send(message);
+  }
+}
 } /* namespace InMemoryBus */

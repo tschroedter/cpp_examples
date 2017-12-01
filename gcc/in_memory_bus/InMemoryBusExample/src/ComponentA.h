@@ -8,23 +8,24 @@
 #ifndef COMPONENTA_H_
 #define COMPONENTA_H_
 
-#include "BusNode.h"
-#include "MessageBus.h"
-#include "BaseMessage.h"
+#include <memory>
+#include "InMemoryBus/BusNode.h"
+#include "InMemoryBus/IBus.h"
+#include "InMemoryBus/BaseMessage.h"
 
-namespace InMemoryBusExample
-{
+namespace InMemoryBusExample {
 
-    class ComponentA: public InMemoryBus::BusNode
-    {
-        public:
-            ComponentA(InMemoryBus::MessageBus* messageBus);
-            virtual ~ComponentA();
+class ComponentA : public InMemoryBus::BusNode {
+ public:
+  ComponentA(IBus_SPtr bus);
+  virtual ~ComponentA();
 
-        protected:
-            void onNotify(InMemoryBus::BaseMessage* p_base_message) override;
-    };
+ protected:
+  void onNotify(InMemoryBus::BaseMessage* p_base_message) override;
+};
 
 } /* namespace InMemoryBus */
+
+typedef std::unique_ptr<InMemoryBusExample::ComponentA> ComponentA_UPtr;
 
 #endif /* COMPONENTA_H_ */

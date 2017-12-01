@@ -6,23 +6,19 @@
  */
 
 #include <string>
-#include "BaseMessage.h"
+#include "InMemoryBus/BaseMessage.h"
 #include "Message.h"
 
-namespace InMemoryBusExample
-{
-    Message::Message(const std::string event) :
-            InMemoryBus::BaseMessage("Message")
-    {
-        m_MessageEvent = event;
-    }
+namespace InMemoryBusExample {
+Message::Message(const std::string event)
+    : InMemoryBus::BaseMessage("Message") {
+  m_MessageEvent = event;
+}
 
-    Message::~Message()
-    {
-    }
+Message::~Message() {
+}
 
-    std::string Message::getEvent()
-    {
-        return (m_MessageEvent);
-    }
+std::string Message::getEvent() {
+  return (m_MessageEvent);
+}
 } /* namespace InMemoryBus */

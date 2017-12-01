@@ -7,36 +7,32 @@
 
 #include <iostream>
 #include "ComponentB.h"
-#include "MessageBus.h"
-#include "BaseMessage.h"
+#include "InMemoryBus/IBus.h"
+#include "InMemoryBus/BaseMessage.h"
 #include "Message.h"
 
-namespace InMemoryBusExample
-{
+using namespace std;
 
-    ComponentB::ComponentB(InMemoryBus::MessageBus* messageBus) :
-            InMemoryBus::BusNode("ComponentB", "Message", messageBus)
-    {
-    }
-    ComponentB::~ComponentB()
-    {
-    }
+namespace InMemoryBusExample {
 
-    void ComponentB::update()
-    {
-        Message* p_greeting = new Message("Hello"); // todo memory leak
-        send(p_greeting);
+ComponentB::ComponentB(IBus_SPtr bus)
+    : InMemoryBus::BusNode(bus, "ComponentB", "Message") {
+}
+ComponentB::~ComponentB() {
+  cout << "[ComponentB::~ComponentB] Destroyed!" << endl;
+}
 
-        std::cout << "[ComponentB] I sending: " << p_greeting->getEvent()
-                << std::endl;
-    }
+void ComponentB::update() {
+  Message* p_greeting = new Message("Hello");  // todo memory leak
+  send(p_greeting);
 
-    void ComponentB::onNotify(InMemoryBus::BaseMessage* p_base_message)
-    {
-        auto p_message = dynamic_cast<Message*>(p_base_message);
+  cout << "[ComponentB::update] I sending: " << p_greeting->getEvent() << endl;
+}
 
-        std::cout << "[ComponentB] I received: " << p_message->getEvent()
-                << std::endl;
-    }
+void ComponentB::onNotify(InMemoryBus::BaseMessage* p_base_message) {
+  auto p_message = dynamic_cast<Message*>(p_base_message);
+
+  cout << "[ComponentB::onNotify] I received: " << p_message->getEvent() << endl;
+}
 
 } /* namespace InMemoryBus */

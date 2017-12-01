@@ -9,9 +9,8 @@
 #include <gtest/gtest.h>
 #include <subscribers/SubscriberInformationRepository.h>
 #include "MessageBus.h"
-#include "Message.h"
 #include "Typedefs.h"
-#include "TestSubscriber.h"
+#include "subscribers/TestSubscriber.h"
 
 namespace InMemoryBusTests
 {
@@ -24,7 +23,7 @@ namespace InMemoryBusTests
                 std::make_shared<InMemoryBus::SubscriberInformationRepository>(
                         informations);
 
-        return subscribers;
+        return (subscribers);
     }
 
     TEST(MessageBusTest, subscribe_adds_to_subscribers)

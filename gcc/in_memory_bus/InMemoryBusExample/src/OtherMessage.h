@@ -8,16 +8,14 @@
 #ifndef OTHERMESSAGE_H_
 #define OTHERMESSAGE_H_
 
-#include <BaseMessage.h>
+#include "InMemoryBus/BaseMessage.h"
 
-namespace InMemoryBusExample
-{
-    class OtherMessage: public InMemoryBus::BaseMessage
-    {
-        public:
-            OtherMessage();
-            ~OtherMessage();
-    };
+namespace InMemoryBusExample {
+class OtherMessage : public InMemoryBus::BaseMessage {
+ public:
+  OtherMessage();
+  ~OtherMessage();
+};
 
 } /* namespace InMemoryBus */
 

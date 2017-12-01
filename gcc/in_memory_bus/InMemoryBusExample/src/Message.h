@@ -9,21 +9,19 @@
 #define MESSAGE_H_
 
 #include <string>
-#include "BaseMessage.h"
+#include "InMemoryBus/BaseMessage.h"
 
-namespace InMemoryBusExample
-{
+namespace InMemoryBusExample {
 
-    class Message: public InMemoryBus::BaseMessage
-    {
-        public:
-            Message(const std::string event = "Unknown");
-            ~Message();
+class Message : public InMemoryBus::BaseMessage {
+ public:
+  Message(const std::string event = "Unknown");
+  ~Message();
 
-            std::string getEvent();
-        private:
-            std::string m_MessageEvent;
-    };
+  std::string getEvent();
+ private:
+  std::string m_MessageEvent;
+};
 
 } /* namespace InMemoryBus */
 

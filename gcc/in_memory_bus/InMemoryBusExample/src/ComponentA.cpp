@@ -7,27 +7,27 @@
 
 #include <iostream>
 #include "ComponentA.h"
-#include "BusNode.h"
-#include "BaseMessage.h"
+#include "InMemoryBus/IBus.h"
+#include "InMemoryBus/BusNode.h"
+#include "InMemoryBus/BaseMessage.h"
 #include "Message.h"
 
-namespace InMemoryBusExample
-{
+using namespace std;
 
-    ComponentA::ComponentA(InMemoryBus::MessageBus* messageBus) :
-            InMemoryBus::BusNode("ComponentA", "Message", messageBus)
-    {
-    }
+namespace InMemoryBusExample {
 
-    ComponentA::~ComponentA()
-    {
-    }
+ComponentA::ComponentA(IBus_SPtr bus)
+    : InMemoryBus::BusNode(bus, "ComponentA", "Message") {
+}
 
-    void ComponentA::onNotify(InMemoryBus::BaseMessage* p_base_message)
-    {
-        auto p_message = dynamic_cast<Message*>(p_base_message);
+ComponentA::~ComponentA() {
+  cout << "[ComponentA::~ComponentA] Destroyed!" << endl;
+}
 
-        std::cout << "[ComponentA] I received: " << p_message->getEvent()
-                << std::endl;
-    }
-} /* namespace InMemoryBus */
+void ComponentA::onNotify(InMemoryBus::BaseMessage* p_base_message) {
+  auto p_message = dynamic_cast<Message*>(p_base_message);
+
+  cout << "[ComponentA::onNotify] I received: " << p_message->getEvent() << endl;
+}
+
+}

@@ -7,16 +7,13 @@
 
 #include "OtherMessage.h"
 
-namespace InMemoryBusExample
-{
+namespace InMemoryBusExample {
 
-    OtherMessage::OtherMessage() :
-            InMemoryBus::BaseMessage("OtherMessage")
-    {
-    }
+OtherMessage::OtherMessage()
+    : InMemoryBus::BaseMessage("OtherMessage") {
+}
 
-    OtherMessage::~OtherMessage()
-    {
-    }
+OtherMessage::~OtherMessage() {
+}
 
 } /* namespace InMemoryBus */

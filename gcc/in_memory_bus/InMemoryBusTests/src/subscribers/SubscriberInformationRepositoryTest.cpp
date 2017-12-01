@@ -1,10 +1,10 @@
 #include <memory>
 #include <iostream>
 #include <gtest/gtest.h>
-#include <subscribers/SubscriberInformation.h>
-#include <subscribers/SubscriberInformationRepository.h>
+#include <Subscribers/SubscriberInformation.h>
+#include <Subscribers/SubscriberInformationRepository.h>
 #include "Typedefs.h"
-#include "../Message.h"
+#include "Message.h"
 
 namespace InMemoryBusTests
 {

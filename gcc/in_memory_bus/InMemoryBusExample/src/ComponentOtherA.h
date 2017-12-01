@@ -1,30 +1,27 @@
 /*
- * ComponentOtherB.h
+ * ComponentOther.h
  *
- *  Created on: 4 Oct. 2017
+ *  Created on: 22 Aug. 2017
  *      Author: tom
  */
 
 #ifndef COMPONENTOTHERA_H_
 #define COMPONENTOTHERA_H_
 
-#include "BusNode.h"
-#include "MessageBus.h"
-#include "BaseMessage.h"
+#include "InMemoryBus/BusNode.h"
+#include "InMemoryBus/IBus.h"
 
-namespace InMemoryBusExample
-{
+namespace InMemoryBusExample {
+class ComponentOtherA : public InMemoryBus::BusNode {
+ public:
+  ComponentOtherA(IBus_SPtr bus);
+  ~ComponentOtherA();
 
-    class ComponentOtherA: public InMemoryBus::BusNode
-    {
-        public:
-            ComponentOtherA(InMemoryBus::MessageBus* messageBus);
-            virtual ~ComponentOtherA();
-
-        protected:
-            void onNotify(InMemoryBus::BaseMessage* p_base_message) override;
-    };
+  void update();
+};
 
 } /* namespace InMemoryBus */
+
+typedef std::unique_ptr<InMemoryBusExample::ComponentOtherA> ComponentOtherA_UPtr;
 
 #endif /* COMPONENTOTHERA_H_ */
