@@ -20,11 +20,11 @@ class IBus {
   virtual ~IBus() = default;
   virtual void subscribe(std::string subscriber_id, std::string message_type, SubscriberFunction messageReceiver) = 0;
   virtual void unsubscribe(std::string subscriber_id, std::string message_type) = 0;
-  virtual void publish(BaseMessage* p_message) = 0;
+  virtual void publish(BaseMessage_SPtr message) = 0;
 };
 
-} /* namespace InMemoryBus */
+}
 
 typedef std::shared_ptr<InMemoryBus::IBus> IBus_SPtr;
 
-#endif /* IBUS_H_ */
+#endif

@@ -28,10 +28,10 @@ MessageBusPublisher::MessageBusPublisher(MessageBusSynchronization_SPtr synchron
   }
 }
 
-void MessageBusPublisher::publish(BaseMessage* p_message) {  // TODO use typedef shared_ptr
+void MessageBusPublisher::publish(BaseMessage_SPtr message) {  // TODO use typedef shared_ptr
   std::lock_guard<std::mutex> guard(m_synchronization->mutex);
 
-  m_messages->push(p_message);
+  m_messages->enqueue(message);
 
   m_synchronization->is_messages_avalable = true;
 

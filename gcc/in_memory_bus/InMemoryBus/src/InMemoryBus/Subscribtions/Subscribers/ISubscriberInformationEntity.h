@@ -8,6 +8,8 @@
 #ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITY_H_
 #define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITY_H_
 
+#include <memory>
+#include <vector>
 #include "../../Typedefs.h"
 #include "../../BaseEntity.h"
 

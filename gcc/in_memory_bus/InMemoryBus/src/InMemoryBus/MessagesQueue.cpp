@@ -10,24 +10,20 @@
 
 namespace InMemoryBus {
 
-BaseMessage* MessagesQueue::front() {
-  BaseMessage* message = m_queue.front();
+BaseMessage_SPtr MessagesQueue::dequeue() {
+  BaseMessage_SPtr message = nullptr;
+
+  m_queue.try_dequeue(message);
 
   return (message);
 }
 
-void MessagesQueue::pop()
-
-{
-  m_queue.pop();
-}
-
-void MessagesQueue::push(BaseMessage* message) {
-  m_queue.push(message);
+void MessagesQueue::enqueue(BaseMessage_SPtr message) {
+  m_queue.enqueue(message);
 }
 
 size_t MessagesQueue::size() const {
-  return (m_queue.size());
+  return (m_queue.size_approx());
 }
 
-} /* namespace InMemoryBus */
+}

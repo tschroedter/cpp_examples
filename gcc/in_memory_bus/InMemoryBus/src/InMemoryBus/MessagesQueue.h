@@ -5,10 +5,11 @@
  *      Author: tom
  */
 
-#ifndef NEWMESSAGESQUEUE_H_
-#define NEWMESSAGESQUEUE_H_
+#ifndef INMEMORYBUS_MESSAGESQUEUE_H_
+#define INMEMORYBUS_MESSAGESQUEUE_H_
 
 #include <queue>
+#include "concurrentqueue.h"
 #include "BaseMessage.h"
 #include "IMessagesQueue.h"
 
@@ -19,15 +20,14 @@ class MessagesQueue : public IMessagesQueue {
   MessagesQueue() = default;
   virtual ~MessagesQueue() = default;
 
-  BaseMessage* front() override;
-  void pop() override;
-  void push(BaseMessage* message) override;
+  BaseMessage_SPtr dequeue() override;
+  void enqueue(BaseMessage_SPtr message) override;
   size_t size() const override;
 
  private:
-  std::queue<BaseMessage*> m_queue { };
+  moodycamel::ConcurrentQueue<BaseMessage_SPtr> m_queue;
 };
 
-} /* namespace InMemoryBus */
+}
 
-#endif /* NEWMESSAGESQUEUE_H_ */
+#endif /* INMEMORYBUS_MESSAGESQUEUE_H_ */

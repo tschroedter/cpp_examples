@@ -8,19 +8,28 @@
 #ifndef COMPONENTOTHERB_H_
 #define COMPONENTOTHERB_H_
 
+#include <bitset>
 #include "InMemoryBus/BusNode.h"
 #include "InMemoryBus/IBus.h"
 #include "InMemoryBus/BaseMessage.h"
+
+#define EXPECTED_NO_OF_MESSAGES 100
+
+using namespace std;
 
 namespace InMemoryBusExample {
 
 class ComponentOtherB : public InMemoryBus::BusNode {
  public:
   ComponentOtherB(IBus_SPtr bus);
-  virtual ~ComponentOtherB();
+  virtual ~ComponentOtherB() = default;
+
+  bool get_status();
 
  protected:
-  void onNotify(InMemoryBus::BaseMessage* p_base_message) override;
+  void onNotify(BaseMessage_SPtr p_base_message) override;
+
+  bitset<EXPECTED_NO_OF_MESSAGES> m_bitset { 0 };
 };
 
 } /* namespace InMemoryBus */

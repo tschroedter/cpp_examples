@@ -31,13 +31,12 @@ class MessageBus : public IBus {
 
   void subscribe(std::string subscriber_id, std::string message_type, SubscriberFunction messageReceiver);
   void unsubscribe(std::string subscriber_id, std::string message_type);
-  void publish(BaseMessage* p_message);
+  void publish(BaseMessage_SPtr message);
   void notify();
 
  private:
   IMessageBusPublisher_SPtr m_publisher = nullptr;
   ISubscribtionManager_SPtr m_manager = nullptr;
-  // MessagesToSubscribers m_messages_to_subscribers; // todo create mapping message to subscribers
 };
 
 } /* namespace InMemoryBus */

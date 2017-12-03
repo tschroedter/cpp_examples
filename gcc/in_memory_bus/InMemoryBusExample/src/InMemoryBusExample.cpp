@@ -8,12 +8,16 @@
 
 #include <iostream>
 #include <memory>
-#include <string.h>
+#include <string>
+#include <vector>
 #include <boost/di.hpp>
 
 #include "ComponentA.h"
 #include "ComponentB.h"
+#include "ComponentOtherA.h"
+#include "ComponentOtherB.h"
 #include "InMemoryBusExampleModule.h"
+#include "InMemoryBus/BaseMessage.h"
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/MessageBusSynchronization.h"
 #include "InMemoryBus/IMessagesQueue.h"
@@ -23,12 +27,9 @@
 #include "InMemoryBus/Subscribtions/ISubscribtionManager.h"
 #include "InMemoryBus/Subscribtions/MessageToSubscribers/IMessageToSubscribersRepository.h"
 
-#include "ComponentOtherA.h"
-#include "ComponentOtherB.h"
-
 using namespace std;
 
-void test(InMemoryBus::BaseMessage * message) {
+void test(BaseMessage_SPtr message) {
 }
 
 void MemoryLeakTest() {
@@ -48,6 +49,8 @@ void MemoryLeakTest() {
   }
 }
 
+#define NUMBER_OF_MESSAGES 100
+
 int main() {
   try {
     cout << "InMemoryBusExample" << endl;
@@ -55,27 +58,46 @@ int main() {
     auto injector = InMemoryBusExample::inmemorybusexample_module();
     auto bus = injector.create<IBus_SPtr>();
     auto notifier_pool = injector.create<INotifierThreadPool_SPtr>();
-    notifier_pool->initialize(10);
+    notifier_pool->initialize(16);
 
     auto synchronization = injector.create<MessageBusSynchronization_SPtr>();
 
     ComponentA_UPtr compA = injector.create<ComponentA_UPtr>();
     ComponentB_UPtr compB = injector.create<ComponentB_UPtr>();
-    ComponentOtherB_UPtr otherA = injector.create<ComponentOtherB_UPtr>();
-    ComponentOtherA_UPtr otherB = injector.create<ComponentOtherA_UPtr>();
 
-    // This is supposed to act like a game loop.
-    // for (int ctr = 0; ctr < 5; ctr++)
-    {
-      compA->update();
-      compB->update();
-      otherA->update();
-      otherB->update();
+    auto coa_uptrs = std::vector<ComponentOtherA_UPtr>();
+
+    for (int i = 0; i < NUMBER_OF_MESSAGES; i++) {
+      coa_uptrs.push_back(injector.create<ComponentOtherA_UPtr>());
+      coa_uptrs[i]->set_range(i, i);
+    }
+
+    auto cob_uptrs = std::vector<ComponentOtherB_UPtr>();
+
+    for (int i = 0; i < NUMBER_OF_MESSAGES; i++) {
+      cob_uptrs.push_back(injector.create<ComponentOtherB_UPtr>());
+    }
+
+    compA->update();
+    compB->update();
+
+    for (size_t i = 0; i < coa_uptrs.size(); i++) {
+      coa_uptrs[i]->update();
     }
 
     // MemoryLeakTest();
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));  // give threads time to process
+    std::this_thread::sleep_for(std::chrono::seconds(2));  // give threads time to process
+
+    for (size_t i = 0; i < cob_uptrs.size(); i++) {
+      bool is_good = cob_uptrs[i]->get_status();
+
+      if (is_good) {
+        cout << i << ": All Good!" << endl;
+      } else {
+        cout << i << ": ERROR NOT GOOD!" << endl;
+      }
+    }
 
     notifier_pool->stop();
   } catch (const InMemoryBus::Exceptions::ArgumentInvalidException & ex) {

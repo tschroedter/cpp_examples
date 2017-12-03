@@ -18,10 +18,10 @@ namespace InMemoryBusExample {
 class ComponentA : public InMemoryBus::BusNode {
  public:
   ComponentA(IBus_SPtr bus);
-  virtual ~ComponentA();
+  virtual ~ComponentA() = default;
 
  protected:
-  void onNotify(InMemoryBus::BaseMessage* p_base_message) override;
+  void onNotify(BaseMessage_SPtr p_base_message) override;
 };
 
 } /* namespace InMemoryBus */

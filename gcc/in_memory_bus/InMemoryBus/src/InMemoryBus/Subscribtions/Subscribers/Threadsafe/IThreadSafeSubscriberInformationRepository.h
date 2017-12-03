@@ -8,7 +8,7 @@
 #ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_THREADSAFE_ITHREADSAFESUBSCRIBERINFORMATIONREPOSITORY_H_
 #define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_THREADSAFE_ITHREADSAFESUBSCRIBERINFORMATIONREPOSITORY_H_
 
-#include "../ISubscriberInformationEntityRepository.h"
+#include "../ISubscriberInformationRepository.h"
 
 namespace InMemoryBus {
 namespace Subscribtions {

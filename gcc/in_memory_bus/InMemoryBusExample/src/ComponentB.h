@@ -17,12 +17,12 @@ namespace InMemoryBusExample {
 class ComponentB : public InMemoryBus::BusNode {
  public:
   ComponentB(IBus_SPtr bus);
-  virtual ~ComponentB();
+  virtual ~ComponentB() = default;
 
   void update();
 
  private:
-  void onNotify(InMemoryBus::BaseMessage* p_base_message) override;
+  void onNotify(BaseMessage_SPtr p_base_message) override;
 };
 
 } /* namespace InMemoryBus */

@@ -19,18 +19,18 @@ SubscriberInformationEntity::SubscriberInformationEntity(const std::string subsc
       m_message_type(message_type),
       m_subscriber_function(subscriber_function) {
   if (subscriber_id.empty()) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscriberInformation because 'subscriber_id' is empty!",
+    throw Exceptions::ArgumentInvalidException("Can't create SubscriberInformationEntity because 'subscriber_id' is empty!",
                                                "subscriber_id");
   }
 
   if (message_type.empty()) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscriberInformation because 'message_type' is empty!",
+    throw Exceptions::ArgumentInvalidException("Can't create SubscriberInformationEntity because 'message_type' is empty!",
                                                "message_type");
   }
 
   if (subscriber_function == nullptr) {
     throw Exceptions::ArgumentInvalidException(
-        "Can't create SubscriberInformation because 'subscriber_function' is null!", "subscriber_function");
+        "Can't create SubscriberInformationEntity because 'subscriber_function' is null!", "subscriber_function");
   }
 }
 

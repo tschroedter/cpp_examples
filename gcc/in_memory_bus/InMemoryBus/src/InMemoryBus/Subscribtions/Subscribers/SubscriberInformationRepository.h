@@ -14,8 +14,8 @@
 #include <memory>
 #include "../../BaseRepository.h"
 #include "ISubscriberInformationEntity.h"
-#include "ISubscriberInformationEntityRepository.h"
-#include "UnknownSubscriberInformationEntity.h"
+#include "ISubscriberInformationRepository.h"
+#include "UnknownSubscriberInformationEntityEntity.h"
 
 using namespace std;
 
@@ -35,7 +35,7 @@ class SubscriberInformationRepository : public ISubscriberInformationRepository 
 
  private:
   shared_ptr<BaseRepository<ISubscriberInformationEntity>> m_informations = nullptr;
-  shared_ptr<UnknownSubscriberInformation> m_unknown = nullptr;
+  shared_ptr<UnknownSubscriberInformationEntity> m_unknown = nullptr;
 };
 }
 }

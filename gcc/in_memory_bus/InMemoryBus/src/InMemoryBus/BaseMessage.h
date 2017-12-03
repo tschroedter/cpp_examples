@@ -9,6 +9,7 @@
 #define BASEMESSAGE_H_
 
 #include <string>
+#include <memory>
 
 namespace InMemoryBus {
 
@@ -22,6 +23,8 @@ class BaseMessage {
   virtual std::string getType() const;
 };
 
-} /* namespace InMemoryBus */
+}
+
+typedef std::shared_ptr<InMemoryBus::BaseMessage> BaseMessage_SPtr;
 
 #endif /* BASEMESSAGE_H_ */

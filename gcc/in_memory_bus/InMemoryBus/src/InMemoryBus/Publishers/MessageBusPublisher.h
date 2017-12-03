@@ -21,7 +21,7 @@ class MessageBusPublisher : public IMessageBusPublisher {
   MessageBusPublisher(MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages);
   virtual ~MessageBusPublisher() = default;
 
-  void publish(BaseMessage* p_message);
+  void publish(BaseMessage_SPtr message);
 
  private:
   MessageBusSynchronization_SPtr m_synchronization = nullptr;

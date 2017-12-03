@@ -15,9 +15,14 @@ namespace InMemoryBusExample {
 class ComponentOtherA : public InMemoryBus::BusNode {
  public:
   ComponentOtherA(IBus_SPtr bus);
-  ~ComponentOtherA();
+  virtual ~ComponentOtherA() = default;
 
   void update();
+  void set_range(int start, int stop);
+
+ private:
+  int m_start = 0;
+  int m_stop = 10;
 };
 
 } /* namespace InMemoryBus */

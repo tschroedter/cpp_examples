@@ -14,7 +14,7 @@
 
 namespace InMemoryBus {
 namespace Exceptions {
-// todo testing
+
 class ArgumentInvalidException : public std::exception {
  public:
   ArgumentInvalidException(const std::string & parameter_name) {

@@ -36,7 +36,8 @@ void MessageBus::unsubscribe(std::string subscriber_id, std::string message_type
   m_manager->remove_subscription(subscriber_id, message_type);
 }
 
-void MessageBus::publish(BaseMessage* p_message) {
-  m_publisher->publish(p_message);
+void MessageBus::publish(BaseMessage_SPtr message) {
+  m_publisher->publish(message);
 }
-} /* namespace InMemoryBus */
+
+}

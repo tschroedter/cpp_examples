@@ -28,19 +28,19 @@ BusNode::~BusNode() {
 void BusNode::update() {
 }
 
-std::function<void(BaseMessage*)> BusNode::getNotifyFunc() {
-  auto messageListener = [=](BaseMessage* p_message) -> void
+std::function<void(BaseMessage_SPtr)> BusNode::getNotifyFunc() {
+  auto messageListener = [=](BaseMessage_SPtr message) -> void
   {
-    this->onNotify(p_message);
+    this->onNotify(message);
   };
   return (messageListener);
 }
 
-void BusNode::send(BaseMessage* p_message) {
-  m_bus->publish(p_message);
+void BusNode::send(BaseMessage_SPtr message) {
+  m_bus->publish(message);
 }
 
-void BusNode::onNotify(BaseMessage* message) {
+void BusNode::onNotify(BaseMessage_SPtr message) {
 }
 
 }

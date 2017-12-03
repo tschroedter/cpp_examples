@@ -34,7 +34,7 @@ class MessageBusNotifier : public IMessageBusNotifier {
   ISubscribtionManager_SPtr m_manager = nullptr;
 
   void process_next_message();
-  void notify_all_subscribers_for_message(BaseMessage* p_message);
+  void notify_all_subscribers_for_message(BaseMessage_SPtr message);
 };
 }
 }

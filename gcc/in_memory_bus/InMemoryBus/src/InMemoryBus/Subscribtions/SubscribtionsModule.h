@@ -11,9 +11,9 @@
 #include <boost/di.hpp>
 #include "SubscribtionManager.h"
 #include "ISubscribtionManager.h"
-#include "Subscribers/ISubscriberInformationEntityRepository.h"
 #include "Subscribers/SubscriberInformationRepository.h"
 #include "Subscribers/ISubscriberInformationEntity.h"
+#include "Subscribers/ISubscriberInformationRepository.h"
 #include "Subscribers/SubscriberInformationEntity.h"
 #include "Subscribers/Threadsafe/ThreadSafeSubscriberInformationRepository.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"

@@ -46,23 +46,23 @@ MessageBusNotifier::MessageBusNotifier(MessageBusSynchronization_SPtr synchroniz
   }
 }
 
-void MessageBusNotifier::notify_all_subscribers_for_message(BaseMessage* p_message) {
-  if (p_message == nullptr) {
+void MessageBusNotifier::notify_all_subscribers_for_message(BaseMessage_SPtr message) {
+  if (message == nullptr) {
     return;
   }
 
-  auto repository = m_manager->get_repository_for_message_type(p_message->getType());
+  auto repository = m_manager->get_repository_for_message_type(message->getType());
 
   ISubscriberInformationEntityVector_SPtr infos = repository->get_all_subscribers();
 
   for (auto iter = infos->begin(); iter != infos->end(); iter++) {
     ISubscriberInformationEntity_SPtr info = (*iter);
-    auto message_type = p_message->getType();
+    auto message_type = message->getType();
     if (message_type.compare(info->get_message_type()) != 0) {
       continue;
     }
     SubscriberFunction func = info->get_subscriber_function();
-    func(p_message);
+    func(message);
   }
 }
 
@@ -71,8 +71,7 @@ void MessageBusNotifier::process_next_message() {
     return;
   }
 
-  BaseMessage* message = m_messages->front();  // TODO these 2 lines should be 1 method in messages
-  m_messages->pop();
+  BaseMessage_SPtr message = m_messages->dequeue();
 
   notify_all_subscribers_for_message(message);
 }

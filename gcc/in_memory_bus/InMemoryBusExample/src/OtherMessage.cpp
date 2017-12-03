@@ -13,7 +13,4 @@ OtherMessage::OtherMessage()
     : InMemoryBus::BaseMessage("OtherMessage") {
 }
 
-OtherMessage::~OtherMessage() {
-}
-
 } /* namespace InMemoryBus */

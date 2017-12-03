@@ -6,9 +6,9 @@
  */
 
 #include "MessageToSubscribersRepository.h"
-#include "UnknownMessageToSubscribersEntity.h"
 #include "IMessageToSubscribersEntity.h"
 #include "../../Exceptions/ArgumentInvalidException.h"
+#include "UnknownMessageToSubscribersEntityEntity.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ MessageToSubscribersRepository::MessageToSubscribersRepository(IMessageToSubscri
 
   m_subscribers = make_shared<BaseRepository<IMessageToSubscribersEntity>>(subscribers);
 
-  m_unknown = make_shared<UnknownMessageToSubscribers>();
+  m_unknown = make_shared<UnknownMessageToSubscribersEntity>();
 }
 
 IMessageToSubscribersEntityVector_SPtr MessageToSubscribersRepository::get_all_subscribers() const {

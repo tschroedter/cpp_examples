@@ -11,6 +11,8 @@
 #include "InMemoryBus/IBus.h"
 #include "OtherMessage.h"
 
+#define NO_OF_MESSAGES_TO_SEND 100
+
 using namespace std;
 
 namespace InMemoryBusExample {
@@ -18,17 +20,20 @@ ComponentOtherA::ComponentOtherA(IBus_SPtr bus)
     : InMemoryBus::BusNode(bus, "ComponentOtherA", "OtherMessage") {
 }
 
-ComponentOtherA::~ComponentOtherA() {
-  cout << "[ComponentOtherA::~ComponentOtherA] Destroyed!" << endl;
-}
-
 void ComponentOtherA::update() {
-  OtherMessage* message = new OtherMessage();
-
-  for (int i = 0; i < 3; i++) {
-    cout << "[ComponentOtherA::update] Sending OtherMessage..." << endl;
+  for (int i = m_start; i <= m_stop; i++) {
+    auto message = make_shared<OtherMessage>();
+    message->counter = i;
 
     send(message);
+
+    cout << "[ComponentOtherA::update] OtherMessage with Counter: " << i << " send!" << endl;
   }
 }
-} /* namespace InMemoryBus */
+
+void ComponentOtherA::set_range(int start, int stop) {
+  m_start = start;
+  m_stop = stop;
+}
+
+}

@@ -20,14 +20,10 @@ ComponentA::ComponentA(IBus_SPtr bus)
     : InMemoryBus::BusNode(bus, "ComponentA", "Message") {
 }
 
-ComponentA::~ComponentA() {
-  cout << "[ComponentA::~ComponentA] Destroyed!" << endl;
-}
+void ComponentA::onNotify(BaseMessage_SPtr p_base_message) {
+  Message_SPtr message = dynamic_pointer_cast<Message>(p_base_message);
 
-void ComponentA::onNotify(InMemoryBus::BaseMessage* p_base_message) {
-  auto p_message = dynamic_cast<Message*>(p_base_message);
-
-  cout << "[ComponentA::onNotify] I received: " << p_message->getEvent() << endl;
+  cout << "[ComponentA::onNotify] I received: " << message->getEvent() << endl;
 }
 
 }

@@ -9,13 +9,12 @@
 #define TYPEDEFS_H_
 
 #include <memory>
-#include <queue>
 #include <functional>
-#include <vector>
 #include "BaseMessage.h"
 
 namespace InMemoryBus {
-typedef std::function<void(InMemoryBus::BaseMessage*)> SubscriberFunction;
+
+typedef std::function<void(BaseMessage_SPtr)> SubscriberFunction;
 
 } /* namespace InMemoryBus */
 

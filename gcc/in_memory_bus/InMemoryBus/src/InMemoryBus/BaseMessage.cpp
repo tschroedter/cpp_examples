@@ -18,5 +18,5 @@ BaseMessage::BaseMessage(const std::string messageType) {
 std::string BaseMessage::getType() const {
   return (this->m_messageType);
 }
-;
-} /* namespace InMemoryBus */
+
+}

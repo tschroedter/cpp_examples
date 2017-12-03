@@ -24,10 +24,11 @@ class BusNode {
   std::string m_subscriber_id;
   std::string m_message_type;
 
-  std::function<void(BaseMessage*)> getNotifyFunc();
-  void send(BaseMessage* p_message);
-  virtual void onNotify(BaseMessage* p_message);
+  std::function<void(BaseMessage_SPtr)> getNotifyFunc();
+  void send(BaseMessage_SPtr message);
+  virtual void onNotify(BaseMessage_SPtr message);
 };
-} /* namespace InMemoryBus */
+
+}
 
 #endif /* BUSNODE_H_ */

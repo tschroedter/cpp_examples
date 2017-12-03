@@ -17,7 +17,7 @@ class IMessageBusPublisher {
  public:
   virtual ~IMessageBusPublisher() = default;
 
-  virtual void publish(BaseMessage* p_message) = 0;
+  virtual void publish(BaseMessage_SPtr message) = 0;
 };
 }
 }

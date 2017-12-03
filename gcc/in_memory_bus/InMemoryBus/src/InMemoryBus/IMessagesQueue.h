@@ -17,9 +17,8 @@ class IMessagesQueue {
  public:
   virtual ~IMessagesQueue() = default;
 
-  virtual BaseMessage* front() = 0;
-  virtual void pop() = 0;
-  virtual void push(BaseMessage* message) = 0;
+  virtual BaseMessage_SPtr dequeue() = 0;
+  virtual void enqueue(BaseMessage_SPtr message) = 0;
   virtual size_t size() const = 0;
 };
 

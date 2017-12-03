@@ -24,7 +24,7 @@ SubscriberInformationRepository::SubscriberInformationRepository(ISubscriberInfo
 
   m_informations = make_shared<BaseRepository<ISubscriberInformationEntity>>(informations);
 
-  m_unknown = make_shared<UnknownSubscriberInformation>();
+  m_unknown = make_shared<UnknownSubscriberInformationEntity>();
 }
 
 void SubscriberInformationRepository::add(const ISubscriberInformationEntity_SPtr entity) {

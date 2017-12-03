@@ -22,13 +22,31 @@ ComponentOtherB::ComponentOtherB(IBus_SPtr bus)
     : InMemoryBus::BusNode(bus, "ComponentOtherB", "OtherMessage") {
 }
 
-ComponentOtherB::~ComponentOtherB() {
-  cout << "[ComponentOtherB::~ComponentOtherB] Destroyed!" << endl;
+void ComponentOtherB::onNotify(BaseMessage_SPtr p_base_message) {
+  OtherMessage_SPtr message = dynamic_pointer_cast<OtherMessage>(p_base_message);
+  int counter = message->counter;
+
+  if (m_bitset.test(counter) == true) {
+    cout << "[ComponentOtherB::onNotify] ERROR - Already received message for Counter " << counter << "!" << endl;
+
+    return;
+  }
+
+  m_bitset.set(counter);
 }
 
-void ComponentOtherB::onNotify(InMemoryBus::BaseMessage* p_base_message) {
-  auto p_message = dynamic_cast<OtherMessage*>(p_base_message);
+bool ComponentOtherB::get_status() {
+  bool all_true = true;
+  for (size_t i = 0; i < m_bitset.size(); i++) {
+    bool test = m_bitset.test(i);
 
-  cout << "[ComponentOtherB::onNotify] I received: " << p_message->getType() << endl;
+    all_true = all_true && test;
+
+    if (!test) {
+      cout << "[ComponentOtherB::onNotify] Didn't receive message for counter " << i << "!" << endl;
+    }
+  }
+
+  return (all_true);
 }
 } /* namespace InMemoryBus */

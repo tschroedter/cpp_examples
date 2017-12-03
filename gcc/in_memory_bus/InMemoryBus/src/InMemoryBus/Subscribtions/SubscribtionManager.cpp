@@ -12,7 +12,7 @@
 #include "MessageToSubscribers/MessageToSubscribersEntity.h"
 #include "MessageToSubscribers/IMessageToSubscribersRepository.h"
 #include "MessageToSubscribers/IMessageToSubscribersEntity.h"
-#include "Subscribers/ISubscriberInformationEntityRepository.h"
+#include "Subscribers/ISubscriberInformationRepository.h"
 #include "Subscribers/SubscriberInformationEntity.h"
 #include "Subscribers/SubscriberInformationRepository.h"
 #include "Subscribers/Threadsafe/ThreadSafeSubscriberInformationRepository.h"
