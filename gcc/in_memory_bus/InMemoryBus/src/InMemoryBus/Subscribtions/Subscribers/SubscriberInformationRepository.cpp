@@ -36,11 +36,11 @@ void SubscriberInformationRepository::remove(const ISubscriberInformationEntity_
 }
 
 ISubscriberInformationEntityVector_SPtr SubscriberInformationRepository::get_all_subscribers() {
-  return (m_informations->getAll());
+  return (m_informations->get_all());
 }
 
 ISubscriberInformationEntity_SPtr SubscriberInformationRepository::find_subscriber_by_id(const string& subscriber_id) {
-  auto all = m_informations->getAll();
+  auto all = m_informations->get_all();
 
   for (auto iter = all->begin(); iter != all->end(); iter++) {
     ISubscriberInformationEntity_SPtr info = (*iter);

@@ -126,7 +126,7 @@ TEST(MessageToSubscribersRepositoryTests, findBySubscriberId_returns_Unknown_For
   EXPECT_TRUE(actual->get_message_type().compare("Unknown") == 0);  // todo use function
 }
 
-TEST(MessageToSubscribersRepositoryTests, getAll_returns_all_informations) {
+TEST(MessageToSubscribersRepositoryTests, get_all_returns_all_informations) {
   // Arrange
   MockIThreadSafeSubscriberInformationRepository* p_repo = new MockIThreadSafeSubscriberInformationRepository { };
   IThreadSafeSubscriberInformationRepository_SPtr repo(p_repo);
@@ -150,7 +150,7 @@ TEST(MessageToSubscribersRepositoryTests, getAll_returns_all_informations) {
   EXPECT_TRUE(sp_two == (*actual)[1]);
 }
 
-TEST(MessageToSubscribersRepositoryTests, getAll_returns_all_informations_indepently_from_add_or_remove) {
+TEST(MessageToSubscribersRepositoryTests, get_all_returns_all_informations_indepently_from_add_or_remove) {
   // Arrange
   MockIThreadSafeSubscriberInformationRepository* p_repo = new MockIThreadSafeSubscriberInformationRepository { };
   IThreadSafeSubscriberInformationRepository_SPtr repo(p_repo);

@@ -92,7 +92,7 @@ TEST(BaseRepository, findBySubscriberId_returns_information) {
   sp_entity->get_id(id);
 
   // Act
-  auto actual = sut.findById(id);
+  auto actual = sut.find_by_id(id);
 
   // Assert
   EXPECT_TRUE(sp_entity == actual);
@@ -108,13 +108,13 @@ TEST(BaseRepository, findBySubscriberId_returns_Unknown_For_Unknown_subscriber_i
   uuid_parse("00000000-0000-0000-0000-000000000000", unknown_id);
 
   // Act
-  auto actual = sut.findById(unknown_id);
+  auto actual = sut.find_by_id(unknown_id);
 
   // Assert
   EXPECT_TRUE(actual == nullptr);
 }
 
-TEST(BaseRepository, getAll_returns_all_informations) {
+TEST(BaseRepository, get_all_returns_all_informations) {
   // Arrange
   auto sp_entity_one = std::make_shared<TestBaseEntity>();
   auto sp_entity_two = std::make_shared<TestBaseEntity>();
@@ -126,7 +126,7 @@ TEST(BaseRepository, getAll_returns_all_informations) {
   sut.add(sp_entity_two);
 
   // Act
-  auto actual = sut.getAll();
+  auto actual = sut.get_all();
 
   // Assert
   EXPECT_EQ(2, actual->size());
@@ -134,7 +134,7 @@ TEST(BaseRepository, getAll_returns_all_informations) {
   EXPECT_TRUE(sp_entity_two == (*actual)[1]);
 }
 
-TEST(BaseRepository, getAll_returns_all_informations_indepently_from_add_or_remove) {
+TEST(BaseRepository, get_all_returns_all_informations_indepently_from_add_or_remove) {
   // Arrange
   auto sp_entity_one = std::make_shared<TestBaseEntity>();
   auto sp_entity_two = std::make_shared<TestBaseEntity>();
@@ -145,7 +145,7 @@ TEST(BaseRepository, getAll_returns_all_informations_indepently_from_add_or_remo
   sut.add(sp_entity_one);
   sut.add(sp_entity_two);
 
-  auto actual = sut.getAll();
+  auto actual = sut.get_all();
   EXPECT_EQ(2, actual->size());
 
   // Act

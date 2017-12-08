@@ -34,8 +34,8 @@ class BaseRepository {
 
   virtual ~BaseRepository() = default;
 
-  SP_PointerOfT findById(uuid_t& id) {
-    int indexToFind = findIndexById(id);
+  SP_PointerOfT find_by_id(uuid_t& id) {
+    int indexToFind = find_index_by_id(id);
 
     if (indexToFind > -1) {
       return (m_entities->at(indexToFind));
@@ -60,14 +60,14 @@ class BaseRepository {
     uuid_t id;
     entity->get_id(id);
 
-    const int index = this->findIndexById(id);
+    const int index = this->find_index_by_id(id);
 
     if (index >= 0) {
       m_entities->erase(m_entities->begin() + index);
     }
   }
 
-  SP_VectorOfT getAll() {
+  SP_VectorOfT get_all() {
     VectorOfT* p_vector = new VectorOfT();
 
     for (auto iter = m_entities->begin(); iter != m_entities->end(); iter++) {
@@ -89,7 +89,7 @@ class BaseRepository {
  protected:
   SP_VectorOfT m_entities;
 
-  int findIndexById(uuid_t& id) {
+  int find_index_by_id(uuid_t& id) {
     int indexToFind = -1;
     int currentIndex = 0;
 

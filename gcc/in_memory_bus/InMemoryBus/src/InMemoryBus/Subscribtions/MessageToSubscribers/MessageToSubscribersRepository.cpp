@@ -28,12 +28,12 @@ MessageToSubscribersRepository::MessageToSubscribersRepository(IMessageToSubscri
 }
 
 IMessageToSubscribersEntityVector_SPtr MessageToSubscribersRepository::get_all_subscribers() const {
-  return (m_subscribers->getAll());
+  return (m_subscribers->get_all());
 }
 
 IMessageToSubscribersEntity_SPtr MessageToSubscribersRepository::find_subscriber_by_message_type(
     const string& message_type) {
-  auto all = m_subscribers->getAll();
+  auto all = m_subscribers->get_all();
 
   for (auto iter = all->begin(); iter != all->end(); iter++) {
     IMessageToSubscribersEntity_SPtr entity = (*iter);
