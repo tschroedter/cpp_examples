@@ -7,6 +7,7 @@
 
 #include "../Notifiers/MessageBusNotifier.h"
 
+#include <iostream>
 #include <memory>
 #include <mutex>
 #include <thread>
@@ -26,43 +27,23 @@
 namespace InMemoryBus {
 namespace Notifiers {
 MessageBusNotifier::MessageBusNotifier(MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages,
-                                       ISubscribtionManager_SPtr manager)
+                                       ISubscibersNotifier_SPtr notifier)
     : m_synchronization(synchronization),
       m_messages(messages),
-      m_manager(manager) {
+      m_notifier(notifier) {
   if (m_synchronization == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifier because 'm_synchronization' is null!",
-                                               "m_synchronization");
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifier because 'synchronization' is null!",
+                                               "synchronization");
   }
 
   if (m_messages == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifier because 'm_messages' is null!",
-                                               "m_messages");
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifier because 'messages' is null!",
+                                               "messages");
   }
 
-  if (m_manager == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifier because 'm_manager' is null!",
-                                               "m_manager");
-  }
-}
-
-void MessageBusNotifier::notify_all_subscribers_for_message(BaseMessage_SPtr message) {
-  if (message == nullptr) {
-    return;
-  }
-
-  auto repository = m_manager->get_repository_for_message_type(message->getType());
-
-  ISubscriberInformationEntityVector_SPtr infos = repository->get_all_subscribers();
-
-  for (auto iter = infos->begin(); iter != infos->end(); iter++) {
-    ISubscriberInformationEntity_SPtr info = (*iter);
-    auto message_type = message->getType();
-    if (message_type.compare(info->get_message_type()) != 0) {
-      continue;
-    }
-    SubscriberFunction func = info->get_subscriber_function();
-    func(message);
+  if (m_notifier == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifier because 'notifier' is null!",
+                                               "notifier");
   }
 }
 
@@ -73,7 +54,7 @@ void MessageBusNotifier::process_next_message() {
 
   BaseMessage_SPtr message = m_messages->dequeue();
 
-  notify_all_subscribers_for_message(message);
+  m_notifier->notify_all_subscribers_for_message(message);
 }
 
 void MessageBusNotifier::notify() {

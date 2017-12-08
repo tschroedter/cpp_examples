@@ -9,6 +9,7 @@
 #define INMEMORY_NOTIFIERS_MESSAGEBUSNOTIFIER_H_
 
 #include "IMessageBusNotifier.h"
+#include "ISubscibersNotifier.h"
 #include "../MessageBusSynchronization.h"
 #include "../IMessagesQueue.h"
 #include "../Subscribtions/ISubscribtionManager.h"
@@ -19,22 +20,25 @@ namespace Notifiers {
 class MessageBusNotifier : public IMessageBusNotifier {
  public:
   MessageBusNotifier(MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages,
-                     ISubscribtionManager_SPtr manager);
+                     ISubscibersNotifier_SPtr notifier);
   virtual ~MessageBusNotifier() = default;
 
   void operator()() {
     notify();
   }
 
-  void notify();
+  void notify() override;
+
+ protected:
+  void process_next_message();
 
  private:
   MessageBusSynchronization_SPtr m_synchronization = nullptr;
   IMessagesQueue_SPtr m_messages = nullptr;
-  ISubscribtionManager_SPtr m_manager = nullptr;
+  ISubscibersNotifier_SPtr m_notifier = nullptr;
 
-  void process_next_message();
-  void notify_all_subscribers_for_message(BaseMessage_SPtr message);
+  void notify_all_subscribers_for_message(const ISubscriberInformationEntityVector_SPtr& infos,
+                                          BaseMessage_SPtr message);
 };
 }
 }

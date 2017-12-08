@@ -9,16 +9,11 @@
 #include "InMemoryBus/Typedefs.h"
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/Subscribtions/Subscribers/SubscriberInformationEntity.h"
-#include "../Subscribers/Message.h"
 #include "../Subscribers/TestSubscriber.h"
+#include "../../Common.h"
+#include "TestMessage.h"
 
 namespace InMemoryBusTests {
-void expect_std_strings_are_equal(const std::string & expected, const std::string & actual) {
-  std::cout << "Actual  : " << actual << "\n";
-  std::cout << "Expected: " << expected << "\n";
-
-  EXPECT_EQ(0, expected.compare(actual));
-}
 
 using namespace InMemoryBus::Subscribtions::Subscribers;
 
@@ -52,7 +47,7 @@ TEST(SubscriberInformationEntityTest, constructor_sets_subscriber_function) {
   using namespace InMemoryBus;
 
   // Arrange
-  Message_SPtr message = std::make_shared<Message>("Hello");
+  Message_SPtr message = std::make_shared<TestMessage>("Hello");
   InMemoryBusTests::TestSubscriber subscriber { };
 
   // Act
@@ -117,7 +112,7 @@ TEST(SubscriberInformationEntityTest, constructor_throws_for_subscriber_id_is_em
     auto actual = ex.get_message();
     auto expected = std::string("Parameter 'subscriber_id' is invalid! Can't create SubscriberInformationEntity because 'subscriber_id' is empty!");
 
-    expect_std_strings_are_equal(expected, actual);
+    InMemoryBusTest::expect_std_strings_are_equal(expected, actual);
   }
 }
 
@@ -136,7 +131,7 @@ TEST(SubscriberInformationEntityTest, constructor_throws_for_message_type_is_emp
     auto actual = ex.get_message();
     auto expected = std::string("Parameter 'message_type' is invalid! Can't create SubscriberInformationEntity because 'message_type' is empty!");
 
-    expect_std_strings_are_equal(expected, actual);
+    InMemoryBusTest::expect_std_strings_are_equal(expected, actual);
   }
 }
 
@@ -153,9 +148,53 @@ TEST(SubscriberInformationEntityTest, constructor_throws_for_subscriber_function
     auto actual = ex.get_message();
     auto expected = std::string("Parameter 'subscriber_function' is invalid! Can't create SubscriberInformationEntity because 'subscriber_function' is null!");
 
-    expect_std_strings_are_equal(expected, actual);
+    InMemoryBusTest::expect_std_strings_are_equal(expected, actual);
   }
 }
 
+TEST(SubscriberInformationEntityTest, try_lock_returns_true_for_locking_ok) {
+  // Arrange
+  InMemoryBusTests::TestSubscriber subscriber { };
+
+  SubscriberInformationEntity sut { "id", "message_type", subscriber.getNotifyFunc() };
+
+  // Act
+  bool actual = sut.try_lock();
+
+  // Assert
+  EXPECT_TRUE(actual);
 }
-/* namespace InMemoryBus */
+
+TEST(SubscriberInformationEntityTest, try_lock_returns_false_for_locking_not_ok) {
+  // Arrange
+  InMemoryBusTests::TestSubscriber subscriber { };
+
+  SubscriberInformationEntity sut { "id", "message_type", subscriber.getNotifyFunc() };
+
+  sut.try_lock();
+
+  // Act
+  bool actual = sut.try_lock();
+
+  // Assert
+  EXPECT_FALSE(actual);
+}
+
+TEST(SubscriberInformationEntityTest, unlock_free_lock) {
+  // Arrange
+  InMemoryBusTests::TestSubscriber subscriber { };
+
+  SubscriberInformationEntity sut { "id", "message_type", subscriber.getNotifyFunc() };
+
+  sut.try_lock();
+
+  // Act
+  sut.unlock();
+
+  // Assert
+  bool actual = sut.try_lock();
+
+  EXPECT_TRUE(actual);
+}
+
+}

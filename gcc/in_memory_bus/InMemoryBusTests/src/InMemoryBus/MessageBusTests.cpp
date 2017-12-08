@@ -10,8 +10,8 @@
 #include "InMemoryBus/Typedefs.h"
 #include "InMemoryBus/MessageBus.h"
 #include "Subscribtions/Subscribers/TestSubscriber.h"
-#include "MockISubscribtionManager.h"
-#include "MockIMessageBusPublisher.h"
+#include "Mocks/MockISubscribtionManager.h"
+#include "Mocks/MockIMessageBusPublisher.h"
 
 namespace InMemoryBusTests {
 TEST(MessageBusTest, subscribe_calls_manager_add_subscription) {
@@ -55,7 +55,7 @@ TEST(MessageBusTest, unsubscribe_calls_manager_) {
 
 TEST(MessageBusTest, publish_adds_message_to_queue) {
   // Arrange
-  BaseMessage_SPtr message = make_shared<InMemoryBusTests::Message>("Test");
+  BaseMessage_SPtr message = make_shared<InMemoryBusTests::TestMessage>("Test");
 
   MockIMessageBusPublisher* p_publisher = new MockIMessageBusPublisher { };
   IMessageBusPublisher_SPtr publisher(p_publisher);

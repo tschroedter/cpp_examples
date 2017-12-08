@@ -9,7 +9,8 @@
 #define TESTSUBSCRIBER_H_
 
 #include "InMemoryBus/Typedefs.h"
-#include "../Subscribers/Message.h"
+
+#include "TestMessage.h"
 
 namespace InMemoryBusTests {
 
@@ -25,7 +26,7 @@ class TestSubscriber {
   Message_SPtr m_received_message;
 
  private:
-  Message_SPtr m_no_message_received = std::make_shared<Message>("No Message Received");
+  Message_SPtr m_no_message_received = std::make_shared<TestMessage>("No Message Received");
 };
 
 }

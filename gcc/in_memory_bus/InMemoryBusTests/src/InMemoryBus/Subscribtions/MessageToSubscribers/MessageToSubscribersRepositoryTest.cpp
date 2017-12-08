@@ -5,7 +5,7 @@
 #include "InMemoryBus/Subscribtions/MessageToSubscribers/MessageToSubscribersEntity.h"
 #include "InMemoryBus/Subscribtions/MessageToSubscribers/MessageToSubscribersRepository.h"
 #include "InMemoryBus/Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
-#include "../../MockIThreadSafeSubscriberInformationRepository.h"
+#include "../../Mocks/MockIThreadSafeSubscriberInformationRepository.h"
 
 namespace InMemoryBusTests {
 using namespace InMemoryBus::Subscribtions::MessageToSubscribers;

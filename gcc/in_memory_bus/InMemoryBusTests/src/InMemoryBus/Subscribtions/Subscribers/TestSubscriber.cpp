@@ -10,7 +10,7 @@
 #include <string>
 #include "InMemoryBus/BaseMessage.h"
 #include "InMemoryBus/Typedefs.h"
-#include "../Subscribers/Message.h"
+#include "../Subscribers/TestMessage.h"
 
 namespace InMemoryBusTests {
 
@@ -24,7 +24,7 @@ TestSubscriber::~TestSubscriber() {
 InMemoryBus::SubscriberFunction TestSubscriber::getNotifyFunc() {
   auto messageListener = [=](BaseMessage_SPtr base_message) -> void
   {
-    Message_SPtr message = dynamic_pointer_cast<Message>(base_message);
+    Message_SPtr message = dynamic_pointer_cast<TestMessage>(base_message);
 
     this->onNotify(message);
   };

@@ -12,12 +12,11 @@
 #include "InMemoryBus/MessageBus.h"
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/Subscribtions/MessageToSubscribers/MessageToSubscribersEntity.h"
-#include "../../MockIThreadSafeSubscriberInformationRepository.h"
+#include "../../Mocks/MockIThreadSafeSubscriberInformationRepository.h"
+#include "../../Common.h"
 
 namespace InMemoryBusTests {
 using namespace InMemoryBus::Subscribtions::MessageToSubscribers;
-
-void expect_std_strings_are_equal(const std::string & expected, const std::string & actual);
 
 TEST(MessageToSubscribersTest, constructor_sets_message_type) {
   // Arrange
@@ -98,7 +97,7 @@ TEST(MessageToSubscribersTest, constructor_throws_for_message_type_is_empty) {
     auto actual = ex.get_message();
     auto expected = std::string("Parameter 'message_type' is invalid! Can't create MessageToSubscribers because 'message_type' is empty!");
 
-    expect_std_strings_are_equal(expected, actual);
+    InMemoryBusTest::expect_std_strings_are_equal(expected, actual);
   }
 }
 
@@ -113,7 +112,7 @@ TEST(MessageToSubscribersTest, constructor_throws_for_subscribers_is_null) {
     auto actual = ex.get_message();
     auto expected = std::string("Parameter 'subscribers' is invalid! Can't create MessageToSubscribers because 'subscribers' is null!");
 
-    expect_std_strings_are_equal(expected, actual);
+    InMemoryBusTest::expect_std_strings_are_equal(expected, actual);
   }
 }
 

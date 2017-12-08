@@ -9,6 +9,7 @@
 #include <algorithm>
 #include "NotifierThreadPool.h"
 #include "MessageBusNotifier.h"
+#include "ISubscibersNotifier.h"
 #include "../Exceptions/ArgumentInvalidException.h"
 #include "../Typedefs.h"
 #include "../IMessagesQueue.h"
@@ -18,28 +19,28 @@
 namespace InMemoryBus {
 namespace Notifiers {
 NotifierThreadPool::NotifierThreadPool(MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages,
-                                       ISubscribtionManager_SPtr manager)
+                                       ISubscibersNotifier_SPtr notifier)
     : m_synchronization(synchronization),
       m_messages(messages),
-      m_manager(manager) {
+      m_notifier(notifier) {
   if (m_synchronization == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'm_synchronization' is null!",
-                                               "m_synchronization");
+    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'synchronization' is null!",
+                                               "synchronization");
   }
 
   if (m_messages == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'm_messages' is null!",
-                                               "m_messages");
+    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'messages' is null!",
+                                               "messages");
   }
 
-  if (m_manager == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'm_manager' is null!",
-                                               "m_manager");
+  if (m_notifier == nullptr) {  // ToDo testing
+    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'notifier' is null!",
+                                               "notifier");
   }
 }
 
 void NotifierThreadPool::initialize(int number_of_threads) {
-  m_number_of_threads = number_of_threads;
+  m_number_of_threads = number_of_threads;  // TODO Move thread creation/controll behind interface for testing
 
   if (m_threads.size() > 0) {
     stop();
@@ -54,7 +55,7 @@ void NotifierThreadPool::create_threads() {
   m_threads.clear();
 
   for (int i; i < m_number_of_threads; i++) {
-    IMessageBusNotifier_SPtr notifier = std::make_shared<MessageBusNotifier>(m_synchronization, m_messages, m_manager);  // TODO use container to create notifiers
+    IMessageBusNotifier_SPtr notifier = std::make_shared<MessageBusNotifier>(m_synchronization, m_messages, m_notifier);  // TODO use container to create notifiers
 
     m_threads.push_back(std::thread([notifier]() {(*notifier)();}));
   }

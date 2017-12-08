@@ -18,13 +18,13 @@ MessageBusPublisher::MessageBusPublisher(MessageBusSynchronization_SPtr synchron
     : m_synchronization(synchronization),
       m_messages(messages) {
   if (m_synchronization == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusPublisher because 'm_synchronization' is null!",
-                                               "m_synchronization");
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBusPublisher because 'synchronization' is null!",
+                                               "synchronization");
   }
 
   if (m_messages == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusPublisher because 'm_messages' is null!",
-                                               "m_messages");
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBusPublisher because 'messages' is null!",
+                                               "messages");
   }
 }
 

@@ -20,7 +20,7 @@ ThreadSafeSubscriberInformationRepository::ThreadSafeSubscriberInformationReposi
     : m_repository(repository) {
   if (m_repository == nullptr) {
     throw Exceptions::ArgumentInvalidException(
-        "Can't create ThreadSafeSubscriberInformationRepository because 'm_repository' is null!", "m_repository");
+        "Can't create ThreadSafeSubscriberInformationRepository because 'repository' is null!", "repository");
   }
 }
 

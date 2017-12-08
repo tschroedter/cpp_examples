@@ -11,6 +11,7 @@
 #include <thread>
 #include <vector>
 #include "INotifierThreadPool.h"
+#include "ISubscibersNotifier.h"
 #include "../Typedefs.h"
 #include "../IMessagesQueue.h"
 #include "../MessageBusSynchronization.h"
@@ -24,7 +25,7 @@ namespace Notifiers {
 class NotifierThreadPool : public INotifierThreadPool {
  public:
   NotifierThreadPool(MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages,
-                     ISubscribtionManager_SPtr manager);
+                     ISubscibersNotifier_SPtr notifier);
   virtual ~NotifierThreadPool() = default;
 
   void initialize(int number_of_threads) override;
@@ -33,7 +34,7 @@ class NotifierThreadPool : public INotifierThreadPool {
  private:
   MessageBusSynchronization_SPtr m_synchronization = nullptr;
   IMessagesQueue_SPtr m_messages = nullptr;
-  ISubscribtionManager_SPtr m_manager = nullptr;
+  ISubscibersNotifier_SPtr m_notifier = nullptr;
   int m_number_of_threads = DEFAULT_NUMBER_OF_THREADS;
   std::vector<std::thread> m_threads { };
 

@@ -5,6 +5,7 @@
  *      Author: tom
  */
 
+#include <mutex>
 #include "SubscriberInformationEntity.h"
 #include "../../Exceptions/ArgumentInvalidException.h"
 
@@ -19,13 +20,13 @@ SubscriberInformationEntity::SubscriberInformationEntity(const std::string subsc
       m_message_type(message_type),
       m_subscriber_function(subscriber_function) {
   if (subscriber_id.empty()) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscriberInformationEntity because 'subscriber_id' is empty!",
-                                               "subscriber_id");
+    throw Exceptions::ArgumentInvalidException(
+        "Can't create SubscriberInformationEntity because 'subscriber_id' is empty!", "subscriber_id");
   }
 
   if (message_type.empty()) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscriberInformationEntity because 'message_type' is empty!",
-                                               "message_type");
+    throw Exceptions::ArgumentInvalidException(
+        "Can't create SubscriberInformationEntity because 'message_type' is empty!", "message_type");
   }
 
   if (subscriber_function == nullptr) {
@@ -48,6 +49,15 @@ string SubscriberInformationEntity::get_message_type() const {
 SubscriberFunction SubscriberInformationEntity::get_subscriber_function() const {
   return (m_subscriber_function);
 }
+
+bool SubscriberInformationEntity::try_lock() {
+  return (m_mutex.try_lock());
+}
+
+void SubscriberInformationEntity::unlock() {
+  m_mutex.unlock();
+}
+
 }
 }
 }
