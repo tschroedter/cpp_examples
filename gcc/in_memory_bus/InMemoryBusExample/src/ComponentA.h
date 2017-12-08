@@ -9,13 +9,13 @@
 #define COMPONENTA_H_
 
 #include <memory>
-#include "InMemoryBus/BusNode.h"
+#include "InMemoryBus/Common/BusNode.h"
 #include "InMemoryBus/IBus.h"
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 
 namespace InMemoryBusExample {
 
-class ComponentA : public InMemoryBus::BusNode {
+class ComponentA : public InMemoryBus::Common::BusNode {
  public:
   ComponentA(IBus_SPtr bus);
   virtual ~ComponentA() = default;

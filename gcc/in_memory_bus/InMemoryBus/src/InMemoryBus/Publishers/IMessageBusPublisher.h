@@ -9,7 +9,7 @@
 #define INMEMORY_PUBLISHERS_IMESSAGEBUSPUBLISHER_H_
 
 #include <memory>
-#include "../BaseMessage.h"
+#include "../Common/BaseMessage.h"
 
 namespace InMemoryBus {
 namespace Publishers {

@@ -22,7 +22,7 @@ MessageToSubscribersRepository::MessageToSubscribersRepository(IMessageToSubscri
         "Can't create MessageToSubscribersRepository because 'subscribers' is null!", "subscribers");
   }
 
-  m_subscribers = make_shared<BaseRepository<IMessageToSubscribersEntity>>(subscribers);
+  m_subscribers = make_shared<InMemoryBus::Common::BaseRepository<IMessageToSubscribersEntity>>(subscribers);
 
   m_unknown = make_shared<UnknownMessageToSubscribersEntity>();
 }

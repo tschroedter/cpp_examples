@@ -12,9 +12,9 @@
 #include <vector>
 #include "INotifierThreadPool.h"
 #include "ISubscibersNotifier.h"
-#include "../Typedefs.h"
-#include "../IMessagesQueue.h"
-#include "../MessageBusSynchronization.h"
+#include "../Common/SubscriberFunction.h"
+#include "../Common/IMessagesQueue.h"
+#include "../Common/MessageBusSynchronization.h"
 #include "../Subscribtions/ISubscribtionManager.h"
 
 namespace InMemoryBus {

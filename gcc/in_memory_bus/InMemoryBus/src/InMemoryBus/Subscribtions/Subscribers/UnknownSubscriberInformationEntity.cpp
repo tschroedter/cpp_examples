@@ -5,7 +5,7 @@
  *      Author: tom
  */
 
-#include "../../BaseMessage.h"
+#include "../../Common/BaseMessage.h"
 #include "UnknownSubscriberInformationEntityEntity.h"
 
 namespace InMemoryBus {

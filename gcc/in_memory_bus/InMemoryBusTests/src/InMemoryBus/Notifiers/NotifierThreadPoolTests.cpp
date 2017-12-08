@@ -9,7 +9,7 @@
 #include "../Common.h"
 #include "../Mocks/MockIMessagesQueue.h"
 #include "../Mocks/MockISubscibersNotifier.h"
-#include "InMemoryBus/MessageBusSynchronization.h"
+#include "InMemoryBus/Common/MessageBusSynchronization.h"
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/Notifiers/NotifierThreadPool.h"
 
@@ -41,7 +41,7 @@ TEST(NotifierThreadPoolTests, constructor_throws_for_synchronization_is_nullptr)
 TEST(NotifierThreadPoolTests, constructor_throws_for_messages_is_nullptr) {
   try {
     // Arrange
-    MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::MessageBusSynchronization>();
+    MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
     ISubscibersNotifier_SPtr notifier = std::make_shared<MockISubscibersNotifier>();
 
     // Act
@@ -62,7 +62,7 @@ TEST(NotifierThreadPoolTests, constructor_throws_for_messages_is_nullptr) {
 TEST(NotifierThreadPoolTests, constructor_throws_for_notifier_is_nullptr) {
   try {
     // Arrange
-    MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::MessageBusSynchronization>();
+    MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
     IMessagesQueue_SPtr messages = std::make_shared<MockIMessagesQueue>();
 
     // Act

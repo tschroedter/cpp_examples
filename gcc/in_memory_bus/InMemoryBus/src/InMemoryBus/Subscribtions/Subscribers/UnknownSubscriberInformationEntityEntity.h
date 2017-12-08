@@ -8,7 +8,7 @@
 #ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_UNKNOWNSUBSCRIBERINFORMATIONENTITYENTITY_H_
 #define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_UNKNOWNSUBSCRIBERINFORMATIONENTITYENTITY_H_
 
-#include "../../BaseMessage.h"
+#include "../../Common/BaseMessage.h"
 #include "SubscriberInformationEntity.h"
 
 namespace InMemoryBus {

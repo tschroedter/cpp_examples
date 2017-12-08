@@ -10,7 +10,7 @@
 #include <gtest/gtest.h>
 #include "../../../Common.h"
 #include "../../../Mocks/MockISubscriberInformationRepository.h"
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/Subscribtions/Subscribers/Threadsafe/ThreadSafeSubscriberInformationRepository.h"
 #include "InMemoryBus/Subscribtions/Subscribers/SubscriberInformationEntity.h"

@@ -8,7 +8,7 @@
 #ifndef INMEMORYBUS_PUBLISHERS_TESTNOTIFIER_H_
 #define INMEMORYBUS_PUBLISHERS_TESTNOTIFIER_H_
 
-#include "InMemoryBus/MessageBusSynchronization.h"
+#include "InMemoryBus/Common/MessageBusSynchronization.h"
 
 namespace InMemoryBusTests {
 

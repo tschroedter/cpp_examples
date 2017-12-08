@@ -10,12 +10,14 @@
 
 #include <gtest/gtest.h>
 #include "InMemoryBus/Notifiers/Failed/IFailedToNotifyManager.h"
-#include "InMemoryBus/Notifiers/Failed/IFailedToNotify.h"
+#include "InMemoryBus/Common/BaseMessage.h"
+#include "InMemoryBus/Subscribtions/Subscribers/ISubscriberInformationEntity.h"
 
 namespace InMemoryBusTests {
 class MockIFailedToNotifyManager : public InMemoryBus::Notifiers::Failed::IFailedToNotifyManager {
  public:
-  MOCK_METHOD1(enqueue, void(IFailedToNotify_SPtr failed));
+  MOCK_METHOD2(handle_failed_notification, void(const ISubscriberInformationEntity_SPtr& info,
+          BaseMessage_SPtr& message));
 };
 }
 

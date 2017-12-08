@@ -9,7 +9,7 @@
 #define INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYMANAGER_H_
 
 #include "IFailedToNotifyManager.h"
-#include "IFailedToNotifyQueue.h"
+#include "ThreadSafe/IThreadSafeFailedToNotifyQueue.h"
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -17,13 +17,13 @@ namespace Failed {
 
 class FailedToNotifyManager : public IFailedToNotifyManager {
  public:
-  FailedToNotifyManager(IFailedToNotifyQueue_SPtr queue);
+  FailedToNotifyManager(IThreadSafeFailedToNotifyQueue_SPtr queue);
   virtual ~FailedToNotifyManager() = default;
 
-  void enqueue(IFailedToNotify_SPtr failed) override;
+  void handle_failed_notification(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message) override;
 
  private:
-  IFailedToNotifyQueue_SPtr m_queue = nullptr;
+  IThreadSafeFailedToNotifyQueue_SPtr m_queue = nullptr;
 };
 
 }

@@ -10,7 +10,7 @@
 
 #include <string>
 #include "IMessageToSubscribersEntity.h"
-#include "../../BaseEntity.h"
+#include "../../Common/BaseEntity.h"
 #include "../Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 
 using namespace std;

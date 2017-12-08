@@ -10,14 +10,14 @@
 #include <gmock/gmock.h>
 #include "../Common.h"
 #include "../Mocks/MockIFailedToNotifyManager.h"
-#include "InMemoryBus/Typedefs.h"
+#include "InMemoryBus/Common/SubscriberFunction.h"
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/Notifiers/SubscriberFunctionCaller.h"
 #include "InMemoryBus/Notifiers/Failed/IFailedToNotifyManager.h"
 #include "InMemoryBus/Subscribtions/Subscribers/SubscriberInformationEntity.h"
 #include "InMemoryBus/Subscribtions/Subscribers/ISubscriberInformationEntity.h"
-#include "../Subscribtions/Subscribers/TestMessage.h"
-#include "../Subscribtions/Subscribers/TestSubscriber.h"
+#include "../Common/TestMessage.h"
+#include "../Common/TestSubscriber.h"
 
 namespace InMemoryBusTests {
 
@@ -64,7 +64,7 @@ TEST(SubscriberFunctionCallerTests, execute_subscriber_function_calls_function) 
   EXPECT_TRUE(subscriber.wasCalledOnNotify());
 }
 
-TEST(SubscriberFunctionCallerTests, try_call_all_subscriber_function_returns_true_for_function_called) {
+TEST(SubscriberFunctionCallerTests, try_call_subscriber_function_returns_true_for_function_called) {
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
@@ -79,13 +79,13 @@ TEST(SubscriberFunctionCallerTests, try_call_all_subscriber_function_returns_tru
   SubscriberFunctionCaller sut { manager };
 
   // Act
-  auto actual = sut.try_call_all_subscriber_function(information, message);
+  auto actual = sut.try_call_subscriber_function(information, message);
 
   // Assert
   EXPECT_TRUE(actual);
 }
 
-TEST(SubscriberFunctionCallerTests, try_call_all_subscriber_function_calls_function) {
+TEST(SubscriberFunctionCallerTests, try_call_subscriber_function_calls_function) {
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
@@ -100,13 +100,13 @@ TEST(SubscriberFunctionCallerTests, try_call_all_subscriber_function_calls_funct
   SubscriberFunctionCaller sut { manager };
 
   // Act
-  sut.try_call_all_subscriber_function(information, message);
+  sut.try_call_subscriber_function(information, message);
 
   // Assert
   EXPECT_TRUE(subscriber.wasCalledOnNotify());
 }
 
-TEST(SubscriberFunctionCallerTests, try_call_all_subscriber_function_returns_false_for_function_not_called) {
+TEST(SubscriberFunctionCallerTests, try_call_subscriber_function_returns_false_for_function_not_called) {
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
@@ -123,13 +123,13 @@ TEST(SubscriberFunctionCallerTests, try_call_all_subscriber_function_returns_fal
   information->try_lock();  // make it not call the function
 
   // Act
-  auto actual = sut.try_call_all_subscriber_function(information, message);
+  auto actual = sut.try_call_subscriber_function(information, message);
 
   // Assert
   EXPECT_FALSE(actual);
 }
 
-TEST(SubscriberFunctionCallerTests, call_all_subscriber_function_calls_function) {
+TEST(SubscriberFunctionCallerTests, call_subscriber_function_calls_function) {
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
@@ -144,13 +144,13 @@ TEST(SubscriberFunctionCallerTests, call_all_subscriber_function_calls_function)
   SubscriberFunctionCaller sut { manager };
 
   // Act
-  sut.call_all_subscriber_function(information, message);
+  sut.call_subscriber_function(information, message);
 
   // Assert
   EXPECT_TRUE(subscriber.wasCalledOnNotify());
 }
 
-TEST(SubscriberFunctionCallerTests, call_all_subscriber_function_does_not_call_manager) {
+TEST(SubscriberFunctionCallerTests, call_subscriber_function_does_not_call_manager) {
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
@@ -165,15 +165,15 @@ TEST(SubscriberFunctionCallerTests, call_all_subscriber_function_does_not_call_m
 
   SubscriberFunctionCaller sut { manager };
 
-  EXPECT_CALL(*p_mock_manager, enqueue(testing::A<IFailedToNotify_SPtr>())).Times(0);
+  EXPECT_CALL(*p_mock_manager, handle_failed_notification(information, message)).Times(0);
 
   // Act
-  sut.call_all_subscriber_function(information, message);
+  sut.call_subscriber_function(information, message);
 
   // Assert
 }
 
-TEST(SubscriberFunctionCallerTests, call_all_subscriber_function_calls_manager_for_failes_function_call) {
+TEST(SubscriberFunctionCallerTests, call_subscriber_function_calls_manager_for_failes_function_call) {
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
@@ -188,12 +188,12 @@ TEST(SubscriberFunctionCallerTests, call_all_subscriber_function_calls_manager_f
 
   SubscriberFunctionCaller sut { manager };
 
-  EXPECT_CALL(*p_mock_manager, enqueue(testing::A<IFailedToNotify_SPtr>())).Times(1);
+  EXPECT_CALL(*p_mock_manager, handle_failed_notification(information, message)).Times(1);
 
   information->try_lock();  // make it not call the function
 
   // Act
-  sut.call_all_subscriber_function(information, message);
+  sut.call_subscriber_function(information, message);
 
   // Assert
 }

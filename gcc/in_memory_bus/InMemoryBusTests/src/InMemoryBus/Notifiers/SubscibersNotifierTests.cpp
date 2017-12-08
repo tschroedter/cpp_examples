@@ -11,13 +11,13 @@
 #include "../Mocks/MockISubscribtionManager.h"
 #include "../Mocks/MockIThreadSafeSubscriberInformationRepository.h"
 #include "../Mocks/MockISubscriberFunctionCaller.h"
-#include "../Subscribtions/Subscribers/TestSubscriber.h"
-#include "InMemoryBus/Typedefs.h"
-#include "InMemoryBus/BaseMessage.h"
+#include "../Common/TestSubscriber.h"
+#include "InMemoryBus/Common/SubscriberFunction.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/Notifiers/SubscibersNotifier.h"
 #include "InMemoryBus/Subscribtions/Subscribers/SubscriberInformationEntity.h"
-#include "../Subscribtions/Subscribers/TestMessage.h"
+#include "../Common/TestMessage.h"
 
 namespace InMemoryBusTests {
 
@@ -162,8 +162,8 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_entities_calls_
       testing::Return(repository));
   EXPECT_CALL(*p_mock_repository, get_all_subscribers()).Times(1).WillOnce(testing::Return(vector));
 
-  EXPECT_CALL(*p_mock_caller, call_all_subscriber_function(information_one, message)).Times(1);
-  EXPECT_CALL(*p_mock_caller, call_all_subscriber_function(information_two, message)).Times(1);
+  EXPECT_CALL(*p_mock_caller, call_subscriber_function(information_one, message)).Times(1);
+  EXPECT_CALL(*p_mock_caller, call_subscriber_function(information_two, message)).Times(1);
 
   vector->push_back(information_one);
   vector->push_back(information_two);

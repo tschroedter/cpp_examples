@@ -6,12 +6,12 @@
  */
 #include <iostream>
 #include <gtest/gtest.h>
-#include "InMemoryBus/Typedefs.h"
+#include "InMemoryBus/Common/SubscriberFunction.h"
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/Subscribtions/Subscribers/SubscriberInformationEntity.h"
-#include "../Subscribers/TestSubscriber.h"
+#include "../../Common/TestSubscriber.h"
 #include "../../Common.h"
-#include "TestMessage.h"
+#include "../../Common/TestMessage.h"
 
 namespace InMemoryBusTests {
 

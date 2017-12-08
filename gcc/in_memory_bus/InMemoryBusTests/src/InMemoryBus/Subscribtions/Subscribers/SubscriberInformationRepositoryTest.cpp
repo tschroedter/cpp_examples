@@ -1,7 +1,7 @@
 #include <memory>
 #include <iostream>
 #include <gtest/gtest.h>
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 #include "InMemoryBus/Subscribtions/Subscribers/SubscriberInformationEntity.h"
 #include "InMemoryBus/Subscribtions/Subscribers/SubscriberInformationRepository.h"
 

@@ -11,13 +11,13 @@
 #include <gmock/gmock.h>
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/Notifiers/MessageBusNotifier.h"
-#include "InMemoryBus/MessageBusSynchronization.h"
+#include "InMemoryBus/Common/MessageBusSynchronization.h"
 #include "InMemoryBus/Publishers/MessageBusPublisher.h"
 #include "TestMessageBusNotifier.h"
 #include "../Common.h"
 #include "../Mocks/MockIMessagesQueue.h"
 #include "../Mocks/MockISubscibersNotifier.h"
-#include "../Subscribtions/Subscribers/TestMessage.h"
+#include "../Common/TestMessage.h"
 
 namespace InMemoryBusTests {
 
@@ -47,7 +47,7 @@ TEST(MessageBusNotifierTests, constructor_throws_for_synchronization_is_nullptr)
 TEST(MessageBusNotifierTests, constructor_throws_for_messages_is_nullptr) {
   try {
     // Arrange
-    MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::MessageBusSynchronization>();  // TODO missing an interface here?
+    MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();  // TODO missing an interface here?
     ISubscibersNotifier_SPtr notifier = std::make_shared<MockISubscibersNotifier>();
 
     // Act
@@ -69,7 +69,7 @@ TEST(MessageBusNotifierTests, process_next_message_does_not_calls_dequeue_for_si
   // Arrange
   Message_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
-  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::MessageBusSynchronization>();  // TODO missing an interface here?
+  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();  // TODO missing an interface here?
   MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
   IMessagesQueue_SPtr messages { p_mock_messages };
   ISubscibersNotifier_SPtr notifier = std::make_shared<MockISubscibersNotifier>();
@@ -89,7 +89,7 @@ TEST(MessageBusNotifierTests, process_next_message_calls_dequeue) {
   // Arrange
   Message_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
-  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::MessageBusSynchronization>();  // TODO missing an interface here?
+  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();  // TODO missing an interface here?
   MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
   IMessagesQueue_SPtr messages { p_mock_messages };
   ISubscibersNotifier_SPtr notifier = std::make_shared<MockISubscibersNotifier>();
@@ -108,7 +108,7 @@ TEST(MessageBusNotifierTests, process_next_message_calls_dequeue) {
 TEST(MessageBusNotifierTests, process_next_message_calls_notifier) {
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
-  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::MessageBusSynchronization>();  // TODO missing an interface here?
+  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();  // TODO missing an interface here?
   MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
   IMessagesQueue_SPtr messages { p_mock_messages };
   MockISubscibersNotifier* p_mock_notifier = new MockISubscibersNotifier();

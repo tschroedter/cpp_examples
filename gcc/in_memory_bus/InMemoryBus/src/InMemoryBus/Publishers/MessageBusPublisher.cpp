@@ -6,10 +6,10 @@
  */
 #include <mutex>
 #include "MessageBusPublisher.h"
-#include "../MessageBusSynchronization.h"
-#include "../BaseMessage.h"
-#include "../Typedefs.h"
-#include "../IMessagesQueue.h"
+#include "../Common/MessageBusSynchronization.h"
+#include "../Common/BaseMessage.h"
+#include "../Common/IMessagesQueue.h"
+#include "../Common/SubscriberFunction.h"
 #include "../Exceptions/ArgumentInvalidException.h"
 
 namespace InMemoryBus {

@@ -10,8 +10,8 @@
 #include <iostream>
 #include "ComponentA.h"
 #include "InMemoryBus/IBus.h"
-#include "InMemoryBus/BusNode.h"
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BusNode.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 #include "OtherMessage.h"
 
 using namespace std;
@@ -19,7 +19,7 @@ using namespace std;
 namespace InMemoryBusExample {
 
 ComponentOtherB::ComponentOtherB(IBus_SPtr bus)
-    : InMemoryBus::BusNode(bus, "ComponentOtherB", "OtherMessage") {
+    : InMemoryBus::Common::BusNode(bus, "ComponentOtherB", "OtherMessage") {
 }
 
 void ComponentOtherB::onNotify(BaseMessage_SPtr p_base_message) {

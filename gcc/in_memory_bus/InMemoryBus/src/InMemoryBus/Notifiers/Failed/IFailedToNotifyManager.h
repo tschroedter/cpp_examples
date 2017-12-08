@@ -19,7 +19,7 @@ class IFailedToNotifyManager {
  public:
   virtual ~IFailedToNotifyManager() = default;
 
-  virtual void enqueue(IFailedToNotify_SPtr failed) = 0;
+  virtual void handle_failed_notification(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message) = 0;
 };
 
 }

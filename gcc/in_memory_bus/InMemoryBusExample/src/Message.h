@@ -10,13 +10,13 @@
 
 #include <string>
 #include <memory>
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 
 using namespace std;
 
 namespace InMemoryBusExample {
 
-class Message : public InMemoryBus::BaseMessage {
+class Message : public InMemoryBus::Common::BaseMessage {
  public:
   Message(const string event = "Unknown");
   ~Message();

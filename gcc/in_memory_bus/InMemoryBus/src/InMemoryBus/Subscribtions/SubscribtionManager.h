@@ -9,8 +9,8 @@
 #define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBTIONMANAGER_H_
 
 #include <string>
+#include "../Common/SubscriberFunction.h"
 #include "ISubscribtionManager.h"
-#include "../Typedefs.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 #include "MessageToSubscribers/IMessageToSubscribersEntity.h"
 #include "MessageToSubscribers/MessageToSubscribersRepository.h"

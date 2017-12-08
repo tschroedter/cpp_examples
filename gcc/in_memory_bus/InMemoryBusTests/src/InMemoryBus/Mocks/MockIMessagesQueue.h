@@ -10,14 +10,14 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "InMemoryBus/IMessagesQueue.h"
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/IMessagesQueue.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 
 using namespace std;
 
 namespace InMemoryBusTests {
 
-class MockIMessagesQueue : public InMemoryBus::IMessagesQueue {
+class MockIMessagesQueue : public InMemoryBus::Common::IMessagesQueue {
  public:
   MOCK_METHOD0(dequeue, BaseMessage_SPtr());
   MOCK_METHOD1(enqueue, void(BaseMessage_SPtr message));

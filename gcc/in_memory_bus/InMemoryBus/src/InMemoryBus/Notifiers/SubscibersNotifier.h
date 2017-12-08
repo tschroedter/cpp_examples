@@ -10,7 +10,7 @@
 
 #include "ISubscibersNotifier.h"
 #include "ISubscriberFunctionCaller.h"
-#include "../BaseMessage.h"
+#include "../Common/BaseMessage.h"
 #include "../Subscribtions/ISubscribtionManager.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
 

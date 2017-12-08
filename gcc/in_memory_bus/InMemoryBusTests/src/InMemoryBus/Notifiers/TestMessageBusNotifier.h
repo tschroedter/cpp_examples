@@ -10,8 +10,8 @@
 
 #include "InMemoryBus/Notifiers/MessageBusNotifier.h"
 #include "InMemoryBus/Notifiers/ISubscibersNotifier.h"
-#include "InMemoryBus/MessageBusSynchronization.h"
-#include "InMemoryBus/IMessagesQueue.h"
+#include "InMemoryBus/Common/MessageBusSynchronization.h"
+#include "InMemoryBus/Common/IMessagesQueue.h"
 
 namespace InMemoryBusTests {
 

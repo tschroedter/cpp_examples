@@ -11,7 +11,7 @@
 #include "ISubscriberFunctionCaller.h"
 #include "Failed/IFailedToNotifyManager.h"
 #include "../Subscribtions/Subscribers/ISubscriberInformationEntity.h"
-#include "../BaseMessage.h"
+#include "../Common/BaseMessage.h"
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -22,8 +22,8 @@ class SubscriberFunctionCaller : public ISubscriberFunctionCaller {
   virtual ~SubscriberFunctionCaller() = default;
 
   void execute_subscriber_function(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message) override;
-  bool try_call_all_subscriber_function(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr message) override;
-  void call_all_subscriber_function(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message) override;
+  bool try_call_subscriber_function(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr message) override;
+  void call_subscriber_function(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message) override;
 
  private:
   IFailedToNotifyManager_SPtr m_manager = nullptr;

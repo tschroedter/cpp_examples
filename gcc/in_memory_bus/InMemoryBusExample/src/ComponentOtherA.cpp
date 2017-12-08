@@ -17,7 +17,7 @@ using namespace std;
 
 namespace InMemoryBusExample {
 ComponentOtherA::ComponentOtherA(IBus_SPtr bus)
-    : InMemoryBus::BusNode(bus, "ComponentOtherA", "OtherMessage") {
+    : InMemoryBus::Common::BusNode(bus, "ComponentOtherA", "OtherMessage") {
 }
 
 void ComponentOtherA::update() {

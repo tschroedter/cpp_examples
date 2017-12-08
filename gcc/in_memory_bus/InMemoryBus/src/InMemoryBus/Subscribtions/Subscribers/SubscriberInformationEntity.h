@@ -12,8 +12,8 @@
 #include <string>
 #include <vector>
 #include <mutex>
-#include "../../BaseEntity.h"
-#include "../../Typedefs.h"
+#include "../../Common/BaseEntity.h"
+#include "../../Common/SubscriberFunction.h"
 #include "ISubscriberInformationEntity.h"
 
 using namespace std;

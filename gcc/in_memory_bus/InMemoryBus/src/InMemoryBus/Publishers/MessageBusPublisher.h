@@ -8,10 +8,10 @@
 #ifndef INMEMORY_PUBLISHERS_MESSAGEBUSPUBLISHER_H_
 #define INMEMORY_PUBLISHERS_MESSAGEBUSPUBLISHER_H_
 
-#include "../MessageBusSynchronization.h"
-#include "../BaseMessage.h"
-#include "../IMessagesQueue.h"
-#include "../Typedefs.h"
+#include "../Common/MessageBusSynchronization.h"
+#include "../Common/BaseMessage.h"
+#include "../Common/IMessagesQueue.h"
+#include "../Common/SubscriberFunction.h"
 #include "IMessageBusPublisher.h"
 
 namespace InMemoryBus {

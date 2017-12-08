@@ -18,10 +18,10 @@
 #include "../Exceptions/ArgumentInvalidException.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
 #include "../Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
-#include "../Typedefs.h"
-#include "../BaseMessage.h"
-#include "../MessageBusSynchronization.h"
-#include "../IMessagesQueue.h"
+#include "../Common/SubscriberFunction.h"
+#include "../Common/BaseMessage.h"
+#include "../Common/MessageBusSynchronization.h"
+#include "../Common/IMessagesQueue.h"
 #include "../Subscribtions/ISubscribtionManager.h"
 
 namespace InMemoryBus {
@@ -62,7 +62,7 @@ void MessageBusNotifier::notify() {
     std::unique_lock<std::mutex> lock(m_synchronization->mutex);
 
     m_synchronization->messages_available.wait(
-        lock, std::bind(&MessageBusSynchronization::is_messages_avalable, m_synchronization));
+        lock, std::bind(&Common::MessageBusSynchronization::is_messages_avalable, m_synchronization));
 
     process_next_message();
   }

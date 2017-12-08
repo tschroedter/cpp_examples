@@ -10,8 +10,8 @@
 
 #include <memory>
 #include <functional>
-#include "BaseMessage.h"
-#include "Typedefs.h"
+#include "Common/BaseMessage.h"
+#include "Common/SubscriberFunction.h"
 
 namespace InMemoryBus {
 

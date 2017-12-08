@@ -8,7 +8,7 @@
 #include <iostream>
 #include "ComponentB.h"
 #include "InMemoryBus/IBus.h"
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 #include "Message.h"
 
 using namespace std;
@@ -16,7 +16,7 @@ using namespace std;
 namespace InMemoryBusExample {
 
 ComponentB::ComponentB(IBus_SPtr bus)
-    : InMemoryBus::BusNode(bus, "ComponentB", "Message") {
+    : InMemoryBus::Common::BusNode(bus, "ComponentB", "Message") {
 }
 
 void ComponentB::update() {

@@ -8,11 +8,11 @@
 #ifndef COMPONENTOTHERA_H_
 #define COMPONENTOTHERA_H_
 
-#include "InMemoryBus/BusNode.h"
+#include "InMemoryBus/Common/BusNode.h"
 #include "InMemoryBus/IBus.h"
 
 namespace InMemoryBusExample {
-class ComponentOtherA : public InMemoryBus::BusNode {
+class ComponentOtherA : public InMemoryBus::Common::BusNode {
  public:
   ComponentOtherA(IBus_SPtr bus);
   virtual ~ComponentOtherA() = default;

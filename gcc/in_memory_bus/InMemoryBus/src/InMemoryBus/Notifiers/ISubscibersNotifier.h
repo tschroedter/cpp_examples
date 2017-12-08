@@ -9,7 +9,7 @@
 #define INMEMORYBUS_NOTIFIERS_ISUBSCIBERSNOTIFIER_H_
 
 #include <memory>
-#include "../BaseMessage.h"
+#include "../Common/BaseMessage.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
 
 namespace InMemoryBus {

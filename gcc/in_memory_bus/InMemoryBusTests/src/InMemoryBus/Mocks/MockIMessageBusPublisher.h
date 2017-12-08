@@ -9,7 +9,7 @@
 #define INMEMORYBUS_MOCKIMESSAGEBUSPUBLISHER_H_
 
 #include <gtest/gtest.h>
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 #include "InMemoryBus/Publishers/IMessageBusPublisher.h"
 
 using namespace std;

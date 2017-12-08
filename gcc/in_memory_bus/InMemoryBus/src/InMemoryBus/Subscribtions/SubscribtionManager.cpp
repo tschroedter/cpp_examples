@@ -6,7 +6,7 @@
  */
 // TODO MySkills VET course
 #include <memory>
-#include "../Typedefs.h"
+#include "../Common/SubscriberFunction.h"
 #include "SubscribtionManager.h"
 #include "../Exceptions/ArgumentInvalidException.h"
 #include "MessageToSubscribers/MessageToSubscribersEntity.h"

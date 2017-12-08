@@ -6,12 +6,12 @@
  */
 
 #include <string>
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 #include "Message.h"
 
 namespace InMemoryBusExample {
 Message::Message(const std::string event)
-    : InMemoryBus::BaseMessage("Message") {
+    : InMemoryBus::Common::BaseMessage("Message") {
   m_MessageEvent = event;
 }
 

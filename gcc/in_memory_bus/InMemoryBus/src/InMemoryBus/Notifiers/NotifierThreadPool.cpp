@@ -11,9 +11,9 @@
 #include "MessageBusNotifier.h"
 #include "ISubscibersNotifier.h"
 #include "../Exceptions/ArgumentInvalidException.h"
-#include "../Typedefs.h"
-#include "../IMessagesQueue.h"
-#include "../MessageBusSynchronization.h"
+#include "../Common/SubscriberFunction.h"
+#include "../Common/IMessagesQueue.h"
+#include "../Common/MessageBusSynchronization.h"
 #include "../Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 
 namespace InMemoryBus {

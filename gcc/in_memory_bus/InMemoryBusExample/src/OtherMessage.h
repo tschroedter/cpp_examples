@@ -9,12 +9,12 @@
 #define OTHERMESSAGE_H_
 
 #include <memory>
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 
 using namespace std;
 
 namespace InMemoryBusExample {
-class OtherMessage : public InMemoryBus::BaseMessage {
+class OtherMessage : public InMemoryBus::Common::BaseMessage {
  public:
   OtherMessage();
   virtual ~OtherMessage() = default;

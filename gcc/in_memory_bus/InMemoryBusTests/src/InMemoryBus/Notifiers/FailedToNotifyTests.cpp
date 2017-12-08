@@ -6,14 +6,14 @@
  */
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/Notifiers/Failed/FailedToNotify.h"
 #include "InMemoryBus/Subscribtions/Subscribers/SubscriberInformationEntity.h"
 #include "InMemoryBus/Subscribtions/Subscribers/ISubscriberInformationEntity.h"
 #include "../Common.h"
-#include "../Subscribtions/Subscribers/TestSubscriber.h"
-#include "../Subscribtions/Subscribers/TestMessage.h"
+#include "../Common/TestSubscriber.h"
+#include "../Common/TestMessage.h"
 
 namespace InMemoryBusTests {
 
@@ -99,6 +99,26 @@ TEST(FailedToNotify, get_message_returns_message) {
 
   // Assert
   EXPECT_EQ(message, actual);
+}
+
+TEST(FailedToNotify, get_number_of_tries_returns_tries) {
+  // Arrange
+  TestSubscriber subscriber;
+
+  ISubscriberInformationEntity_SPtr information = std::make_shared<
+      InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity>("id", "type", subscriber.getNotifyFunc());
+
+  BaseMessage_SPtr message = std::make_shared<TestMessage>();
+
+  FailedToNotify sut { information, message };
+
+  sut.increase_number_of_tries();
+
+  // Act
+  auto actual = sut.get_number_of_tries();
+
+  // Assert
+  EXPECT_EQ(1, actual);
 }
 
 }

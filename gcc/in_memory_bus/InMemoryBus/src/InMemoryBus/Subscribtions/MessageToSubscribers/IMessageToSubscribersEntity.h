@@ -9,12 +9,12 @@
 #define INMEMORYBUS_SUBSCRIBTIONS_MESSAGETOSUBSCRIBTIONS_IMESSAGETOSUBSCRIBERSENTITY_H_
 
 #include "../Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
-#include "../../BaseEntity.h"
+#include "../../Common/BaseEntity.h"
 
 namespace InMemoryBus {
 namespace Subscribtions {
 namespace MessageToSubscribers {
-class IMessageToSubscribersEntity : public BaseEntity {
+class IMessageToSubscribersEntity : public InMemoryBus::Common::BaseEntity {
  public:
   virtual ~IMessageToSubscribersEntity() = default;
 

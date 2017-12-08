@@ -12,7 +12,7 @@
 
 #include <string>
 #include <memory>
-#include "../../BaseRepository.h"
+#include "../../Common/BaseRepository.h"
 #include "ISubscriberInformationEntity.h"
 #include "ISubscriberInformationRepository.h"
 #include "UnknownSubscriberInformationEntityEntity.h"
@@ -34,7 +34,7 @@ class SubscriberInformationRepository : public ISubscriberInformationRepository 
   size_t size() override;
 
  private:
-  shared_ptr<BaseRepository<ISubscriberInformationEntity>> m_informations = nullptr;
+  shared_ptr<InMemoryBus::Common::BaseRepository<ISubscriberInformationEntity>> m_informations = nullptr;
   shared_ptr<UnknownSubscriberInformationEntity> m_unknown = nullptr;
 };
 }

@@ -9,7 +9,7 @@
 #define INMEMORYBUS_MOCKISUBSCIBERSNOTIFIER_H_
 
 #include <gmock/gmock.h>
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 #include "InMemoryBus/Notifiers/ISubscibersNotifier.h"
 
 namespace InMemoryBusTests {

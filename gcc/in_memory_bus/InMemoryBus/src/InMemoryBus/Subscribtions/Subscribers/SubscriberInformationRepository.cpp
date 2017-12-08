@@ -22,7 +22,7 @@ SubscriberInformationRepository::SubscriberInformationRepository(ISubscriberInfo
         "Can't create SubscriberInformationRepository because 'informations' is null!", "informations");
   }
 
-  m_informations = make_shared<BaseRepository<ISubscriberInformationEntity>>(informations);
+  m_informations = make_shared<InMemoryBus::Common::BaseRepository<ISubscriberInformationEntity>>(informations);
 
   m_unknown = make_shared<UnknownSubscriberInformationEntity>();
 }

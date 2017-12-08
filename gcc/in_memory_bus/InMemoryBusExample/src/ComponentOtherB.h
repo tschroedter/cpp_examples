@@ -9,9 +9,9 @@
 #define COMPONENTOTHERB_H_
 
 #include <bitset>
-#include "InMemoryBus/BusNode.h"
+#include "InMemoryBus/Common/BusNode.h"
 #include "InMemoryBus/IBus.h"
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 
 #define EXPECTED_NO_OF_MESSAGES 100
 
@@ -19,7 +19,7 @@ using namespace std;
 
 namespace InMemoryBusExample {
 
-class ComponentOtherB : public InMemoryBus::BusNode {
+class ComponentOtherB : public InMemoryBus::Common::BusNode {
  public:
   ComponentOtherB(IBus_SPtr bus);
   virtual ~ComponentOtherB() = default;

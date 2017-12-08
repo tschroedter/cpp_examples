@@ -11,15 +11,15 @@
 #include <memory>
 #include <vector>
 #include <mutex>
-#include "../../Typedefs.h"
-#include "../../BaseEntity.h"
+#include "../../Common/SubscriberFunction.h"
+#include "../../Common/BaseEntity.h"
 
 using namespace std;
 
 namespace InMemoryBus {
 namespace Subscribtions {
 namespace Subscribers {
-class ISubscriberInformationEntity : public BaseEntity {
+class ISubscriberInformationEntity : public InMemoryBus::Common::BaseEntity {
  public:
   virtual ~ISubscriberInformationEntity() = default;
 

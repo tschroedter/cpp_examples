@@ -23,23 +23,27 @@
 #include "Failed/IFailedToNotifyQueue.h"
 #include "Failed/FailedToNotifyManager.h"
 #include "Failed/IFailedToNotifyManager.h"
+#include "Failed/ThreadSafe/ThreadSafeFailedToNotifyQueue.h"
+#include "Failed/ThreadSafe/IThreadSafeFailedToNotifyQueue.h"
 
 namespace di = boost::di;
 
 namespace InMemoryBus {
 namespace Notifiers {
-auto notifiers_module = []
-{
-  return (di::make_injector(
-          di::bind<IMessageBusNotifier>.to<MessageBusNotifier>(),
-          di::bind<INotifierThreadPool>.to<NotifierThreadPool>(),
-          di::bind<ISubscibersNotifier>.to<SubscibersNotifier>(),
-          di::bind<ISubscriberFunctionCaller>.to<SubscriberFunctionCaller>(),
-          di::bind<Failed::IFailedToNotify>.to<Failed::FailedToNotify>(),
-          di::bind<Failed::IFailedToNotifyQueue>.to<Failed::FailedToNotifyQueue>(),
-          di::bind<Failed::IFailedToNotifyManager>.to<Failed::FailedToNotifyManager>().in(di::singleton)
-      ));
-};
+auto notifiers_module =
+    []
+    {
+      return (di::make_injector(
+              di::bind<IMessageBusNotifier>.to<MessageBusNotifier>(),
+              di::bind<INotifierThreadPool>.to<NotifierThreadPool>(),
+              di::bind<ISubscibersNotifier>.to<SubscibersNotifier>(),
+              di::bind<ISubscriberFunctionCaller>.to<SubscriberFunctionCaller>(),
+              di::bind<Failed::IFailedToNotify>.to<Failed::FailedToNotify>(),
+              di::bind<Failed::IFailedToNotifyQueue>.to<Failed::FailedToNotifyQueue>(),
+              di::bind<Failed::IFailedToNotifyManager>.to<Failed::FailedToNotifyManager>(),
+              di::bind<Failed::ThreadSafe::IThreadSafeFailedToNotifyQueue>.to<Failed::ThreadSafe::ThreadSafeFailedToNotifyQueue>().in(di::singleton)
+          ));
+    };
 }
 }
 

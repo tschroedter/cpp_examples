@@ -6,7 +6,7 @@
  */
 
 #include "FailedToNotify.h"
-#include "../../BaseMessage.h"
+#include "../../Common/BaseMessage.h"
 #include "../../Exceptions/ArgumentInvalidException.h"
 #include "../../Subscribtions/Subscribers/ISubscriberInformationEntity.h"
 
@@ -16,7 +16,8 @@ namespace Failed {
 
 FailedToNotify::FailedToNotify(ISubscriberInformationEntity_SPtr information, BaseMessage_SPtr message)
     : m_information(information),
-      m_message(message) {
+      m_message(message),
+      m_number_of_tries(0) {
   if (m_information == nullptr) {
     throw InMemoryBus::Exceptions::ArgumentInvalidException(
         "Can't create FailedToNotify because 'information' is null!", "information");
@@ -34,6 +35,13 @@ ISubscriberInformationEntity_SPtr FailedToNotify::get_information() {
 
 BaseMessage_SPtr FailedToNotify::get_message() {
   return (m_message);
+}
+int FailedToNotify::get_number_of_tries() const {
+  return (m_number_of_tries);
+}
+
+void FailedToNotify::increase_number_of_tries() {
+  m_number_of_tries++;
 }
 
 }

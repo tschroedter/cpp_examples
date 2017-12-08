@@ -5,23 +5,29 @@
  *      Author: tom
  */
 
+#include <memory>
 #include "FailedToNotifyManager.h"
-#include "IFailedToNotifyQueue.h"
+#include "ThreadSafe/IThreadSafeFailedToNotifyQueue.h"
 #include "../../Exceptions/ArgumentInvalidException.h"
+#include "FailedToNotify.h"
 
 namespace InMemoryBus {
 namespace Notifiers {
 namespace Failed {
 
-// TODO singelton? lockin required?
-FailedToNotifyManager::FailedToNotifyManager(IFailedToNotifyQueue_SPtr queue)
+// TODO testing, process failed messages
+FailedToNotifyManager::FailedToNotifyManager(IThreadSafeFailedToNotifyQueue_SPtr queue)
     : m_queue(queue) {
   if (m_queue == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'queue' is null!", "queue");
   }
 }
 
-void FailedToNotifyManager::enqueue(IFailedToNotify_SPtr failed) {
+void FailedToNotifyManager::handle_failed_notification(const ISubscriberInformationEntity_SPtr& info,
+                                                       BaseMessage_SPtr& message) {
+
+  auto failed = make_shared<Failed::FailedToNotify>(info, message);
+
   m_queue->enqueue(failed);
 
   cout << "[FailedToNotifyManager::enqueue] Failed to execute SubscriberFunction for message '"

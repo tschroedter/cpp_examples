@@ -16,7 +16,7 @@
 #include "IBus.h"
 #include "Subscribtions/ISubscribtionManager.h"
 #include "Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
-#include "Typedefs.h"
+#include "Common/SubscriberFunction.h"
 #include "Publishers/MessageBusPublisher.h"
 #include "Subscribtions/Subscribers/SubscriberInformationEntity.h"
 

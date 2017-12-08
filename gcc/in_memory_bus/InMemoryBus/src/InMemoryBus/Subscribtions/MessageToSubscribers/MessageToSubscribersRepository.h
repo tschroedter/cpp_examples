@@ -9,7 +9,7 @@
 #define INMEMORYBUS_INMEMORYBUS_SUBSCRIBTIONS_MESSAGETOSUBSCRIBTIONS_MESSAGETOSUBSCRIBERSREPOSITORY_H_
 
 #include "IMessageToSubscribersRepository.h"
-#include "../../BaseRepository.h"
+#include "../../Common/BaseRepository.h"
 #include "IMessageToSubscribersEntity.h"
 
 namespace InMemoryBus {
@@ -27,7 +27,7 @@ class MessageToSubscribersRepository : public IMessageToSubscribersRepository {
   size_t size() const override;
 
  private:
-  std::shared_ptr<BaseRepository<IMessageToSubscribersEntity>> m_subscribers;
+  std::shared_ptr<InMemoryBus::Common::BaseRepository<IMessageToSubscribersEntity>> m_subscribers;
   IMessageToSubscribersEntity_SPtr m_unknown;
 };
 }

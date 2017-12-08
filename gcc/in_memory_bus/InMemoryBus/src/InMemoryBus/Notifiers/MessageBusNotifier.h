@@ -10,10 +10,10 @@
 
 #include "IMessageBusNotifier.h"
 #include "ISubscibersNotifier.h"
-#include "../MessageBusSynchronization.h"
-#include "../IMessagesQueue.h"
+#include "../Common/MessageBusSynchronization.h"
+#include "../Common/IMessagesQueue.h"
+#include "../Common/BaseMessage.h"
 #include "../Subscribtions/ISubscribtionManager.h"
-#include "../BaseMessage.h"
 
 namespace InMemoryBus {
 namespace Notifiers {

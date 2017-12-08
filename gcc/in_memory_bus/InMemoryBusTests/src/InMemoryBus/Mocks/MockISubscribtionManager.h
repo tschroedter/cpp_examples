@@ -11,7 +11,7 @@
 #include <string>
 #include <gtest/gtest.h>
 #include <gmock/gmock-generated-function-mockers.h>
-#include "InMemoryBus/Typedefs.h"
+#include "InMemoryBus/Common/SubscriberFunction.h"
 #include "InMemoryBus/Subscribtions/ISubscribtionManager.h"
 
 using namespace std;

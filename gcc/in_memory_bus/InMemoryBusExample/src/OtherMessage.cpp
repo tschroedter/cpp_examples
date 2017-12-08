@@ -6,11 +6,12 @@
  */
 
 #include "OtherMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 
 namespace InMemoryBusExample {
 
 OtherMessage::OtherMessage()
-    : InMemoryBus::BaseMessage("OtherMessage") {
+    : InMemoryBus::Common::BaseMessage("OtherMessage") {
 }
 
-} /* namespace InMemoryBus */
+}

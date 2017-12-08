@@ -10,13 +10,13 @@
 #include "Failed/FailedToNotify.h"
 #include "Failed/IFailedToNotifyManager.h"
 #include "../Subscribtions/Subscribers/ISubscriberInformationEntity.h"
-#include "../BaseMessage.h"
+#include "../Common/BaseMessage.h"
 #include "../Exceptions/ArgumentInvalidException.h"
 
 namespace InMemoryBus {
 namespace Notifiers {
 
-#define NUMBER_OF_RETRIES 3
+#define NUMBER_OF_RETRIES 10
 
 SubscriberFunctionCaller::SubscriberFunctionCaller(IFailedToNotifyManager_SPtr manager)
     : m_manager(manager) {
@@ -31,8 +31,8 @@ void SubscriberFunctionCaller::execute_subscriber_function(const ISubscriberInfo
   func(message);
 }
 
-bool SubscriberFunctionCaller::try_call_all_subscriber_function(const ISubscriberInformationEntity_SPtr& info,
-                                                                BaseMessage_SPtr message) {
+bool SubscriberFunctionCaller::try_call_subscriber_function(const ISubscriberInformationEntity_SPtr& info,
+                                                            BaseMessage_SPtr message) {
   int counter = 0;
   bool success = false;
 
@@ -52,13 +52,12 @@ bool SubscriberFunctionCaller::try_call_all_subscriber_function(const ISubscribe
   return (success);
 }
 
-void SubscriberFunctionCaller::call_all_subscriber_function(const ISubscriberInformationEntity_SPtr& info,
-                                                            BaseMessage_SPtr& message) {
-  bool success = try_call_all_subscriber_function(info, message);
+void SubscriberFunctionCaller::call_subscriber_function(const ISubscriberInformationEntity_SPtr& info,
+                                                        BaseMessage_SPtr& message) {
+  bool success = try_call_subscriber_function(info, message);
 
   if (!success) {
-    auto failed = make_shared<Failed::FailedToNotify>(info, message);
-    m_manager->enqueue(failed);
+    m_manager->handle_failed_notification(info, message);
   }
 }
 

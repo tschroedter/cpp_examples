@@ -8,13 +8,13 @@
 #ifndef COMPONENTB_H_
 #define COMPONENTB_H_
 
-#include "InMemoryBus/BusNode.h"
+#include "InMemoryBus/Common/BusNode.h"
 #include "InMemoryBus/IBus.h"
-#include "InMemoryBus/BaseMessage.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 
 namespace InMemoryBusExample {
 
-class ComponentB : public InMemoryBus::BusNode {
+class ComponentB : public InMemoryBus::Common::BusNode {
  public:
   ComponentB(IBus_SPtr bus);
   virtual ~ComponentB() = default;

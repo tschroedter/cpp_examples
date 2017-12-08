@@ -9,7 +9,7 @@
 #define INMEMORYBUS_NOTIFIERS_FAILED_IFAILEDTONOTIFY_H_
 
 #include <memory>
-#include "../../BaseMessage.h"
+#include "../../Common/BaseMessage.h"
 #include "../../Subscribtions/Subscribers/ISubscriberInformationEntity.h"
 
 namespace InMemoryBus {
@@ -22,6 +22,8 @@ class IFailedToNotify {
 
   virtual ISubscriberInformationEntity_SPtr get_information() = 0;
   virtual BaseMessage_SPtr get_message() = 0;
+  virtual int get_number_of_tries() const = 0;
+  virtual void increase_number_of_tries() = 0;
 };
 
 }

@@ -10,7 +10,7 @@
 #include <chrono>
 #include "SubscibersNotifier.h"
 #include "ISubscriberFunctionCaller.h"
-#include "../BaseMessage.h"
+#include "../Common/BaseMessage.h"
 #include "../Exceptions/ArgumentInvalidException.h"
 #include "../Subscribtions/ISubscribtionManager.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
@@ -26,8 +26,7 @@ SubscibersNotifier::SubscibersNotifier(ISubscribtionManager_SPtr manager, ISubsc
   }
 
   if (m_caller == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifier because 'caller' is null!",
-                                               "caller");
+    throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifier because 'caller' is null!", "caller");
   }
 }
 void SubscibersNotifier::notify_all_subscribers_for_message(BaseMessage_SPtr message) {
@@ -70,7 +69,7 @@ void SubscibersNotifier::call_all_subscriber_functions(const ISubscriberInformat
       continue;
     }
 
-    m_caller->call_all_subscriber_function(info, message);
+    m_caller->call_subscriber_function(info, message);
   }
 }
 
