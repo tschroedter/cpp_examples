@@ -13,6 +13,7 @@
 #include <iostream>
 #include <string>
 #include "MessageBus.h"
+#include "Exceptions/ArgumentInvalidException.h"
 #include "Subscribtions/ISubscribtionManager.h"
 #include "Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 #include "Common/SubscriberFunction.h"
@@ -25,7 +26,15 @@ namespace InMemoryBus {
 MessageBus::MessageBus(IMessageBusPublisher_SPtr publisher, ISubscribtionManager_SPtr manager)
     : m_publisher(publisher),
       m_manager(manager) {
-  // TODO check for nullptr
+  if (m_publisher == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBus because 'publisher' is null!",
+                                               "publisher");
+  }
+
+  if (m_manager == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBus because 'manager' is null!",
+                                               "manager");
+  }
 }
 
 void MessageBus::subscribe(std::string subscriber_id, std::string message_type, SubscriberFunction messageReceiver) {
