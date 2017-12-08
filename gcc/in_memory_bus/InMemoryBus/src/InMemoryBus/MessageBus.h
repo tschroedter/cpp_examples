@@ -21,8 +21,6 @@
 #include "Subscribtions/Subscribers/SubscriberInformationEntity.h"
 
 namespace InMemoryBus {
-// TODO use newsubrepo!!!
-// typedef std::map<std::string, Subscribers*> MessagesToSubscribers;
 
 class MessageBus : public IBus {
  public:
@@ -39,6 +37,6 @@ class MessageBus : public IBus {
   ISubscribtionManager_SPtr m_manager = nullptr;
 };
 
-} /* namespace InMemoryBus */
+}
 
 #endif /* MESSAGEBUS_H_ */
