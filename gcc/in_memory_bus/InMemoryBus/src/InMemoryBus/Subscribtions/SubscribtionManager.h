@@ -11,6 +11,7 @@
 #include <string>
 #include "../Common/SubscriberFunction.h"
 #include "ISubscribtionManager.h"
+#include "Subscribers/UnknownSubscriberInformationEntityEntity.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 #include "MessageToSubscribers/IMessageToSubscribersEntity.h"
 #include "MessageToSubscribers/MessageToSubscribersRepository.h"
@@ -22,7 +23,8 @@ namespace InMemoryBus {
 namespace Subscribtions {
 class SubscribtionManager : public ISubscribtionManager {
  public:
-  SubscribtionManager(IMessageToSubscribersRepository_SPtr repository);
+  SubscribtionManager(IMessageToSubscribersRepository_SPtr repository,
+                      IUnknownSubscriberInformationEntity_SPtr unknown);
   ~SubscribtionManager() = default;
 
   void remove_subscription(string subscriber_id, string message_type) override;
@@ -31,6 +33,7 @@ class SubscribtionManager : public ISubscribtionManager {
 
  private:
   IMessageToSubscribersRepository_SPtr m_repository = nullptr;
+  IUnknownSubscriberInformationEntity_SPtr m_unknown = nullptr;
 
   IMessageToSubscribersEntity_SPtr create_entity(string message_type);
 };

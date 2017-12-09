@@ -12,10 +12,14 @@ namespace InMemoryBusTest {
 using namespace std;
 
 void expect_std_strings_are_equal(const string & expected, const string & actual) {
-  cout << "Actual  : " << actual << "\n";
-  cout << "Expected: " << expected << "\n";
+  int result = expected.compare(actual);
 
-  EXPECT_EQ(0, expected.compare(actual));
+  if (result) {
+    cout << "Actual  : " << actual << "\n";
+    cout << "Expected: " << expected << "\n";
+  }
+
+  EXPECT_EQ(0, result);
 }
 
 }

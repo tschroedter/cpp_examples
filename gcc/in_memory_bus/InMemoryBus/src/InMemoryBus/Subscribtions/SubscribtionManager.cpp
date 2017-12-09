@@ -15,6 +15,7 @@
 #include "Subscribers/ISubscriberInformationRepository.h"
 #include "Subscribers/SubscriberInformationEntity.h"
 #include "Subscribers/SubscriberInformationRepository.h"
+#include "Subscribers/UnknownSubscriberInformationEntityEntity.h"
 #include "Subscribers/Threadsafe/ThreadSafeSubscriberInformationRepository.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 
@@ -22,20 +23,27 @@ using namespace std;
 
 namespace InMemoryBus {
 namespace Subscribtions {
-SubscribtionManager::SubscribtionManager(IMessageToSubscribersRepository_SPtr repository)
-    : m_repository(repository) {
+SubscribtionManager::SubscribtionManager(IMessageToSubscribersRepository_SPtr repository,
+                                         IUnknownSubscriberInformationEntity_SPtr unknown)
+    : m_repository(repository),
+      m_unknown(unknown) {
   if (m_repository == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'm_repository' is null!",
-                                               "m_repository");
+    throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'repository' is null!",
+                                               "repository");
+  }
+
+  if (m_unknown == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'unknown' is null!",
+                                               "unknown");
   }
 }
 
 void SubscribtionManager::remove_subscription(string subscriber_id, string message_type) {
-  auto entity = get_repository_for_message_type(message_type);
+  auto repository = get_repository_for_message_type(message_type);
 
-  auto information = entity->find_subscriber_by_id(subscriber_id);
+  auto information = repository->find_subscriber_by_id(subscriber_id);
 
-  entity->remove(information);
+  repository->remove(information);
 }
 
 IMessageToSubscribersEntity_SPtr SubscribtionManager::create_entity(string message_type) {
@@ -59,7 +67,7 @@ void SubscribtionManager::add_subscription(string subscriber_id, string message_
 
   string entity_message_type = entity->get_message_type();
 
-  if (entity_message_type.compare("Unknown") == 0) {   // TODO magic number
+  if (entity_message_type.compare(m_unknown->get_message_type()) == 0) {
     entity = create_entity(message_type);
 
     m_repository->add(entity);

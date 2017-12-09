@@ -8,6 +8,8 @@
 #ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_UNKNOWNSUBSCRIBERINFORMATIONENTITYENTITY_H_
 #define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_UNKNOWNSUBSCRIBERINFORMATIONENTITYENTITY_H_
 
+#include <memory>
+#include <string>
 #include "../../Common/BaseMessage.h"
 #include "SubscriberInformationEntity.h"
 
@@ -27,5 +29,7 @@ class UnknownSubscriberInformationEntity : public SubscriberInformationEntity {
 }
 }
 }
+
+typedef std::shared_ptr<InMemoryBus::Subscribtions::Subscribers::UnknownSubscriberInformationEntity> IUnknownSubscriberInformationEntity_SPtr;
 
 #endif /* INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_UNKNOWNSUBSCRIBERINFORMATIONENTITYENTITY_H_ */

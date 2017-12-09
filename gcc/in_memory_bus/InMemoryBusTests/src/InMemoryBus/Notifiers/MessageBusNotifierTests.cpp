@@ -87,17 +87,19 @@ TEST(MessageBusNotifierTests, process_next_message_does_not_calls_dequeue_for_si
 
 TEST(MessageBusNotifierTests, process_next_message_calls_dequeue) {
   // Arrange
-  Message_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
+  BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
   MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();  // TODO missing an interface here?
   MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
   IMessagesQueue_SPtr messages { p_mock_messages };
-  ISubscibersNotifier_SPtr notifier = std::make_shared<MockISubscibersNotifier>();
+  MockISubscibersNotifier* p_mock_notifier = new MockISubscibersNotifier();
+  ISubscibersNotifier_SPtr notifier{p_mock_notifier};
 
   TestMessageBusNotifier sut { synchronization, messages, notifier };
 
   EXPECT_CALL(*p_mock_messages, size()).Times(1).WillOnce(testing::Return((size_t) 1));
   EXPECT_CALL(*p_mock_messages, dequeue()).Times(1).WillOnce(testing::Return(message));
+  EXPECT_CALL(*p_mock_notifier, notify_all_subscribers_for_message(message)).Times(1);
 
   // Act
   sut.process_next_message();
