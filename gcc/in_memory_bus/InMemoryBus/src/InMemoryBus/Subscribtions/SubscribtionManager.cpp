@@ -27,6 +27,9 @@ SubscribtionManager::SubscribtionManager(IMessageToSubscribersRepository_SPtr re
                                          IUnknownSubscriberInformationEntity_SPtr unknown)
     : m_repository(repository),
       m_unknown(unknown) {
+
+  // dynamic_cast<ISubscriberInformationEntity*>(factory.create().get()));
+
   if (m_repository == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'repository' is null!",
                                                "repository");
@@ -60,6 +63,8 @@ IMessageToSubscribersEntity_SPtr SubscribtionManager::create_entity(string messa
 
 void SubscribtionManager::add_subscription(string subscriber_id, string message_type,
                                            SubscriberFunction messageReceiver) {
+
+
   ISubscriberInformationEntity_SPtr information = make_shared<Subscribers::SubscriberInformationEntity>(
       subscriber_id, message_type, messageReceiver);
 

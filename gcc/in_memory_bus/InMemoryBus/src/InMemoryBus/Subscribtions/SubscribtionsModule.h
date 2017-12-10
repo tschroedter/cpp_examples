@@ -9,6 +9,7 @@
 #define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERSMODULE_H_
 
 #include <boost/di.hpp>
+#include "../Common/SubscriberFunction.h"
 #include "SubscribtionManager.h"
 #include "ISubscribtionManager.h"
 #include "Subscribers/SubscriberInformationRepository.h"
@@ -27,7 +28,7 @@ auto subscribtions_module =
     []
     {
       return (di::make_injector(
-              di::bind<Subscribers::ISubscriberInformationEntity>.to<Subscribers::SubscriberInformationEntity>(),
+              di::bind<Subscribers::ISubscriberInformationEntity>.to(std::make_shared<Subscribers::SubscriberInformationEntity>()),
               di::bind<Subscribers::ThreadSafe::IThreadSafeSubscriberInformationRepository>.to<Subscribers::ThreadSafe::ThreadSafeSubscriberInformationRepository>(),
               di::bind<Subscribers::ISubscriberInformationRepository>.to<Subscribers::SubscriberInformationRepository>(),
               di::bind<Subscribers::UnknownSubscriberInformationEntity>.to<Subscribers::UnknownSubscriberInformationEntity>().in(di::singleton),
