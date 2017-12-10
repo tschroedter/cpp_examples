@@ -25,7 +25,7 @@ class BusNode {
   std::string m_subscriber_id;
   std::string m_message_type;
 
-  std::function<void(BaseMessage_SPtr)> getNotifyFunc();
+  std::function<void(BaseMessage_SPtr)> get_notify_function();
   void send(BaseMessage_SPtr message);
   virtual void onNotify(BaseMessage_SPtr message);
 };

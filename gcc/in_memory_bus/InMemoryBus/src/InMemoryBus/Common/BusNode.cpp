@@ -19,7 +19,7 @@ BusNode::BusNode(IBus_SPtr bus, std::string subscriber_id, std::string message_t
     : m_bus(bus),
       m_subscriber_id(subscriber_id),
       m_message_type(message_type) {
-  m_bus->subscribe(subscriber_id, message_type, this->getNotifyFunc());
+  m_bus->subscribe(subscriber_id, message_type, this->get_notify_function());
 }
 
 BusNode::~BusNode() {
@@ -29,7 +29,7 @@ BusNode::~BusNode() {
 void BusNode::update() {
 }
 
-std::function<void(BaseMessage_SPtr)> BusNode::getNotifyFunc() {
+std::function<void(BaseMessage_SPtr)> BusNode::get_notify_function() {
   auto messageListener = [=](BaseMessage_SPtr message) -> void
   {
     this->onNotify(message);
