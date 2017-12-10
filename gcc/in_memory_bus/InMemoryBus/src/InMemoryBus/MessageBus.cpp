@@ -37,7 +37,7 @@ MessageBus::MessageBus(IMessageBusPublisher_SPtr publisher, ISubscribtionManager
   }
 }
 
-void MessageBus::subscribe(std::string subscriber_id, std::string message_type, SubscriberFunction messageReceiver) {
+void MessageBus::subscribe(std::string subscriber_id, std::string message_type, Common::SubscriberFunction messageReceiver) {
   m_manager->add_subscription(subscriber_id, message_type, messageReceiver);
 }
 

@@ -18,7 +18,7 @@ UnknownSubscriberInformationEntity::UnknownSubscriberInformationEntity()
 UnknownSubscriberInformationEntity::~UnknownSubscriberInformationEntity() {
 }
 
-InMemoryBus::SubscriberFunction UnknownSubscriberInformationEntity::getNotifyFunc() {
+InMemoryBus::Common::SubscriberFunction UnknownSubscriberInformationEntity::getNotifyFunc() {
   auto messageListener = [=](BaseMessage_SPtr message) -> void
   {
     this->onNotify(message);

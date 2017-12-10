@@ -73,7 +73,7 @@ TEST(MessageBusTest, subscribe_calls_manager_add_subscription) {
   MessageBus sut { publisher, manager };
 
   EXPECT_CALL(*p_mock_manager,
-      add_subscription("id", "type", testing::A<InMemoryBus::SubscriberFunction>())).Times(1);
+      add_subscription("id", "type", testing::A<InMemoryBus::Common::SubscriberFunction>())).Times(1);
 
   // Act
   sut.subscribe("id", "type", subscriber.getNotifyFunc());

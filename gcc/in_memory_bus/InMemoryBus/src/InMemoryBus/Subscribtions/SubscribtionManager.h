@@ -28,7 +28,7 @@ class SubscribtionManager : public ISubscribtionManager {
   ~SubscribtionManager() = default;
 
   void remove_subscription(string subscriber_id, string message_type) override;
-  void add_subscription(string subscriber_id, string message_type, SubscriberFunction messageReceiver) override;
+  void add_subscription(string subscriber_id, string message_type, InMemoryBus::Common::SubscriberFunction messageReceiver) override;
   IThreadSafeSubscriberInformationRepository_SPtr get_repository_for_message_type(const string& message_type) override;
 
  private:

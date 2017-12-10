@@ -27,7 +27,7 @@ class MessageBus : public IBus {
   MessageBus(IMessageBusPublisher_SPtr publisher, ISubscribtionManager_SPtr manager);
   virtual ~MessageBus() = default;
 
-  void subscribe(std::string subscriber_id, std::string message_type, SubscriberFunction messageReceiver);
+  void subscribe(std::string subscriber_id, std::string message_type, Common::SubscriberFunction messageReceiver);
   void unsubscribe(std::string subscriber_id, std::string message_type);
   void publish(BaseMessage_SPtr message);
   void notify();

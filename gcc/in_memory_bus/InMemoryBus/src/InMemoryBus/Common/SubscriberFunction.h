@@ -13,10 +13,11 @@
 #include "BaseMessage.h"
 
 namespace InMemoryBus {
-// TODO add namespace Common {
+namespace Common {
 
 typedef std::function<void(BaseMessage_SPtr)> SubscriberFunction;
 
+}
 }
 
 #endif /* INMEMORYBUS_COMMON_SUBSCRIBERFUNCTION_H_ */

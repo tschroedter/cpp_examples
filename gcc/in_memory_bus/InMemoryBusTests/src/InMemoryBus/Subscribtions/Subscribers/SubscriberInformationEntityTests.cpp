@@ -52,7 +52,7 @@ TEST(SubscriberInformationEntityTest, constructor_sets_subscriber_function) {
 
   // Act
   SubscriberInformationEntity sut { "id", "message_type", subscriber.getNotifyFunc() };
-  SubscriberFunction subscriber_function = sut.get_subscriber_function();
+  InMemoryBus::Common::SubscriberFunction subscriber_function = sut.get_subscriber_function();
   subscriber_function(message);
 
   // Assert

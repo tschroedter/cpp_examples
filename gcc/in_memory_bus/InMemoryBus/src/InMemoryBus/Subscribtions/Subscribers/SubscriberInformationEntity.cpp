@@ -6,6 +6,7 @@
  */
 
 #include <mutex>
+#include "../../Common/SubscriberFunction.h"
 #include "SubscriberInformationEntity.h"
 #include "../../Exceptions/ArgumentInvalidException.h"
 
@@ -13,9 +14,11 @@ namespace InMemoryBus {
 namespace Subscribtions {
 namespace Subscribers {
 // todo use ApsectC++
-SubscriberInformationEntity::SubscriberInformationEntity(const std::string subscriber_id,
-                                                         const std::string message_type,
-                                                         const SubscriberFunction subscriber_function)
+using namespace std;
+
+SubscriberInformationEntity::SubscriberInformationEntity(const string subscriber_id,
+                                                         const string message_type,
+                                                         const InMemoryBus::Common::SubscriberFunction subscriber_function)
     : m_subscriber_id(subscriber_id),
       m_message_type(message_type),
       m_subscriber_function(subscriber_function) {
@@ -46,7 +49,8 @@ string SubscriberInformationEntity::get_subscriber_id() const {
 string SubscriberInformationEntity::get_message_type() const {
   return (m_message_type);
 }
-SubscriberFunction SubscriberInformationEntity::get_subscriber_function() const {
+
+InMemoryBus::Common::SubscriberFunction SubscriberInformationEntity::get_subscriber_function() const {
   return (m_subscriber_function);
 }
 

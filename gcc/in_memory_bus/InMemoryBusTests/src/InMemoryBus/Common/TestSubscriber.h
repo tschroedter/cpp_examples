@@ -19,7 +19,7 @@ class TestSubscriber {
   TestSubscriber();
   virtual ~TestSubscriber();
 
-  InMemoryBus::SubscriberFunction getNotifyFunc();
+  InMemoryBus::Common::SubscriberFunction getNotifyFunc();
   void onNotify(Message_SPtr p_message);
 
   bool wasCalledOnNotify();

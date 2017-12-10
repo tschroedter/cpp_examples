@@ -17,6 +17,7 @@
 #include "ComponentOtherA.h"
 #include "ComponentOtherB.h"
 #include "InMemoryBusExampleModule.h"
+#include "InMemoryBus/Common/SubscriberFunction.h"
 #include "InMemoryBus/Common/BaseMessage.h"
 #include "InMemoryBus/Common/MessageBusSynchronization.h"
 #include "InMemoryBus/Common/IMessagesQueue.h"
@@ -37,7 +38,7 @@ void MemoryLeakTest() {
   // Memory leak test
   auto sp_vector = std::make_shared<ISubscriberInformationEntityVector>();
   InMemoryBus::Subscribtions::Subscribers::SubscriberInformationRepository repo { sp_vector };
-  InMemoryBus::SubscriberFunction does_not_matter = test;
+  InMemoryBus::Common::SubscriberFunction does_not_matter = test;
   for (int i = 0; i < 10000; i++) {
     std::string id = std::to_string(i);
     auto info = std::make_shared<InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity>(id, "type",

@@ -27,7 +27,7 @@ SubscriberFunctionCaller::SubscriberFunctionCaller(IFailedToNotifyManager_SPtr m
 }
 void SubscriberFunctionCaller::execute_subscriber_function(const ISubscriberInformationEntity_SPtr& info,
                                                            BaseMessage_SPtr& message) {
-  SubscriberFunction func = info->get_subscriber_function();
+  InMemoryBus::Common::SubscriberFunction func = info->get_subscriber_function();
   func(message);
 }
 

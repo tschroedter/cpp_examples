@@ -22,7 +22,7 @@ class MockISubscriberInformationEntity : public InMemoryBus::Subscribtions::Subs
  public:
   MOCK_CONST_METHOD0(get_subscriber_id, std::string());
   MOCK_CONST_METHOD0(get_message_type, std::string());
-  MOCK_CONST_METHOD0(get_subscriber_function, InMemoryBus::SubscriberFunction());
+  MOCK_CONST_METHOD0(get_subscriber_function, InMemoryBus::Common::SubscriberFunction());
   MOCK_METHOD0(try_lock, bool());
   MOCK_METHOD0(unlock, void());
 };

@@ -21,7 +21,7 @@ TestSubscriber::TestSubscriber() {
 TestSubscriber::~TestSubscriber() {
 }
 
-InMemoryBus::SubscriberFunction TestSubscriber::getNotifyFunc() {
+InMemoryBus::Common::SubscriberFunction TestSubscriber::getNotifyFunc() {
   auto messageListener = [=](BaseMessage_SPtr base_message) -> void
   {
     Message_SPtr message = dynamic_pointer_cast<TestMessage>(base_message);

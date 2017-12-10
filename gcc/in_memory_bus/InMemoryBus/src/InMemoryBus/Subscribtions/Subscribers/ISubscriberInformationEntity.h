@@ -25,7 +25,7 @@ class ISubscriberInformationEntity : public InMemoryBus::Common::BaseEntity {
 
   virtual string get_subscriber_id() const = 0;
   virtual string get_message_type() const = 0;
-  virtual SubscriberFunction get_subscriber_function() const = 0;
+  virtual InMemoryBus::Common::SubscriberFunction get_subscriber_function() const = 0;
   virtual bool try_lock() = 0;
   virtual void unlock() =0;
 };

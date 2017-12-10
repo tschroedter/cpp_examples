@@ -10,8 +10,6 @@
 namespace InMemoryBusTests {
 using namespace InMemoryBus::Subscribtions::MessageToSubscribers;
 
-// InMemoryBus::SubscriberFunction DOES_NOT_MATTER = 0;
-
 TEST(MessageToSubscribersRepositoryTests, add_adds_item_to_vector_once) {
   // Arrange
   MockIThreadSafeSubscriberInformationRepository* p_repo = new MockIThreadSafeSubscriberInformationRepository { };

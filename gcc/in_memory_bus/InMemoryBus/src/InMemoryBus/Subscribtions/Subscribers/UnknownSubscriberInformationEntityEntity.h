@@ -21,7 +21,7 @@ class UnknownSubscriberInformationEntity : public SubscriberInformationEntity {
   UnknownSubscriberInformationEntity();
   virtual ~UnknownSubscriberInformationEntity();
 
-  SubscriberFunction getNotifyFunc();
+  InMemoryBus::Common::SubscriberFunction getNotifyFunc();
 
  private:
   void onNotify(BaseMessage_SPtr message);

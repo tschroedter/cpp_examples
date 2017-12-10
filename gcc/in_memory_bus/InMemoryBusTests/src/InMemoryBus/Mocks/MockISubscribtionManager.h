@@ -21,7 +21,7 @@ namespace InMemoryBusTests {
 class MockISubscribtionManager : public InMemoryBus::Subscribtions::ISubscribtionManager {
  public:
   MOCK_METHOD2(remove_subscription, void(string subscriber_id, string message_type));
-  MOCK_METHOD3(add_subscription, void(string subscriber_id, string message_type, InMemoryBus::SubscriberFunction messageReceiver));
+  MOCK_METHOD3(add_subscription, void(string subscriber_id, string message_type, InMemoryBus::Common::SubscriberFunction messageReceiver));
   MOCK_METHOD1(get_repository_for_message_type, IThreadSafeSubscriberInformationRepository_SPtr(const string& message_typ));
 };
 
