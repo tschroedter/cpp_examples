@@ -81,7 +81,7 @@ class BaseRepository {
     return (all);
   }
 
-  size_t size()   // todo testing
+  size_t size()
   {
     return (m_entities->size());
   }

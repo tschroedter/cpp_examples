@@ -1,6 +1,7 @@
 #include <memory>
 #include <iostream>
 #include <gtest/gtest.h>
+#include "../../Common.h"
 #include "InMemoryBus/Subscribtions/MessageToSubscribers/IMessageToSubscribersEntity.h"
 #include "InMemoryBus/Subscribtions/MessageToSubscribers/MessageToSubscribersEntity.h"
 #include "InMemoryBus/Subscribtions/MessageToSubscribers/MessageToSubscribersRepository.h"
@@ -118,10 +119,11 @@ TEST(MessageToSubscribersRepositoryTests, findBySubscriberId_returns_Unknown_For
   MessageToSubscribersRepository sut { sp_vector };
 
   // Act
-  auto actual = sut.find_subscriber_by_message_type("unknown subscriber_id");
+  auto subscriber = sut.find_subscriber_by_message_type("unknown subscriber_id");
 
   // Assert
-  EXPECT_TRUE(actual->get_message_type().compare("Unknown") == 0);  // todo use function
+  std::string actual = subscriber->get_message_type();
+  InMemoryBusTest::expect_std_strings_are_equal("Unknown", actual);
 }
 
 TEST(MessageToSubscribersRepositoryTests, get_all_returns_all_informations) {

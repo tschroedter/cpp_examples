@@ -34,9 +34,7 @@ void FailedToNotifyManager::handle_failed_notification(const ISubscriberInformat
        << failed->get_message()->getType() << "' and SubscriberId '" << failed->get_information()->get_subscriber_id()
        << "'!" << endl;
 
-  //auto failed = std::make_shared<FailedToNotify>(info, message);
-  //cout << "Created FTN: " << failed->get_message()->getType() << endl;
-  // TODO store message and retry => store in new class info + message ==> have separate thread trying to deliver failed messages
+  // TODO have separate thread trying to deliver failed messages
 }
 
 }

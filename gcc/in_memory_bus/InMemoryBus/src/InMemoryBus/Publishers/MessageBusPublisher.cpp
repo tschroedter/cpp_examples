@@ -28,7 +28,7 @@ MessageBusPublisher::MessageBusPublisher(MessageBusSynchronization_SPtr synchron
   }
 }
 
-void MessageBusPublisher::publish(BaseMessage_SPtr message) {  // TODO use typedef shared_ptr
+void MessageBusPublisher::publish(BaseMessage_SPtr message) {
   std::lock_guard<std::mutex> guard(m_synchronization->mutex);
 
   m_messages->enqueue(message);

@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <memory>
+#include <thread>
+#include <chrono>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
@@ -93,7 +95,7 @@ TEST(MessageBusNotifierTests, process_next_message_calls_dequeue) {
   MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
   IMessagesQueue_SPtr messages { p_mock_messages };
   MockISubscibersNotifier* p_mock_notifier = new MockISubscibersNotifier();
-  ISubscibersNotifier_SPtr notifier{p_mock_notifier};
+  ISubscibersNotifier_SPtr notifier { p_mock_notifier };
 
   TestMessageBusNotifier sut { synchronization, messages, notifier };
 
@@ -128,7 +130,33 @@ TEST(MessageBusNotifierTests, process_next_message_calls_notifier) {
   // Assert
 }
 
-// TODO notify
+TEST(MessageBusNotifierTests, notify_calls_process_next_message) {
+  // Arrange
+  BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
+  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();  // TODO missing an interface here?
+  MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
+  IMessagesQueue_SPtr messages { p_mock_messages };
+  MockISubscibersNotifier* p_mock_notifier = new MockISubscibersNotifier();
+  ISubscibersNotifier_SPtr notifier { p_mock_notifier };
+
+  TestMessageBusNotifier sut { synchronization, messages, notifier };
+
+  EXPECT_CALL(*p_mock_messages, size()).Times(1).WillOnce(testing::Return((size_t) 1));
+  EXPECT_CALL(*p_mock_messages, dequeue()).Times(1).WillOnce(testing::Return(message));
+  EXPECT_CALL(*p_mock_notifier, notify_all_subscribers_for_message(message)).Times(1);
+
+  // Act
+  std::thread notifer = std::thread(&TestMessageBusNotifier::notify, sut);
+
+  synchronization->is_messages_avalable = true;
+  synchronization->messages_available.notify_one();
+
+  // Assert
+  std::this_thread::yield();
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));  // not nice, but we have to wait for the thread to process
+  synchronization->is_stop_requested.store(true);
+  notifer.join();
+}
 
 }
 
