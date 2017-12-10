@@ -12,6 +12,7 @@
 #include <vector>
 #include <boost/di.hpp>
 
+#include "NeedFactory.h"
 #include "ComponentA.h"
 #include "ComponentB.h"
 #include "ComponentOtherA.h"
@@ -57,7 +58,9 @@ int main() {
     cout << "InMemoryBusExample" << endl;
 
     auto injector = InMemoryBusExample::inmemorybusexample_module();
-    auto bus = injector.create<IBus_SPtr>();
+
+    // TODO Factory not working yet auto test = injector.create<shared_ptr<InMemoryBusTests::NeedFactory>>();
+
     auto notifier_pool = injector.create<INotifierThreadPool_SPtr>();
     notifier_pool->initialize(16);
 

@@ -8,7 +8,7 @@
 namespace InMemoryBusTests {
 using namespace InMemoryBus::Subscribtions::Subscribers;
 
-void doNothingSubscriberFunction(BaseMessage_SPtr base_message) {
+void doNothingSubscriberFunction(BaseMessage_SPtr base_message) { // TODO rename
 }
 
 TEST(SubscriberInformationRepositoryTest, add_adds_information_to_vector) {
