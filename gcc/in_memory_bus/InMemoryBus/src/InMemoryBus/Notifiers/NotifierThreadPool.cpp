@@ -33,7 +33,7 @@ NotifierThreadPool::NotifierThreadPool(MessageBusSynchronization_SPtr synchroniz
                                                "messages");
   }
 
-  if (m_notifier == nullptr) {  // ToDo testing
+  if (m_notifier == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'notifier' is null!",
                                                "notifier");
   }

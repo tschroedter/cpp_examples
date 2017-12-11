@@ -20,11 +20,12 @@ using namespace InMemoryBus::Notifiers;
 TEST(NotifierThreadPoolTests, constructor_throws_for_synchronization_is_nullptr) {
   try {
     // Arrange
+    MessageBusSynchronization_SPtr synchronization = nullptr;
     IMessagesQueue_SPtr messages = std::make_shared<MockIMessagesQueue>();
     ISubscibersNotifier_SPtr notifier = std::make_shared<MockISubscibersNotifier>();
 
     // Act
-    NotifierThreadPool sut { nullptr, messages, notifier };
+    NotifierThreadPool sut { synchronization, messages, notifier };
 
     // Assert
     FAIL()<<"Expected ArgumentInvalidException";
@@ -42,10 +43,11 @@ TEST(NotifierThreadPoolTests, constructor_throws_for_messages_is_nullptr) {
   try {
     // Arrange
     MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
+    IMessagesQueue_SPtr messages = nullptr;
     ISubscibersNotifier_SPtr notifier = std::make_shared<MockISubscibersNotifier>();
 
     // Act
-    NotifierThreadPool sut { synchronization, nullptr, notifier };
+    NotifierThreadPool sut { synchronization, messages, notifier };
 
     // Assert
     FAIL()<<"Expected ArgumentInvalidException";
@@ -64,9 +66,10 @@ TEST(NotifierThreadPoolTests, constructor_throws_for_notifier_is_nullptr) {
     // Arrange
     MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
     IMessagesQueue_SPtr messages = std::make_shared<MockIMessagesQueue>();
+    ISubscibersNotifier_SPtr notifier = nullptr;
 
     // Act
-    NotifierThreadPool sut { synchronization, messages, nullptr };
+    NotifierThreadPool sut { synchronization, messages, notifier };
 
     // Assert
     FAIL()<<"Expected ArgumentInvalidException";
