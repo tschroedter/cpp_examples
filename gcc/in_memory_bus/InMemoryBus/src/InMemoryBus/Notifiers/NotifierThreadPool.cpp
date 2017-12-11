@@ -67,7 +67,15 @@ void NotifierThreadPool::do_join_thread(std::thread& thread) {
 
 void NotifierThreadPool::join_threads() {
   m_synchronization->is_stop_requested.store(true);
-  m_synchronization->messages_available.notify_all();
+
+  for(size_t i = 0; i < m_threads.size(); i++)
+  {
+    // TODO not the best way to kill the threads, but otherwise I need atomic variables which each thread
+    // sets to true when finished (BOOST.DI Factory not working yet)
+    m_synchronization->is_messages_avalable = true;
+    m_synchronization->messages_available.notify_one();
+    std:this_thread::sleep_for(std::chrono::milliseconds(100));
+  }
 
   auto join_thread = std::bind(&NotifierThreadPool::do_join_thread, this, std::placeholders::_1);
 

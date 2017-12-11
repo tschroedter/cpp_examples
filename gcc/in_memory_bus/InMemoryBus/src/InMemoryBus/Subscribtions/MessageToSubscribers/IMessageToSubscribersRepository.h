@@ -19,9 +19,9 @@ class IMessageToSubscribersRepository {
  public:
   virtual ~IMessageToSubscribersRepository() = default;
 
-  virtual IMessageToSubscribersEntityVector_SPtr get_all_subscribers() const = 0;  // todo check function naming camel or lowercase
+  virtual IMessageToSubscribersEntityVector_SPtr get_all_subscribers() const = 0;
   virtual IMessageToSubscribersEntity_SPtr find_subscriber_by_message_type(const string& message_type) = 0;
-  virtual void remove(const IMessageToSubscribersEntity_SPtr information) = 0;   // TODO rename information to entity
+  virtual void remove(const IMessageToSubscribersEntity_SPtr information) = 0;
   virtual void add(const IMessageToSubscribersEntity_SPtr information) = 0;
   virtual size_t size() const = 0;
 };

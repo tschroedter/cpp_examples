@@ -49,6 +49,7 @@ MessageBusNotifier::MessageBusNotifier(MessageBusSynchronization_SPtr synchroniz
 
 void MessageBusNotifier::process_next_message() {
   if (m_messages->size() == 0) {
+    m_synchronization->is_messages_avalable = false;
     return;
   }
 

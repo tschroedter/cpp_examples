@@ -71,7 +71,7 @@ TEST(MessageBusNotifierTests, process_next_message_does_not_calls_dequeue_for_si
   // Arrange
   Message_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
-  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();  // TODO missing an interface here?
+  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
   MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
   IMessagesQueue_SPtr messages { p_mock_messages };
   ISubscibersNotifier_SPtr notifier = std::make_shared<MockISubscibersNotifier>();
@@ -91,7 +91,7 @@ TEST(MessageBusNotifierTests, process_next_message_calls_dequeue) {
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
 
-  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();  // TODO missing an interface here?
+  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
   MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
   IMessagesQueue_SPtr messages { p_mock_messages };
   MockISubscibersNotifier* p_mock_notifier = new MockISubscibersNotifier();
@@ -112,7 +112,7 @@ TEST(MessageBusNotifierTests, process_next_message_calls_dequeue) {
 TEST(MessageBusNotifierTests, process_next_message_calls_notifier) {
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
-  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();  // TODO missing an interface here?
+  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
   MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
   IMessagesQueue_SPtr messages { p_mock_messages };
   MockISubscibersNotifier* p_mock_notifier = new MockISubscibersNotifier();
@@ -133,7 +133,7 @@ TEST(MessageBusNotifierTests, process_next_message_calls_notifier) {
 TEST(MessageBusNotifierTests, notify_calls_process_next_message) {
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
-  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();  // TODO missing an interface here?
+  MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
   MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
   IMessagesQueue_SPtr messages { p_mock_messages };
   MockISubscibersNotifier* p_mock_notifier = new MockISubscibersNotifier();
@@ -141,20 +141,20 @@ TEST(MessageBusNotifierTests, notify_calls_process_next_message) {
 
   TestMessageBusNotifier sut { synchronization, messages, notifier };
 
-  EXPECT_CALL(*p_mock_messages, size()).Times(1).WillOnce(testing::Return((size_t) 1));
+  EXPECT_CALL(*p_mock_messages, size()).WillOnce(testing::Return((size_t) 1)).WillRepeatedly(testing::Return((size_t) 0));
   EXPECT_CALL(*p_mock_messages, dequeue()).Times(1).WillOnce(testing::Return(message));
   EXPECT_CALL(*p_mock_notifier, notify_all_subscribers_for_message(message)).Times(1);
 
   // Act
-  std::thread notifer = std::thread(&TestMessageBusNotifier::notify, sut);
-
   synchronization->is_messages_avalable = true;
   synchronization->messages_available.notify_one();
+  std::thread notifer = std::thread(&TestMessageBusNotifier::notify, sut);
 
   // Assert
-  std::this_thread::yield();
   std::this_thread::sleep_for(std::chrono::milliseconds(100));  // not nice, but we have to wait for the thread to process
   synchronization->is_stop_requested.store(true);
+  synchronization->is_messages_avalable = true;
+  synchronization->messages_available.notify_one();
   notifer.join();
 }
 
