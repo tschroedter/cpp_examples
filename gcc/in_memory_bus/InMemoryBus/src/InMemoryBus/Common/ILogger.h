@@ -27,7 +27,7 @@ class ILogger {
 
   virtual void set_prefix(string prefix) = 0;
 
-  virtual LogLevel get_log_level() const = 0;  // TODO not nice should be ILogLevel
+  virtual LogLevel get_log_level() const = 0;
   virtual void set_log_level(LogLevel level) = 0;
 };
 

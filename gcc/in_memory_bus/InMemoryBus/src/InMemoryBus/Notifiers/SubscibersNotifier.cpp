@@ -5,7 +5,6 @@
  *      Author: tom
  */
 
-#include <iostream>
 #include <thread>
 #include <chrono>
 #include "SubscibersNotifier.h"
@@ -53,16 +52,16 @@ void SubscibersNotifier::check_before_notifying(BaseMessage_SPtr message) {
       message->getType());
 
   if (repository == nullptr) {
-    std::cout << "[MessageBusNotifier::check_before_notify_all_subscribers_for_message] 'repository' is null!"
-              << std::endl;
+    m_logger->debug("check_before_notify_all_subscribers_for_message(...) 'repository' is null!");
+
     return;
   }
 
   ISubscriberInformationEntityVector_SPtr entities = repository->get_all_subscribers();
 
   if (entities == nullptr) {
-    std::cout << "[MessageBusNotifier::check_before_notify_all_subscribers_for_message] 'entities' is null!"
-              << std::endl;
+    m_logger->debug("check_before_notify_all_subscribers_for_message(...) 'entities' is null!");
+
     return;
   }
 

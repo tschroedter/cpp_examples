@@ -99,9 +99,10 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_ignores_message
     ISubscribtionManager_SPtr manager = std::make_shared<MockISubscribtionManager>();
     ISubscriberFunctionCaller_SPtr caller = std::make_shared<MockISubscriberFunctionCaller>();
 
-    SubscibersNotifier sut { logger, manager, caller };
-
+    EXPECT_CALL(*p_mock_logger, set_prefix("SubscibersNotifier")).Times(1);
     EXPECT_CALL(*p_mock_logger, debug(testing::A<std::string>())).Times(1);
+
+    SubscibersNotifier sut { logger, manager, caller };
 
     // Act
     sut.notify_all_subscribers_for_message(message);
@@ -115,16 +116,20 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_ignores_reposit
   try {
     // Arrange
     BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
-    ILogger_SPtr logger =  std::make_shared<MockILogger>();
+    MockILogger* p_mock_logger = new MockILogger();
+    ILogger_SPtr logger{p_mock_logger};
     IThreadSafeSubscriberInformationRepository_SPtr repository = nullptr;
     MockISubscribtionManager* p_mock_manager = new MockISubscribtionManager();
     ISubscribtionManager_SPtr manager { p_mock_manager };
     ISubscriberFunctionCaller_SPtr caller = std::make_shared<MockISubscriberFunctionCaller>();
 
-    SubscibersNotifier sut { logger, manager, caller };
+    EXPECT_CALL(*p_mock_logger, set_prefix("SubscibersNotifier")).Times(1);
+    EXPECT_CALL(*p_mock_logger, debug(testing::A<std::string>())).Times(1);
 
     EXPECT_CALL(*p_mock_manager, get_repository_for_message_type(message->getType())).Times(1).WillOnce(
         testing::Return(repository));
+
+    SubscibersNotifier sut { logger, manager, caller };
 
     // Act
     sut.notify_all_subscribers_for_message(message);
@@ -138,21 +143,24 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_ignores_entitie
   try {
     // Arrange
     BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
-    ILogger_SPtr logger =  std::make_shared<MockILogger>();
-    ISubscriberInformationEntityVector_SPtr vector = std::make_shared<ISubscriberInformationEntityVector>();
+    MockILogger* p_mock_logger = new MockILogger();
+    ILogger_SPtr logger{p_mock_logger};
     MockIThreadSafeSubscriberInformationRepository* p_mock_repository =
         new MockIThreadSafeSubscriberInformationRepository();
     IThreadSafeSubscriberInformationRepository_SPtr repository { p_mock_repository };
-    ISubscriberInformationEntityVector_SPtr entities = nullptr;
+    ISubscriberInformationEntityVector_SPtr vector = nullptr;
     MockISubscribtionManager* p_mock_manager = new MockISubscribtionManager();
     ISubscribtionManager_SPtr manager { p_mock_manager };
     ISubscriberFunctionCaller_SPtr caller = std::make_shared<MockISubscriberFunctionCaller>();
 
-    SubscibersNotifier sut { logger, manager, caller };
+    EXPECT_CALL(*p_mock_logger, set_prefix("SubscibersNotifier")).Times(1);
+    EXPECT_CALL(*p_mock_logger, debug(testing::A<std::string>())).Times(1);
 
     EXPECT_CALL(*p_mock_manager, get_repository_for_message_type(message->getType())).Times(1).WillOnce(
         testing::Return(repository));
     EXPECT_CALL(*p_mock_repository, get_all_subscribers()).Times(1).WillOnce(testing::Return(vector));
+
+    SubscibersNotifier sut { logger, manager, caller };
 
     // Act
     sut.notify_all_subscribers_for_message(message);
@@ -177,7 +185,8 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_entities_calls_
       InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity>("two", message->getType(),
                                                                             subscriber_two.getNotifyFunc());
 
-  ILogger_SPtr logger =  std::make_shared<MockILogger>();
+  MockILogger* p_mock_logger = new MockILogger();
+  ILogger_SPtr logger{p_mock_logger};
   MockIThreadSafeSubscriberInformationRepository* p_mock_repository =
       new MockIThreadSafeSubscriberInformationRepository();
   IThreadSafeSubscriberInformationRepository_SPtr repository { p_mock_repository };
@@ -188,7 +197,7 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_entities_calls_
   MockISubscriberFunctionCaller* p_mock_caller = new MockISubscriberFunctionCaller();
   ISubscriberFunctionCaller_SPtr caller { p_mock_caller };
 
-  SubscibersNotifier sut { logger, manager, caller };
+  EXPECT_CALL(*p_mock_logger, set_prefix("SubscibersNotifier")).Times(1);
 
   EXPECT_CALL(*p_mock_manager, get_repository_for_message_type(message->getType())).Times(1).WillOnce(
       testing::Return(repository));
@@ -199,6 +208,8 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_entities_calls_
 
   vector->push_back(information_one);
   vector->push_back(information_two);
+
+  SubscibersNotifier sut { logger, manager, caller };
 
   // Act
   sut.notify_all_subscribers_for_message(message);
