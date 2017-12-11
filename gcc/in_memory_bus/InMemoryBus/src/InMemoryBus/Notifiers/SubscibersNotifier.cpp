@@ -11,6 +11,7 @@
 #include "SubscibersNotifier.h"
 #include "ISubscriberFunctionCaller.h"
 #include "../Common/BaseMessage.h"
+#include "../Common/ILogger.h"
 #include "../Exceptions/ArgumentInvalidException.h"
 #include "../Subscribtions/ISubscribtionManager.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
@@ -18,9 +19,14 @@
 namespace InMemoryBus {
 namespace Notifiers {
 
-SubscibersNotifier::SubscibersNotifier(ISubscribtionManager_SPtr manager, ISubscriberFunctionCaller_SPtr caller)
-    : m_manager(manager),
+SubscibersNotifier::SubscibersNotifier(ILogger_SPtr logger, ISubscribtionManager_SPtr manager, ISubscriberFunctionCaller_SPtr caller)
+    : m_logger(logger),
+      m_manager(manager),
       m_caller(caller) {
+  if (m_logger == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifier because 'logger' is null!", "logger");
+  }
+
   if (m_manager == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifier because 'manager' is null!", "manager");
   }
@@ -28,16 +34,19 @@ SubscibersNotifier::SubscibersNotifier(ISubscribtionManager_SPtr manager, ISubsc
   if (m_caller == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifier because 'caller' is null!", "caller");
   }
+
+  m_logger->set_prefix("SubscibersNotifier");
 }
+
 void SubscibersNotifier::notify_all_subscribers_for_message(BaseMessage_SPtr message) {
   check_before_notifying(message);
 }
 
 void SubscibersNotifier::check_before_notifying(BaseMessage_SPtr message) {
   if (message == nullptr) {
-    std::cout << "[MessageBusNotifier::check_before_notify_all_subscribers_for_message] 'message' is null!"
-              << std::endl;
-    return;  // TODO log error
+    m_logger->debug("[MessageBusNotifier::check_before_notify_all_subscribers_for_message] 'message' is null!");
+
+    return;
   }
 
   IThreadSafeSubscriberInformationRepository_SPtr repository = m_manager->get_repository_for_message_type(

@@ -11,6 +11,7 @@
 #include "ISubscibersNotifier.h"
 #include "ISubscriberFunctionCaller.h"
 #include "../Common/BaseMessage.h"
+#include "../Common/ILogger.h"
 #include "../Subscribtions/ISubscribtionManager.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
 
@@ -19,12 +20,13 @@ namespace Notifiers {
 
 class SubscibersNotifier : public ISubscibersNotifier {
  public:
-  SubscibersNotifier(ISubscribtionManager_SPtr manager, ISubscriberFunctionCaller_SPtr caller);
+  SubscibersNotifier(ILogger_SPtr logger, ISubscribtionManager_SPtr manager, ISubscriberFunctionCaller_SPtr caller);
   virtual ~SubscibersNotifier() = default;
 
   void notify_all_subscribers_for_message(BaseMessage_SPtr message) override;
 
  private:
+  ILogger_SPtr m_logger = nullptr;
   ISubscribtionManager_SPtr m_manager = nullptr;
   ISubscriberFunctionCaller_SPtr m_caller = nullptr;
 

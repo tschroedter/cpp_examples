@@ -8,6 +8,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "../Common.h"
+#include "../Mocks/MockILogger.h"
 #include "../Mocks/MockISubscribtionManager.h"
 #include "../Mocks/MockIThreadSafeSubscriberInformationRepository.h"
 #include "../Mocks/MockISubscriberFunctionCaller.h"
@@ -23,14 +24,37 @@ namespace InMemoryBusTests {
 
 using namespace InMemoryBus::Notifiers;
 
+TEST(SubscibersNotifierTests, constructor_throws_for_logger_is_nullptr) {
+  try {
+    // Arrange
+    ILogger_SPtr logger = nullptr;
+    ISubscribtionManager_SPtr manager = std::make_shared<MockISubscribtionManager>();
+    ISubscriberFunctionCaller_SPtr caller = std::make_shared<MockISubscriberFunctionCaller>();
+
+    // Act
+    SubscibersNotifier sut { logger, manager, caller };
+
+    // Assert
+    FAIL()<<"Expected ArgumentInvalidException";
+  }
+  catch(InMemoryBus::Exceptions::ArgumentInvalidException const & ex)
+  {
+    auto actual = ex.get_message();
+    auto expected = std::string("Parameter 'logger' is invalid! Can't create SubscibersNotifier because 'logger' is null!");
+
+    InMemoryBusTest::expect_std_strings_are_equal(expected, actual);
+  }
+}
+
 TEST(SubscibersNotifierTests, constructor_throws_for_manager_is_nullptr) {
   try {
     // Arrange
+    ILogger_SPtr logger =  std::make_shared<MockILogger>();
     ISubscribtionManager_SPtr manager = nullptr;
     ISubscriberFunctionCaller_SPtr caller = std::make_shared<MockISubscriberFunctionCaller>();
 
     // Act
-    SubscibersNotifier sut { manager, caller };
+    SubscibersNotifier sut { logger, manager, caller };
 
     // Assert
     FAIL()<<"Expected ArgumentInvalidException";
@@ -47,11 +71,12 @@ TEST(SubscibersNotifierTests, constructor_throws_for_manager_is_nullptr) {
 TEST(SubscibersNotifierTests, constructor_throws_for_failed_manager_is_nullptr) {
   try {
     // Arrange
+    ILogger_SPtr logger =  std::make_shared<MockILogger>();
     ISubscribtionManager_SPtr manager = std::make_shared<MockISubscribtionManager>();
     ISubscriberFunctionCaller_SPtr caller = nullptr;
 
     // Act
-    SubscibersNotifier sut { manager, caller };
+    SubscibersNotifier sut { logger, manager, caller };
 
     // Assert
     FAIL()<<"Expected ArgumentInvalidException";
@@ -69,10 +94,14 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_ignores_message
   try {
     // Arrange
     BaseMessage_SPtr message = nullptr;
+    MockILogger* p_mock_logger = new MockILogger();
+    ILogger_SPtr logger{p_mock_logger};
     ISubscribtionManager_SPtr manager = std::make_shared<MockISubscribtionManager>();
     ISubscriberFunctionCaller_SPtr caller = std::make_shared<MockISubscriberFunctionCaller>();
 
-    SubscibersNotifier sut { manager, caller };
+    SubscibersNotifier sut { logger, manager, caller };
+
+    EXPECT_CALL(*p_mock_logger, debug(testing::A<std::string>())).Times(1);
 
     // Act
     sut.notify_all_subscribers_for_message(message);
@@ -86,12 +115,13 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_ignores_reposit
   try {
     // Arrange
     BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
+    ILogger_SPtr logger =  std::make_shared<MockILogger>();
     IThreadSafeSubscriberInformationRepository_SPtr repository = nullptr;
     MockISubscribtionManager* p_mock_manager = new MockISubscribtionManager();
     ISubscribtionManager_SPtr manager { p_mock_manager };
     ISubscriberFunctionCaller_SPtr caller = std::make_shared<MockISubscriberFunctionCaller>();
 
-    SubscibersNotifier sut { manager, caller };
+    SubscibersNotifier sut { logger, manager, caller };
 
     EXPECT_CALL(*p_mock_manager, get_repository_for_message_type(message->getType())).Times(1).WillOnce(
         testing::Return(repository));
@@ -108,6 +138,7 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_ignores_entitie
   try {
     // Arrange
     BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
+    ILogger_SPtr logger =  std::make_shared<MockILogger>();
     ISubscriberInformationEntityVector_SPtr vector = std::make_shared<ISubscriberInformationEntityVector>();
     MockIThreadSafeSubscriberInformationRepository* p_mock_repository =
         new MockIThreadSafeSubscriberInformationRepository();
@@ -117,7 +148,7 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_ignores_entitie
     ISubscribtionManager_SPtr manager { p_mock_manager };
     ISubscriberFunctionCaller_SPtr caller = std::make_shared<MockISubscriberFunctionCaller>();
 
-    SubscibersNotifier sut { manager, caller };
+    SubscibersNotifier sut { logger, manager, caller };
 
     EXPECT_CALL(*p_mock_manager, get_repository_for_message_type(message->getType())).Times(1).WillOnce(
         testing::Return(repository));
@@ -146,6 +177,7 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_entities_calls_
       InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity>("two", message->getType(),
                                                                             subscriber_two.getNotifyFunc());
 
+  ILogger_SPtr logger =  std::make_shared<MockILogger>();
   MockIThreadSafeSubscriberInformationRepository* p_mock_repository =
       new MockIThreadSafeSubscriberInformationRepository();
   IThreadSafeSubscriberInformationRepository_SPtr repository { p_mock_repository };
@@ -156,7 +188,7 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_entities_calls_
   MockISubscriberFunctionCaller* p_mock_caller = new MockISubscriberFunctionCaller();
   ISubscriberFunctionCaller_SPtr caller { p_mock_caller };
 
-  SubscibersNotifier sut { manager, caller };
+  SubscibersNotifier sut { logger, manager, caller };
 
   EXPECT_CALL(*p_mock_manager, get_repository_for_message_type(message->getType())).Times(1).WillOnce(
       testing::Return(repository));
