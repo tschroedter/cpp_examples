@@ -15,6 +15,7 @@ namespace InMemoryBusTests {
 class TestBaseEntity : public InMemoryBus::Common::BaseEntity {
  public:
   TestBaseEntity();
+  TestBaseEntity(std::string uuid_as_text);
   virtual ~TestBaseEntity();
 };
 
