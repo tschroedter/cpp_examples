@@ -70,9 +70,9 @@ LogLevel Logger::get_log_level() const {
 }
 
 void Logger::set_log_level(LogLevel level) {
-  m_mutex.lock();
+  std::lock_guard<std::recursive_mutex> lock (m_mutex);
+
   m_log_level = level;
-  m_mutex.unlock();
 }
 
 }

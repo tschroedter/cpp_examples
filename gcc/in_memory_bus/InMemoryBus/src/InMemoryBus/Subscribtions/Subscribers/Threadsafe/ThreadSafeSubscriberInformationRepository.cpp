@@ -25,48 +25,38 @@ ThreadSafeSubscriberInformationRepository::ThreadSafeSubscriberInformationReposi
 }
 
 ISubscriberInformationEntityVector_SPtr ThreadSafeSubscriberInformationRepository::get_all_subscribers() {
-  m_mutex.lock();
+  std::lock_guard<std::recursive_mutex> lock (m_mutex);
 
   auto all = m_repository->get_all_subscribers();
-
-  m_mutex.unlock();
 
   return (all);
 }
 
 ISubscriberInformationEntity_SPtr ThreadSafeSubscriberInformationRepository::find_subscriber_by_id(
     const string& subscriber_id) {
-  m_mutex.lock();
+  std::lock_guard<std::recursive_mutex> lock (m_mutex);
 
   auto information = m_repository->find_subscriber_by_id(subscriber_id);
-
-  m_mutex.unlock();
 
   return (information);
 }
 
 void ThreadSafeSubscriberInformationRepository::remove(const ISubscriberInformationEntity_SPtr information) {
-  m_mutex.lock();
+  std::lock_guard<std::recursive_mutex> lock (m_mutex);
 
   m_repository->remove(information);
-
-  m_mutex.unlock();
 }
 
 void ThreadSafeSubscriberInformationRepository::add(const ISubscriberInformationEntity_SPtr information) {
-  m_mutex.lock();
+  std::lock_guard<std::recursive_mutex> lock (m_mutex);
 
   m_repository->add(information);
-
-  m_mutex.unlock();
 }
 
 size_t ThreadSafeSubscriberInformationRepository::size() {
-  m_mutex.lock();
+  std::lock_guard<std::recursive_mutex> lock (m_mutex);
 
   auto size = m_repository->size();
-
-  m_mutex.unlock();
 
   return (size);
 }

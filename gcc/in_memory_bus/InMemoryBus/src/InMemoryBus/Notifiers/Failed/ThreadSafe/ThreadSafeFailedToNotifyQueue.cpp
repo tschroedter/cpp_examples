@@ -23,29 +23,24 @@ ThreadSafeFailedToNotifyQueue::ThreadSafeFailedToNotifyQueue(IFailedToNotifyQueu
 }
 
 void ThreadSafeFailedToNotifyQueue::enqueue(IFailedToNotify_SPtr failed) {
-  m_mutex.lock();
+  std::lock_guard<std::recursive_mutex> lock (m_mutex);
 
   m_queue->enqueue(failed);
 
-  m_mutex.unlock();
 }
 
 IFailedToNotify_SPtr ThreadSafeFailedToNotifyQueue::dequeue() {
-  m_mutex.lock();
+  std::lock_guard<std::recursive_mutex> lock (m_mutex);
 
   auto entity = m_queue->dequeue();
-
-  m_mutex.unlock();
 
   return (entity);
 }
 
 size_t ThreadSafeFailedToNotifyQueue::size() {
-  m_mutex.lock();
+  std::lock_guard<std::recursive_mutex> lock (m_mutex);
 
   auto size = m_queue->size();
-
-  m_mutex.unlock();
 
   return (size);
 }
