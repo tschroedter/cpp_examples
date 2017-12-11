@@ -18,7 +18,8 @@ using namespace std;
 
 namespace InMemoryBusTests {
 
-class MockIMessageToSubscribersEntity : public InMemoryBus::Subscribtions::MessageToSubscribers::IMessageToSubscribersEntity {
+class MockIMessageToSubscribersEntity :
+    public InMemoryBus::Subscribtions::MessageToSubscribers::IMessageToSubscribersEntity {
  public:
   MOCK_CONST_METHOD0(get_message_type, std::string());
   MOCK_CONST_METHOD0(get_repository, IThreadSafeSubscriberInformationRepository_SPtr());

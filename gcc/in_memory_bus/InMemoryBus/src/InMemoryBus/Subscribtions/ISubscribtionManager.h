@@ -20,7 +20,8 @@ class ISubscribtionManager {
   virtual ~ISubscribtionManager() = default;
 
   virtual void remove_subscription(string subscriber_id, string message_type) = 0;
-  virtual void add_subscription(string subscriber_id, string message_type, InMemoryBus::Common::SubscriberFunction messageReceiver) = 0;
+  virtual void add_subscription(string subscriber_id, string message_type,
+                                InMemoryBus::Common::SubscriberFunction messageReceiver) = 0;
   virtual IThreadSafeSubscriberInformationRepository_SPtr get_repository_for_message_type(
       const string& message_type) = 0;
 };

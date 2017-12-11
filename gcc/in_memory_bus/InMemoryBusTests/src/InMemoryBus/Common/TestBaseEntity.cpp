@@ -13,7 +13,7 @@ TestBaseEntity::TestBaseEntity() {
 }
 
 TestBaseEntity::TestBaseEntity(std::string uuid_as_text)
- : BaseEntity(uuid_as_text) {
+    : BaseEntity(uuid_as_text) {
 }
 
 TestBaseEntity::~TestBaseEntity() {

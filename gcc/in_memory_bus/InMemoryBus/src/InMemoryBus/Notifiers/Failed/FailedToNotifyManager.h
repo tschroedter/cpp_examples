@@ -18,7 +18,7 @@ namespace Failed {
 
 class FailedToNotifyManager : public IFailedToNotifyManager {
  public:
-  FailedToNotifyManager(ILogger_SPtr logger,IThreadSafeFailedToNotifyQueue_SPtr queue);
+  FailedToNotifyManager(ILogger_SPtr logger, IThreadSafeFailedToNotifyQueue_SPtr queue);
   virtual ~FailedToNotifyManager() = default;
 
   void handle_failed_notification(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message) override;

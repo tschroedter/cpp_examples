@@ -22,7 +22,8 @@ FailedToNotifyManager::FailedToNotifyManager(ILogger_SPtr logger, IThreadSafeFai
     : m_logger(logger),
       m_queue(queue) {
   if (m_logger == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'logger' is null!", "logger");
+    throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'logger' is null!",
+                                               "logger");
   }
 
   if (m_queue == nullptr) {
@@ -39,12 +40,9 @@ void FailedToNotifyManager::handle_failed_notification(const ISubscriberInformat
 
   m_queue->enqueue(failed);
 
-  std::string text =
-      "[FailedToNotifyManager::enqueue] Failed to execute SubscriberFunction for message '"
-       + failed->get_message()->getType()
-       + "' and SubscriberId '"
-       + failed->get_information()->get_subscriber_id()
-       + "'!";
+  std::string text = "[FailedToNotifyManager::enqueue] Failed to execute SubscriberFunction for message '"
+      + failed->get_message()->getType() + "' and SubscriberId '" + failed->get_information()->get_subscriber_id()
+      + "'!";
 
   m_logger->error(text);
 

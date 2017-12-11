@@ -26,7 +26,7 @@ class NeedFactory {
 
  private:
   const ifactory<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity, string, string,
-            InMemoryBus::Common::SubscriberFunction>& m_factory;
+      InMemoryBus::Common::SubscriberFunction>& m_factory;
 
   static void do_nothing(BaseMessage_SPtr base_message);
 };

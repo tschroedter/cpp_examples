@@ -18,7 +18,8 @@ namespace InMemoryBus {
 class IBus {
  public:
   virtual ~IBus() = default;
-  virtual void subscribe(std::string subscriber_id, std::string message_type, Common::SubscriberFunction messageReceiver) = 0;
+  virtual void subscribe(std::string subscriber_id, std::string message_type,
+                         Common::SubscriberFunction messageReceiver) = 0;
   virtual void unsubscribe(std::string subscriber_id, std::string message_type) = 0;
   virtual void publish(BaseMessage_SPtr message) = 0;
 };

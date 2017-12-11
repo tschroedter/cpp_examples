@@ -23,8 +23,7 @@ namespace Subscribtions {
 namespace Subscribers {
 class SubscriberInformationEntity : public ISubscriberInformationEntity {
  public:
-  SubscriberInformationEntity(const string subscriber_id,
-                              const string message_type,
+  SubscriberInformationEntity(const string subscriber_id, const string message_type,
                               const InMemoryBus::Common::SubscriberFunction subscriber_function);
   virtual ~SubscriberInformationEntity() = default;
 

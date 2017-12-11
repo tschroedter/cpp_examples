@@ -18,7 +18,8 @@
 namespace InMemoryBus {
 namespace Notifiers {
 
-SubscibersNotifier::SubscibersNotifier(ILogger_SPtr logger, ISubscribtionManager_SPtr manager, ISubscriberFunctionCaller_SPtr caller)
+SubscibersNotifier::SubscibersNotifier(ILogger_SPtr logger, ISubscribtionManager_SPtr manager,
+                                       ISubscriberFunctionCaller_SPtr caller)
     : m_logger(logger),
       m_manager(manager),
       m_caller(caller) {

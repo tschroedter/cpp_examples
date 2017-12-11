@@ -17,7 +17,7 @@ TEST(BaseEntity, constructor_throws_for_uuid_as_text_is_invalid) {
   try {
     // Arrange
     // Act
-    TestBaseEntity sut {"ABC"};
+    TestBaseEntity sut { "ABC" };
 
     // Assert
     FAIL()<<"Expected ArgumentInvalidException";
@@ -95,5 +95,4 @@ TEST(BaseEntity, is_id_equal_to_returns_true_for_same_id) {
   EXPECT_EQ(true, actual);
 }
 }
-
 

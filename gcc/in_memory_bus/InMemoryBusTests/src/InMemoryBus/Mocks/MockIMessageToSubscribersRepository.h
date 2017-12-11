@@ -17,7 +17,8 @@ namespace InMemoryBusTests {
 
 using namespace std;
 
-class MockIMessageToSubscribersRepository : public InMemoryBus::Subscribtions::MessageToSubscribers::IMessageToSubscribersRepository {
+class MockIMessageToSubscribersRepository :
+    public InMemoryBus::Subscribtions::MessageToSubscribers::IMessageToSubscribersRepository {
  public:
   MOCK_CONST_METHOD0(get_all_subscribers, IMessageToSubscribersEntityVector_SPtr());
   MOCK_METHOD1(find_subscriber_by_message_type, IMessageToSubscribersEntity_SPtr(const std::string& message_type));

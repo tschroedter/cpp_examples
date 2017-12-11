@@ -15,20 +15,21 @@
 
 namespace InMemoryBusTests {
 
-NeedFactory::NeedFactory(const ifactory<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity, string, string,
-                         InMemoryBus::Common::SubscriberFunction>& factory)
-: m_factory(factory) {
-  auto test = dynamic_cast<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity*>
-              (m_factory.create("id", "type", do_nothing).get());
+NeedFactory::NeedFactory(
+    const ifactory<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity, string, string,
+        InMemoryBus::Common::SubscriberFunction>& factory)
+    : m_factory(factory) {
+  auto test = dynamic_cast<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity*>(m_factory.create(
+      "id", "type", do_nothing).get());
 
   cout << test << endl;
 
   /*
-  ISubscriberInformationEntity_SPtr test = dynamic_cast<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity*>
-              (m_factory.create("id", "type", do_nothing).get());
+   ISubscriberInformationEntity_SPtr test = dynamic_cast<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity*>
+   (m_factory.create("id", "type", do_nothing).get());
 
-  test->get_id();
-  */
+   test->get_id();
+   */
 }
 
 void NeedFactory::do_nothing(BaseMessage_SPtr base_message) {

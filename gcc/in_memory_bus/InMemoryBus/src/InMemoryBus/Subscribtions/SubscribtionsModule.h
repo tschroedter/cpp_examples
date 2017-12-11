@@ -37,11 +37,11 @@ auto subscribtions_module =
               di::bind<Subscribers::UnknownSubscriberInformationEntity>.to<Subscribers::UnknownSubscriberInformationEntity>().in(di::singleton),
               di::bind<ISubscribtionManager>.to<SubscribtionManager>(),
               di::bind<ifactory
-                <Subscribers::ISubscriberInformationEntity,
-                string,
-                string,
-                InMemoryBus::Common::SubscriberFunction>>()
-              .to(factory<Subscribers::SubscriberInformationEntity>{})
+              <Subscribers::ISubscriberInformationEntity,
+              string,
+              string,
+              InMemoryBus::Common::SubscriberFunction>>()
+              .to(factory<Subscribers::SubscriberInformationEntity> {})
           )
       );
     };
@@ -50,9 +50,9 @@ auto subscribtions_module =
 
 /*
  *   example(const ifactory<interface>& f1, const ifactory<interface, int, double>& f2, const ifactory<interface, double>& f3) {
-    assert(dynamic_cast<implementation*>(f1.create().get()));
-    assert(dynamic_cast<implementation_with_args*>(f2.create(42, 87.0).get()));
-    assert(dynamic_cast<implementation_with_injected_args*>(f3.create(87.0).get()));
+ assert(dynamic_cast<implementation*>(f1.create().get()));
+ assert(dynamic_cast<implementation_with_args*>(f2.create(42, 87.0).get()));
+ assert(dynamic_cast<implementation_with_injected_args*>(f3.create(87.0).get()));
  */
 
 #endif /* INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERSMODULE_H_ */

@@ -84,7 +84,7 @@ TEST(MessageBusPublisherTests, publish_sets_is_messages_avalable_to_true) {
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
   MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
   MockIMessagesQueue* p_mock_messages = new MockIMessagesQueue();
-  IMessagesQueue_SPtr messages{p_mock_messages};
+  IMessagesQueue_SPtr messages { p_mock_messages };
 
   MessageBusPublisher sut { synchronization, messages };
 

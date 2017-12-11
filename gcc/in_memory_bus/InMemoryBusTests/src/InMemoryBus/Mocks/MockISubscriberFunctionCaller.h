@@ -16,9 +16,7 @@ namespace InMemoryBusTests {
 
 class MockISubscriberFunctionCaller : public InMemoryBus::Notifiers::ISubscriberFunctionCaller {
  public:
-  MOCK_METHOD2(execute_subscriber_function, void(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message));
-  MOCK_METHOD2(try_call_subscriber_function, bool(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr message));
-  MOCK_METHOD2(call_subscriber_function, void(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message));
+  MOCK_METHOD2(execute_subscriber_function, void(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message));MOCK_METHOD2(try_call_subscriber_function, bool(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr message));MOCK_METHOD2(call_subscriber_function, void(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message));
 };
 
 }

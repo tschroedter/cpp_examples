@@ -27,17 +27,16 @@ MessageBus::MessageBus(IMessageBusPublisher_SPtr publisher, ISubscribtionManager
     : m_publisher(publisher),
       m_manager(manager) {
   if (m_publisher == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBus because 'publisher' is null!",
-                                               "publisher");
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBus because 'publisher' is null!", "publisher");
   }
 
   if (m_manager == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBus because 'manager' is null!",
-                                               "manager");
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBus because 'manager' is null!", "manager");
   }
 }
 
-void MessageBus::subscribe(std::string subscriber_id, std::string message_type, Common::SubscriberFunction messageReceiver) {
+void MessageBus::subscribe(std::string subscriber_id, std::string message_type,
+                           Common::SubscriberFunction messageReceiver) {
   m_manager->add_subscription(subscriber_id, message_type, messageReceiver);
 }
 

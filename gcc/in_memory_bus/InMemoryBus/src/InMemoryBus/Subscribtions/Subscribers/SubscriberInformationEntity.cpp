@@ -16,9 +16,9 @@ namespace Subscribers {
 // todo use ApsectC++
 using namespace std;
 
-SubscriberInformationEntity::SubscriberInformationEntity(const string subscriber_id,
-                                                         const string message_type,
-                                                         const InMemoryBus::Common::SubscriberFunction subscriber_function)
+SubscriberInformationEntity::SubscriberInformationEntity(
+    const string subscriber_id, const string message_type,
+    const InMemoryBus::Common::SubscriberFunction subscriber_function)
     : m_subscriber_id(subscriber_id),
       m_message_type(message_type),
       m_subscriber_function(subscriber_function) {

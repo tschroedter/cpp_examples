@@ -49,7 +49,7 @@ TEST(SubscibersNotifierTests, constructor_throws_for_logger_is_nullptr) {
 TEST(SubscibersNotifierTests, constructor_throws_for_manager_is_nullptr) {
   try {
     // Arrange
-    ILogger_SPtr logger =  std::make_shared<MockILogger>();
+    ILogger_SPtr logger = std::make_shared<MockILogger>();
     ISubscribtionManager_SPtr manager = nullptr;
     ISubscriberFunctionCaller_SPtr caller = std::make_shared<MockISubscriberFunctionCaller>();
 
@@ -71,7 +71,7 @@ TEST(SubscibersNotifierTests, constructor_throws_for_manager_is_nullptr) {
 TEST(SubscibersNotifierTests, constructor_throws_for_failed_manager_is_nullptr) {
   try {
     // Arrange
-    ILogger_SPtr logger =  std::make_shared<MockILogger>();
+    ILogger_SPtr logger = std::make_shared<MockILogger>();
     ISubscribtionManager_SPtr manager = std::make_shared<MockISubscribtionManager>();
     ISubscriberFunctionCaller_SPtr caller = nullptr;
 
@@ -95,7 +95,7 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_ignores_message
     // Arrange
     BaseMessage_SPtr message = nullptr;
     MockILogger* p_mock_logger = new MockILogger();
-    ILogger_SPtr logger{p_mock_logger};
+    ILogger_SPtr logger { p_mock_logger };
     ISubscribtionManager_SPtr manager = std::make_shared<MockISubscribtionManager>();
     ISubscriberFunctionCaller_SPtr caller = std::make_shared<MockISubscriberFunctionCaller>();
 
@@ -117,7 +117,7 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_ignores_reposit
     // Arrange
     BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
     MockILogger* p_mock_logger = new MockILogger();
-    ILogger_SPtr logger{p_mock_logger};
+    ILogger_SPtr logger { p_mock_logger };
     IThreadSafeSubscriberInformationRepository_SPtr repository = nullptr;
     MockISubscribtionManager* p_mock_manager = new MockISubscribtionManager();
     ISubscribtionManager_SPtr manager { p_mock_manager };
@@ -144,7 +144,7 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_ignores_entitie
     // Arrange
     BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
     MockILogger* p_mock_logger = new MockILogger();
-    ILogger_SPtr logger{p_mock_logger};
+    ILogger_SPtr logger { p_mock_logger };
     MockIThreadSafeSubscriberInformationRepository* p_mock_repository =
         new MockIThreadSafeSubscriberInformationRepository();
     IThreadSafeSubscriberInformationRepository_SPtr repository { p_mock_repository };
@@ -186,7 +186,7 @@ TEST(SubscibersNotifierTests, notify_all_subscribers_for_message_entities_calls_
                                                                             subscriber_two.getNotifyFunc());
 
   MockILogger* p_mock_logger = new MockILogger();
-  ILogger_SPtr logger{p_mock_logger};
+  ILogger_SPtr logger { p_mock_logger };
   MockIThreadSafeSubscriberInformationRepository* p_mock_repository =
       new MockIThreadSafeSubscriberInformationRepository();
   IThreadSafeSubscriberInformationRepository_SPtr repository { p_mock_repository };

@@ -141,7 +141,8 @@ TEST(MessageBusNotifierTests, notify_calls_process_next_message) {
 
   TestMessageBusNotifier sut { synchronization, messages, notifier };
 
-  EXPECT_CALL(*p_mock_messages, size()).WillOnce(testing::Return((size_t) 1)).WillRepeatedly(testing::Return((size_t) 0));
+  EXPECT_CALL(*p_mock_messages, size()).WillOnce(testing::Return((size_t) 1)).WillRepeatedly(
+      testing::Return((size_t) 0));
   EXPECT_CALL(*p_mock_messages, dequeue()).Times(1).WillOnce(testing::Return(message));
   EXPECT_CALL(*p_mock_notifier, notify_all_subscribers_for_message(message)).Times(1);
 
