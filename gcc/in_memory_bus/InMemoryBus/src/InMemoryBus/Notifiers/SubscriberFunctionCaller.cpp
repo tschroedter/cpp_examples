@@ -36,8 +36,8 @@ bool SubscriberFunctionCaller::try_call_subscriber_function(const ISubscriberInf
   int counter = 0;
   bool success = false;
 
-  while (counter++ <= NUMBER_OF_RETRIES) {  // TODO testing
-    bool is_locked = info->try_lock();  // TODO MockISubscriberInformationEntity to check we lock and unlock mutex
+  while (counter++ <= NUMBER_OF_RETRIES) {
+    bool is_locked = info->try_lock();
 
     if (is_locked) {
       execute_subscriber_function(info, message);

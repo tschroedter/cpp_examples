@@ -4,7 +4,6 @@
  *  Created on: 30 Oct. 2017
  *      Author: tom
  */
-// TODO MySkills VET course
 #include <memory>
 #include "../Common/SubscriberFunction.h"
 #include "SubscribtionManager.h"
