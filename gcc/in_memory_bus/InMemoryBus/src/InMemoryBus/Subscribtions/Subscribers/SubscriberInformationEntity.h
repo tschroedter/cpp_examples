@@ -16,11 +16,12 @@
 #include "../../Common/SubscriberFunction.h"
 #include "ISubscriberInformationEntity.h"
 
-using namespace std;
-
 namespace InMemoryBus {
 namespace Subscribtions {
 namespace Subscribers {
+
+using namespace std;
+
 class SubscriberInformationEntity : public ISubscriberInformationEntity {
  public:
   SubscriberInformationEntity(const string subscriber_id, const string message_type,
@@ -41,6 +42,7 @@ class SubscriberInformationEntity : public ISubscriberInformationEntity {
   InMemoryBus::Common::SubscriberFunction m_subscriber_function = nullptr;
   mutex m_mutex;
 };
+
 }
 }
 }

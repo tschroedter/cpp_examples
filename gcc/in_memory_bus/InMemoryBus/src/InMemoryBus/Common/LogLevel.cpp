@@ -114,6 +114,8 @@ LogLevel::Enum LogLevel::fromString(string _s) {
   transform(_s.begin(), _s.end(), _s.begin(), ::toupper);
   if (_s == "ERROR")
     return (ERROR);
+  else if (_s == "WARN")
+    return (WARN);
   else if (_s == "INFO")
     return (INFO);
   else if (_s == "DEBUG")
@@ -128,6 +130,9 @@ string LogLevel::toString(LogLevel::Enum _e) {
   switch (_e) {
     case ERROR: {
       return ("ERROR");
+    }
+    case WARN: {
+      return ("WARN");
     }
     case INFO: {
       return ("INFO");
@@ -147,17 +152,20 @@ int LogLevel::toValue(LogLevel::Enum _e) {
     case ERROR: {
       return (0);
     }
-    case INFO: {
+    case WARN: {
       return (1);
     }
-    case DEBUG: {
+    case INFO: {
       return (2);
     }
-    default: {
+    case DEBUG: {
       return (3);
     }
+    default: {
+      return (4);
+    }
   }
-  return (3);  // Invalid
+  return (4);  // Invalid
 }
 
 }

@@ -25,6 +25,10 @@
 #include "Failed/IFailedToNotifyManager.h"
 #include "Failed/ThreadSafe/ThreadSafeFailedToNotifyQueue.h"
 #include "Failed/ThreadSafe/IThreadSafeFailedToNotifyQueue.h"
+#include "Failed/FailedMessageBusNotifier.h"
+#include "Failed/IFailedMessageBusNotifier.h"
+#include "Failed/FailedSubscriberFunctionCaller.h"
+#include "Failed/IFailedSubscriberFunctionCaller.h"
 
 namespace di = boost::di;
 
@@ -38,10 +42,12 @@ auto notifiers_module =
               di::bind<INotifierThreadPool>.to<NotifierThreadPool>(),
               di::bind<ISubscibersNotifier>.to<SubscibersNotifier>(),
               di::bind<ISubscriberFunctionCaller>.to<SubscriberFunctionCaller>(),
+              di::bind<Failed::IFailedMessageBusNotifier>.to<Failed::FailedMessageBusNotifier>(),
+              di::bind<Failed::IFailedSubscriberFunctionCaller>.to<Failed::FailedSubscriberFunctionCaller>(),
               di::bind<Failed::IFailedToNotify>.to<Failed::FailedToNotify>(),
               di::bind<Failed::IFailedToNotifyQueue>.to<Failed::FailedToNotifyQueue>(),
               di::bind<Failed::IFailedToNotifyManager>.to<Failed::FailedToNotifyManager>(),
-              di::bind<Failed::ThreadSafe::IThreadSafeFailedToNotifyQueue>.to<Failed::ThreadSafe::ThreadSafeFailedToNotifyQueue>().in(di::singleton)
+              di::bind<Failed::ThreadSafe::IThreadSafeFailedToNotifyQueue>.to<Failed::ThreadSafe::ThreadSafeFailedToNotifyQueue>()
           ));
     };
 }

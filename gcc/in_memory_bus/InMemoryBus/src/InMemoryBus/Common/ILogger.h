@@ -23,6 +23,7 @@ class ILogger {
 
   virtual void debug(string message) = 0;
   virtual void error(string message) = 0;
+  virtual void warn(string message) = 0;
   virtual void info(string message) = 0;
 
   virtual void set_prefix(string prefix) = 0;

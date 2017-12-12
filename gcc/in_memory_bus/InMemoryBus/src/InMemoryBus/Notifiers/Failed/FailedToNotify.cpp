@@ -14,7 +14,7 @@ namespace InMemoryBus {
 namespace Notifiers {
 namespace Failed {
 
-FailedToNotify::FailedToNotify(ISubscriberInformationEntity_SPtr information, BaseMessage_SPtr message)
+FailedToNotify::FailedToNotify(ISubscriberInformationEntity_SPtr information, BaseMessage_SPtr message)  // Todo testing
     : m_information(information),
       m_message(message),
       m_number_of_tries(0) {

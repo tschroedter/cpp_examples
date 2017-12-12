@@ -73,7 +73,7 @@ void NotifierThreadPool::join_threads() {
     // sets to true when finished (BOOST.DI Factory not working yet)
     m_synchronization->is_messages_avalable = true;
     m_synchronization->messages_available.notify_one();
-    std: this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
   }
 
   auto join_thread = std::bind(&NotifierThreadPool::do_join_thread, this, std::placeholders::_1);

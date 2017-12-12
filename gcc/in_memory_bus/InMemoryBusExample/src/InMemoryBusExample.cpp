@@ -28,6 +28,11 @@
 #include "InMemoryBus/InMemoryBusModule.h"
 #include "InMemoryBus/Subscribtions/ISubscribtionManager.h"
 #include "InMemoryBus/Subscribtions/MessageToSubscribers/IMessageToSubscribersRepository.h"
+#include "InMemoryBus/Notifiers/Failed/IFailedToNotifyManager.h"
+#include "InMemoryBus/Notifiers/Failed/IFailedMessageBusNotifier.h"
+#include "InMemoryBus/Notifiers/Failed/IFailedToNotifyQueue.h"
+#include "InMemoryBus/Notifiers/Failed/IFailedSubscriberFunctionCaller.h"
+#include "InMemoryBus/Notifiers/ISubscriberFunctionCaller.h"
 
 using namespace std;
 
@@ -60,7 +65,6 @@ int main() {
     auto injector = InMemoryBusExample::inmemorybusexample_module();
 
     // TODO Factory not working yet auto test = injector.create<shared_ptr<InMemoryBusTests::NeedFactory>>();
-
     auto notifier_pool = injector.create<INotifierThreadPool_SPtr>();
     notifier_pool->initialize(16);
 
@@ -91,16 +95,26 @@ int main() {
 
     // MemoryLeakTest();
 
-    std::this_thread::sleep_for(std::chrono::seconds(2));  // give threads time to process
+    std::this_thread::sleep_for(std::chrono::seconds(5));  // give threads time to process
+
+    bool is_all_good = true;
 
     for (size_t i = 0; i < cob_uptrs.size(); i++) {
       bool is_good = cob_uptrs[i]->get_status();
 
-      if (is_good) {
-        cout << i << ": All Good!" << endl;
-      } else {
-        cout << i << ": ERROR NOT GOOD!" << endl;
+      if (!is_good) {
+        is_all_good = false;
+        break;
       }
+    }
+
+    if (is_all_good)
+    {
+      cout << "All Good!" << endl;
+    }
+    else
+    {
+      cout << "ERROR NOT GOOD!" << endl;
     }
 
     notifier_pool->stop();

@@ -12,7 +12,7 @@ namespace InMemoryBus {
 namespace Notifiers {
 namespace Failed {
 
-void FailedToNotifyQueue::enqueue(IFailedToNotify_SPtr failed) {
+void FailedToNotifyQueue::enqueue(IFailedToNotify_SPtr failed) {  // Todo testing
   m_queue.push(failed);
 }
 

@@ -18,13 +18,14 @@ namespace Common {
 
 using namespace std;
 
-class Logger : public ILogger {
+class Logger : public ILogger { // Todo testing
  public:
   Logger() = default;
   virtual ~Logger() = default;
 
   void debug(string message) override;
   void error(string message) override;
+  void warn(string message) override;
   void info(string message) override;
 
   void set_prefix(string prefix) override;
@@ -34,7 +35,7 @@ class Logger : public ILogger {
 
  private:
   recursive_mutex m_mutex { };
-  LogLevel m_log_level { LogLevel::INFO };
+  LogLevel m_log_level { LogLevel::DEBUG };
 
   string m_prefix = "";
 
