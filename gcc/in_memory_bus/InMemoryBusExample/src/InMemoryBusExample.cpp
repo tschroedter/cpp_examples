@@ -110,18 +110,15 @@ int main() {
       }
     }
 
-    if (is_all_good)
-    {
+    if (is_all_good) {
       cout << "All Good!" << endl;
-    }
-    else
-    {
+    } else {
       cout << "ERROR NOT GOOD!" << endl;
     }
 
-    cout << "Stopping pool..." <<endl;
+    cout << "Stopping pool..." << endl;
     notifier_pool->stop();
-    cout << "Stopping processor..." <<endl;
+    cout << "Stopping processor..." << endl;
     failed_messages_processor->stop();
   } catch (const InMemoryBus::Exceptions::ArgumentInvalidException & ex) {
     std::cout << "ArgumentInvalidException: " << ex.what();

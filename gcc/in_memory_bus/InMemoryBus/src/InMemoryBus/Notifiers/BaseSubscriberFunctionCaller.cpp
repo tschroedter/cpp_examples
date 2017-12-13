@@ -14,13 +14,13 @@ namespace InMemoryBus {
 namespace Notifiers {
 
 void BaseSubscriberFunctionCaller::execute_subscriber_function(const ISubscriberInformationEntity_SPtr& info,
-                                                           BaseMessage_SPtr& message) {
+                                                               BaseMessage_SPtr& message) {
   InMemoryBus::Common::SubscriberFunction func = info->get_subscriber_function();
   func(message);
 }
 
 bool BaseSubscriberFunctionCaller::try_call_subscriber_function(const ISubscriberInformationEntity_SPtr& info,
-                                                            BaseMessage_SPtr message) {
+                                                                BaseMessage_SPtr message) {
   int counter = 0;
   bool success = false;
 

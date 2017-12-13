@@ -20,30 +20,31 @@ namespace Failed {
 
 #define MAX_NUMBER_OF_RETRIES 3
 
-FailedMessageBusNotifier::FailedMessageBusNotifier(ILogger_SPtr logger,
-                                                   MessageBusSynchronization_SPtr synchronization,
+FailedMessageBusNotifier::FailedMessageBusNotifier(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
                                                    IThreadSafeFailedToNotifyQueue_SPtr queue,
-                                                   ISubscriberFunctionCaller_SPtr caller) // Todo testing
-  : m_logger(logger),
-    m_synchronization(synchronization),
-    m_messages(queue),
-    m_caller(caller) {
+                                                   ISubscriberFunctionCaller_SPtr caller)  // Todo testing
+    : m_logger(logger),
+      m_synchronization(synchronization),
+      m_messages(queue),
+      m_caller(caller) {
   if (m_logger == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create FailedMessageBusNotifier because 'logger' is null!",
                                                "logger");
   }
 
   if (m_synchronization == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create FailedMessageBusNotifier because 'synchronization' is null!",
-                                               "synchronization");
+    throw Exceptions::ArgumentInvalidException(
+        "Can't create FailedMessageBusNotifier because 'synchronization' is null!", "synchronization");
   }
 
   if (m_messages == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create FailedMessageBusNotifier because 'messages' is null!", "messages");
+    throw Exceptions::ArgumentInvalidException("Can't create FailedMessageBusNotifier because 'messages' is null!",
+                                               "messages");
   }
 
   if (m_caller == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create FailedMessageBusNotifier because 'caller' is null!", "caller");
+    throw Exceptions::ArgumentInvalidException("Can't create FailedMessageBusNotifier because 'caller' is null!",
+                                               "caller");
   }
 
   m_logger->set_prefix("FailedMessageBusNotifier");
@@ -64,7 +65,8 @@ void FailedMessageBusNotifier::handle_failed_message(IFailedToNotify_SPtr failed
       m_messages->enqueue(failed);
     } else {
       std::string text = "Failed to execute SubscriberFunction for message '" + failed->get_message()->getType()
-          + "' and SubscriberId '" + failed->get_information()->get_subscriber_id() + "'! - Giving up! Message deleted!";
+          + "' and SubscriberId '" + failed->get_information()->get_subscriber_id()
+          + "'! - Giving up! Message deleted!";
       m_logger->error(text);
     }
   }
@@ -93,7 +95,9 @@ void FailedMessageBusNotifier::notify() {
     std::unique_lock<std::mutex> lock(m_synchronization->mutex_failed_messages_processor);
 
     m_synchronization->messages_available_failed_messages_processor.wait(
-        lock, std::bind(&Common::MessageBusSynchronization::is_messages_avalable_failed_messages_processor, m_synchronization));
+        lock,
+        std::bind(&Common::MessageBusSynchronization::is_messages_avalable_failed_messages_processor,
+                  m_synchronization));
 
     proccess_failed_messages();
 

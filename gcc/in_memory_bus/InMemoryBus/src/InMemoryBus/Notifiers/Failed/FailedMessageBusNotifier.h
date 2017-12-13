@@ -20,14 +20,12 @@ namespace Failed {
 
 class FailedMessageBusNotifier : public IFailedMessageBusNotifier {
  public:
-  FailedMessageBusNotifier(ILogger_SPtr logger,
-                           MessageBusSynchronization_SPtr synchronization,
-                           IThreadSafeFailedToNotifyQueue_SPtr queue,
-                           ISubscriberFunctionCaller_SPtr caller);
+  FailedMessageBusNotifier(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
+                           IThreadSafeFailedToNotifyQueue_SPtr queue, ISubscriberFunctionCaller_SPtr caller);
   virtual ~FailedMessageBusNotifier() = default;
 
   void operator()() override {
-      notify();
+    notify();
   }
 
   void notify() override;

@@ -120,30 +120,30 @@ TEST(FailedToNotifyManagerTests, constructor_throws_for_queue_is_nullptr) {
 
 TEST(FailedToNotifyManagerTests, handle_failed_notification_calls_enqueue) {
   /* TODO more testing
-  // Arrange
-  BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
-  MockISubscriberInformationEntity* p_mock_entity = new MockISubscriberInformationEntity();
-  ISubscriberInformationEntity_SPtr entity = std::make_shared<MockISubscriberInformationEntity>();
+   // Arrange
+   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
+   MockISubscriberInformationEntity* p_mock_entity = new MockISubscriberInformationEntity();
+   ISubscriberInformationEntity_SPtr entity = std::make_shared<MockISubscriberInformationEntity>();
 
-  MockILogger* p_mock_logger = new MockILogger();
-  ILogger_SPtr logger { p_mock_logger };
+   MockILogger* p_mock_logger = new MockILogger();
+   ILogger_SPtr logger { p_mock_logger };
 
-  MockIThreadSafeFailedToNotifyQueue* p_mock_queue = new MockIThreadSafeFailedToNotifyQueue();
-  IThreadSafeFailedToNotifyQueue_SPtr queue { p_mock_queue };
+   MockIThreadSafeFailedToNotifyQueue* p_mock_queue = new MockIThreadSafeFailedToNotifyQueue();
+   IThreadSafeFailedToNotifyQueue_SPtr queue { p_mock_queue };
 
-  IFailedSubscriberFunctionCaller_SPtr caller = std::make_shared<MockIFailedSubscriberFunctionCaller>();
+   IFailedSubscriberFunctionCaller_SPtr caller = std::make_shared<MockIFailedSubscriberFunctionCaller>();
 
-  EXPECT_CALL(*p_mock_logger, set_prefix("FailedToNotifyManager")).Times(1);
-  EXPECT_CALL(*p_mock_queue, enqueue(testing::A<IFailedToNotify_SPtr>())).Times(1);
-  EXPECT_CALL(*p_mock_logger, warn(testing::A<std::string>())).Times(1);
-  EXPECT_CALL(*p_mock_entity, get_subscriber_id()).Times(1).WillOnce(testing::Return(std::string("id")));
+   EXPECT_CALL(*p_mock_logger, set_prefix("FailedToNotifyManager")).Times(1);
+   EXPECT_CALL(*p_mock_queue, enqueue(testing::A<IFailedToNotify_SPtr>())).Times(1);
+   EXPECT_CALL(*p_mock_logger, warn(testing::A<std::string>())).Times(1);
+   EXPECT_CALL(*p_mock_entity, get_subscriber_id()).Times(1).WillOnce(testing::Return(std::string("id")));
 
-  FailedToNotifyManager sut { logger, queue, caller };
+   FailedToNotifyManager sut { logger, queue, caller };
 
-  // Act
-  sut.handle_failed_notification(entity, message);
+   // Act
+   sut.handle_failed_notification(entity, message);
 
-  // Assert
+   // Assert
    */
 }
 

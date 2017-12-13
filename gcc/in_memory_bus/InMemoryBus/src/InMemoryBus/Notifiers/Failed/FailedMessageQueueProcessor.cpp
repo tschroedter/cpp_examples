@@ -18,21 +18,20 @@ namespace InMemoryBus {
 namespace Notifiers {
 namespace Failed {
 
-FailedMessageQueueProcessor::FailedMessageQueueProcessor(
-    ILogger_SPtr logger,
-    MessageBusSynchronization_SPtr synchronization,
-    IFailedMessageBusNotifier_SPtr notifier)
-: m_logger(logger),
-  m_synchronization(synchronization),
-  m_notifier(notifier) {
+FailedMessageQueueProcessor::FailedMessageQueueProcessor(ILogger_SPtr logger,
+                                                         MessageBusSynchronization_SPtr synchronization,
+                                                         IFailedMessageBusNotifier_SPtr notifier)
+    : m_logger(logger),
+      m_synchronization(synchronization),
+      m_notifier(notifier) {
   if (m_logger == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create FailedMessageQueueProcessor because 'logger' is null!",
                                                "logger");
   }
 
   if (m_synchronization == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create FailedMessageQueueProcessor because 'synchronization' is null!",
-                                               "synchronization");
+    throw Exceptions::ArgumentInvalidException(
+        "Can't create FailedMessageQueueProcessor because 'synchronization' is null!", "synchronization");
   }
 
   if (m_notifier == nullptr) {
@@ -60,8 +59,7 @@ void FailedMessageQueueProcessor::stop() {
 
   m_logger->info(std::string("Trying to join with failed notifier thread " + id + " ..."));
 
-  if (m_thread.joinable())
-  {
+  if (m_thread.joinable()) {
     m_thread.join();
   }
 

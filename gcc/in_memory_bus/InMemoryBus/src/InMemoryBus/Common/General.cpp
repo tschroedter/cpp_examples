@@ -16,7 +16,7 @@ namespace Common {
 using namespace std;
 
 string thread_id_to_string(thread::id id) {
-  stringstream ss{};
+  stringstream ss { };
   ss << id;
 
   return ss.str();

@@ -23,10 +23,8 @@
 
 namespace InMemoryBus {
 namespace Notifiers {
-NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger,
-                                       MessageBusSynchronization_SPtr synchronization,
-                                       IMessageBusPublisher_SPtr publisher,
-                                       IMessagesQueue_SPtr messages,
+NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
+                                       IMessageBusPublisher_SPtr publisher, IMessagesQueue_SPtr messages,
                                        ISubscibersNotifier_SPtr notifier)
     : m_logger(logger),
       m_synchronization(synchronization),
@@ -34,8 +32,7 @@ NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger,
       m_messages(messages),
       m_notifier(notifier) {
   if (m_logger == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'logger' is null!",
-                                               "logger"); // Todo testing
+    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'logger' is null!", "logger");  // Todo testing
   }
 
   if (m_synchronization == nullptr) {
@@ -107,7 +104,7 @@ void NotifierThreadPool::join_threads() {
     m_publisher->publish(dummy);
   }
 
- auto join_thread = std::bind(&NotifierThreadPool::do_join_thread, this, std::placeholders::_1);
+  auto join_thread = std::bind(&NotifierThreadPool::do_join_thread, this, std::placeholders::_1);
 
   std::for_each(m_threads.begin(), m_threads.end(), join_thread);
 }

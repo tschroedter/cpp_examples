@@ -18,9 +18,10 @@ namespace InMemoryBus {
 namespace Notifiers {
 namespace Failed {
 
-class FailedMessageQueueProcessor : public IFailedMessageQueueProcessor { // ToDo testing
+class FailedMessageQueueProcessor : public IFailedMessageQueueProcessor {  // ToDo testing
  public:
-  FailedMessageQueueProcessor(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization, IFailedMessageBusNotifier_SPtr notifier);
+  FailedMessageQueueProcessor(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
+                              IFailedMessageBusNotifier_SPtr notifier);
   virtual ~FailedMessageQueueProcessor() = default;
 
   void initialize() override;

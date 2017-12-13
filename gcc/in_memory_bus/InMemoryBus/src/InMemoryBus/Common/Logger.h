@@ -18,7 +18,7 @@ namespace Common {
 
 using namespace std;
 
-class Logger : public ILogger { // Todo testing
+class Logger : public ILogger {  // Todo testing
  public:
   Logger() = default;
   virtual ~Logger() = default;

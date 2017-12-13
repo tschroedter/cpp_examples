@@ -21,11 +21,9 @@ namespace InMemoryBus {
 namespace Notifiers {
 namespace Failed {
 
-FailedToNotifyManager::FailedToNotifyManager(
-    ILogger_SPtr logger,
-    MessageBusSynchronization_SPtr synchronization,
-    IThreadSafeFailedToNotifyQueue_SPtr messages,
-    IFailedSubscriberFunctionCaller_SPtr caller)
+FailedToNotifyManager::FailedToNotifyManager(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
+                                             IThreadSafeFailedToNotifyQueue_SPtr messages,
+                                             IFailedSubscriberFunctionCaller_SPtr caller)
     : m_logger(logger),
       m_synchronization(synchronization),
       m_messages(messages),
@@ -45,7 +43,8 @@ FailedToNotifyManager::FailedToNotifyManager(
   }
 
   if (m_caller == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'caller' is null!", "caller");
+    throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'caller' is null!",
+                                               "caller");
   }
 
   m_logger->set_prefix("FailedToNotifyManager");
@@ -65,9 +64,8 @@ void FailedToNotifyManager::handle_failed_notification(const ISubscriberInformat
   m_synchronization->is_messages_avalable_failed_messages_processor = true;
   m_synchronization->messages_available_failed_messages_processor.notify_one();
 
-  std::string text = "Failed to execute SubscriberFunction for message '"
-      + message->getType() + "' and SubscriberId '" + info->get_subscriber_id()
-      + "'! - Enqueued for retry!";
+  std::string text = "Failed to execute SubscriberFunction for message '" + message->getType() + "' and SubscriberId '"
+      + info->get_subscriber_id() + "'! - Enqueued for retry!";
 
   m_logger->warn(text);
 }

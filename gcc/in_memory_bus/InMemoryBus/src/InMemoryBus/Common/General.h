@@ -14,9 +14,9 @@
 namespace InMemoryBus {
 namespace Common {
 
-  using namespace std;
+using namespace std;
 
-  string thread_id_to_string(thread::id id);
+string thread_id_to_string(thread::id id);
 
 }
 }
