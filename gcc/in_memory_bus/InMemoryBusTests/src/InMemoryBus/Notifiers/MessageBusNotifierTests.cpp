@@ -147,14 +147,14 @@ TEST(MessageBusNotifierTests, notify_calls_process_next_message) {
   EXPECT_CALL(*p_mock_notifier, notify_all_subscribers_for_message(message)).Times(1);
 
   // Act
-  synchronization->is_messages_avalable = true;
+  synchronization->is_messages_avalable_for_thread_pool = true;
   synchronization->messages_available.notify_one();
   std::thread notifer = std::thread(&TestMessageBusNotifier::notify, sut);
 
   // Assert
   std::this_thread::sleep_for(std::chrono::milliseconds(100));  // not nice, but we have to wait for the thread to process
-  synchronization->is_stop_requested.store(true);
-  synchronization->is_messages_avalable = true;
+  synchronization->is_stop_requested_for_thread_pool.store(true);
+  synchronization->is_messages_avalable_for_thread_pool = true;
   synchronization->messages_available.notify_one();
   notifer.join();
 }

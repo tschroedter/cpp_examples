@@ -33,7 +33,7 @@ void MessageBusPublisher::publish(BaseMessage_SPtr message) {
 
   m_messages->enqueue(message);
 
-  m_synchronization->is_messages_avalable = true;
+  m_synchronization->is_messages_avalable_for_thread_pool = true;
 
   m_synchronization->messages_available.notify_one();
 }

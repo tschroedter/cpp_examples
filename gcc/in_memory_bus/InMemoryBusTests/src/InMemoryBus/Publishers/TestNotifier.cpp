@@ -26,7 +26,7 @@ void TestNotifier::notify() {
 
   bool completed = m_synchronization->messages_available.wait_for(
       lock, std::chrono::milliseconds(m_time_out_in_ms),
-      std::bind(&Common::MessageBusSynchronization::is_messages_avalable, m_synchronization));
+      std::bind(&Common::MessageBusSynchronization::is_messages_avalable_for_thread_pool, m_synchronization));
 
   if (completed) {
     was_called_notify = true;

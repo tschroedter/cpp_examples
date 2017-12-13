@@ -69,7 +69,7 @@ void NotifierThreadPool::initialize(int number_of_threads) {
 }
 
 void NotifierThreadPool::create_threads() {
-  m_synchronization->is_stop_requested.store(false);
+  m_synchronization->is_stop_requested_for_thread_pool.store(false);
 
   m_threads.clear();
 
@@ -95,7 +95,7 @@ void NotifierThreadPool::do_join_thread(std::thread& thread) {
 }
 
 void NotifierThreadPool::join_threads() {
-  m_synchronization->is_stop_requested.store(true);
+  m_synchronization->is_stop_requested_for_thread_pool.store(true);
 
   for (size_t i = 0; i < m_threads.size(); i++) {
     // sending dummy messages to make sure threads are stopping

@@ -49,7 +49,7 @@ MessageBusNotifier::MessageBusNotifier(MessageBusSynchronization_SPtr synchroniz
 
 void MessageBusNotifier::process_next_message() {
   if (m_messages->size() == 0) {
-    m_synchronization->is_messages_avalable = false;
+    m_synchronization->is_messages_avalable_for_thread_pool = false;
     return;
   }
 
@@ -59,11 +59,11 @@ void MessageBusNotifier::process_next_message() {
 }
 
 void MessageBusNotifier::notify() {
-  while (!m_synchronization->is_stop_requested.load()) {
+  while (!m_synchronization->is_stop_requested_for_thread_pool.load()) {
     std::unique_lock<std::mutex> lock(m_synchronization->mutex);
 
     m_synchronization->messages_available.wait(
-        lock, std::bind(&Common::MessageBusSynchronization::is_messages_avalable, m_synchronization));
+        lock, std::bind(&Common::MessageBusSynchronization::is_messages_avalable_for_thread_pool, m_synchronization));
 
     process_next_message();
   }

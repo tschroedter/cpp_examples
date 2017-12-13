@@ -26,8 +26,8 @@ class MessageBusSynchronization {
   std::mutex mutex_failed_messages_processor;
   std::condition_variable messages_available_failed_messages_processor;
 
-  std::atomic_bool is_stop_requested { false };  // Todo rename
-  bool is_messages_avalable = false;
+  std::atomic_bool is_stop_requested_for_thread_pool { false };
+  bool is_messages_avalable_for_thread_pool = false;
   std::mutex mutex;
   std::condition_variable messages_available;
 };

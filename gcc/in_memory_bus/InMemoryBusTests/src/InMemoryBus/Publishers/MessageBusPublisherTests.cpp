@@ -94,7 +94,7 @@ TEST(MessageBusPublisherTests, publish_sets_is_messages_avalable_to_true) {
   sut.publish(message);
 
   // Assert
-  EXPECT_TRUE(synchronization->is_messages_avalable);
+  EXPECT_TRUE(synchronization->is_messages_avalable_for_thread_pool);
 }
 
 TEST(MessageBusPublisherTests, publish_notifies_one) {
