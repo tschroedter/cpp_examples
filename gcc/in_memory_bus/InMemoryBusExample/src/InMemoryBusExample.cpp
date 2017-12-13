@@ -65,12 +65,6 @@ int main() {
 
     auto injector = InMemoryBusExample::inmemorybusexample_module();
 
-    auto logger = injector.create<ILogger_SPtr>();
-    logger->error("error");
-    logger->warn("warn");
-    logger->info("info");
-    logger->debug("debug");
-
     // TODO Factory not working yet auto test = injector.create<shared_ptr<InMemoryBusTests::NeedFactory>>();
     auto notifier_pool = injector.create<INotifierThreadPool_SPtr>();
     notifier_pool->initialize(4);
@@ -129,9 +123,6 @@ int main() {
     notifier_pool->stop();
     cout << "Stopping processor..." <<endl;
     failed_messages_processor->stop();
-
-    std::this_thread::sleep_for(std::chrono::seconds(1));  // give threads time to process
-
   } catch (const InMemoryBus::Exceptions::ArgumentInvalidException & ex) {
     std::cout << "ArgumentInvalidException: " << ex.what();
   } catch (const std::exception & ex) {

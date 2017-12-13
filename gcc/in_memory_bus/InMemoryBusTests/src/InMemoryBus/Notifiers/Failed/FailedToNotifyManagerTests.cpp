@@ -8,6 +8,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "InMemoryBus/Common/BaseMessage.h"
+#include "InMemoryBus/Common/MessageBusSynchronization.h"
 #include "InMemoryBus/Exceptions/ArgumentInvalidException.h"
 #include "InMemoryBus/Notifiers/Failed/FailedToNotifyManager.h"
 #include "InMemoryBus/Notifiers/Failed/IFailedToNotify.h"
@@ -29,11 +30,12 @@ TEST(FailedToNotifyManagerTests, constructor_throws_for_logger_is_nullptr) {
   try {
     // Arrange
     ILogger_SPtr logger = nullptr;
+    MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
     IThreadSafeFailedToNotifyQueue_SPtr queue = std::make_shared<MockIThreadSafeFailedToNotifyQueue>();
     IFailedSubscriberFunctionCaller_SPtr caller = std::make_shared<MockIFailedSubscriberFunctionCaller>();
 
     // Act
-    FailedToNotifyManager sut { logger, queue, caller };
+    FailedToNotifyManager sut { logger, synchronization, queue, caller };
 
     // Assert
     FAIL()<<"Expected ArgumentInvalidException";
@@ -47,15 +49,39 @@ TEST(FailedToNotifyManagerTests, constructor_throws_for_logger_is_nullptr) {
   }
 }
 
+TEST(FailedToNotifyManagerTests, constructor_throws_for_synchronization_is_nullptr) {
+  try {
+    // Arrange
+    ILogger_SPtr logger = std::make_shared<MockILogger>();
+    MessageBusSynchronization_SPtr synchronization = nullptr;
+    IThreadSafeFailedToNotifyQueue_SPtr queue = std::make_shared<MockIThreadSafeFailedToNotifyQueue>();
+    IFailedSubscriberFunctionCaller_SPtr caller = std::make_shared<MockIFailedSubscriberFunctionCaller>();
+
+    // Act
+    FailedToNotifyManager sut { logger, synchronization, queue, caller };
+
+    // Assert
+    FAIL()<<"Expected ArgumentInvalidException";
+  }
+  catch(InMemoryBus::Exceptions::ArgumentInvalidException const & ex)
+  {
+    auto actual = ex.get_message();
+    auto expected = std::string("Parameter 'synchronization' is invalid! Can't create FailedToNotifyManager because 'synchronization' is null!");
+
+    InMemoryBusTest::expect_std_strings_are_equal(expected, actual);
+  }
+}
+
 TEST(FailedToNotifyManagerTests, constructor_throws_for_caller_is_nullptr) {
   try {
     // Arrange
     ILogger_SPtr logger = std::make_shared<MockILogger>();
+    MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
     IThreadSafeFailedToNotifyQueue_SPtr queue = std::make_shared<MockIThreadSafeFailedToNotifyQueue>();
     IFailedSubscriberFunctionCaller_SPtr caller = nullptr;
 
     // Act
-    FailedToNotifyManager sut { logger, queue, caller };
+    FailedToNotifyManager sut { logger, synchronization, queue, caller };
 
     // Assert
     FAIL()<<"Expected ArgumentInvalidException";
@@ -73,11 +99,12 @@ TEST(FailedToNotifyManagerTests, constructor_throws_for_queue_is_nullptr) {
   try {
     // Arrange
     ILogger_SPtr logger = std::make_shared<MockILogger>();
+    MessageBusSynchronization_SPtr synchronization = std::make_shared<InMemoryBus::Common::MessageBusSynchronization>();
     IThreadSafeFailedToNotifyQueue_SPtr queue = nullptr;
     IFailedSubscriberFunctionCaller_SPtr caller = std::make_shared<MockIFailedSubscriberFunctionCaller>();
 
     // Act
-    FailedToNotifyManager sut { logger, queue, caller };
+    FailedToNotifyManager sut { logger, synchronization, queue, caller };
 
     // Assert
     FAIL()<<"Expected ArgumentInvalidException";
@@ -92,7 +119,7 @@ TEST(FailedToNotifyManagerTests, constructor_throws_for_queue_is_nullptr) {
 }
 
 TEST(FailedToNotifyManagerTests, handle_failed_notification_calls_enqueue) {
-  /*
+  /* TODO more testing
   // Arrange
   BaseMessage_SPtr message = std::make_shared<InMemoryBusTests::TestMessage>();
   MockISubscriberInformationEntity* p_mock_entity = new MockISubscriberInformationEntity();

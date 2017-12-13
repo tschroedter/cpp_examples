@@ -64,24 +64,40 @@ void FailedMessageBusNotifier::handle_failed_message(IFailedToNotify_SPtr failed
       m_messages->enqueue(failed);
     } else {
       std::string text = "Failed to execute SubscriberFunction for message '" + failed->get_message()->getType()
-          + "' and SubscriberId '" + failed->get_information()->get_subscriber_id() + "'! - Giving up message deleted!";
+          + "' and SubscriberId '" + failed->get_information()->get_subscriber_id() + "'! - Giving up! Message deleted!";
       m_logger->error(text);
     }
   }
 }
 
+void FailedMessageBusNotifier::proccess_failed_messages() {
+  size_t size = m_messages->size();
+
+  for (size_t i = 0; i < size; i++) {
+    auto failed = m_messages->dequeue();
+    handle_failed_message(failed);
+  }
+}
+
+void FailedMessageBusNotifier::trigger_reprocessing_if_queue_is_not_empty() {
+  if (m_messages->size() > 0) {
+    m_synchronization->is_messages_avalable_failed_messages_processor = true;
+    m_synchronization->messages_available_failed_messages_processor.notify_one();
+  } else {
+    m_synchronization->is_messages_avalable_failed_messages_processor = false;
+  }
+}
+
 void FailedMessageBusNotifier::notify() {
   while (!m_synchronization->is_stop_requested_failed_messages_processor.load()) {
-    m_logger->debug("Processing...");
+    std::unique_lock<std::mutex> lock(m_synchronization->mutex_failed_messages_processor);
 
-    size_t size = m_messages->size();
+    m_synchronization->messages_available_failed_messages_processor.wait(
+        lock, std::bind(&Common::MessageBusSynchronization::is_messages_avalable_failed_messages_processor, m_synchronization));
 
-    for(size_t i = 0; i < size; i++) {
-      auto failed = m_messages->dequeue();
-      handle_failed_message(failed);
-    }
+    proccess_failed_messages();
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    trigger_reprocessing_if_queue_is_not_empty();
   }
 }
 

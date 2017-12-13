@@ -17,6 +17,7 @@
 #include "../Common/IMessagesQueue.h"
 #include "../Common/MessageBusSynchronization.h"
 #include "../Subscribtions/ISubscribtionManager.h"
+#include "../Publishers/IMessageBusPublisher.h"
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -25,7 +26,7 @@ namespace Notifiers {
 
 class NotifierThreadPool : public INotifierThreadPool {
  public:
-  NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages,
+  NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization, IMessageBusPublisher_SPtr publisher, IMessagesQueue_SPtr messages,
                      ISubscibersNotifier_SPtr notifier);
   virtual ~NotifierThreadPool() = default;
 
@@ -35,6 +36,7 @@ class NotifierThreadPool : public INotifierThreadPool {
  private:
   ILogger_SPtr m_logger = nullptr;
   MessageBusSynchronization_SPtr m_synchronization = nullptr;
+  IMessageBusPublisher_SPtr m_publisher = nullptr;
   IMessagesQueue_SPtr m_messages = nullptr;
   ISubscibersNotifier_SPtr m_notifier = nullptr;
   int m_number_of_threads = DEFAULT_NUMBER_OF_THREADS;

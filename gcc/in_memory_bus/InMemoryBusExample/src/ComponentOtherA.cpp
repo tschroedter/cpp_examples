@@ -27,7 +27,7 @@ void ComponentOtherA::update() {
 
     send(message);
 
-    cout << "[ComponentOtherA::update] OtherMessage with Counter: " << i << " send!" << endl;
+    // cout << "[ComponentOtherA::update] OtherMessage with Counter: " << i << " send!" << endl;
   }
 }
 

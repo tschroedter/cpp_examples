@@ -53,6 +53,8 @@ void FailedMessageQueueProcessor::initialize() {
 
 void FailedMessageQueueProcessor::stop() {
   m_synchronization->is_stop_requested_failed_messages_processor.store(true);
+  m_synchronization->is_messages_avalable_failed_messages_processor = true;
+  m_synchronization->messages_available_failed_messages_processor.notify_one();
 
   std::string id = InMemoryBus::Common::thread_id_to_string(m_thread.get_id());
 

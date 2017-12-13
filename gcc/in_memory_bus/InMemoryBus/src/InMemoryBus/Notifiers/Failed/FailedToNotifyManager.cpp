@@ -23,14 +23,21 @@ namespace Failed {
 
 FailedToNotifyManager::FailedToNotifyManager(
     ILogger_SPtr logger,
+    MessageBusSynchronization_SPtr synchronization,
     IThreadSafeFailedToNotifyQueue_SPtr messages,
     IFailedSubscriberFunctionCaller_SPtr caller)
     : m_logger(logger),
+      m_synchronization(synchronization),
       m_messages(messages),
       m_caller(caller) {
   if (m_logger == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'logger' is null!",
                                                "logger");
+  }
+
+  if (m_synchronization == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'synchronization' is null!",
+                                               "synchronization");  // Todo testing
   }
 
   if (m_messages == nullptr) {
@@ -54,6 +61,9 @@ void FailedToNotifyManager::handle_failed_notification(const ISubscriberInformat
   auto failed = make_shared<Failed::FailedToNotify>(info, message);
 
   m_messages->enqueue(failed);
+
+  m_synchronization->is_messages_avalable_failed_messages_processor = true;
+  m_synchronization->messages_available_failed_messages_processor.notify_one();
 
   std::string text = "Failed to execute SubscriberFunction for message '"
       + message->getType() + "' and SubscriberId '" + info->get_subscriber_id()

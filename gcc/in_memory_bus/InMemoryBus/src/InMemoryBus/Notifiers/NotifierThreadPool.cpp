@@ -17,16 +17,20 @@
 #include "../Common/MessageBusSynchronization.h"
 #include "../Common/ILogger.h"
 #include "../Common/General.h"
+#include "../Common/BaseMessage.h"
 #include "../Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
+#include "../Publishers/IMessageBusPublisher.h"
 
 namespace InMemoryBus {
 namespace Notifiers {
 NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger,
                                        MessageBusSynchronization_SPtr synchronization,
+                                       IMessageBusPublisher_SPtr publisher,
                                        IMessagesQueue_SPtr messages,
                                        ISubscibersNotifier_SPtr notifier)
     : m_logger(logger),
       m_synchronization(synchronization),
+      m_publisher(publisher),
       m_messages(messages),
       m_notifier(notifier) {
   if (m_logger == nullptr) {
@@ -37,6 +41,11 @@ NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger,
   if (m_synchronization == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'synchronization' is null!",
                                                "synchronization");
+  }
+
+  if (m_publisher == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'publisher' is null!",
+                                               "publisher");
   }
 
   if (m_messages == nullptr) {
@@ -94,9 +103,8 @@ void NotifierThreadPool::join_threads() {
   for (size_t i = 0; i < m_threads.size(); i++) {
     // TODO not the best way to kill the threads, but otherwise I need atomic variables which each thread
     // sets to true when finished (BOOST.DI Factory not working yet)
-    m_synchronization->is_messages_avalable = true;
-    m_synchronization->messages_available.notify_all();
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    auto dummy = std::make_shared<InMemoryBus::Common::BaseMessage>("Dummy");
+    m_publisher->publish(dummy);
   }
 
  auto join_thread = std::bind(&NotifierThreadPool::do_join_thread, this, std::placeholders::_1);

@@ -39,6 +39,8 @@ class FailedMessageBusNotifier : public IFailedMessageBusNotifier {
   ISubscriberFunctionCaller_SPtr m_caller = nullptr;
 
   void handle_failed_message(IFailedToNotify_SPtr failed);
+  void proccess_failed_messages();
+  void trigger_reprocessing_if_queue_is_not_empty();
 };
 
 }
