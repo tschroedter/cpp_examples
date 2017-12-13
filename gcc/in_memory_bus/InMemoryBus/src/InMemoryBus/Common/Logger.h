@@ -10,6 +10,7 @@
 
 #include <string>
 #include <mutex>
+#include <iostream>
 #include "ILogger.h"
 #include "LogLevel.h"
 
@@ -18,9 +19,10 @@ namespace Common {
 
 using namespace std;
 
-class Logger : public ILogger {  // Todo testing
+class Logger : public ILogger {
  public:
   Logger() = default;
+  Logger(std::ostream& out);
   virtual ~Logger() = default;
 
   void debug(string message) override;
@@ -34,6 +36,7 @@ class Logger : public ILogger {  // Todo testing
   void set_log_level(LogLevel level) override;
 
  private:
+  std::ostream& m_cout = std::cout;
   recursive_mutex m_mutex { };
   LogLevel m_log_level { LogLevel::DEBUG };
 

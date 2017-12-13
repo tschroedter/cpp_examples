@@ -21,25 +21,29 @@ namespace Common {
 
 using namespace std;
 
+Logger::Logger(std::ostream& out)
+  : m_cout(out) {
+}
+
 void Logger::debug(string message) {
   if (LogLevel::DEBUG <= m_log_level.getEnum()) {
-    cout << create_header() << "[DEBUG] " << message << endl;
+    m_cout << create_header() << "[DEBUG] " << message << endl;
   }
 }
 
 void Logger::error(string message) {
-  cout << create_header() << "[ERROR] " << message << endl;
+  m_cout << create_header() << "[ERROR] " << message << endl;
 }
 
 void Logger::warn(string message) {
   if (LogLevel::WARN <= m_log_level.getEnum()) {
-    cout << create_header() << "[WARN] " << message << endl;
+    m_cout << create_header() << "[WARN] " << message << endl;
   }
 }
 
 void Logger::info(string message) {
   if (LogLevel::INFO <= m_log_level.getEnum()) {
-    cout << create_header() << "[INFO] " << message << endl;
+    m_cout << create_header() << "[INFO] " << message << endl;
   }
 }
 

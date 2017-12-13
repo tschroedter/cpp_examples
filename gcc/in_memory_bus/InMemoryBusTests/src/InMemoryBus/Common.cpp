@@ -12,6 +12,17 @@ namespace InMemoryBusTest {
 
 using namespace std;
 
+void expect_std_strings_contains(const string & text, const string & search) {
+  int result = text.find(search);
+
+  if (result < 0) {
+    cout << "Text  : " << text << "\n";
+    cout << "Search: " << search << "\n";
+  }
+
+  EXPECT_TRUE(result >= 0);
+}
+
 void expect_std_strings_are_equal(const string & expected, const string & actual) {
   int result = expected.compare(actual);
 
