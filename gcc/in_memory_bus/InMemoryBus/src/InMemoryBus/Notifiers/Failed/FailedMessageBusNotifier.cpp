@@ -8,7 +8,7 @@
 #include <thread>
 #include <chrono>
 #include "FailedMessageBusNotifier.h"
-#include "IFailedToNotifyQueue.h"
+#include "ThreadSafe/IThreadSafeFailedToNotifyQueue.h"
 #include "../ISubscriberFunctionCaller.h"
 #include "../../Exceptions/ArgumentInvalidException.h"
 #include "../../Common/ILogger.h"
@@ -22,7 +22,7 @@ namespace Failed {
 
 FailedMessageBusNotifier::FailedMessageBusNotifier(ILogger_SPtr logger,
                                                    MessageBusSynchronization_SPtr synchronization,
-                                                   IFailedToNotifyQueue_SPtr queue,
+                                                   IThreadSafeFailedToNotifyQueue_SPtr queue,
                                                    ISubscriberFunctionCaller_SPtr caller) // Todo testing
   : m_logger(logger),
     m_synchronization(synchronization),
@@ -33,7 +33,7 @@ FailedMessageBusNotifier::FailedMessageBusNotifier(ILogger_SPtr logger,
                                                "logger");
   }
 
-  if (m_logger == nullptr) {
+  if (m_synchronization == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create FailedMessageBusNotifier because 'synchronization' is null!",
                                                "synchronization");
   }
@@ -47,7 +47,6 @@ FailedMessageBusNotifier::FailedMessageBusNotifier(ILogger_SPtr logger,
   }
 
   m_logger->set_prefix("FailedMessageBusNotifier");
-
 }
 
 void FailedMessageBusNotifier::handle_failed_message(IFailedToNotify_SPtr failed) {
@@ -72,7 +71,9 @@ void FailedMessageBusNotifier::handle_failed_message(IFailedToNotify_SPtr failed
 }
 
 void FailedMessageBusNotifier::notify() {
-  while (!m_synchronization->is_stop_requested.load()) {
+  while (!m_synchronization->is_stop_requested_failed_messages_processor.load()) {
+    m_logger->debug("Processing...");
+
     size_t size = m_messages->size();
 
     for(size_t i = 0; i < size; i++) {

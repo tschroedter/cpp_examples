@@ -32,6 +32,7 @@
 #include "InMemoryBus/Notifiers/Failed/IFailedMessageBusNotifier.h"
 #include "InMemoryBus/Notifiers/Failed/IFailedToNotifyQueue.h"
 #include "InMemoryBus/Notifiers/Failed/IFailedSubscriberFunctionCaller.h"
+#include "InMemoryBus/Notifiers/Failed/IFailedMessageQueueProcessor.h"
 #include "InMemoryBus/Notifiers/ISubscriberFunctionCaller.h"
 
 using namespace std;
@@ -64,11 +65,18 @@ int main() {
 
     auto injector = InMemoryBusExample::inmemorybusexample_module();
 
+    auto logger = injector.create<ILogger_SPtr>();
+    logger->error("error");
+    logger->warn("warn");
+    logger->info("info");
+    logger->debug("debug");
+
     // TODO Factory not working yet auto test = injector.create<shared_ptr<InMemoryBusTests::NeedFactory>>();
     auto notifier_pool = injector.create<INotifierThreadPool_SPtr>();
-    notifier_pool->initialize(16);
+    notifier_pool->initialize(4);
 
-    auto synchronization = injector.create<MessageBusSynchronization_SPtr>();
+    auto failed_messages_processor = injector.create<IFailedMessageQueueProcessor_SPtr>();
+    failed_messages_processor->initialize();
 
     ComponentA_UPtr compA = injector.create<ComponentA_UPtr>();
     ComponentB_UPtr compB = injector.create<ComponentB_UPtr>();
@@ -117,7 +125,13 @@ int main() {
       cout << "ERROR NOT GOOD!" << endl;
     }
 
+    cout << "Stopping pool..." <<endl;
     notifier_pool->stop();
+    cout << "Stopping processor..." <<endl;
+    failed_messages_processor->stop();
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));  // give threads time to process
+
   } catch (const InMemoryBus::Exceptions::ArgumentInvalidException & ex) {
     std::cout << "ArgumentInvalidException: " << ex.what();
   } catch (const std::exception & ex) {

@@ -21,6 +21,7 @@ class MockILogger : public InMemoryBus::Common::ILogger {
  public:
   MOCK_METHOD1(debug, void(string message));
   MOCK_METHOD1(error, void(string message));
+  MOCK_METHOD1(warn, void(string message));
   MOCK_METHOD1(info, void(string message));
 
   MOCK_METHOD1(set_prefix, void(string message));

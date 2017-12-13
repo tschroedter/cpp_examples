@@ -22,7 +22,6 @@ namespace Failed {
 class FailedToNotifyManager : public IFailedToNotifyManager {
  public:
   FailedToNotifyManager(ILogger_SPtr logger,
-                        MessageBusSynchronization_SPtr synchronization,
                         IThreadSafeFailedToNotifyQueue_SPtr messages,
                         IFailedSubscriberFunctionCaller_SPtr caller);
   virtual ~FailedToNotifyManager();
@@ -31,7 +30,6 @@ class FailedToNotifyManager : public IFailedToNotifyManager {
 
  private:
   ILogger_SPtr m_logger = nullptr;
-  MessageBusSynchronization_SPtr m_synchronization = nullptr;
   IThreadSafeFailedToNotifyQueue_SPtr m_messages = nullptr;
   IFailedSubscriberFunctionCaller_SPtr m_caller = nullptr;
 

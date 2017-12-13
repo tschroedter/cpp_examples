@@ -21,7 +21,8 @@ class MessageBusSynchronization {
   MessageBusSynchronization() = default;
   virtual ~MessageBusSynchronization() = default;
 
-  std::atomic_bool is_stop_requested { false };
+  std::atomic_bool is_stop_requested_failed_messages_processor { false };
+  std::atomic_bool is_stop_requested { false }; // Todo rename
   bool is_messages_avalable = false;
   std::mutex mutex;
   std::condition_variable messages_available;

@@ -13,6 +13,7 @@
 #include "INotifierThreadPool.h"
 #include "ISubscibersNotifier.h"
 #include "../Common/SubscriberFunction.h"
+#include "../Common/ILogger.h"
 #include "../Common/IMessagesQueue.h"
 #include "../Common/MessageBusSynchronization.h"
 #include "../Subscribtions/ISubscribtionManager.h"
@@ -24,7 +25,7 @@ namespace Notifiers {
 
 class NotifierThreadPool : public INotifierThreadPool {
  public:
-  NotifierThreadPool(MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages,
+  NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages,
                      ISubscibersNotifier_SPtr notifier);
   virtual ~NotifierThreadPool() = default;
 
@@ -32,6 +33,7 @@ class NotifierThreadPool : public INotifierThreadPool {
   void stop() override;
 
  private:
+  ILogger_SPtr m_logger = nullptr;
   MessageBusSynchronization_SPtr m_synchronization = nullptr;
   IMessagesQueue_SPtr m_messages = nullptr;
   ISubscibersNotifier_SPtr m_notifier = nullptr;
