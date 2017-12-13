@@ -32,7 +32,7 @@ NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchroniz
       m_messages(messages),
       m_notifier(notifier) {
   if (m_logger == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'logger' is null!", "logger");  // Todo testing
+    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'logger' is null!", "logger");
   }
 
   if (m_synchronization == nullptr) {
@@ -98,8 +98,8 @@ void NotifierThreadPool::join_threads() {
   m_synchronization->is_stop_requested.store(true);
 
   for (size_t i = 0; i < m_threads.size(); i++) {
-    // TODO not the best way to kill the threads, but otherwise I need atomic variables which each thread
-    // sets to true when finished (BOOST.DI Factory not working yet)
+    // sending dummy messages to make sure threads are stopping
+    // TODO BOOST.DI Factory not working yet
     auto dummy = std::make_shared<InMemoryBus::Common::BaseMessage>("Dummy");
     m_publisher->publish(dummy);
   }
