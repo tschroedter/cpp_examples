@@ -24,6 +24,7 @@ using namespace std;
 
 class SubscriberInformationEntity : public ISubscriberInformationEntity {
  public:
+  SubscriberInformationEntity();
   SubscriberInformationEntity(const string subscriber_id, const string message_type,
                               const InMemoryBus::Common::SubscriberFunction subscriber_function);
   virtual ~SubscriberInformationEntity() = default;
