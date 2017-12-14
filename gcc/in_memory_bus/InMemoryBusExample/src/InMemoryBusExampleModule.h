@@ -8,6 +8,7 @@
 #ifndef INMEMORYBUSEXAMPLEMODULE_H_
 #define INMEMORYBUSEXAMPLEMODULE_H_
 
+#include <string>
 #include "InMemoryBus/InMemoryBusModule.h"
 #include "InMemoryBus/Common/IFactory.h"
 #include "InMemoryBus/Subscribtions/Subscribers/SubscriberInformationEntity.h"
@@ -47,8 +48,10 @@ void mydo_nothing_subscriber_function(BaseMessage_SPtr base_message) {
 
 class myexample {
  public:
-  myexample(const ifactory<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity>& factory) {
+  myexample(const ifactory<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity>& factory,
+            const ifactory<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity, std::string>& factory1) {
     assert(dynamic_cast<InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity*>(factory.create().get()));
+    assert(dynamic_cast<InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity*>(factory1.create("id").get()));
   }
 };
 

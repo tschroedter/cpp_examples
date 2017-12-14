@@ -20,6 +20,11 @@ SubscriberInformationEntity::SubscriberInformationEntity() {
 }
 
 SubscriberInformationEntity::SubscriberInformationEntity(
+    const string subscriber_id)
+    : m_subscriber_id(subscriber_id) {
+}
+
+SubscriberInformationEntity::SubscriberInformationEntity(
     const string subscriber_id, const string message_type,
     const InMemoryBus::Common::SubscriberFunction subscriber_function)
     : m_subscriber_id(subscriber_id),

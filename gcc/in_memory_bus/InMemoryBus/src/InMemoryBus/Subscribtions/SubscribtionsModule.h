@@ -8,6 +8,7 @@
 #ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERSMODULE_H_
 #define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERSMODULE_H_
 
+#include <string>
 #include "boost/di.hpp"
 #include "../Common/IFactory.h"
 #include "../Common/SubscriberFunction.h"
@@ -40,6 +41,10 @@ auto subscribtions_module =
 
               di::bind<ifactory
               <Subscribers::ISubscriberInformationEntity>>()
+              .to(factory<Subscribers::SubscriberInformationEntity> {}),
+
+              di::bind<ifactory
+              <Subscribers::ISubscriberInformationEntity, std::string>>()
               .to(factory<Subscribers::SubscriberInformationEntity> {}),
 
               di::bind<ifactory
