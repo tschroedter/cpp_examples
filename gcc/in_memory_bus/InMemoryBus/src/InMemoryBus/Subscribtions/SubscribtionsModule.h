@@ -48,6 +48,10 @@ auto subscribtions_module =
               .to(factory<Subscribers::SubscriberInformationEntity> {}),
 
               di::bind<ifactory
+              <Subscribers::ISubscriberInformationEntity, std::string, std::string>>()
+              .to(factory<Subscribers::SubscriberInformationEntity> {}),
+
+              di::bind<ifactory
               <Subscribers::ISubscriberInformationEntity,
               string,
               string,
