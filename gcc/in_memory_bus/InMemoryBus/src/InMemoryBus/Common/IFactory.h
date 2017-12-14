@@ -18,6 +18,9 @@
 #include <memory>
 #include "boost/di.hpp"
 
+namespace InMemoryBus {
+namespace Common {
+
 namespace di = boost::di;
 
 //<-
@@ -77,5 +80,9 @@ struct factory {
     return sp;
   }
 };
+
+
+}
+}
 
 #endif /* INMEMORYBUS_COMMON_IFACTORY_H_ */

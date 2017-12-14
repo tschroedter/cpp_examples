@@ -35,13 +35,14 @@ auto subscribtions_module =
               di::bind<Subscribers::ThreadSafe::IThreadSafeSubscriberInformationRepository>.to<Subscribers::ThreadSafe::ThreadSafeSubscriberInformationRepository>(),
               di::bind<Subscribers::ISubscriberInformationRepository>.to<Subscribers::SubscriberInformationRepository>(),
               di::bind<Subscribers::UnknownSubscriberInformationEntity>.to<Subscribers::UnknownSubscriberInformationEntity>().in(di::singleton),
-              di::bind<ISubscribtionManager>.to<SubscribtionManager>(),
-              di::bind<ifactory
+              di::bind<ISubscribtionManager>.to<SubscribtionManager>()
+              /*
+              di::bind<InMemoryBus::Common::ifactory
               <Subscribers::ISubscriberInformationEntity,
               string,
               string,
               InMemoryBus::Common::SubscriberFunction>>()
-              .to(factory<Subscribers::SubscriberInformationEntity> {})
+              .to(InMemoryBus::Common::factory<Subscribers::SubscriberInformationEntity> {}) */
           )
       );
     };
