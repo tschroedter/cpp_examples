@@ -10,6 +10,7 @@
 #include <gtest/gtest.h>
 #include "InMemoryBus/Common/Logger.h"
 #include "../Common.h"
+#include "TestLogger.h"
 
 namespace InMemoryBusTests {
 
@@ -19,7 +20,7 @@ void test(LogLevel function, LogLevel level, std::string expected) {
   // Arrange
   stringstream ss { };
 
-  Logger sut { ss };
+  TestLogger sut { ss };
 
   sut.set_log_level(level);
 

@@ -22,7 +22,6 @@ using namespace std;
 class Logger : public ILogger {
  public:
   Logger() = default;
-  Logger(std::ostream& out);
   virtual ~Logger() = default;
 
   void debug(string message) override;
@@ -34,6 +33,9 @@ class Logger : public ILogger {
 
   LogLevel get_log_level() const override;
   void set_log_level(LogLevel level) override;
+
+ protected:
+  Logger(std::ostream& out);
 
  private:
   std::ostream& m_cout = std::cout;
