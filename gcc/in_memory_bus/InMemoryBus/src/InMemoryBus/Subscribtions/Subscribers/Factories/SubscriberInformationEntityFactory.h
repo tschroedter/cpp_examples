@@ -5,19 +5,20 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_SUBSCRIBERINFORMATIONENTITYFACTORY_H_
-#define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_SUBSCRIBERINFORMATIONENTITYFACTORY_H_
+#ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_FACTORIES_SUBSCRIBERINFORMATIONENTITYFACTORY_H_
+#define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_FACTORIES_SUBSCRIBERINFORMATIONENTITYFACTORY_H_
 
 #include <string>
-#include "ISubscriberInformationEntity.h"
 #include "ISubscriberInformationEntityFactory.h"
-#include "../../Common/SubscriberFunction.h"
+#include "../ISubscriberInformationEntity.h"
+#include "../../../Common/SubscriberFunction.h"
 
 using namespace std;
 
 namespace InMemoryBus {
 namespace Subscribtions {
 namespace Subscribers {
+namespace Factories {
 
 class SubscriberInformationEntityFactory : public ISubscriberInformationEntityFactory {
  public:
@@ -31,5 +32,6 @@ class SubscriberInformationEntityFactory : public ISubscriberInformationEntityFa
 }
 }
 }
+}
 
-#endif /* INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_SUBSCRIBERINFORMATIONENTITYFACTORY_H_ */
+#endif /* INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_FACTORIES_SUBSCRIBERINFORMATIONENTITYFACTORY_H_ */

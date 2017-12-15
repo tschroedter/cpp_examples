@@ -12,7 +12,7 @@
 #include <vector>
 #include "INotifierThreadPool.h"
 #include "ISubscibersNotifier.h"
-#include "IMessageBusNotifierFactory.h"
+#include "Factories/IMessageBusNotifierFactory.h"
 #include "../Common/SubscriberFunction.h"
 #include "../Common/ILogger.h"
 #include "../Common/IMessagesQueue.h"

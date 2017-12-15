@@ -8,13 +8,14 @@
 #include <memory>
 #include <string>
 #include "SubscriberInformationEntityFactory.h"
-#include "SubscriberInformationEntity.h"
-#include "ISubscriberInformationEntity.h"
-#include "../../Common/SubscriberFunction.h"
+#include "../SubscriberInformationEntity.h"
+#include "../ISubscriberInformationEntity.h"
+#include "../../../Common/SubscriberFunction.h"
 
 namespace InMemoryBus {
 namespace Subscribtions {
 namespace Subscribers {
+namespace Factories {
 
 ISubscriberInformationEntity_SPtr SubscriberInformationEntityFactory::create(
     const std::string subscriber_id, const std::string message_type,
@@ -27,6 +28,7 @@ ISubscriberInformationEntity_SPtr SubscriberInformationEntityFactory::create(
   return information;
 }
 
+}
 }
 }
 }

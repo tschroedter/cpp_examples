@@ -11,18 +11,18 @@
 #include <boost/di.hpp>
 #include "MessageBusNotifier.h"
 #include "IMessageBusNotifier.h"
-#include "MessageBusNotifierFactory.h"
-#include "IMessageBusNotifierFactory.h"
+#include "Factories/MessageBusNotifierFactory.h"
+#include "Factories/IMessageBusNotifierFactory.h"
 #include "NotifierThreadPool.h"
 #include "INotifierThreadPool.h"
 #include "SubscibersNotifier.h"
 #include "ISubscibersNotifier.h"
 #include "SubscriberFunctionCaller.h"
 #include "ISubscriberFunctionCaller.h"
-#include "MessageBusNotifierFactory.h"
-#include "IMessageBusNotifierFactory.h"
-#include "SubscibersNotifierFactory.h"
-#include "ISubscibersNotifierFactory.h"
+#include "Factories/MessageBusNotifierFactory.h"
+#include "Factories/IMessageBusNotifierFactory.h"
+#include "Factories/SubscibersNotifierFactory.h"
+#include "Factories/ISubscibersNotifierFactory.h"
 #include "Failed/FailedToNotify.h"
 #include "Failed/IFailedToNotify.h"
 #include "Failed/FailedToNotifyQueue.h"
@@ -47,8 +47,8 @@ auto notifiers_module =
     []
     {
       return (di::make_injector(
-              di::bind<IMessageBusNotifierFactory>.to<MessageBusNotifierFactory>(),
-              di::bind<ISubscibersNotifierFactory>.to<SubscibersNotifierFactory>(),
+              di::bind<Factories::IMessageBusNotifierFactory>.to<Factories::MessageBusNotifierFactory>(),
+              di::bind<Factories::ISubscibersNotifierFactory>.to<Factories::SubscibersNotifierFactory>(),
               di::bind<IMessageBusNotifier>.to<MessageBusNotifier>(),
               di::bind<INotifierThreadPool>.to<NotifierThreadPool>(),
               di::bind<ISubscibersNotifier>.to<SubscibersNotifier>(),

@@ -7,19 +7,21 @@
 
 #include <memory>
 #include "SubscibersNotifierFactory.h"
-#include "SubscibersNotifier.h"
-#include "ISubscibersNotifier.h"
-#include "SubscriberFunctionCaller.h"
-#include "ISubscriberFunctionCaller.h"
-#include "../Exceptions/ArgumentInvalidException.h"
+#include "../SubscibersNotifier.h"
+#include "../ISubscibersNotifier.h"
+#include "../SubscriberFunctionCaller.h"
+#include "../ISubscriberFunctionCaller.h"
+#include "../../Exceptions/ArgumentInvalidException.h"
 
 namespace InMemoryBus {
 namespace Notifiers {
+namespace Factories {
 
-SubscibersNotifierFactory::SubscibersNotifierFactory(ILogger_SPtr logger, ISubscribtionManager_SPtr manager, IFailedToNotifyManager_SPtr failed_manager)
-: m_logger(logger),
-  m_manager(manager),
-  m_failed_manager(failed_manager) {
+SubscibersNotifierFactory::SubscibersNotifierFactory(ILogger_SPtr logger, ISubscribtionManager_SPtr manager,
+                                                     IFailedToNotifyManager_SPtr failed_manager)
+    : m_logger(logger),
+      m_manager(manager),
+      m_failed_manager(failed_manager) {
   if (m_logger == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifierFactory because 'logger' is null!",
                                                "logger");
@@ -31,8 +33,8 @@ SubscibersNotifierFactory::SubscibersNotifierFactory(ILogger_SPtr logger, ISubsc
   }
 
   if (m_failed_manager == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifierFactory because 'failed_manager' is null!",
-                                               "failed_manager");
+    throw Exceptions::ArgumentInvalidException(
+        "Can't create SubscibersNotifierFactory because 'failed_manager' is null!", "failed_manager");
   }
 
 }
@@ -45,5 +47,6 @@ ISubscibersNotifier_SPtr SubscibersNotifierFactory::create() {
   return notifier;
 }
 
+}
 }
 }

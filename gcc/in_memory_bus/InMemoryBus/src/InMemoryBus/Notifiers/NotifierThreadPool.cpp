@@ -11,7 +11,7 @@
 #include "NotifierThreadPool.h"
 #include "MessageBusNotifier.h"
 #include "ISubscibersNotifier.h"
-#include "IMessageBusNotifierFactory.h"
+#include "Factories/IMessageBusNotifierFactory.h"
 #include "../Exceptions/ArgumentInvalidException.h"
 #include "../Common/SubscriberFunction.h"
 #include "../Common/IMessagesQueue.h"

@@ -64,8 +64,6 @@ int main() {
 
     auto injector = InMemoryBusExample::inmemorybusexample_module();
 
-    IMessagesQueue_SPtr messages = injector.create<IMessagesQueue_SPtr>();
-
     auto notifier_pool = injector.create<INotifierThreadPool_SPtr>();
     notifier_pool->initialize(4);
 
@@ -115,8 +113,6 @@ int main() {
     } else {
       cout << "ERROR NOT GOOD!" << endl;
     }
-
-    cout << to_string(messages->size()) << endl;
 
     cout << "Stopping pool..." << endl;
     notifier_pool->stop();

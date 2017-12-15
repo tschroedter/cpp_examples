@@ -13,7 +13,7 @@
 #include "ISubscribtionManager.h"
 #include "Subscribers/SubscriberInformationEntity.h"
 #include "Subscribers/UnknownSubscriberInformationEntityEntity.h"
-#include "Subscribers/ISubscriberInformationEntityFactory.h"
+#include "Subscribers/Factories/ISubscriberInformationEntityFactory.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 #include "MessageToSubscribers/IMessageToSubscribersEntity.h"
 #include "MessageToSubscribers/MessageToSubscribersRepository.h"

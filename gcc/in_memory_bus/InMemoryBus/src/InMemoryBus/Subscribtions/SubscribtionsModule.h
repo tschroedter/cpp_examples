@@ -17,8 +17,8 @@
 #include "Subscribers/SubscriberInformationRepository.h"
 #include "Subscribers/ISubscriberInformationEntity.h"
 #include "Subscribers/ISubscriberInformationRepository.h"
-#include "Subscribers/SubscriberInformationEntityFactory.h"
-#include "Subscribers/ISubscriberInformationEntityFactory.h"
+#include "Subscribers/Factories/SubscriberInformationEntityFactory.h"
+#include "Subscribers/Factories/ISubscriberInformationEntityFactory.h"
 #include "Subscribers/UnknownSubscriberInformationEntityEntity.h"
 #include "Subscribers/Threadsafe/ThreadSafeSubscriberInformationRepository.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
@@ -36,12 +36,12 @@ auto subscribtions_module =
       return
       (di::make_injector
           (
+              di::bind<Subscribers::Factories::ISubscriberInformationEntityFactory>.to<Subscribers::Factories::SubscriberInformationEntityFactory>(),
               di::bind<Subscribers::ThreadSafe::IThreadSafeSubscriberInformationRepository>.to<Subscribers::ThreadSafe::ThreadSafeSubscriberInformationRepository>(),
               di::bind<Subscribers::ISubscriberInformationRepository>.to<Subscribers::SubscriberInformationRepository>(),
               di::bind<Subscribers::UnknownSubscriberInformationEntity>.to<Subscribers::UnknownSubscriberInformationEntity>().in(di::singleton),
               di::bind<ISubscribtionManager>.to<SubscribtionManager>(),
               di::bind<Subscribers::ISubscriberInformationEntity>.to<Subscribers::SubscriberInformationEntity>(),
-              di::bind<Subscribers::ISubscriberInformationEntityFactory>.to<Subscribers::SubscriberInformationEntityFactory>(),
               di::bind<MessageToSubscribers::IMessageToSubscribersEntityFactory>.to<MessageToSubscribers::MessageToSubscribersEntityFactory>(),
 
               di::bind<ifactory

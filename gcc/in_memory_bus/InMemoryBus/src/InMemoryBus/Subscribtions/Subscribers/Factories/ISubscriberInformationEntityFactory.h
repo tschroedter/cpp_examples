@@ -5,18 +5,19 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITYFACTORY_H_
-#define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITYFACTORY_H_
+#ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_FACTORIES_ISUBSCRIBERINFORMATIONENTITYFACTORY_H_
+#define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_FACTORIES_ISUBSCRIBERINFORMATIONENTITYFACTORY_H_
 
 #include <string>
-#include "ISubscriberInformationEntity.h"
-#include "../../Common/SubscriberFunction.h"
+#include "../ISubscriberInformationEntity.h"
+#include "../../../Common/SubscriberFunction.h"
 
 using namespace std;
 
 namespace InMemoryBus {
 namespace Subscribtions {
 namespace Subscribers {
+namespace Factories {
 
 class ISubscriberInformationEntityFactory {
  public:
@@ -31,7 +32,8 @@ class ISubscriberInformationEntityFactory {
 }
 }
 }
+}
 
-typedef std::shared_ptr<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntityFactory> ISubscriberInformationEntityFactory_SPtr;
+typedef std::shared_ptr<InMemoryBus::Subscribtions::Subscribers::Factories::ISubscriberInformationEntityFactory> ISubscriberInformationEntityFactory_SPtr;
 
-#endif /* INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITYFACTORY_H_ */
+#endif /* INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_FACTORIES_ISUBSCRIBERINFORMATIONENTITYFACTORY_H_ */
