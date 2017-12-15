@@ -8,6 +8,8 @@
 #ifndef INMEMORYBUS_SUBSCRIBTIONS_MESSAGETOSUBSCRIBERS_IMESSAGETOSUBSCRIBERSENTITYFACTORY_H_
 #define INMEMORYBUS_SUBSCRIBTIONS_MESSAGETOSUBSCRIBERS_IMESSAGETOSUBSCRIBERSENTITYFACTORY_H_
 
+#include <memory>
+#include <string>
 #include "IMessageToSubscribersEntity.h"
 
 namespace InMemoryBus {
@@ -17,7 +19,7 @@ class IMessageToSubscribersEntityFactory {
  public:
   virtual ~IMessageToSubscribersEntityFactory() = default;
 
-  virtual IMessageToSubscribersEntity_SPtr create(const string message_type) = 0;
+  virtual IMessageToSubscribersEntity_SPtr create(const std::string message_type) = 0;
 };
 }
 }
