@@ -44,8 +44,8 @@ SubscribtionManager::SubscribtionManager(IMessageToSubscribersRepository_SPtr re
   }
 
   if (m_message_factory == nullptr) {
-    throw Exceptions::ArgumentInvalidException(
-        "Can't create SubscribtionManager because 'message_factory' is null!", "message_factory");
+    throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'message_factory' is null!",
+                                               "message_factory");
   }
 
   if (m_unknown == nullptr) {

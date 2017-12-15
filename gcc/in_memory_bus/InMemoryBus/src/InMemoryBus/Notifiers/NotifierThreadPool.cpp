@@ -24,10 +24,8 @@
 
 namespace InMemoryBus {
 namespace Notifiers {
-NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger,
-                                       MessageBusSynchronization_SPtr synchronization,
-                                       IMessageBusPublisher_SPtr publisher,
-                                       IMessageBusNotifierFactory_SPtr factory)
+NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
+                                       IMessageBusPublisher_SPtr publisher, IMessageBusNotifierFactory_SPtr factory)
     : m_logger(logger),
       m_synchronization(synchronization),
       m_publisher(publisher),
@@ -47,8 +45,7 @@ NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger,
   }
 
   if (m_factory == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'factory' is null!",
-                                               "factory");
+    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'factory' is null!", "factory");
   }
 
   m_logger->set_prefix("NotifierThreadPool");

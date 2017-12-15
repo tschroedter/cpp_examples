@@ -21,7 +21,7 @@ class MessageToSubscribersEntityFactory : public IMessageToSubscribersEntityFact
   MessageToSubscribersEntityFactory() = default;
   virtual ~MessageToSubscribersEntityFactory() = default;
 
-  IMessageToSubscribersEntity_SPtr create(const std::string message_type) override; // TODO BOOST.DI Factory not working yet
+  IMessageToSubscribersEntity_SPtr create(const std::string message_type) override;  // TODO BOOST.DI Factory not working yet
 
 };
 

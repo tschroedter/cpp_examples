@@ -26,7 +26,7 @@ class SubscriberInformationEntityFactory : public ISubscriberInformationEntityFa
   virtual ~SubscriberInformationEntityFactory() = default;
 
   ISubscriberInformationEntity_SPtr create(const string subscriber_id, const string message_type,
-                                           const InMemoryBus::Common::SubscriberFunction subscriber_function) override; // TODO BOOST.DI Factory not working yet
+                                           const InMemoryBus::Common::SubscriberFunction subscriber_function) override;  // TODO BOOST.DI Factory not working yet
 };
 
 }

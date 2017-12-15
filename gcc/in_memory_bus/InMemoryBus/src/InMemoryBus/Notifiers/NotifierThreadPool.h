@@ -28,8 +28,7 @@ namespace Notifiers {
 class NotifierThreadPool : public INotifierThreadPool {
  public:
   NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
-                     IMessageBusPublisher_SPtr publisher,
-                     IMessageBusNotifierFactory_SPtr factory);
+                     IMessageBusPublisher_SPtr publisher, IMessageBusNotifierFactory_SPtr factory);
   virtual ~NotifierThreadPool() = default;
 
   void initialize(int number_of_threads) override;
