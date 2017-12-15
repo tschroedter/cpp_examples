@@ -22,7 +22,7 @@ namespace Common {
 using namespace std;
 
 Logger::Logger(std::ostream& out)
-  : m_cout(out) {
+    : m_cout(out) {
 }
 
 void Logger::debug(string message) {

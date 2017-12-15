@@ -23,8 +23,9 @@ class ISubscriberInformationEntityFactory {
   ISubscriberInformationEntityFactory() = default;
   virtual ~ISubscriberInformationEntityFactory() = default;
 
-  virtual ISubscriberInformationEntity_SPtr create(const string subscriber_id, const string message_type,
-                                                   const InMemoryBus::Common::SubscriberFunction subscriber_function) = 0;
+  virtual ISubscriberInformationEntity_SPtr create(
+      const string subscriber_id, const string message_type,
+      const InMemoryBus::Common::SubscriberFunction subscriber_function) = 0;
 };
 
 }

@@ -19,13 +19,11 @@ using namespace std;
 SubscriberInformationEntity::SubscriberInformationEntity() {
 }
 
-SubscriberInformationEntity::SubscriberInformationEntity(
-    const string subscriber_id)
+SubscriberInformationEntity::SubscriberInformationEntity(const string subscriber_id)
     : m_subscriber_id(subscriber_id) {
 }
 
-SubscriberInformationEntity::SubscriberInformationEntity(
-    const string subscriber_id, const string message_type)
+SubscriberInformationEntity::SubscriberInformationEntity(const string subscriber_id, const string message_type)
     : m_subscriber_id(subscriber_id),
       m_message_type(message_type) {
 }

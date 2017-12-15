@@ -38,8 +38,8 @@ SubscribtionManager::SubscribtionManager(IMessageToSubscribersRepository_SPtr re
   }
 
   if (m_information_factory == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'information_factory' is null!",
-                                               "information_factory");
+    throw Exceptions::ArgumentInvalidException(
+        "Can't create SubscribtionManager because 'information_factory' is null!", "information_factory");
   }
 
   if (m_unknown == nullptr) {
@@ -70,7 +70,8 @@ IMessageToSubscribersEntity_SPtr SubscribtionManager::create_entity(string messa
 
 void SubscribtionManager::add_subscription(string subscriber_id, string message_type,
                                            InMemoryBus::Common::SubscriberFunction messageReceiver) {
-  ISubscriberInformationEntity_SPtr information = m_information_factory->create(subscriber_id, message_type, messageReceiver);
+  ISubscriberInformationEntity_SPtr information = m_information_factory->create(subscriber_id, message_type,
+                                                                                messageReceiver);
 
   IMessageToSubscribersEntity_SPtr entity = m_repository->find_subscriber_by_message_type(message_type);
 

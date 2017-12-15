@@ -21,29 +21,33 @@
 namespace di = boost::di;
 
 //<-
-template <class T, class... TArgs>
+template<class T, class ... TArgs>
 struct ifactory {
-  virtual ~ifactory() noexcept = default;
+  virtual ~ifactory() noexcept =default;
   virtual std::unique_ptr<T> create(TArgs&&...) const = 0;
 };
 
-template <class, class, class>
+template<class, class, class >
 struct factory_impl;
 
-template <class TInjector, class T, class I, class... TArgs>
+template<class TInjector, class T, class I, class ... TArgs>
 struct factory_impl<TInjector, T, ifactory<I, TArgs...>> : ifactory<I, TArgs...> {
-  explicit factory_impl(const TInjector& injector) : injector_((TInjector&)injector) {}
+  explicit factory_impl(const TInjector& injector)
+      : injector_((TInjector&) injector) {
+  }
 
   std::unique_ptr<I> create(TArgs&&... args) const override {
     // clang-format off
-    auto injector = di::make_injector(
-      std::move(injector_)
+    auto injector =
+        di::make_injector(
+            std::move(injector_)
 #if (__clang_major__ == 3) && (__clang_minor__ > 4) || defined(__GCC___) || defined(__MSVC__)
-    , di::bind<TArgs>().to(std::forward<TArgs>(args))[di::override]...
+                      , di::bind<TArgs>().to(std::forward<TArgs>(args))[di::override]...
 #else // wknd for clang 3.4
-    , di::core::dependency<di::scopes::instance, TArgs, TArgs, di::no_name, di::core::override>(std::forward<TArgs>(args))...
+                      ,
+            di::core::dependency<di::scopes::instance, TArgs, TArgs, di::no_name, di::core::override>(std::forward<TArgs>(args))...
 #endif
-    );
+            );
     // clang-format on
 
     return injector.template create<std::unique_ptr<T>>();
@@ -53,9 +57,9 @@ struct factory_impl<TInjector, T, ifactory<I, TArgs...>> : ifactory<I, TArgs...>
   TInjector& injector_;
 };
 
-template <class T>
+template<class T>
 struct factory {
-  template <class TInjector, class TDependency>
+  template<class TInjector, class TDependency>
   auto operator()(const TInjector& injector, const TDependency&) const noexcept {
     static auto sp = std::make_shared<factory_impl<TInjector, T, typename TDependency::expected>>(injector);
     return sp;
