@@ -22,6 +22,8 @@
 #include "Subscribers/UnknownSubscriberInformationEntityEntity.h"
 #include "Subscribers/Threadsafe/ThreadSafeSubscriberInformationRepository.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
+#include "MessageToSubscribers/MessageToSubscribersEntityFactory.h"
+#include "MessageToSubscribers/IMessageToSubscribersEntityFactory.h"
 
 namespace di = boost::di;
 using namespace std;
@@ -40,6 +42,7 @@ auto subscribtions_module =
               di::bind<ISubscribtionManager>.to<SubscribtionManager>(),
               di::bind<Subscribers::ISubscriberInformationEntity>.to<Subscribers::SubscriberInformationEntity>(),
               di::bind<Subscribers::ISubscriberInformationEntityFactory>.to<Subscribers::SubscriberInformationEntityFactory>(),
+              di::bind<MessageToSubscribers::IMessageToSubscribersEntityFactory>.to<MessageToSubscribers::MessageToSubscribersEntityFactory>(),
 
               di::bind<ifactory
               <Subscribers::ISubscriberInformationEntity>>()
