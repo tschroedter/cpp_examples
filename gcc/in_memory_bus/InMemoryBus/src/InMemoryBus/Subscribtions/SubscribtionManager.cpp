@@ -11,6 +11,7 @@
 #include "MessageToSubscribers/MessageToSubscribersEntity.h"
 #include "MessageToSubscribers/IMessageToSubscribersRepository.h"
 #include "MessageToSubscribers/IMessageToSubscribersEntity.h"
+#include "MessageToSubscribers/IMessageToSubscribersEntityFactory.h"
 #include "Subscribers/ISubscriberInformationRepository.h"
 #include "Subscribers/SubscriberInformationEntity.h"
 #include "Subscribers/SubscriberInformationRepository.h"
@@ -25,12 +26,12 @@ namespace InMemoryBus {
 namespace Subscribtions {
 SubscribtionManager::SubscribtionManager(IMessageToSubscribersRepository_SPtr repository,
                                          ISubscriberInformationEntityFactory_SPtr information_factory,
+                                         IMessageToSubscribersEntityFactory_SPtr message_factory,
                                          IUnknownSubscriberInformationEntity_SPtr unknown)
     : m_repository(repository),
       m_information_factory(information_factory),
+      m_message_factory(message_factory),
       m_unknown(unknown) {
-
-  // dynamic_cast<ISubscriberInformationEntity*>(factory.create().get()));
 
   if (m_repository == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'repository' is null!",
@@ -40,6 +41,11 @@ SubscribtionManager::SubscribtionManager(IMessageToSubscribersRepository_SPtr re
   if (m_information_factory == nullptr) {
     throw Exceptions::ArgumentInvalidException(
         "Can't create SubscribtionManager because 'information_factory' is null!", "information_factory");
+  }
+
+  if (m_message_factory == nullptr) {
+    throw Exceptions::ArgumentInvalidException(
+        "Can't create SubscribtionManager because 'message_factory' is null!", "message_factory");
   }
 
   if (m_unknown == nullptr) {
@@ -56,18 +62,6 @@ void SubscribtionManager::remove_subscription(string subscriber_id, string messa
   repository->remove(information);
 }
 
-IMessageToSubscribersEntity_SPtr SubscribtionManager::create_entity(string message_type) {
-  // TODO use BOOST.DI factory
-  auto sp_vector = make_shared<ISubscriberInformationEntityVector>();
-  auto repo = make_shared<Subscribers::SubscriberInformationRepository>(sp_vector);
-  auto thread_safe_repo = make_shared<Subscribers::ThreadSafe::ThreadSafeSubscriberInformationRepository>(repo);
-
-  auto entity = make_shared<Subscribtions::MessageToSubscribers::MessageToSubscribersEntity>(message_type,
-                                                                                             thread_safe_repo);
-
-  return (entity);
-}
-
 void SubscribtionManager::add_subscription(string subscriber_id, string message_type,
                                            InMemoryBus::Common::SubscriberFunction messageReceiver) {
   ISubscriberInformationEntity_SPtr information = m_information_factory->create(subscriber_id, message_type,
@@ -78,7 +72,7 @@ void SubscribtionManager::add_subscription(string subscriber_id, string message_
   string entity_message_type = entity->get_message_type();
 
   if (entity_message_type.compare(m_unknown->get_message_type()) == 0) {
-    entity = create_entity(message_type);
+    entity = m_message_factory->create(message_type);
 
     m_repository->add(entity);
   }

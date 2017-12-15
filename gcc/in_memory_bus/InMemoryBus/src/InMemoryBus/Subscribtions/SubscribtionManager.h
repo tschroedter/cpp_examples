@@ -11,12 +11,13 @@
 #include <string>
 #include "../Common/SubscriberFunction.h"
 #include "ISubscribtionManager.h"
+#include "Subscribers/SubscriberInformationEntity.h"
 #include "Subscribers/UnknownSubscriberInformationEntityEntity.h"
 #include "Subscribers/ISubscriberInformationEntityFactory.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 #include "MessageToSubscribers/IMessageToSubscribersEntity.h"
 #include "MessageToSubscribers/MessageToSubscribersRepository.h"
-#include "Subscribers/SubscriberInformationEntity.h"
+#include "MessageToSubscribers/IMessageToSubscribersEntityFactory.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ class SubscribtionManager : public ISubscribtionManager {
  public:
   SubscribtionManager(IMessageToSubscribersRepository_SPtr repository,
                       ISubscriberInformationEntityFactory_SPtr information_factory,
+                      IMessageToSubscribersEntityFactory_SPtr message_factory,
                       IUnknownSubscriberInformationEntity_SPtr unknown);
   ~SubscribtionManager() = default;
 
@@ -37,6 +39,7 @@ class SubscribtionManager : public ISubscribtionManager {
  private:
   IMessageToSubscribersRepository_SPtr m_repository = nullptr;
   ISubscriberInformationEntityFactory_SPtr m_information_factory = nullptr;
+  IMessageToSubscribersEntityFactory_SPtr m_message_factory = nullptr;
   IUnknownSubscriberInformationEntity_SPtr m_unknown = nullptr;
 
   IMessageToSubscribersEntity_SPtr create_entity(string message_type);
