@@ -15,9 +15,6 @@
 #include "Publishers/PublishersModule.h"
 #include "Subscribtions/SubscribtionsModule.h"
 #include "Subscribtions/MessageToSubscribers/MessageToSubscribersModule.h"
-#include "Common/MessageBusSynchronization.h"
-#include "Common/MessagesQueue.h"
-#include "Common/IMessagesQueue.h"
 #include "IBus.h"
 #include "MessageBus.h"
 
@@ -32,8 +29,6 @@ auto inmemorybus_module = []
           InMemoryBus::Notifiers::notifiers_module(),
           InMemoryBus::Publishers::publishers_module(),
           InMemoryBus::Subscribtions::subscribtions_module(),
-          di::bind<InMemoryBus::Common::IMessagesQueue>.to<InMemoryBus::Common::MessagesQueue>().in(di::singleton),
-          di::bind<InMemoryBus::Common::MessageBusSynchronization>().in(di::singleton),
           di::bind<InMemoryBus::IBus>.to<InMemoryBus::MessageBus>()
       ));
 };

@@ -9,6 +9,8 @@
 #define INMEMORYBUSEXAMPLEMODULE_H_
 
 #include <string>
+#include <iostream>
+#include "boost/di.hpp"
 #include "InMemoryBus/Common/SubscriberFunction.h"
 #include "InMemoryBus/InMemoryBusModule.h"
 #include "InMemoryBus/Common/IFactory.h"
@@ -53,11 +55,17 @@ class myexample {
  public:
   myexample(
       const ifactory<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity>& factory,
-      const ifactory<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity, std::string>& factory1) {
+      const ifactory<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity, std::string>& factory1,
+      const ifactory<InMemoryBus::Notifiers::IMessageBusNotifier>& factory2) {
     //const ifactory<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity, std::string, std::string>& factory2) {
-    assert(dynamic_cast<InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity*>(factory.create().get()));
-    assert(
-        dynamic_cast<InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity*>(factory1.create("id").get()));
+    //assert(dynamic_cast<InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity*>(factory.create().get()));
+    //assert(dynamic_cast<InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity*>(factory1.create("id").get()));
+    auto test = dynamic_cast<InMemoryBus::Notifiers::MessageBusNotifier*>(factory2.create().get());
+
+    if (test)
+    {
+      std::cout << "Hello...." << std::endl;
+    }
     //assert(dynamic_cast<InMemoryBus::Subscribtions::Subscribers::SubscriberInformationEntity*>(factory2.create("id", "type").get()));
   }
 };

@@ -11,6 +11,9 @@
 #include <boost/di.hpp>
 #include "Logger.h"
 #include "ILogger.h"
+#include "MessageBusSynchronization.h"
+#include "MessagesQueue.h"
+#include "IMessagesQueue.h"
 
 namespace InMemoryBus {
 namespace Common {
@@ -20,7 +23,9 @@ namespace di = boost::di;
 auto common_module = []
 {
   return (di::make_injector(
-          di::bind<ILogger>.to<Logger>()
+          di::bind<ILogger>.to<Logger>(),
+          di::bind<InMemoryBus::Common::IMessagesQueue>.to<InMemoryBus::Common::MessagesQueue>().in(di::singleton),
+          di::bind<InMemoryBus::Common::MessageBusSynchronization>().in(di::singleton)
       ));
 };
 

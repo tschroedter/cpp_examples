@@ -11,6 +11,8 @@
 #include <boost/di.hpp>
 #include "MessageBusNotifier.h"
 #include "IMessageBusNotifier.h"
+#include "MessageBusNotifierFactory.h"
+#include "IMessageBusNotifierFactory.h"
 #include "NotifierThreadPool.h"
 #include "INotifierThreadPool.h"
 #include "SubscibersNotifier.h"
@@ -31,6 +33,7 @@
 #include "Failed/IFailedSubscriberFunctionCaller.h"
 #include "Failed/FailedMessageQueueProcessor.h"
 #include "Failed/IFailedMessageQueueProcessor.h"
+#include "../Common/IFactory.h"
 
 namespace di = boost::di;
 
@@ -42,6 +45,7 @@ auto notifiers_module =
       return (di::make_injector(
               di::bind<IMessageBusNotifier>.to<MessageBusNotifier>(),
               di::bind<INotifierThreadPool>.to<NotifierThreadPool>(),
+              di::bind<IMessageBusNotifierFactory>.to<MessageBusNotifierFactory>(),
               di::bind<ISubscibersNotifier>.to<SubscibersNotifier>(),
               di::bind<ISubscriberFunctionCaller>.to<SubscriberFunctionCaller>(),
               di::bind<Failed::IFailedMessageBusNotifier>.to<Failed::FailedMessageBusNotifier>(),
@@ -50,7 +54,11 @@ auto notifiers_module =
               di::bind<Failed::IFailedToNotifyQueue>.to<Failed::FailedToNotifyQueue>(),
               di::bind<Failed::IFailedToNotifyManager>.to<Failed::FailedToNotifyManager>(),
               di::bind<Failed::IFailedMessageQueueProcessor>.to<Failed::FailedMessageQueueProcessor>(),
-              di::bind<Failed::ThreadSafe::IThreadSafeFailedToNotifyQueue>.to<Failed::ThreadSafe::ThreadSafeFailedToNotifyQueue>().in(di::singleton)
+              di::bind<Failed::ThreadSafe::IThreadSafeFailedToNotifyQueue>.to<Failed::ThreadSafe::ThreadSafeFailedToNotifyQueue>().in(di::singleton),
+
+              di::bind<ifactory
+              <IMessageBusNotifier>>()
+              .to(factory<MessageBusNotifier> {})
           ));
     };
 }

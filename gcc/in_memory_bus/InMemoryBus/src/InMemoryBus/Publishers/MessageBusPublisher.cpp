@@ -36,6 +36,8 @@ void MessageBusPublisher::publish(BaseMessage_SPtr message) {
   m_synchronization->is_messages_avalable_for_thread_pool = true;
 
   m_synchronization->messages_available.notify_one();
+
+  std::cout << "publish..." << std::to_string(m_messages->size()) << std::endl;
 }
 }
 }

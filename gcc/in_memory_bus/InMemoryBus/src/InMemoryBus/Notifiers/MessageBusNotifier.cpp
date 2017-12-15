@@ -48,6 +48,9 @@ MessageBusNotifier::MessageBusNotifier(MessageBusSynchronization_SPtr synchroniz
 }
 
 void MessageBusNotifier::process_next_message() {
+  size_t size = m_messages->size();
+  std::cout << "process_next_message..." << std::to_string(size) << std::endl;
+  std::cout.flush();
   if (m_messages->size() == 0) {
     m_synchronization->is_messages_avalable_for_thread_pool = false;
     return;

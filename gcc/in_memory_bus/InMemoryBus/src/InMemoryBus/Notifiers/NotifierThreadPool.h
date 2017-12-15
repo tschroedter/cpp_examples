@@ -12,6 +12,7 @@
 #include <vector>
 #include "INotifierThreadPool.h"
 #include "ISubscibersNotifier.h"
+#include "IMessageBusNotifierFactory.h"
 #include "../Common/SubscriberFunction.h"
 #include "../Common/ILogger.h"
 #include "../Common/IMessagesQueue.h"
@@ -27,8 +28,8 @@ namespace Notifiers {
 class NotifierThreadPool : public INotifierThreadPool {
  public:
   NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
-                     IMessageBusPublisher_SPtr publisher, IMessagesQueue_SPtr messages,
-                     ISubscibersNotifier_SPtr notifier);
+                     IMessageBusPublisher_SPtr publisher,
+                     IMessageBusNotifierFactory_SPtr factory);
   virtual ~NotifierThreadPool() = default;
 
   void initialize(int number_of_threads) override;
@@ -38,8 +39,8 @@ class NotifierThreadPool : public INotifierThreadPool {
   ILogger_SPtr m_logger = nullptr;
   MessageBusSynchronization_SPtr m_synchronization = nullptr;
   IMessageBusPublisher_SPtr m_publisher = nullptr;
-  IMessagesQueue_SPtr m_messages = nullptr;
-  ISubscibersNotifier_SPtr m_notifier = nullptr;
+  IMessageBusNotifierFactory_SPtr m_factory = nullptr;
+
   int m_number_of_threads = DEFAULT_NUMBER_OF_THREADS;
   std::vector<std::thread> m_threads { };
 
