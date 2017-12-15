@@ -24,7 +24,8 @@
 
 namespace InMemoryBus {
 namespace Notifiers {
-NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
+NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger,
+                                       MessageBusSynchronization_SPtr synchronization,
                                        IMessageBusPublisher_SPtr publisher,
                                        IMessageBusNotifierFactory_SPtr factory)
     : m_logger(logger),

@@ -11,25 +11,26 @@
 #include <memory>
 #include "IMessageBusNotifier.h"
 #include "IMessageBusNotifierFactory.h"
+#include "ISubscibersNotifierFactory.h"
 #include "ISubscibersNotifier.h"
 #include "../Subscribtions/SubscribtionManager.h"
 #include "../Common/MessageBusSynchronization.h"
 #include "../Common/IMessagesQueue.h"
-#include "../Common/ILogger.h"
-#include "../Common/IFactory.h"
 
 namespace InMemoryBus {
 namespace Notifiers {
 
 class MessageBusNotifierFactory : public IMessageBusNotifierFactory{
  public:
-  MessageBusNotifierFactory(const ifactory<IMessageBusNotifier>& factory);
+  MessageBusNotifierFactory(MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages, ISubscibersNotifierFactory_SPtr factory);
   virtual ~MessageBusNotifierFactory() = default;
 
   IMessageBusNotifier_SPtr create() override;
 
  private:
-  const ifactory<IMessageBusNotifier>& m_factory;
+  MessageBusSynchronization_SPtr m_synchronization = nullptr;
+  IMessagesQueue_SPtr m_messages = nullptr;
+  ISubscibersNotifierFactory_SPtr m_factory = nullptr;
 };
 
 }

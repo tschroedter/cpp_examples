@@ -19,6 +19,10 @@
 #include "ISubscibersNotifier.h"
 #include "SubscriberFunctionCaller.h"
 #include "ISubscriberFunctionCaller.h"
+#include "MessageBusNotifierFactory.h"
+#include "IMessageBusNotifierFactory.h"
+#include "SubscibersNotifierFactory.h"
+#include "ISubscibersNotifierFactory.h"
 #include "Failed/FailedToNotify.h"
 #include "Failed/IFailedToNotify.h"
 #include "Failed/FailedToNotifyQueue.h"
@@ -43,9 +47,10 @@ auto notifiers_module =
     []
     {
       return (di::make_injector(
+              di::bind<IMessageBusNotifierFactory>.to<MessageBusNotifierFactory>(),
+              di::bind<ISubscibersNotifierFactory>.to<SubscibersNotifierFactory>(),
               di::bind<IMessageBusNotifier>.to<MessageBusNotifier>(),
               di::bind<INotifierThreadPool>.to<NotifierThreadPool>(),
-              di::bind<IMessageBusNotifierFactory>.to<MessageBusNotifierFactory>(),
               di::bind<ISubscibersNotifier>.to<SubscibersNotifier>(),
               di::bind<ISubscriberFunctionCaller>.to<SubscriberFunctionCaller>(),
               di::bind<Failed::IFailedMessageBusNotifier>.to<Failed::FailedMessageBusNotifier>(),
