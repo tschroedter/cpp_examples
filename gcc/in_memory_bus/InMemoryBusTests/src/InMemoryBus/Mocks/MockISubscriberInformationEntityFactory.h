@@ -16,14 +16,12 @@
 #include "InMemoryBus/Subscribtions/Subscribers/ISubscriberInformationEntityFactory.h"
 
 namespace InMemoryBusTests {
-class MockISubscriberInformationEntityFactory : public InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntityFactory {
+class MockISubscriberInformationEntityFactory :
+    public InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntityFactory {
  public:
   virtual ~MockISubscriberInformationEntityFactory() = default;
 
-
-  MOCK_METHOD3(create, ISubscriberInformationEntity_SPtr(const std::string, const std::string, const InMemoryBus::Common::SubscriberFunction ));
-};
+  MOCK_METHOD3(create, ISubscriberInformationEntity_SPtr(const std::string, const std::string, const InMemoryBus::Common::SubscriberFunction ));};
 }
-
 
 #endif /* INMEMORYBUS_MOCKS_MOCKISUBSCRIBERINFORMATIONENTITYFACTORY_H_ */

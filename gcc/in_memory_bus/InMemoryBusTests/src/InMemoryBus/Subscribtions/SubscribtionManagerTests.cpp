@@ -104,7 +104,8 @@ TEST(SubscribtionManagerTests, remove_subscription_) {
   IThreadSafeSubscriberInformationRepository_SPtr subscribers { p_mock_subscribers };
   MockIMessageToSubscribersRepository* p_mock_repository = new MockIMessageToSubscribersRepository();
   IMessageToSubscribersRepository_SPtr repository { p_mock_repository };
-  ISubscriberInformationEntityFactory_SPtr information_factory = std::make_shared<MockISubscriberInformationEntityFactory>();
+  ISubscriberInformationEntityFactory_SPtr information_factory = std::make_shared<
+      MockISubscriberInformationEntityFactory>();
   IUnknownSubscriberInformationEntity_SPtr unknown =
       std::make_shared<Subscribers::UnknownSubscriberInformationEntity>();
 
@@ -138,7 +139,7 @@ TEST(SubscribtionManagerTests, add_subscription_adds_to_existing_subscription) {
   MockIMessageToSubscribersRepository* p_mock_repository = new MockIMessageToSubscribersRepository();
   IMessageToSubscribersRepository_SPtr repository { p_mock_repository };
   MockISubscriberInformationEntityFactory* p_mock_information_factory = new MockISubscriberInformationEntityFactory();
-  ISubscriberInformationEntityFactory_SPtr information_factory{p_mock_information_factory};
+  ISubscriberInformationEntityFactory_SPtr information_factory { p_mock_information_factory };
   IUnknownSubscriberInformationEntity_SPtr unknown =
       std::make_shared<Subscribers::UnknownSubscriberInformationEntity>();
 
@@ -151,7 +152,8 @@ TEST(SubscribtionManagerTests, add_subscription_adds_to_existing_subscription) {
   EXPECT_CALL(*p_mock_entity,
       get_message_type()).Times(1).WillOnce(testing::Return("type"));
   EXPECT_CALL(*p_mock_information_factory,
-      create("id", "type", testing::A<InMemoryBus::Common::SubscriberFunction>())).Times(1).WillOnce(testing::Return(information));
+      create("id", "type", testing::A<InMemoryBus::Common::SubscriberFunction>())).Times(1).WillOnce(
+      testing::Return(information));
   EXPECT_CALL(*p_mock_subscribers,
       add(::testing::A<ISubscriberInformationEntity_SPtr>())).Times(1);  // TODO test for id, type, function
 
@@ -171,7 +173,8 @@ TEST(SubscribtionManagerTests, get_repository_for_message_type_returns_repositor
       MockIThreadSafeSubscriberInformationRepository>();
   MockIMessageToSubscribersRepository* p_mock_repository = new MockIMessageToSubscribersRepository();
   IMessageToSubscribersRepository_SPtr repository { p_mock_repository };
-  ISubscriberInformationEntityFactory_SPtr information_factory = std::make_shared<MockISubscriberInformationEntityFactory>();
+  ISubscriberInformationEntityFactory_SPtr information_factory = std::make_shared<
+      MockISubscriberInformationEntityFactory>();
   IUnknownSubscriberInformationEntity_SPtr unknown =
       std::make_shared<Subscribers::UnknownSubscriberInformationEntity>();
 

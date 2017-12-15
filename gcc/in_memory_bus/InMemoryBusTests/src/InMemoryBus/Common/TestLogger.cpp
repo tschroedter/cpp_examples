@@ -11,7 +11,7 @@
 namespace InMemoryBusTests {
 
 TestLogger::TestLogger(std::ostream& cout)
-: InMemoryBus::Common::Logger(cout) {
+    : InMemoryBus::Common::Logger(cout) {
 }
 
 }
