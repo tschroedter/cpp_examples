@@ -34,7 +34,7 @@ class SubscriberInformationRepository : public ISubscriberInformationRepository 
   size_t size() override;
 
  private:
-  shared_ptr<InMemoryBus::Common::BaseRepository<ISubscriberInformationEntity>> m_informations = nullptr;
+  shared_ptr<InMemoryBus::Common::BaseRepository<ISubscriberInformationEntity>> m_informations = nullptr; // Todo use typedef
   shared_ptr<UnknownSubscriberInformationEntity> m_unknown = nullptr;
 };
 }

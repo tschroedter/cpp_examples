@@ -65,7 +65,7 @@ int main() {
     auto injector = InMemoryBusExample::inmemorybusexample_module();
 
     injector.create<InMemoryBusExample::example>();
-    injector.create<InMemoryBusExample::myexample>();
+    // injector.create<InMemoryBusExample::myexample>();
 
     auto notifier_pool = injector.create<INotifierThreadPool_SPtr>();
     notifier_pool->initialize(4);

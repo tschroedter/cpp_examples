@@ -14,6 +14,7 @@
 #include "Subscribers/ISubscriberInformationRepository.h"
 #include "Subscribers/SubscriberInformationEntity.h"
 #include "Subscribers/SubscriberInformationRepository.h"
+#include "Subscribers/ISubscriberInformationEntityFactory.h"
 #include "Subscribers/UnknownSubscriberInformationEntityEntity.h"
 #include "Subscribers/Threadsafe/ThreadSafeSubscriberInformationRepository.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
@@ -23,8 +24,10 @@ using namespace std;
 namespace InMemoryBus {
 namespace Subscribtions {
 SubscribtionManager::SubscribtionManager(IMessageToSubscribersRepository_SPtr repository,
+                                         ISubscriberInformationEntityFactory_SPtr information_factory,
                                          IUnknownSubscriberInformationEntity_SPtr unknown)
     : m_repository(repository),
+      m_information_factory(information_factory),
       m_unknown(unknown) {
 
   // dynamic_cast<ISubscriberInformationEntity*>(factory.create().get()));
@@ -32,6 +35,11 @@ SubscribtionManager::SubscribtionManager(IMessageToSubscribersRepository_SPtr re
   if (m_repository == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'repository' is null!",
                                                "repository");
+  }
+
+  if (m_information_factory == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'information_factory' is null!",
+                                               "information_factory");
   }
 
   if (m_unknown == nullptr) {
@@ -62,8 +70,7 @@ IMessageToSubscribersEntity_SPtr SubscribtionManager::create_entity(string messa
 
 void SubscribtionManager::add_subscription(string subscriber_id, string message_type,
                                            InMemoryBus::Common::SubscriberFunction messageReceiver) {
-  ISubscriberInformationEntity_SPtr information = make_shared<Subscribers::SubscriberInformationEntity>(
-      subscriber_id, message_type, messageReceiver);
+  ISubscriberInformationEntity_SPtr information = m_information_factory->create(subscriber_id, message_type, messageReceiver);
 
   IMessageToSubscribersEntity_SPtr entity = m_repository->find_subscriber_by_message_type(message_type);
 

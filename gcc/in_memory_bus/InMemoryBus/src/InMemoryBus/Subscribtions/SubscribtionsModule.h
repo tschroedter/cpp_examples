@@ -17,7 +17,8 @@
 #include "Subscribers/SubscriberInformationRepository.h"
 #include "Subscribers/ISubscriberInformationEntity.h"
 #include "Subscribers/ISubscriberInformationRepository.h"
-#include "Subscribers/SubscriberInformationEntity.h"
+#include "Subscribers/SubscriberInformationEntityFactory.h"
+#include "Subscribers/ISubscriberInformationEntityFactory.h"
 #include "Subscribers/UnknownSubscriberInformationEntityEntity.h"
 #include "Subscribers/Threadsafe/ThreadSafeSubscriberInformationRepository.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
@@ -38,6 +39,7 @@ auto subscribtions_module =
               di::bind<Subscribers::UnknownSubscriberInformationEntity>.to<Subscribers::UnknownSubscriberInformationEntity>().in(di::singleton),
               di::bind<ISubscribtionManager>.to<SubscribtionManager>(),
               di::bind<Subscribers::ISubscriberInformationEntity>.to<Subscribers::SubscriberInformationEntity>(),
+              di::bind<Subscribers::ISubscriberInformationEntityFactory>.to<Subscribers::SubscriberInformationEntityFactory>(),
 
               di::bind<ifactory
               <Subscribers::ISubscriberInformationEntity>>()
