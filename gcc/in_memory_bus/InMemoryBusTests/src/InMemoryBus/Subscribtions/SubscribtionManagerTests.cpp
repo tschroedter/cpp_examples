@@ -20,7 +20,7 @@
 #include "InMemoryBus/Subscribtions/SubscribtionManager.h"
 #include "InMemoryBus/Subscribtions/Subscribers/UnknownSubscriberInformationEntityEntity.h"
 #include "InMemoryBus/Subscribtions/Subscribers/SubscriberInformationEntity.h"
-#include "InMemoryBus/Subscribtions/Subscribers/ISubscriberInformationEntityFactory.h"
+#include "InMemoryBus/Subscribtions/Subscribers/Factories/ISubscriberInformationEntityFactory.h"
 
 namespace InMemoryBusTests {
 

@@ -13,11 +13,11 @@
 #include <string>
 #include "InMemoryBus/Common/SubscriberFunction.h"
 #include "InMemoryBus/Subscribtions/Subscribers/ISubscriberInformationEntity.h"
-#include "InMemoryBus/Subscribtions/Subscribers/ISubscriberInformationEntityFactory.h"
+#include "InMemoryBus/Subscribtions/Subscribers/Factories/ISubscriberInformationEntityFactory.h"
 
 namespace InMemoryBusTests {
 class MockISubscriberInformationEntityFactory :
-    public InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntityFactory {
+    public InMemoryBus::Subscribtions::Subscribers::Factories::ISubscriberInformationEntityFactory {
  public:
   virtual ~MockISubscriberInformationEntityFactory() = default;
 
