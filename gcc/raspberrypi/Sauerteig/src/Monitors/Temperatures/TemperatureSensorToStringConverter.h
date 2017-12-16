@@ -23,6 +23,9 @@ class TemperatureSensorToStringConverter : public ITemperatureSensorToStringConv
     virtual ~TemperatureSensorToStringConverter() = default;
 
     std::string convert(ITemperatureSensorWithStatistics_SPtr sensor) const override;
+
+ private:
+    std::string format_number(celsius value) const;
 };
 }
 }

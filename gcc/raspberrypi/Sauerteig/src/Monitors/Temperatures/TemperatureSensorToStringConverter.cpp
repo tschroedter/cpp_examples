@@ -15,28 +15,46 @@
 
 using namespace Sauerteig::Monitors::Temperatures;
 
-std::string TemperatureSensorToStringConverter::convert(ITemperatureSensorWithStatistics_SPtr sensor) const {
-    celsius value = sensor->get_average_value();
-
+std::string TemperatureSensorToStringConverter::format_number(celsius value) const {
     std::ostringstream oss_value;
     oss_value.precision(4);
     oss_value << value;
-
     std::string text_value { oss_value.str() };
 
+    // handle digits after dot
     auto index_of_dot = text_value.find(".");
-
-    if (index_of_dot == std::string::npos) {    // handle value = 12???
+    if (index_of_dot == std::string::npos) {
+        // handle value = 12???
         text_value += ".00";
-    }
-    else
-    {
-        std::string text_after_dot = text_value.substr(index_of_dot+1);
-
-        if (text_after_dot.length() == 1) { // handle value 12.3?
+    } else {
+        std::string text_after_dot = text_value.substr(index_of_dot + 1);
+        if (text_after_dot.length() == 1) {
+            // handle value 12.3?
             text_value += "0";
         }
     }
+
+    // handle digits before dot
+    index_of_dot = text_value.find(".");
+    auto text_before_dot = text_value.substr(0, index_of_dot);
+    auto digits_before_dot = text_before_dot.length();
+
+    std::string spaces;
+
+    for(size_t i = 3; i > digits_before_dot; i--)
+    {
+        spaces += " ";
+    }
+
+    text_value = spaces + text_value;
+
+    return text_value;
+}
+
+std::string TemperatureSensorToStringConverter::convert(ITemperatureSensorWithStatistics_SPtr sensor) const {
+    celsius value = sensor->get_average_value();
+
+    std::string text_value = format_number(value);
 
     text_value += " C";
 
@@ -46,11 +64,7 @@ std::string TemperatureSensorToStringConverter::convert(ITemperatureSensorWithSt
     oss_percent.precision(4);
     oss_percent << percent;
 
-    std::string text_percent { oss_percent.str() };
-
-    if (text_percent.find(".") == std::string::npos) {
-        text_percent += ".00";
-    }
+    std::string text_percent = format_number(percent);
 
     text_percent += "% Valid";
 
