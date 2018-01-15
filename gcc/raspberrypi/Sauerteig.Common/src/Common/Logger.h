@@ -22,6 +22,7 @@ class Logger : public Interfaces::ILogger {
     void debug(std::string message) override;
     void error(std::string message) override;
     void info(std::string message) override;
+    void warn(std::string message) override;
 
     void set_prefix(std::string prefix) override;
 

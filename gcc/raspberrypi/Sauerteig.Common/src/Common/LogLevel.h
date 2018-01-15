@@ -18,6 +18,7 @@ class LogLevel {
  public:
     enum Enum {
         ERROR = 0,
+        WARN,
         INFO,
         DEBUG,
         INVALID_LOG_LEVEL

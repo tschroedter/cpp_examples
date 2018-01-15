@@ -11,6 +11,7 @@
 #include "Hardware/Installer.h"
 #include "Hardware/Abstract/Installer.h"
 #include "Hardware/Units/Installer.h"
+#include "InMemoryBus/Installer.h"
 
 using namespace Sauerteig;
 
@@ -30,6 +31,9 @@ void IOCContainerBuilder::register_components(Hypodermic::ContainerBuilder& buil
 
     Hardware::Units::Installer hardware_units_installer { };
     hardware_units_installer.register_components(builder);
+
+    InMemoryBus::Installer inmemorybus_installer { };
+    inmemorybus_installer.register_components(builder);
 }
 
 Container_SPtr IOCContainerBuilder::build() {

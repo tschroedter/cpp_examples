@@ -12,6 +12,7 @@
 #include <thread>
 #include <string>
 #include <exception>
+#include <uuid/uuid.h>
 #include "Hypodermic/ContainerBuilder.h"
 #include "IOCContainerBuilder.h"
 #include "Common/CommonTypes.h"
@@ -21,8 +22,35 @@
 #include "Hardware/Abstract/Interfaces/IO/LEDs/ISSRLEDFlashing.h"
 #include "Hardware/Units/Interfaces/IO/Heaters/IHeatingUnit.h"
 #include "Hardware/Units/Interfaces/IO/Coolers/ICoolingUnit.h"
+#include "InMemoryBus/IBus.h"
+#include "InMemoryBus/Subscribtions/SubscribtionManager.h"
+#include "InMemoryBus/Subscribtions/MessageToSubscribers/IMessageToSubscribersRepository.h"
+#include "InMemoryBus/Subscribtions/Subscribers/Factories/ISubscriberInformationEntityFactory.h"
+#include "InMemoryBus/Subscribtions/MessageToSubscribers/IMessageToSubscribersEntityFactory.h"
+#include "InMemoryBus/Subscribtions/Subscribers/UnknownSubscriberInformationEntityEntity.h"
+
+void make_linker_happy()
+{
+    uuid_t id;
+    uuid_generate(id);
+
+    char *string = new char[100];
+    uuid_unparse(id, string);
+
+    int result = uuid_parse(string, id);
+    std::cout << result << std::endl;
+
+    uuid_t other;
+    uuid_copy(other, id);
+
+    std::cout << string << std::endl;
+    bool compare = uuid_compare(id, other) == 0;
+
+    std::cout << compare << std::endl;
+}
 
 int main(void) {
+    make_linker_happy();
 
     // TODO use BOOST.DI but needs newer version of gcc
     Sauerteig::IOCContainerBuilder builder { };
@@ -34,6 +62,39 @@ int main(void) {
     }
 
     try {
+
+        auto mtse_vector = container->resolve<IMessageToSubscribersEntityVector>();
+        auto msg_repo = container->resolve<InMemoryBus::Subscribtions::MessageToSubscribers::IMessageToSubscribersRepository>();
+        auto sub_factory = container->resolve<InMemoryBus::Subscribtions::Subscribers::Factories::ISubscriberInformationEntityFactory>();
+        auto entity_factory = container->resolve<InMemoryBus::Subscribtions::MessageToSubscribers::IMessageToSubscribersEntityFactory>();
+        auto entity_unknown = container->resolve<InMemoryBus::Subscribtions::Subscribers::UnknownSubscriberInformationEntity>();
+        auto ibus = container->resolve<InMemoryBus::IBus>();
+
+        if (mtse_vector != nullptr)
+        {
+            std::cout<< "mtse_vector\n";
+        }
+        if (msg_repo != nullptr)
+        {
+            std::cout<< "msg_repo\n";
+        }
+        if (sub_factory != nullptr)
+        {
+            std::cout<< "sub_factory\n";
+        }
+        if (entity_factory != nullptr)
+        {
+            std::cout<< "entity_factory\n";
+        }
+        if (entity_unknown != nullptr)
+        {
+            std::cout<< "entity_unknown\n";
+        }
+        if (ibus != nullptr)
+         {
+             std::cout<< "ibus\n";
+         }
+
         ITemperaturesMonitor_SPtr monitor = container
                 ->resolve<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor>();
         std::thread thread { std::thread([monitor]() {(*monitor)();}) };

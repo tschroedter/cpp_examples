@@ -32,6 +32,12 @@ void Logger::info(std::string message) {
     }
 }
 
+void Logger::warn(std::string message) {
+    if (LogLevel::WARN <= m_log_level.getEnum()) {
+        std::cout << create_header() << message << std::endl;
+    }
+}
+
 void Logger::set_prefix(std::string prefix) {
     m_prefix = prefix;
 }
