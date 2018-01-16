@@ -13,7 +13,7 @@
 #include "Common/CommonTypes.h"
 
 namespace Sauerteig {
-namespace Publishers {
+namespace Messages {
 
 class TemperaturesMessage : public ::InMemoryBus::Common::BaseMessage {
  public:

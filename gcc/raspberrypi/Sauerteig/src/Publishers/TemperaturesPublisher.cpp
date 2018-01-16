@@ -13,7 +13,7 @@
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureInside.h"
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureOutside.h"
 #include "InMemoryBus/IBus.h"
-#include "TemperaturesMessage.h"
+#include "../Messages/TemperaturesMessage.h"
 
 namespace Sauerteig {
 namespace Publishers {
@@ -66,7 +66,7 @@ void TemperaturesPublisher::publish() {
     m_inside->refresh();
     m_outside->refresh();
 
-    auto message = std::make_shared<TemperaturesMessage>();
+    auto message = std::make_shared<Messages::TemperaturesMessage>();
 
     message->inside_average_value = m_inside->get_average_value();
     message->inside_average_percent_valid =m_inside->get_average_percent_valid();
@@ -75,7 +75,7 @@ void TemperaturesPublisher::publish() {
 
     m_bus->publish(message);
 
-    m_logger->info("Published 'TemperaturesMessage': " + message->to_string());
+    m_logger->debug("Published 'TemperaturesMessage': " + message->to_string());
 }
 
 }
