@@ -18,6 +18,7 @@
 #include "Common/CommonTypes.h"
 #include "Common/Interfaces/ILogger.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
+#include "Interfaces/Publishers/ITemperaturesPublisher.h"
 #include "Hardware/Abstract/Interfaces/IO/IFlashable.h"
 #include "Hardware/Abstract/Interfaces/IO/LEDs/ISSRLEDFlashing.h"
 #include "Hardware/Units/Interfaces/IO/Heaters/IHeatingUnit.h"
@@ -91,9 +92,12 @@ int main(void) {
             std::cout<< "entity_unknown\n";
         }
         if (ibus != nullptr)
-         {
-             std::cout<< "ibus\n";
-         }
+        {
+            std::cout<< "ibus\n";
+        }
+
+        ITemperaturesPublisher_SPtr temperatures_publisher = container->resolve<Sauerteig::Interfaces::Publishers::ITemperaturesPublisher>();
+        std::thread temperatures_publisher_thread { std::thread([temperatures_publisher]() {(*temperatures_publisher)();}) };
 
         ITemperaturesMonitor_SPtr monitor = container
                 ->resolve<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor>();
