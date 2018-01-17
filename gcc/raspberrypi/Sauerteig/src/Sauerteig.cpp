@@ -29,6 +29,9 @@
 #include "InMemoryBus/Subscribtions/Subscribers/Factories/ISubscriberInformationEntityFactory.h"
 #include "InMemoryBus/Subscribtions/MessageToSubscribers/IMessageToSubscribersEntityFactory.h"
 #include "InMemoryBus/Subscribtions/Subscribers/UnknownSubscriberInformationEntityEntity.h"
+#include "InMemoryBus/Notifiers/INotifierThreadPool.h"
+#include "InMemoryBus/Notifiers/Failed/IFailedMessageQueueProcessor.h"
+#include "Monitors/Temperatures/TemperaturesMessageHandler.h"
 
 void make_linker_happy()
 {
@@ -63,13 +66,13 @@ int main(void) {
     }
 
     try {
-
         auto mtse_vector = container->resolve<IMessageToSubscribersEntityVector>();
         auto msg_repo = container->resolve<InMemoryBus::Subscribtions::MessageToSubscribers::IMessageToSubscribersRepository>();
         auto sub_factory = container->resolve<InMemoryBus::Subscribtions::Subscribers::Factories::ISubscriberInformationEntityFactory>();
         auto entity_factory = container->resolve<InMemoryBus::Subscribtions::MessageToSubscribers::IMessageToSubscribersEntityFactory>();
         auto entity_unknown = container->resolve<InMemoryBus::Subscribtions::Subscribers::UnknownSubscriberInformationEntity>();
         auto ibus = container->resolve<InMemoryBus::IBus>();
+        auto handler = container->resolve<Sauerteig::Monitors::Temperatures::TemperaturesMessageHandler>();
 
         if (mtse_vector != nullptr)
         {
@@ -95,9 +98,22 @@ int main(void) {
         {
             std::cout<< "ibus\n";
         }
+        if (handler != nullptr)
+        {
+            std::cout<< "handler\n";
+        }
+
+        auto notifier_pool = container->resolve<::InMemoryBus::Notifiers::INotifierThreadPool>();
+        notifier_pool->initialize(4);
+
+        auto failed_messages_processor = container->resolve<::InMemoryBus::Notifiers::Failed::IFailedMessageQueueProcessor>();
+        failed_messages_processor->initialize();
 
         ITemperaturesPublisher_SPtr temperatures_publisher = container->resolve<Sauerteig::Interfaces::Publishers::ITemperaturesPublisher>();
         std::thread temperatures_publisher_thread { std::thread([temperatures_publisher]() {(*temperatures_publisher)();}) };
+
+        ITemperaturesMessageHandler_SPtr temperatures_message_handler = container->resolve<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMessageHandler>();
+        std::thread temperatures_message_handler_thread { std::thread([temperatures_message_handler]() {(*temperatures_message_handler)();}) };
 
         ITemperaturesMonitor_SPtr monitor = container
                 ->resolve<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor>();

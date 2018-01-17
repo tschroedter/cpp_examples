@@ -8,6 +8,9 @@
 #ifndef PUBLISHERS_TEMPERATURESMESSAGE_H_
 #define PUBLISHERS_TEMPERATURESMESSAGE_H_
 
+#define TEMPERATURESMESSAGE_MESSAGE_TYPE "TemperaturesMessage"
+
+#include <memory.h>
 #include <string.h>
 #include "InMemoryBus/Common/BaseMessage.h"
 #include "Common/CommonTypes.h"
@@ -17,7 +20,7 @@ namespace Messages {
 
 class TemperaturesMessage : public ::InMemoryBus::Common::BaseMessage {
  public:
-    TemperaturesMessage() : InMemoryBus::Common::BaseMessage("TemperaturesMessage") {};
+    TemperaturesMessage() : InMemoryBus::Common::BaseMessage(TEMPERATURESMESSAGE_MESSAGE_TYPE) {};
     virtual ~TemperaturesMessage() = default;
 
     celsius inside_average_value = (celsius)0;
@@ -38,5 +41,7 @@ class TemperaturesMessage : public ::InMemoryBus::Common::BaseMessage {
 
 }
 }
+
+typedef std::shared_ptr<Sauerteig::Messages::TemperaturesMessage> TemperaturesMessage_SPtr;
 
 #endif /* PUBLISHERS_TEMPERATURESMESSAGE_H_ */
