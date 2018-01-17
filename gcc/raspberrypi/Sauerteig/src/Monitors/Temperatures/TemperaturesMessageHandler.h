@@ -9,13 +9,13 @@
 #define MONITORS_TEMPERATURES_TEMPERATURESMESSAGEHANDLER_H_
 
 #include <memory.h>
+#include <functional>
 #include <thread>
 #include <chrono>
+#include "../../Interfaces/Factories/ITemperaturesMessageBusNodeFactory.h"
 #include "../../Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
 #include "../../Messages/TemperaturesMessage.h"
 #include "Common/Interfaces/ILogger.h"
-#include "InMemoryBus/IBus.h"
-#include "InMemoryBus/Common/BusNode.h"
 #include "TemperaturesMessageBusNode.h"
 
 #define INTERVAL_IN_SECONDS 1
@@ -26,22 +26,17 @@ namespace Temperatures {
 
 class TemperaturesMessageHandler : public ::Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMessageHandler {
  public:
-    TemperaturesMessageHandler(ILogger_SPtr logger, IBus_SPtr bus);
+    TemperaturesMessageHandler(ILogger_SPtr logger,
+                               ITemperaturesMessageBusNodeFactory_SPtr factory);
     virtual ~TemperaturesMessageHandler() = default;
 
-    void operator()() override {
-        while (1) {
-            std::this_thread::sleep_for(std::chrono::seconds(INTERVAL_IN_SECONDS));
-
-            m_logger->info(to_string());
-        }
-    }
-
-    std::string to_string();
+    celsius get_inside_average_value() const override;
+    double get_inside_average__percent_valid() const override;
+    celsius get_outside_average_value() const override;
+    double get_outside_average__percent_valid() const override;
 
  private:
     ILogger_SPtr m_logger = nullptr;
-    IBus_SPtr m_bus = nullptr;
     TemperaturesMessageBusNode_SPtr m_bus_node = nullptr;
 };
 

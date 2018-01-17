@@ -13,19 +13,15 @@
 #include "Common/Interfaces/ILogger.h"
 #include "../../Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
 #include "../../Interfaces/Monitors/Temperatures/ITemperatureSensorToStringConverter.h"
-#include "Hardware/Abstract/Interfaces/IO/Sensors/ITemperatureSensorWithStatistics.h"
-#include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureInside.h"
-#include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureOutside.h"
+#include "../../Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
 
 namespace Sauerteig {
 namespace Monitors {
 namespace Temperatures {
 class TemperaturesMonitor : public Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor {
  public:
-    // TODO constructor is getting to big
-    TemperaturesMonitor(ILogger_SPtr logger, ITemperatureInside_SPtr inside, ITemperatureOutside_SPtr outside,
-                        ITemperatureSensorWithStatistics_SPtr inside_with_statistics,
-                        ITemperatureSensorWithStatistics_SPtr outside_with_statistics,
+    TemperaturesMonitor(ILogger_SPtr logger,
+                        ITemperaturesMessageHandler_SPtr handler,
                         ITemperatureSensorToStringConverter_SPtr converter);
     virtual ~TemperaturesMonitor() = default;
 
@@ -41,11 +37,8 @@ class TemperaturesMonitor : public Sauerteig::Interfaces::Monitors::Temperatures
 
  private:
     ILogger_SPtr m_logger = nullptr;
-    ITemperatureSensorWithStatistics_SPtr m_inside = nullptr;
-    ITemperatureSensorWithStatistics_SPtr m_outside = nullptr;
+    ITemperaturesMessageHandler_SPtr m_handler = nullptr;
     ITemperatureSensorToStringConverter_SPtr m_converter = nullptr;
-
-    std::string create_timestamp() const;
 };
 }
 }

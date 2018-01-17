@@ -51,14 +51,11 @@ std::string TemperatureSensorToStringConverter::format_number(celsius value) con
     return text_value;
 }
 
-std::string TemperatureSensorToStringConverter::convert(ITemperatureSensorWithStatistics_SPtr sensor) const {
-    celsius value = sensor->get_average_value();
+std::string TemperatureSensorToStringConverter::convert(celsius value, double percent) const {
 
     std::string text_value = format_number(value);
 
     text_value += " C";
-
-    double percent = sensor->get_average_percent_valid();
 
     std::ostringstream oss_percent;
     oss_percent.precision(4);
@@ -69,6 +66,15 @@ std::string TemperatureSensorToStringConverter::convert(ITemperatureSensorWithSt
     text_percent += "% Valid";
 
     std::string result = text_value + " (" + text_percent + ")";
+
+    return result;
+}
+
+std::string TemperatureSensorToStringConverter::convert(ITemperatureSensorWithStatistics_SPtr sensor) const {
+    celsius value = sensor->get_average_value();
+    double percent = sensor->get_average_percent_valid();
+
+    std::string result = convert(value, percent);
 
     return result;
 }

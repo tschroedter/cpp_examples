@@ -7,10 +7,12 @@
 
 #include "Installer.h"
 #include "Hypodermic/ContainerBuilder.h"
+#include "Factories/TemperaturesMessageBusNodeFactory.h"
 #include "Monitors/Temperatures/TemperaturesMonitor.h"
 #include "Monitors/Temperatures/TemperatureSensorToStringConverter.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
 #include "Publishers/TemperaturesPublisher.h"
+#include "Interfaces/Factories/ITemperaturesMessageBusNodeFactory.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
 #include "Interfaces/Monitors/Temperatures/ITemperatureSensorToStringConverter.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
@@ -20,6 +22,8 @@
 using namespace Sauerteig;
 
 void Installer::register_components(Hypodermic::ContainerBuilder& builder) {
+    builder.registerType<Factories::TemperaturesMessageBusNodeFactory>()
+            .as<Interfaces::Factories::ITemperaturesMessageBusNodeFactory>();
     builder.registerType<Monitors::Temperatures::TemperaturesMessageHandler>()
             .as<Interfaces::Monitors::Temperatures::ITemperaturesMessageHandler>();
     builder.registerType<Messages::TemperaturesMessage>();

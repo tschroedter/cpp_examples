@@ -19,7 +19,10 @@ class ITemperaturesMessageHandler {
  public:
     virtual ~ITemperaturesMessageHandler() = default;
 
-    virtual void operator()() = 0;
+    virtual celsius get_inside_average_value() const = 0;
+    virtual double get_inside_average__percent_valid() const = 0;
+    virtual celsius get_outside_average_value() const = 0;
+    virtual double get_outside_average__percent_valid() const = 0;  // ToDo typedef percent
 };
 
 }

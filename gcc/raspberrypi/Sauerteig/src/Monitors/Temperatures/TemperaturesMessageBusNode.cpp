@@ -35,7 +35,7 @@ TemperaturesMessageBusNode::TemperaturesMessageBusNode(
     }
 
     if (subscriber_id.length() == 0) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'subscriber_id' is null or empty!",
+        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'subscriber_id' is empty!",
                                                            "subscriber_id");
     }
 
@@ -54,8 +54,6 @@ void TemperaturesMessageBusNode::onNotify(BaseMessage_SPtr p_base_message) {
   m_outside_average__percent_valid = message->outside_average_percent_valid;
 
   m_mutex.unlock();
-
-  m_logger->debug("onNotify(...) called!");
 }
 
 celsius TemperaturesMessageBusNode::get_inside_average_value() {

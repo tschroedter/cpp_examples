@@ -19,6 +19,7 @@ class ITemperatureSensorToStringConverter {
  public:
     virtual ~ITemperatureSensorToStringConverter() = default;
 
+    virtual std::string convert(celsius value, double percent) const = 0;
     virtual std::string convert(ITemperatureSensorWithStatistics_SPtr sensor) const = 0;
 };
 }
