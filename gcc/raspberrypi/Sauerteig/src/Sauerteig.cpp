@@ -17,6 +17,7 @@
 #include "IOCContainerBuilder.h"
 #include "Common/CommonTypes.h"
 #include "Common/Interfaces/ILogger.h"
+#include "Common/LogLevel.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
 #include "Hardware/Abstract/Interfaces/IO/IFlashable.h"
@@ -66,6 +67,9 @@ int main(void) {
     }
 
     try {
+        auto logger = container->resolve<Common::Interfaces::ILogger>();
+        logger->set_log_level(Common::LogLevel::Enum::INFO);
+
         // start ibus
         auto notifier_pool = container->resolve<::InMemoryBus::Notifiers::INotifierThreadPool>();
         notifier_pool->initialize(4);
@@ -80,8 +84,6 @@ int main(void) {
         ITemperaturesMonitor_SPtr monitor = container
                 ->resolve<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor>();
         std::thread thread { std::thread([monitor]() {(*monitor)();}) };
-
-        ILogger_SPtr logger = container->resolve<Common::Interfaces::ILogger>();
 
         IHeatingUnit_SPtr heading_unit = container->resolve<Hardware::Units::Interfaces::IO::Heaters::IHeatingUnit>();
         ICoolingUnit_SPtr cooling_unit = container->resolve<Hardware::Units::Interfaces::IO::Coolers::ICoolingUnit>();

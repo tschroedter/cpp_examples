@@ -18,6 +18,8 @@
 
 namespace Common {
 
+LogLevel Logger::m_log_level = LogLevel::DEBUG;
+
 using namespace std;
 
 Logger::Logger(std::ostream& out)

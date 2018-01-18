@@ -14,6 +14,7 @@
 #include "Interfaces/ILogger.h"
 #include "LogLevel.h"
 
+
 namespace Common {
 
 class Logger : public ::Common::Interfaces::ILogger {
@@ -35,9 +36,10 @@ class Logger : public ::Common::Interfaces::ILogger {
   Logger(std::ostream& out);
 
  private:
+  static LogLevel m_log_level;
+
   std::ostream& m_cout = std::cout;
   std::recursive_mutex m_mutex { };
-  LogLevel m_log_level { LogLevel::DEBUG };
 
   std::string m_prefix = "";
 
