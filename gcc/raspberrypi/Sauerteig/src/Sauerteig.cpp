@@ -34,6 +34,8 @@
 #include "InMemoryBus/Notifiers/Failed/IFailedMessageQueueProcessor.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
 
+#include "Common/NanoLog/NanoLog.h"
+
 void make_linker_happy()
 {
     uuid_t id;
@@ -68,7 +70,8 @@ int main(void) {
 
     try {
         auto logger = container->resolve<Common::Interfaces::ILogger>();
-        logger->set_log_level(Common::LogLevel::Enum::INFO);
+        logger->error("ERROR");
+        //logger->set_log_level(Common::LogLevel::Enum::INFO);
 
         // start ibus
         auto notifier_pool = container->resolve<::InMemoryBus::Notifiers::INotifierThreadPool>();
