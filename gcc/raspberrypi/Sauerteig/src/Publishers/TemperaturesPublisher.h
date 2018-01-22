@@ -18,6 +18,7 @@
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureInside.h"
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureOutside.h"
 #include "InMemoryBus/IBus.h"
+#include "Common/Interfaces/IThreadInformationProvider.h"
 
 namespace Sauerteig {
 namespace Publishers {
@@ -27,6 +28,7 @@ class TemperaturesPublisher : public Sauerteig::Interfaces::Publishers::ITempera
     // TODO constructor is getting to big
     TemperaturesPublisher(ILogger_SPtr logger,
                           IBus_SPtr bus,
+                          IThreadInformationProvider_SPtr provider,
                           ITemperatureInside_SPtr inside,
                           ITemperatureOutside_SPtr outside,
                           ITemperatureSensorWithStatistics_SPtr inside_with_statistics,
@@ -35,6 +37,9 @@ class TemperaturesPublisher : public Sauerteig::Interfaces::Publishers::ITempera
     virtual ~TemperaturesPublisher() = default;
 
     void operator()() override {
+        std::string pid = m_provider->get_thread_process_id_as_string();
+        m_logger->info("TemperaturesPublisher PID: " + pid);
+
         while (1) {
             std::this_thread::sleep_for(std::chrono::seconds(INTERVAL_IN_SECONDS));
 
@@ -47,6 +52,7 @@ class TemperaturesPublisher : public Sauerteig::Interfaces::Publishers::ITempera
  private:
     ILogger_SPtr m_logger = nullptr;
     IBus_SPtr m_bus = nullptr;
+    IThreadInformationProvider_SPtr m_provider = nullptr;
     ITemperatureSensorWithStatistics_SPtr m_inside = nullptr;
     ITemperatureSensorWithStatistics_SPtr m_outside = nullptr;
 };

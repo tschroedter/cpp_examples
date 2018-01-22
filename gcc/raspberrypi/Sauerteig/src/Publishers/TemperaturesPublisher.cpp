@@ -9,6 +9,7 @@
 #include "TemperaturesPublisher.h"
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "Common/Interfaces/ILogger.h"
+#include "Common/Interfaces/IThreadInformationProvider.h"
 #include "Hardware/Abstract/Interfaces/IO/Sensors/ITemperatureSensorWithStatistics.h"
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureInside.h"
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureOutside.h"
@@ -18,12 +19,17 @@
 namespace Sauerteig {
 namespace Publishers {
 
-TemperaturesPublisher::TemperaturesPublisher(ILogger_SPtr logger, IBus_SPtr bus, ITemperatureInside_SPtr inside,
-                                         ITemperatureOutside_SPtr outside,
-                                         ITemperatureSensorWithStatistics_SPtr inside_with_statistics,
-                                         ITemperatureSensorWithStatistics_SPtr outside_with_statistics)
+TemperaturesPublisher::TemperaturesPublisher(
+        ILogger_SPtr logger,
+        IBus_SPtr bus,
+        IThreadInformationProvider_SPtr provider,
+        ITemperatureInside_SPtr inside,
+        ITemperatureOutside_SPtr outside,
+        ITemperatureSensorWithStatistics_SPtr inside_with_statistics,
+        ITemperatureSensorWithStatistics_SPtr outside_with_statistics)
         : m_logger(logger),
           m_bus(bus),
+          m_provider(provider),
           m_inside(inside_with_statistics),
           m_outside(outside_with_statistics) {
     if (m_logger == nullptr) {
@@ -34,6 +40,11 @@ TemperaturesPublisher::TemperaturesPublisher(ILogger_SPtr logger, IBus_SPtr bus,
     if (m_bus == nullptr) {
         throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMonitor because 'bus' is null!",
                                                            "bus");
+    }
+
+    if (m_provider == nullptr) {
+        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMonitor because 'provider' is null!",
+                                                           "provider");
     }
 
     if (inside == nullptr) {
@@ -57,7 +68,7 @@ TemperaturesPublisher::TemperaturesPublisher(ILogger_SPtr logger, IBus_SPtr bus,
                 "outside_with_statistics");
     }
 
-    m_logger->set_prefix("TemperaturesMonitor");
+    m_logger->set_prefix("TemperaturesPublisher");
     m_inside->initialize(inside);
     m_outside->initialize(outside);
 }

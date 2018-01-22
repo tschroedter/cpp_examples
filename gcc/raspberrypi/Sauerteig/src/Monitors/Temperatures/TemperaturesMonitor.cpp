@@ -5,8 +5,10 @@
  *      Author: tom
  */
 
-#include <string>
+#include <string.h>
 #include "TemperaturesMonitor.h"
+
+#include <Common/Interfaces/IThreadInformationProvider.h>
 #include "Common/Interfaces/ILogger.h"
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "Hardware/Abstract/Interfaces/IO/Sensors/ITemperatureSensor.h"
@@ -16,14 +18,21 @@
 using namespace Sauerteig::Monitors::Temperatures;
 
 TemperaturesMonitor::TemperaturesMonitor(ILogger_SPtr logger,
+                                         IThreadInformationProvider_SPtr provider,
                                          ITemperaturesMessageHandler_SPtr handler,
                                          ITemperatureSensorToStringConverter_SPtr converter)
         : m_logger(logger),
+          m_provider(provider),
           m_handler(handler),
           m_converter(converter) {
     if (m_logger == nullptr) {
         throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMonitor because 'logger' is null!",
                                                            "logger");
+    }
+
+    if (m_provider == nullptr) {
+        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMonitor because 'provider' is null!",
+                                                           "provider");
     }
 
     if (m_handler == nullptr) {
