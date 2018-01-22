@@ -13,13 +13,13 @@
 #include <iostream>
 #include "Interfaces/ILogger.h"
 #include "LogLevel.h"
-
+#include "Interfaces/IThreadInformationProvider.h"
 
 namespace Common {
 
 class Logger : public ::Common::Interfaces::ILogger {
  public:
-  Logger() = default;
+  Logger(IThreadInformationProvider_SPtr provider);
   virtual ~Logger() = default;
 
   void debug(std::string message) override;
@@ -33,9 +33,11 @@ class Logger : public ::Common::Interfaces::ILogger {
   void set_log_level(LogLevel level) override;
 
  protected:
-  Logger(std::ostream& out);
+  Logger(IThreadInformationProvider_SPtr provider, std::ostream& out);
 
  private:
+  IThreadInformationProvider_SPtr m_provider = nullptr;
+
   static LogLevel m_log_level;
 
   std::ostream& m_cout = std::cout;
@@ -43,8 +45,10 @@ class Logger : public ::Common::Interfaces::ILogger {
 
   std::string m_prefix = "";
 
+  void write_log_line(std::string debug_level, std::string message) const;
   std::string create_timestamp() const;
-  std::string create_header() const;
+  std::string create_log_line(std::string debug_level, std::string message) const;
+  std::string create_thread_pid() const;
 };
 
 }

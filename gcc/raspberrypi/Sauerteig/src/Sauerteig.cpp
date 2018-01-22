@@ -34,7 +34,8 @@
 #include "InMemoryBus/Notifiers/Failed/IFailedMessageQueueProcessor.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
 
-#include "Common/NanoLog/NanoLog.h"
+//#include <syscall.h>
+//#include <unistd.h>
 
 void make_linker_happy()
 {
@@ -56,6 +57,11 @@ void make_linker_happy()
     std::cout << compare << std::endl;
 }
 
+//pid_t gettid (void)
+//{
+//        return syscall(__NR_gettid);
+//}
+
 int main(void) {
     make_linker_happy();
 
@@ -70,7 +76,6 @@ int main(void) {
 
     try {
         auto logger = container->resolve<Common::Interfaces::ILogger>();
-        logger->error("ERROR");
         //logger->set_log_level(Common::LogLevel::Enum::INFO);
 
         // start ibus
@@ -86,7 +91,7 @@ int main(void) {
 
         ITemperaturesMonitor_SPtr monitor = container
                 ->resolve<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor>();
-        std::thread thread { std::thread([monitor]() {(*monitor)();}) };
+        std::thread temperatures_monitor_thread { std::thread([monitor]() {(*monitor)();}) };
 
         IHeatingUnit_SPtr heading_unit = container->resolve<Hardware::Units::Interfaces::IO::Heaters::IHeatingUnit>();
         ICoolingUnit_SPtr cooling_unit = container->resolve<Hardware::Units::Interfaces::IO::Coolers::ICoolingUnit>();

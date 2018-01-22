@@ -7,6 +7,7 @@
 
 #include "Logger.h"
 
+#include <thread>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -15,6 +16,8 @@
 #include <atomic>
 #include "Logger.h"
 #include "LogLevel.h"
+#include "Exceptions/ArgumentInvalidExceptions.h"
+#include "Interfaces/IThreadInformationProvider.h"
 
 namespace Common {
 
@@ -22,29 +25,47 @@ LogLevel Logger::m_log_level = LogLevel::DEBUG;
 
 using namespace std;
 
-Logger::Logger(std::ostream& out)
-    : m_cout(out) {
+Logger::Logger(IThreadInformationProvider_SPtr provider)
+: m_provider(provider) {
+    if (m_provider == nullptr) {
+        throw Common::Exceptions::ArgumentInvalidException("Can't create Logger because 'provider' is null!",
+                                                           "provider");
+    }
+}
+
+Logger::Logger(IThreadInformationProvider_SPtr provider, std::ostream& out)
+    : m_provider(provider),
+      m_cout(out) {
+    if (m_provider == nullptr) {
+        throw Common::Exceptions::ArgumentInvalidException("Can't create Logger because 'provider' is null!",
+                                                           "provider");
+    }
+
+    if (m_cout == nullptr) {
+        throw Common::Exceptions::ArgumentInvalidException("Can't create Logger because 'out' is null!",
+                                                           "out");
+    }
 }
 
 void Logger::debug(string message) {
   if (LogLevel::DEBUG <= m_log_level.getEnum()) {
-    m_cout << create_header() << "[DEBUG] " << message << endl;
+      write_log_line("[DEBUG]", message);
   }
 }
 
 void Logger::error(string message) {
-  m_cout << create_header() << "[ERROR] " << message << endl;
+    write_log_line("[ERROR]", message);
 }
 
 void Logger::warn(string message) {
   if (LogLevel::WARN <= m_log_level.getEnum()) {
-    m_cout << create_header() << "[WARN] " << message << endl;
+      write_log_line("[WARN] ", message);
   }
 }
 
 void Logger::info(string message) {
   if (LogLevel::INFO <= m_log_level.getEnum()) {
-    m_cout << create_header() << "[INFO] " << message << endl;
+      write_log_line("[INFO] ", message);
   }
 }
 
@@ -52,14 +73,24 @@ void Logger::set_prefix(string prefix) {
   m_prefix = prefix;
 }
 
-string Logger::create_header() const {
+void Logger::write_log_line(string debug_level, string message) const {
+    string line = create_log_line(debug_level, message);
+
+    m_cout << line << endl;
+}
+
+string Logger::create_log_line(string debug_level, string message) const {
   stringstream ss { };
 
   ss << create_timestamp();
 
+  ss << " " << debug_level;
+
   if (m_prefix.length() > 0) {
-    ss << " [" << m_prefix << "] ";
+    ss << " [" << m_prefix << "]";
   }
+
+  ss << " " << message;
 
   return (ss.str());
 }
