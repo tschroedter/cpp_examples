@@ -12,10 +12,10 @@
 #include <string>
 #include <exception>
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Exceptions {
-
-using namespace std;
 
 class ArgumentInvalidException : public exception {
  public:

@@ -12,6 +12,8 @@
 #include "IThreadSafeFailedToNotifyQueue.h"
 #include "../IFailedToNotifyQueue.h"
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Notifiers {
 namespace Failed {
@@ -28,7 +30,7 @@ class ThreadSafeFailedToNotifyQueue : public IThreadSafeFailedToNotifyQueue {
 
  private:
   IFailedToNotifyQueue_SPtr m_queue = nullptr;
-  std::recursive_mutex m_mutex;
+  recursive_mutex m_mutex;
 };
 
 }

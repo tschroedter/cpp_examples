@@ -14,6 +14,8 @@
 #include "../../Common/MessageBusSynchronization.h"
 #include "../../Common/IMessagesQueue.h"
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Notifiers {
 namespace Factories {
@@ -29,6 +31,6 @@ class IMessageBusNotifierFactory {
 }
 }
 
-typedef std::shared_ptr<InMemoryBus::Notifiers::Factories::IMessageBusNotifierFactory> IMessageBusNotifierFactory_SPtr;
+typedef shared_ptr<InMemoryBus::Notifiers::Factories::IMessageBusNotifierFactory> IMessageBusNotifierFactory_SPtr;
 
 #endif /* INMEMORYBUS_NOTIFIERS_FACTORIES_IMESSAGEBUSNOTIFIERFACTORY_H_ */

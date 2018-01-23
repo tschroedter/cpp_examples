@@ -6,6 +6,7 @@
  */
 
 #include <memory>
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "MessageBusNotifierFactory.h"
 #include "IMessageBusNotifierFactory.h"
 #include "ISubscibersNotifierFactory.h"
@@ -16,7 +17,8 @@
 #include "../../Subscribtions/SubscribtionManager.h"
 #include "../../Common/MessageBusSynchronization.h"
 #include "../../Common/IMessagesQueue.h"
-#include "../../Exceptions/ArgumentInvalidException.h"
+
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -34,27 +36,27 @@ MessageBusNotifierFactory::MessageBusNotifierFactory(
       m_messages(messages),
       m_factory(factory) {
   if (m_logger == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifierFactory because 'logger' is null!",
+    throw ArgumentInvalidException("Can't create MessageBusNotifierFactory because 'logger' is null!",
                                                "logger");
   }
 
   if (m_provider == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifierFactory because 'provider' is null!",
+    throw ArgumentInvalidException("Can't create MessageBusNotifierFactory because 'provider' is null!",
                                                "provider");
   }
 
   if (m_synchronization == nullptr) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create MessageBusNotifierFactory because 'synchronization' is null!", "synchronization");
   }
 
   if (m_messages == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifierFactory because 'messages' is null!",
+    throw ArgumentInvalidException("Can't create MessageBusNotifierFactory because 'messages' is null!",
                                                "messages");
   }
 
   if (m_factory == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifierFactory because 'factory' is null!",
+    throw ArgumentInvalidException("Can't create MessageBusNotifierFactory because 'factory' is null!",
                                                "factory");
   }
 
