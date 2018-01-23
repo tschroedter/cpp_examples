@@ -87,6 +87,8 @@ void PulseGeneratoreServer::run() {
 
             do_one_flash();
         }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
 
