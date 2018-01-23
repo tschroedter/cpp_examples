@@ -29,7 +29,7 @@ MessageBusPublisher::MessageBusPublisher(MessageBusSynchronization_SPtr synchron
 }
 
 void MessageBusPublisher::publish(BaseMessage_SPtr message) {
-  std::lock_guard<std::mutex> guard(m_synchronization->mutex);
+  std::lock_guard<std::mutex> guard(m_synchronization->mutex_thread_pool);
 
   m_messages->enqueue(message);
 

@@ -11,6 +11,8 @@
 #include <iostream>
 #include "../Exceptions/ArgumentInvalidException.h"
 
+using namespace InMemoryBus::Exceptions;
+
 namespace InMemoryBus {
 namespace Common {
 
@@ -23,7 +25,7 @@ BaseEntity::BaseEntity(const std::string& uuid_as_text) {
   int result = uuid_parse(uuid_as_text.c_str(), m_id);
 
   if (result != 0) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create BaseEntity because 'uuid_as_text' is '" + uuid_as_text + "'!", "uuid_as_text");
   }
 }

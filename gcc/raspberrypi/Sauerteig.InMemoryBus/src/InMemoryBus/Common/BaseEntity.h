@@ -12,13 +12,15 @@
 #include <memory>
 #include <string>
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Common {
 
 class BaseEntity {
  public:
   BaseEntity();
-  BaseEntity(const std::string& uuid_as_text);
+  BaseEntity(const string& uuid_as_text);
   virtual ~BaseEntity() = default;
 
   void get_id(uuid_t& id) const;

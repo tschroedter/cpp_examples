@@ -79,7 +79,7 @@ void MessageBusNotifier::process_next_message() {
 
 void MessageBusNotifier::notify() {
   while (!m_synchronization->is_stop_requested_for_thread_pool.load()) {
-    std::unique_lock<std::mutex> lock(m_synchronization->mutex);
+    std::unique_lock<std::mutex> lock(m_synchronization->mutex_thread_pool);
 
     m_synchronization->messages_available.wait(
         lock, std::bind(&Common::MessageBusSynchronization::is_messages_avalable_for_thread_pool, m_synchronization));
