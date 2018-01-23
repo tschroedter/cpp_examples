@@ -9,10 +9,10 @@
 #define SRC_INMEMORYBUS_NOTIFIERS_FAILED_FAILEDMESSAGEQUEUEPROCESSOR_H_
 
 #include <thread>
-#include "FailedMessageBusNotifier.h"
-#include "IFailedMessageQueueProcessor.h"
 #include "Common/Interfaces/ILogger.h"
 #include "../../Common/MessageBusSynchronization.h"
+#include "FailedMessageBusNotifier.h"
+#include "IFailedMessageQueueProcessor.h"
 
 namespace InMemoryBus {
 namespace Notifiers {

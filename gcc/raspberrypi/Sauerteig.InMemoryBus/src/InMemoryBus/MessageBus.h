@@ -8,17 +8,12 @@
 #ifndef MESSAGEBUS_H_
 #define MESSAGEBUS_H_
 
-#include <functional>
-#include <queue>
-#include <vector>
-#include <map>
-#include <thread>
 #include "IBus.h"
-#include "Subscribtions/ISubscribtionManager.h"
-#include "Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 #include "Common/SubscriberFunction.h"
 #include "Publishers/MessageBusPublisher.h"
-#include "Subscribtions/Subscribers/SubscriberInformationEntity.h"
+#include "Subscribtions/ISubscribtionManager.h"
+
+using namespace std;
 
 namespace InMemoryBus {
 
@@ -27,8 +22,8 @@ class MessageBus : public IBus {
   MessageBus(IMessageBusPublisher_SPtr publisher, ISubscribtionManager_SPtr manager);
   virtual ~MessageBus() = default;
 
-  void subscribe(std::string subscriber_id, std::string message_type, Common::SubscriberFunction messageReceiver);
-  void unsubscribe(std::string subscriber_id, std::string message_type);
+  void subscribe(string subscriber_id, string message_type, Common::SubscriberFunction messageReceiver);
+  void unsubscribe(string subscriber_id, string message_type);
   void publish(BaseMessage_SPtr message);
   void notify();
 

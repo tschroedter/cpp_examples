@@ -8,12 +8,34 @@
 #include "PulseGeneratoreServer.h"
 #include "../Interfaces/IO/ISwitchable.h"
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
+#include "Common/Interfaces/ILogger.h"
+#include "Common/Interfaces/IThreadInformationProvider.h"
 
 using namespace Hardware::Abstract::IO;
 
-PulseGeneratoreServer::PulseGeneratoreServer()
-        : m_switchable(nullptr) {
+PulseGeneratoreServer::PulseGeneratoreServer(
+        ILogger_SPtr logger,
+        IThreadInformationProvider_SPtr provider)
+        : m_logger(logger),
+          m_provider(provider),
+          m_switchable(nullptr) {
+    if (m_logger == nullptr) {
+        throw Common::Exceptions::ArgumentInvalidException("Can't create PulseGeneratoreServer because 'logger' is null!",
+                                                           "logger");
+    }
+
+    if (m_provider == nullptr) {
+        throw Common::Exceptions::ArgumentInvalidException("Can't create PulseGeneratoreServer because 'provider' is null!",
+                                                           "provider");
+    }
+
+    m_logger->set_prefix("PulseGeneratoreServer");
+
     m_worker = std::thread { &PulseGeneratoreServer::run, this };
+
+    std::string id = m_provider->thread_id_to_string(m_worker.get_id());
+
+    m_logger->info("Created PulseGeneratoreServer worker thread with id: " + id);
 }
 
 void PulseGeneratoreServer::initialize(ISwitchable_SPtr switchable) {
@@ -49,6 +71,9 @@ void PulseGeneratoreServer::do_one_flash() {
 }
 
 void PulseGeneratoreServer::run() {
+    std::string pid = m_provider->get_thread_process_id_as_string();
+    m_logger->info("PulseGeneratoreServer PID: " + pid);
+
     while (!this->m_done.load()) {
         while (this->m_is_flashing_enabled.load()) {
             if (m_interval_on_in_msec.load() == 0) {

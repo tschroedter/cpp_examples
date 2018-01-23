@@ -18,6 +18,7 @@ class IThreadInformationProvider {
  public:
     virtual ~IThreadInformationProvider() = default;
 
+    virtual std::string thread_id_to_string (const std::thread::id thread_id) const = 0;
     virtual pid_t get_thread_process_id (void) const = 0;
     virtual std::string get_thread_process_id_as_string (void) const = 0;
     virtual pid_t get_process_id() const = 0;

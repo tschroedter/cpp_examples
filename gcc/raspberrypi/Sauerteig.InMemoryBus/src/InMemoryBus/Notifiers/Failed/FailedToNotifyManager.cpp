@@ -7,13 +7,12 @@
 
 #include <memory>
 #include <string>
-#include <thread>
 #include "Common/Interfaces/ILogger.h"
+#include "../../Exceptions/ArgumentInvalidException.h"
+#include "../../Common/MessageBusSynchronization.h"
 #include "FailedToNotifyManager.h"
 #include "FailedMessageBusNotifier.h"
 #include "ThreadSafe/IThreadSafeFailedToNotifyQueue.h"
-#include "../../Exceptions/ArgumentInvalidException.h"
-#include "../../Common/MessageBusSynchronization.h"
 #include "IFailedSubscriberFunctionCaller.h"
 #include "FailedToNotify.h"
 
@@ -48,10 +47,6 @@ FailedToNotifyManager::FailedToNotifyManager(ILogger_SPtr logger, MessageBusSync
   }
 
   m_logger->set_prefix("FailedToNotifyManager");
-}
-
-FailedToNotifyManager::~FailedToNotifyManager() {
-  m_thread.join();
 }
 
 void FailedToNotifyManager::handle_failed_notification(const ISubscriberInformationEntity_SPtr& info,

@@ -5,13 +5,10 @@
  *      Author: tom
  */
 
-#include <thread>
 #include "SubscriberFunctionCaller.h"
-#include "Failed/FailedToNotify.h"
-#include "Failed/IFailedToNotifyManager.h"
-#include "../Subscribtions/Subscribers/ISubscriberInformationEntity.h"
 #include "../Common/BaseMessage.h"
 #include "../Exceptions/ArgumentInvalidException.h"
+#include "Failed/IFailedToNotifyManager.h"
 
 namespace InMemoryBus {
 namespace Notifiers {

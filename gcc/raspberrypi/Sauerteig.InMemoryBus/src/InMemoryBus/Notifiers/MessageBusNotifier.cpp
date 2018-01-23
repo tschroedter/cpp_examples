@@ -15,6 +15,8 @@
 #include <string>
 #include <functional>
 #include <condition_variable>
+#include "Common/Interfaces/ILogger.h"
+#include "Common/Interfaces/IThreadInformationProvider.h"
 #include "../Exceptions/ArgumentInvalidException.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
 #include "../Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
@@ -26,11 +28,26 @@
 
 namespace InMemoryBus {
 namespace Notifiers {
-MessageBusNotifier::MessageBusNotifier(MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages,
+MessageBusNotifier::MessageBusNotifier(ILogger_SPtr logger,
+                                       IThreadInformationProvider_SPtr provider,
+                                       MessageBusSynchronization_SPtr synchronization,
+                                       IMessagesQueue_SPtr messages,
                                        ISubscibersNotifier_SPtr notifier)
-    : m_synchronization(synchronization),
+    : m_logger(logger),
+      m_provider(provider),
+      m_synchronization(synchronization),
       m_messages(messages),
       m_notifier(notifier) {
+  if (m_logger == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifier because 'logger' is null!",
+                                               "logger");
+  }
+
+  if (m_provider == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifier because 'provider' is null!",
+                                               "provider");
+  }
+
   if (m_synchronization == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifier because 'synchronization' is null!",
                                                "synchronization");
@@ -45,6 +62,8 @@ MessageBusNotifier::MessageBusNotifier(MessageBusSynchronization_SPtr synchroniz
     throw Exceptions::ArgumentInvalidException("Can't create MessageBusNotifier because 'notifier' is null!",
                                                "notifier");
   }
+
+  m_logger->set_prefix("MessageBusNotifier");
 }
 
 void MessageBusNotifier::process_next_message() {

@@ -15,7 +15,7 @@
 namespace InMemoryBus {
 namespace Common {
 
-typedef std::function<void(BaseMessage_SPtr)> SubscriberFunction;
+typedef std::function<void(BaseMessage_SPtr)> SubscriberFunction;   // Todo maybe move typedef out of namespace
 
 }
 }

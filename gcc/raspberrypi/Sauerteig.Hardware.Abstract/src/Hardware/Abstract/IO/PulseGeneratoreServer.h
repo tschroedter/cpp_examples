@@ -11,6 +11,9 @@
 #include <thread>
 #include <atomic>
 #include <iostream>
+#include <string>
+#include "Common/Interfaces/ILogger.h"
+#include "Common/Interfaces/IThreadInformationProvider.h"
 #include "../Interfaces/IO/IPulseGeneratoreServer.h"
 #include "../Interfaces/IO/ISwitchable.h"
 
@@ -21,7 +24,7 @@ namespace Abstract {
 namespace IO {
 class PulseGeneratoreServer : public Interfaces::IO::IPulseGeneratoreServer {
  public:
-    PulseGeneratoreServer();
+    PulseGeneratoreServer(ILogger_SPtr logger, IThreadInformationProvider_SPtr provider);
     virtual ~PulseGeneratoreServer();
 
     void operator()() override {
@@ -44,6 +47,8 @@ class PulseGeneratoreServer : public Interfaces::IO::IPulseGeneratoreServer {
     void do_one_flash();
 
  private:
+    ILogger_SPtr m_logger = nullptr;
+    IThreadInformationProvider_SPtr m_provider = nullptr;
     ISwitchable_SPtr m_switchable;
     std::atomic_bool m_done { };
     std::atomic_bool m_is_flashing_enabled { };

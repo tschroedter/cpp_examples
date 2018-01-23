@@ -12,12 +12,8 @@
 #include <vector>
 #include "Common/Interfaces/ILogger.h"
 #include "INotifierThreadPool.h"
-#include "ISubscibersNotifier.h"
 #include "Factories/IMessageBusNotifierFactory.h"
-#include "../Common/SubscriberFunction.h"
-#include "../Common/IMessagesQueue.h"
 #include "../Common/MessageBusSynchronization.h"
-#include "../Subscribtions/ISubscribtionManager.h"
 #include "../Publishers/IMessageBusPublisher.h"
 
 namespace InMemoryBus {
@@ -27,7 +23,8 @@ namespace Notifiers {
 
 class NotifierThreadPool : public INotifierThreadPool {
  public:
-  NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
+  NotifierThreadPool(ILogger_SPtr logger,
+                     MessageBusSynchronization_SPtr synchronization,
                      IMessageBusPublisher_SPtr publisher, IMessageBusNotifierFactory_SPtr factory);
   virtual ~NotifierThreadPool() = default;
 

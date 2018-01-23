@@ -8,6 +8,8 @@
 #ifndef INMEMORY_NOTIFIERS_MESSAGEBUSNOTIFIER_H_
 #define INMEMORY_NOTIFIERS_MESSAGEBUSNOTIFIER_H_
 
+#include "Common/Interfaces/ILogger.h"
+#include "Common/Interfaces/IThreadInformationProvider.h"
 #include "IMessageBusNotifier.h"
 #include "ISubscibersNotifier.h"
 #include "../Common/MessageBusSynchronization.h"
@@ -19,11 +21,17 @@ namespace InMemoryBus {
 namespace Notifiers {
 class MessageBusNotifier : public IMessageBusNotifier {
  public:
-  MessageBusNotifier(MessageBusSynchronization_SPtr synchronization, IMessagesQueue_SPtr messages,
+  MessageBusNotifier(ILogger_SPtr logger,
+                     IThreadInformationProvider_SPtr provider,
+                     MessageBusSynchronization_SPtr synchronization,
+                     IMessagesQueue_SPtr messages,
                      ISubscibersNotifier_SPtr notifier);
   virtual ~MessageBusNotifier() = default;
 
   void operator()() {
+    std::string pid = m_provider->get_thread_process_id_as_string();
+    m_logger->info("MessageBusNotifier PID: " + pid);
+
     notify();
   }
 
@@ -33,6 +41,8 @@ class MessageBusNotifier : public IMessageBusNotifier {
   void process_next_message();
 
  private:
+  ILogger_SPtr m_logger = nullptr;
+  IThreadInformationProvider_SPtr m_provider = nullptr;
   MessageBusSynchronization_SPtr m_synchronization = nullptr;
   IMessagesQueue_SPtr m_messages = nullptr;
   ISubscibersNotifier_SPtr m_notifier = nullptr;

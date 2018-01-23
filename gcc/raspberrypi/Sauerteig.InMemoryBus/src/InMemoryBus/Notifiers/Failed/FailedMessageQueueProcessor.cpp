@@ -8,11 +8,11 @@
 #include <thread>
 #include <chrono>
 #include "Common/Interfaces/ILogger.h"
-#include "FailedMessageQueueProcessor.h"
-#include "IFailedMessageBusNotifier.h"
 #include "../../Exceptions/ArgumentInvalidException.h"
 #include "../../Common/MessageBusSynchronization.h"
 #include "../../Common/General.h"
+#include "FailedMessageQueueProcessor.h"
+#include "IFailedMessageBusNotifier.h"
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -40,6 +40,8 @@ FailedMessageQueueProcessor::FailedMessageQueueProcessor(ILogger_SPtr logger,
   }
 
   m_synchronization->is_stop_requested_failed_messages_processor.store(false);
+
+  m_logger->set_prefix("FailedMessageQueueProcessor");
 }
 
 void FailedMessageQueueProcessor::initialize() {

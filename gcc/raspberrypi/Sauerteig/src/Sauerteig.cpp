@@ -18,6 +18,7 @@
 #include "Common/CommonTypes.h"
 #include "Common/Interfaces/ILogger.h"
 #include "Common/LogLevel.h"
+#include "Common/Interfaces/IThreadInformationProvider.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
 #include "Hardware/Abstract/Interfaces/IO/IFlashable.h"
@@ -76,7 +77,11 @@ int main(void) {
 
     try {
         auto logger = container->resolve<Common::Interfaces::ILogger>();
-        //logger->set_log_level(Common::LogLevel::Enum::INFO);
+        logger->set_prefix("Sauerteig");
+        logger->set_log_level(Common::LogLevel::Enum::INFO);
+
+        IThreadInformationProvider_SPtr provider = container->resolve<Common::Interfaces::IThreadInformationProvider>();
+        logger->info("Sauerteig Main PID: " + provider->get_thread_process_id_as_string());
 
         // start ibus
         auto notifier_pool = container->resolve<::InMemoryBus::Notifiers::INotifierThreadPool>();

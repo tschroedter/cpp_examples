@@ -8,6 +8,7 @@
 #include <thread>
 #include <chrono>
 #include "Common/Interfaces/ILogger.h"
+#include "Common/Interfaces/IThreadInformationProvider.h"
 #include "FailedMessageBusNotifier.h"
 #include "ThreadSafe/IThreadSafeFailedToNotifyQueue.h"
 #include "../ISubscriberFunctionCaller.h"
@@ -20,16 +21,23 @@ namespace Failed {
 
 #define MAX_NUMBER_OF_RETRIES 3
 
-FailedMessageBusNotifier::FailedMessageBusNotifier(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
+FailedMessageBusNotifier::FailedMessageBusNotifier(ILogger_SPtr logger, IThreadInformationProvider_SPtr provider,
+                                                   MessageBusSynchronization_SPtr synchronization,
                                                    IThreadSafeFailedToNotifyQueue_SPtr queue,
                                                    ISubscriberFunctionCaller_SPtr caller)  // Todo testing
     : m_logger(logger),
+      m_provider(provider),
       m_synchronization(synchronization),
       m_messages(queue),
       m_caller(caller) {
   if (m_logger == nullptr) {
     throw Exceptions::ArgumentInvalidException("Can't create FailedMessageBusNotifier because 'logger' is null!",
                                                "logger");
+  }
+
+  if (m_provider == nullptr) {
+    throw Exceptions::ArgumentInvalidException("Can't create FailedMessageBusNotifier because 'provider' is null!",
+                                               "provider");
   }
 
   if (m_synchronization == nullptr) {

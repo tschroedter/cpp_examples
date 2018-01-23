@@ -5,15 +5,14 @@
  *      Author: tom
  */
 
-#include <thread>
-#include <chrono>
-#include "Common/Interfaces/ILogger.h"
 #include "SubscibersNotifier.h"
 #include "ISubscriberFunctionCaller.h"
+#include "Common/Interfaces/ILogger.h"
 #include "../Common/BaseMessage.h"
 #include "../Exceptions/ArgumentInvalidException.h"
 #include "../Subscribtions/ISubscribtionManager.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
+#include "../Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 
 namespace InMemoryBus {
 namespace Notifiers {

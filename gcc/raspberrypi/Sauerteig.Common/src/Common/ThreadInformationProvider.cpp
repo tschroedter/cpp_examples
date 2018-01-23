@@ -16,6 +16,14 @@
 
 namespace Common {
 
+    std::string ThreadInformationProvider::thread_id_to_string (const std::thread::id thread_id) const {
+        std::stringstream ss { };
+
+        ss << thread_id;
+
+        return (ss.str());
+    }
+
     pid_t ThreadInformationProvider::get_thread_process_id (void) const
     {
             return syscall(__NR_gettid);
@@ -53,11 +61,9 @@ namespace Common {
     std::string ThreadInformationProvider::get_thread_id_as_string() const {
         std::thread::id thread_id = get_thread_id();
 
-        std::stringstream ss { };
+        std::string text = thread_id_to_string(thread_id);
 
-        ss << thread_id;
-
-        return (ss.str());
+        return text;
     }
 
 }

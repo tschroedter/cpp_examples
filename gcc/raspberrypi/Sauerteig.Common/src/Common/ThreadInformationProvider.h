@@ -20,6 +20,7 @@ class ThreadInformationProvider : public Interfaces::IThreadInformationProvider 
     ThreadInformationProvider() = default;
     virtual ~ThreadInformationProvider() = default;
 
+    std::string thread_id_to_string (const std::thread::id thread_id) const override;
     pid_t get_thread_process_id (void) const override;
     std::string get_thread_process_id_as_string (void) const override;
     pid_t get_process_id() const override;

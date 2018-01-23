@@ -10,12 +10,8 @@
 #include <string>
 #include "Common/Interfaces/ILogger.h"
 #include "NotifierThreadPool.h"
-#include "MessageBusNotifier.h"
-#include "ISubscibersNotifier.h"
 #include "Factories/IMessageBusNotifierFactory.h"
 #include "../Exceptions/ArgumentInvalidException.h"
-#include "../Common/SubscriberFunction.h"
-#include "../Common/IMessagesQueue.h"
 #include "../Common/MessageBusSynchronization.h"
 #include "../Common/General.h"
 #include "../Common/BaseMessage.h"
@@ -24,7 +20,8 @@
 
 namespace InMemoryBus {
 namespace Notifiers {
-NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
+NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger,
+                                       MessageBusSynchronization_SPtr synchronization,
                                        IMessageBusPublisher_SPtr publisher, IMessageBusNotifierFactory_SPtr factory)
     : m_logger(logger),
       m_synchronization(synchronization),
@@ -73,7 +70,7 @@ void NotifierThreadPool::create_threads() {
 
     std::string id = InMemoryBus::Common::thread_id_to_string(m_threads[i].get_id());
 
-    m_logger->info(std::string("Pool thread " + id + " created!"));
+    m_logger->info(std::string("NotifierThreadPool created thread with id: " + id));
   }
 }
 
