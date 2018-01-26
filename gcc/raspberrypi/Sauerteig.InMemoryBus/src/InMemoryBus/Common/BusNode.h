@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_BUSNODE_H_
-#define INMEMORYBUS_COMMON_BUSNODE_H_
+#ifndef SRC_INMEMORYBUS_COMMON_BUSNODE_H_
+#define SRC_INMEMORYBUS_COMMON_BUSNODE_H_
 
 #include <string>
 #include <functional>
@@ -37,4 +37,4 @@ class BusNode {
 }
 }
 
-#endif /* INMEMORYBUS_COMMON_BUSNODE_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_BUSNODE_H_ */

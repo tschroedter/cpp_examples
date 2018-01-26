@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_GENERAL_H_
-#define INMEMORYBUS_COMMON_GENERAL_H_
+#ifndef SRC_INMEMORYBUS_COMMON_GENERAL_H_
+#define SRC_INMEMORYBUS_COMMON_GENERAL_H_
 
 #include <string>
 #include <thread>
@@ -21,4 +21,4 @@ string thread_id_to_string(thread::id id);
 }
 }
 
-#endif /* INMEMORYBUS_COMMON_GENERAL_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_GENERAL_H_ */

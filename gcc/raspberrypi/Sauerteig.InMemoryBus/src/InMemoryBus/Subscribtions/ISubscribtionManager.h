@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_SUBSCRIBTIONS_ISUBSCRIBTIONMANAGER_H_
-#define INMEMORYBUS_SUBSCRIBTIONS_ISUBSCRIBTIONMANAGER_H_
+#ifndef SRC_INMEMORYBUS_SUBSCRIBTIONS_ISUBSCRIBTIONMANAGER_H_
+#define SRC_INMEMORYBUS_SUBSCRIBTIONS_ISUBSCRIBTIONMANAGER_H_
 
 #include "Subscribers/SubscriberInformationEntity.h"
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
@@ -30,4 +30,4 @@ class ISubscribtionManager {
 
 typedef shared_ptr<InMemoryBus::Subscribtions::ISubscribtionManager> ISubscribtionManager_SPtr;
 
-#endif /* INMEMORYBUS_SUBSCRIBTIONS_ISUBSCRIBTIONMANAGER_H_ */
+#endif /* SRC_INMEMORYBUS_SUBSCRIBTIONS_ISUBSCRIBTIONMANAGER_H_ */

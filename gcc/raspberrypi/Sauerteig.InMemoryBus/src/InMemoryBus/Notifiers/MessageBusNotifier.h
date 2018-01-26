@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORY_NOTIFIERS_MESSAGEBUSNOTIFIER_H_
-#define INMEMORY_NOTIFIERS_MESSAGEBUSNOTIFIER_H_
+#ifndef SRC_INMEMORY_NOTIFIERS_MESSAGEBUSNOTIFIER_H_
+#define SRC_INMEMORY_NOTIFIERS_MESSAGEBUSNOTIFIER_H_
 
 #include "Common/Interfaces/ILogger.h"
 #include "Common/Interfaces/IThreadInformationProvider.h"
@@ -55,4 +55,4 @@ class MessageBusNotifier : public IMessageBusNotifier {
 }
 }
 
-#endif /* INMEMORY_NOTIFIERS_MESSAGEBUSNOTIFIER_H_ */
+#endif /* SRC_INMEMORY_NOTIFIERS_MESSAGEBUSNOTIFIER_H_ */

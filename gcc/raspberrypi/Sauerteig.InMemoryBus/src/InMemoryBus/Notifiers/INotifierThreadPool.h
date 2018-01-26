@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORY_NOTIFIERS_INOTIFIERTHREADPOOL_H_
-#define INMEMORY_NOTIFIERS_INOTIFIERTHREADPOOL_H_
+#ifndef SRC_INMEMORY_NOTIFIERS_INOTIFIERTHREADPOOL_H_
+#define SRC_INMEMORY_NOTIFIERS_INOTIFIERTHREADPOOL_H_
 
 #include <memory>
 
@@ -24,4 +24,4 @@ class INotifierThreadPool {
 
 typedef std::shared_ptr<InMemoryBus::Notifiers::INotifierThreadPool> INotifierThreadPool_SPtr;
 
-#endif /* NOTIFIERS_INOTIFIERTHREADPOOL_H_ */
+#endif /* SRC_INMEMORY_NOTIFIERS_INOTIFIERTHREADPOOL_H_ */

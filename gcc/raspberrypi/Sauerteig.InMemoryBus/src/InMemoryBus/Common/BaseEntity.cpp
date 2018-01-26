@@ -9,9 +9,9 @@
 #include <memory>
 #include <string>
 #include <iostream>
-#include "../Exceptions/ArgumentInvalidException.h"
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
 
-using namespace InMemoryBus::Exceptions;
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Common {

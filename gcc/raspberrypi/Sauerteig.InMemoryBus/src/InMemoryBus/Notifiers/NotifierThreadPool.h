@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_
-#define INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_
+#ifndef SRC_INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_
+#define SRC_INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_
 
 #include <thread>
 #include <vector>
@@ -49,4 +49,4 @@ class NotifierThreadPool : public INotifierThreadPool {
 }
 }
 
-#endif /* INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_ */
+#endif /* SRC_INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_ */

@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_MESSAGEBUSSYNCHRONIZATION_H_
-#define INMEMORYBUS_COMMON_MESSAGEBUSSYNCHRONIZATION_H_
+#ifndef SRC_INMEMORYBUS_COMMON_MESSAGEBUSSYNCHRONIZATION_H_
+#define SRC_INMEMORYBUS_COMMON_MESSAGEBUSSYNCHRONIZATION_H_
 
 #include <memory>
 #include <mutex>
@@ -39,4 +39,4 @@ class MessageBusSynchronization {
 
 typedef shared_ptr<InMemoryBus::Common::MessageBusSynchronization> MessageBusSynchronization_SPtr;
 
-#endif /* INMEMORYBUS_COMMON_MESSAGEBUSSYNCHRONIZATION_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_MESSAGEBUSSYNCHRONIZATION_H_ */

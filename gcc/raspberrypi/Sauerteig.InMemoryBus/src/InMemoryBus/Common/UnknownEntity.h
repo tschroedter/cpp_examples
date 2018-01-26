@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_UNKNOWNENTITY_H_
-#define INMEMORYBUS_COMMON_UNKNOWNENTITY_H_
+#ifndef SRC_INMEMORYBUS_COMMON_UNKNOWNENTITY_H_
+#define SRC_INMEMORYBUS_COMMON_UNKNOWNENTITY_H_
 
 #include "BaseEntity.h"
 #include "uuid/uuid.h"
@@ -21,4 +21,4 @@ class UnknownEntity : public BaseEntity {
 }
 }
 
-#endif /* INMEMORYBUS_COMMON_UNKNOWNENTITY_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_UNKNOWNENTITY_H_ */

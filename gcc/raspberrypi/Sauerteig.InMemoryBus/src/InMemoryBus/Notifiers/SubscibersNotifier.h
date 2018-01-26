@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_
-#define INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_
+#ifndef SRC_INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_
+#define SRC_INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_
 
 #include "Common/Interfaces/ILogger.h"
 #include "ISubscibersNotifier.h"
@@ -40,4 +40,4 @@ class SubscibersNotifier : public ISubscibersNotifier {
 }
 }
 
-#endif /* INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_ */
+#endif /* SRC_INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_ */

@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORY_NOTIFIERS_IMESSAGEBUSNOTIFIER_H_
-#define INMEMORY_NOTIFIERS_IMESSAGEBUSNOTIFIER_H_
+#ifndef SRC_INMEMORY_NOTIFIERS_IMESSAGEBUSNOTIFIER_H_
+#define SRC_INMEMORY_NOTIFIERS_IMESSAGEBUSNOTIFIER_H_
 
 #include <memory>
 
@@ -24,4 +24,4 @@ class IMessageBusNotifier {
 
 typedef std::shared_ptr<InMemoryBus::Notifiers::IMessageBusNotifier> IMessageBusNotifier_SPtr;
 
-#endif /* INMEMORY_NOTIFIERS_IMESSAGEBUSNOTIFIER_H_ */
+#endif /* SRC_INMEMORY_NOTIFIERS_IMESSAGEBUSNOTIFIER_H_ */

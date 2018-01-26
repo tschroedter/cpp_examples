@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_NOTIFIERS_ISUBSCRIBERFUNCTIONCALLER_H_
-#define INMEMORYBUS_NOTIFIERS_ISUBSCRIBERFUNCTIONCALLER_H_
+#ifndef SRC_INMEMORYBUS_NOTIFIERS_ISUBSCRIBERFUNCTIONCALLER_H_
+#define SRC_INMEMORYBUS_NOTIFIERS_ISUBSCRIBERFUNCTIONCALLER_H_
 
 #include <memory>
 #include "../Common/BaseMessage.h"
@@ -29,4 +29,4 @@ class ISubscriberFunctionCaller {
 
 typedef std::shared_ptr<InMemoryBus::Notifiers::ISubscriberFunctionCaller> ISubscriberFunctionCaller_SPtr;
 
-#endif /* INMEMORYBUS_NOTIFIERS_ISUBSCRIBERFUNCTIONCALLER_H_ */
+#endif /* SRC_INMEMORYBUS_NOTIFIERS_ISUBSCRIBERFUNCTIONCALLER_H_ */

@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef IBUS_H_
-#define IBUS_H_
+#ifndef SRC_IBUS_H_
+#define SRC_IBUS_H_
 
 #include <memory>
 #include <functional>
@@ -30,4 +30,4 @@ class IBus {
 
 typedef shared_ptr<InMemoryBus::IBus> IBus_SPtr;
 
-#endif
+#endif /* SRC_IBUS_H_ */

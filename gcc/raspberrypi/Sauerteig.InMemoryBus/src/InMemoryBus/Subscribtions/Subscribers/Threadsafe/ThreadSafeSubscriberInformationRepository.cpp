@@ -5,11 +5,12 @@
  *      Author: tom
  */
 
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "ThreadSafeSubscriberInformationRepository.h"
 #include "../ISubscriberInformationEntity.h"
-#include "../../../Exceptions/ArgumentInvalidException.h"
 
 using namespace std;
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Subscribtions {
@@ -19,7 +20,7 @@ ThreadSafeSubscriberInformationRepository::ThreadSafeSubscriberInformationReposi
     ISubscriberInformationRepository_SPtr repository)
     : m_repository(repository) {
   if (m_repository == nullptr) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create ThreadSafeSubscriberInformationRepository because 'repository' is null!", "repository");
   }
 }

@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_INSTALLER_H_
-#define INMEMORYBUS_INSTALLER_H_
+#ifndef SRC_INMEMORYBUS_INSTALLER_H_
+#define SRC_INMEMORYBUS_INSTALLER_H_
 
 #include "Hypodermic/ContainerBuilder.h"
 #include "Common/Interfaces/IInstaller.h"
@@ -22,4 +22,4 @@ class Installer : public Common::Interfaces::IInstaller {
 };
 }
 
-#endif /* INMEMORYBUS_INSTALLER_H_ */
+#endif /* SRC_INMEMORYBUS_INSTALLER_H_ */

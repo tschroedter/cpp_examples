@@ -12,7 +12,6 @@
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "NotifierThreadPool.h"
 #include "Factories/IMessageBusNotifierFactory.h"
-#include "../Exceptions/ArgumentInvalidException.h"
 #include "../Common/MessageBusSynchronization.h"
 #include "../Common/General.h"
 #include "../Common/BaseMessage.h"

@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef MESSAGEBUS_H_
-#define MESSAGEBUS_H_
+#ifndef SRC_MESSAGEBUS_H_
+#define SRC_MESSAGEBUS_H_
 
 #include "IBus.h"
 #include "Common/SubscriberFunction.h"
@@ -34,4 +34,4 @@ class MessageBus : public IBus {
 
 }
 
-#endif /* MESSAGEBUS_H_ */
+#endif /* SRC_MESSAGEBUS_H_ */

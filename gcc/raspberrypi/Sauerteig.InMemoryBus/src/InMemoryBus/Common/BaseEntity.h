@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_BASEENTITY_H_
-#define INMEMORYBUS_COMMON_BASEENTITY_H_
+#ifndef SRC_INMEMORYBUS_COMMON_BASEENTITY_H_
+#define SRC_INMEMORYBUS_COMMON_BASEENTITY_H_
 
 #include <uuid/uuid.h>
 #include <memory>
@@ -33,4 +33,4 @@ class BaseEntity {
 }
 }
 
-#endif /* INMEMORYBUS_COMMON_BASEENTITY_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_BASEENTITY_H_ */

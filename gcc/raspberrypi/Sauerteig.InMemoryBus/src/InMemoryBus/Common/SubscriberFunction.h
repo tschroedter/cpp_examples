@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_SUBSCRIBERFUNCTION_H_
-#define INMEMORYBUS_COMMON_SUBSCRIBERFUNCTION_H_
+#ifndef SRC_INMEMORYBUS_COMMON_SUBSCRIBERFUNCTION_H_
+#define SRC_INMEMORYBUS_COMMON_SUBSCRIBERFUNCTION_H_
 
 #include <memory>
 #include <functional>
@@ -20,4 +20,4 @@ typedef std::function<void(BaseMessage_SPtr)> SubscriberFunction;   // Todo mayb
 }
 }
 
-#endif /* INMEMORYBUS_COMMON_SUBSCRIBERFUNCTION_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_SUBSCRIBERFUNCTION_H_ */

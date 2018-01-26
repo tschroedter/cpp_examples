@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORY_PUBLISHERS_MESSAGEBUSPUBLISHER_H_
-#define INMEMORY_PUBLISHERS_MESSAGEBUSPUBLISHER_H_
+#ifndef SRC_INMEMORY_PUBLISHERS_MESSAGEBUSPUBLISHER_H_
+#define SRC_INMEMORY_PUBLISHERS_MESSAGEBUSPUBLISHER_H_
 
 #include "../Common/MessageBusSynchronization.h"
 #include "../Common/BaseMessage.h"
@@ -30,4 +30,4 @@ class MessageBusPublisher : public IMessageBusPublisher {
 }
 }
 
-#endif /* INMEMORY_PUBLISHERS_MESSAGEBUSPUBLISHER_H_ */
+#endif /* SRC_INMEMORY_PUBLISHERS_MESSAGEBUSPUBLISHER_H_ */

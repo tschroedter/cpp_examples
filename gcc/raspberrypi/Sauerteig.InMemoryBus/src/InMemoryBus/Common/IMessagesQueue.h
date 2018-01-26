@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_IMESSAGESQUEUE_H_
-#define INMEMORYBUS_COMMON_IMESSAGESQUEUE_H_
+#ifndef SRC_INMEMORYBUS_COMMON_IMESSAGESQUEUE_H_
+#define SRC_INMEMORYBUS_COMMON_IMESSAGESQUEUE_H_
 
 #include <memory>
 #include "BaseMessage.h"
@@ -28,4 +28,4 @@ class IMessagesQueue {
 
 typedef std::shared_ptr<InMemoryBus::Common::IMessagesQueue> IMessagesQueue_SPtr;
 
-#endif /* INMEMORYBUS_COMMON_IMESSAGESQUEUE_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_IMESSAGESQUEUE_H_ */

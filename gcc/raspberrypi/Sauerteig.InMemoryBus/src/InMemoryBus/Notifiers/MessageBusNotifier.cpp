@@ -18,7 +18,6 @@
 #include "Common/Interfaces/ILogger.h"
 #include "Common/Interfaces/IThreadInformationProvider.h"
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
-#include "../Exceptions/ArgumentInvalidException.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
 #include "../Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 #include "../Common/SubscriberFunction.h"
