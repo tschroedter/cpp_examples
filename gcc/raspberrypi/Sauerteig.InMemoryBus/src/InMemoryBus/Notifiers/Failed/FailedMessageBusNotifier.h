@@ -15,6 +15,8 @@
 #include "../ISubscriberFunctionCaller.h"
 #include "../../Common/MessageBusSynchronization.h"
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Notifiers {
 namespace Failed {
@@ -29,7 +31,7 @@ class FailedMessageBusNotifier : public IFailedMessageBusNotifier {
   virtual ~FailedMessageBusNotifier() = default;
 
   void operator()() override {
-    std::string pid = m_provider->get_thread_process_id_as_string();
+    string pid = m_provider->get_thread_process_id_as_string();
     m_logger->info("FailedMessageBusNotifier PID: " + pid);
 
     notify();

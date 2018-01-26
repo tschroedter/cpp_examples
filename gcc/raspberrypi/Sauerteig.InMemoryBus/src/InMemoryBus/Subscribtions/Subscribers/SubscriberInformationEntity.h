@@ -12,9 +12,9 @@
 #include <string>
 #include <vector>
 #include <mutex>
+#include "ISubscriberInformationEntity.h"
 #include "../../Common/BaseEntity.h"
 #include "../../Common/SubscriberFunction.h"
-#include "ISubscriberInformationEntity.h"
 
 namespace InMemoryBus {
 namespace Subscribtions {

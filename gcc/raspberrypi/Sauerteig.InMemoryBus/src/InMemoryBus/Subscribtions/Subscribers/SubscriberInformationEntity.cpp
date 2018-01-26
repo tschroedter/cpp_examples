@@ -6,9 +6,11 @@
  */
 
 #include <mutex>
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "../../Common/SubscriberFunction.h"
 #include "SubscriberInformationEntity.h"
-#include "../../Exceptions/ArgumentInvalidException.h"
+
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Subscribtions {
@@ -35,17 +37,17 @@ SubscriberInformationEntity::SubscriberInformationEntity(
       m_message_type(message_type),
       m_subscriber_function(subscriber_function) {
   if (subscriber_id.empty()) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create SubscriberInformationEntity because 'subscriber_id' is empty!", "subscriber_id");
   }
 
   if (message_type.empty()) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create SubscriberInformationEntity because 'message_type' is empty!", "message_type");
   }
 
   if (subscriber_function == nullptr) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create SubscriberInformationEntity because 'subscriber_function' is null!", "subscriber_function");
   }
 }

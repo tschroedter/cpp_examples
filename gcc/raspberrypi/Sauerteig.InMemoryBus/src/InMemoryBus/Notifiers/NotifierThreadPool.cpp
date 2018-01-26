@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <string>
 #include "Common/Interfaces/ILogger.h"
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "NotifierThreadPool.h"
 #include "Factories/IMessageBusNotifierFactory.h"
 #include "../Exceptions/ArgumentInvalidException.h"
@@ -17,6 +18,8 @@
 #include "../Common/BaseMessage.h"
 #include "../Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 #include "../Publishers/IMessageBusPublisher.h"
+
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -28,21 +31,21 @@ NotifierThreadPool::NotifierThreadPool(ILogger_SPtr logger,
       m_publisher(publisher),
       m_factory(factory) {
   if (m_logger == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'logger' is null!", "logger");
+    throw ArgumentInvalidException("Can't create NotifierThreadPool because 'logger' is null!", "logger");
   }
 
   if (m_synchronization == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'synchronization' is null!",
+    throw ArgumentInvalidException("Can't create NotifierThreadPool because 'synchronization' is null!",
                                                "synchronization");
   }
 
   if (m_publisher == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'publisher' is null!",
+    throw ArgumentInvalidException("Can't create NotifierThreadPool because 'publisher' is null!",
                                                "publisher");
   }
 
   if (m_factory == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create NotifierThreadPool because 'factory' is null!", "factory");
+    throw ArgumentInvalidException("Can't create NotifierThreadPool because 'factory' is null!", "factory");
   }
 
   m_logger->set_prefix("NotifierThreadPool");

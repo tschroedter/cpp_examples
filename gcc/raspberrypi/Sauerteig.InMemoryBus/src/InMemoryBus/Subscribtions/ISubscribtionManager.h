@@ -28,6 +28,6 @@ class ISubscribtionManager {
 }
 }
 
-typedef std::shared_ptr<InMemoryBus::Subscribtions::ISubscribtionManager> ISubscribtionManager_SPtr;
+typedef shared_ptr<InMemoryBus::Subscribtions::ISubscribtionManager> ISubscribtionManager_SPtr;
 
 #endif /* INMEMORYBUS_SUBSCRIBTIONS_ISUBSCRIBTIONMANAGER_H_ */

@@ -5,12 +5,13 @@
  *      Author: tom
  */
 
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "MessageToSubscribersRepository.h"
 #include "IMessageToSubscribersEntity.h"
-#include "../../Exceptions/ArgumentInvalidException.h"
 #include "UnknownMessageToSubscribersEntityEntity.h"
 
 using namespace std;
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Subscribtions {
@@ -18,7 +19,7 @@ namespace MessageToSubscribers {
 
 MessageToSubscribersRepository::MessageToSubscribersRepository(IMessageToSubscribersEntityVector_SPtr subscribers) {
   if (subscribers == nullptr) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create MessageToSubscribersRepository because 'subscribers' is null!", "subscribers");
   }
 

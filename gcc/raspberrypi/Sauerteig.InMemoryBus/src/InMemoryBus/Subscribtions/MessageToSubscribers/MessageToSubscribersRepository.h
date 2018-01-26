@@ -12,6 +12,8 @@
 #include "../../Common/BaseRepository.h"
 #include "IMessageToSubscribersEntity.h"
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Subscribtions {
 namespace MessageToSubscribers {
@@ -21,19 +23,19 @@ class MessageToSubscribersRepository : public IMessageToSubscribersRepository {
   virtual ~MessageToSubscribersRepository() = default;
 
   IMessageToSubscribersEntityVector_SPtr get_all_subscribers() const override;
-  IMessageToSubscribersEntity_SPtr find_subscriber_by_message_type(const std::string& message_type) override;
+  IMessageToSubscribersEntity_SPtr find_subscriber_by_message_type(const string& message_type) override;
   void remove(const IMessageToSubscribersEntity_SPtr information) override;
   void add(const IMessageToSubscribersEntity_SPtr information) override;
   size_t size() const override;
 
  private:
-  std::shared_ptr<InMemoryBus::Common::BaseRepository<IMessageToSubscribersEntity>> m_subscribers;
+  shared_ptr<InMemoryBus::Common::BaseRepository<IMessageToSubscribersEntity>> m_subscribers;
   IMessageToSubscribersEntity_SPtr m_unknown;
 };
 }
 }
 }
 
-typedef std::shared_ptr<InMemoryBus::Subscribtions::MessageToSubscribers::MessageToSubscribersRepository> MessageToSubscribersRepository_SPtr;
+typedef shared_ptr<InMemoryBus::Subscribtions::MessageToSubscribers::MessageToSubscribersRepository> MessageToSubscribersRepository_SPtr;
 
 #endif /* INMEMORYBUS_SUBSCRIBTIONS_MESSAGETOSUBSCRIBTIONS_MESSAGETOSUBSCRIBERSREPOSITORY_H_ */

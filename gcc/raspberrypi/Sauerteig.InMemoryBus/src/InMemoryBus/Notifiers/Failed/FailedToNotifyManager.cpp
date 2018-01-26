@@ -8,13 +8,16 @@
 #include <memory>
 #include <string>
 #include "Common/Interfaces/ILogger.h"
-#include "../../Exceptions/ArgumentInvalidException.h"
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "../../Common/MessageBusSynchronization.h"
 #include "FailedToNotifyManager.h"
 #include "FailedMessageBusNotifier.h"
 #include "ThreadSafe/IThreadSafeFailedToNotifyQueue.h"
 #include "IFailedSubscriberFunctionCaller.h"
 #include "FailedToNotify.h"
+
+using namespace std;
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -28,21 +31,21 @@ FailedToNotifyManager::FailedToNotifyManager(ILogger_SPtr logger, MessageBusSync
       m_messages(messages),
       m_caller(caller) {
   if (m_logger == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'logger' is null!",
+    throw ArgumentInvalidException("Can't create FailedToNotifyManager because 'logger' is null!",
                                                "logger");
   }
 
   if (m_synchronization == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'synchronization' is null!",
+    throw ArgumentInvalidException("Can't create FailedToNotifyManager because 'synchronization' is null!",
                                                "synchronization");  // Todo testing
   }
 
   if (m_messages == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'queue' is null!", "queue");
+    throw ArgumentInvalidException("Can't create FailedToNotifyManager because 'queue' is null!", "queue");
   }
 
   if (m_caller == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create FailedToNotifyManager because 'caller' is null!",
+    throw ArgumentInvalidException("Can't create FailedToNotifyManager because 'caller' is null!",
                                                "caller");
   }
 
@@ -59,7 +62,7 @@ void FailedToNotifyManager::handle_failed_notification(const ISubscriberInformat
   m_synchronization->is_messages_avalable_failed_messages_processor = true;
   m_synchronization->messages_available_failed_messages_processor.notify_one();
 
-  std::string text = "Failed to execute SubscriberFunction for message '" + message->getType() + "' and SubscriberId '"
+  string text = "Failed to execute SubscriberFunction for message '" + message->getType() + "' and SubscriberId '"
       + info->get_subscriber_id() + "'! - Enqueued for retry!";
 
   m_logger->warn(text);

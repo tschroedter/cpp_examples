@@ -17,6 +17,8 @@
 #include "../Common/BaseMessage.h"
 #include "../Subscribtions/ISubscribtionManager.h"
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Notifiers {
 class MessageBusNotifier : public IMessageBusNotifier {
@@ -29,7 +31,7 @@ class MessageBusNotifier : public IMessageBusNotifier {
   virtual ~MessageBusNotifier() = default;
 
   void operator()() {
-    std::string pid = m_provider->get_thread_process_id_as_string();
+    string pid = m_provider->get_thread_process_id_as_string();
     m_logger->info("MessageBusNotifier PID: " + pid);
 
     notify();

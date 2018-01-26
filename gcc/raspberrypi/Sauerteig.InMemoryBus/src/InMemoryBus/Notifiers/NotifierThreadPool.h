@@ -16,6 +16,8 @@
 #include "../Common/MessageBusSynchronization.h"
 #include "../Publishers/IMessageBusPublisher.h"
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Notifiers {
 
@@ -38,11 +40,11 @@ class NotifierThreadPool : public INotifierThreadPool {
   IMessageBusNotifierFactory_SPtr m_factory = nullptr;
 
   int m_number_of_threads = DEFAULT_NUMBER_OF_THREADS;
-  std::vector<std::thread> m_threads { };
+  vector<thread> m_threads { };
 
   void join_threads();
   void create_threads();
-  void do_join_thread(std::thread& thread);
+  void do_join_thread(thread& thread);
 };
 }
 }

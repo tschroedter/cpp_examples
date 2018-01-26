@@ -8,10 +8,11 @@
 #include "MessageBus.h"
 #include "Common/SubscriberFunction.h"
 #include "Common/BaseMessage.h"
-#include "Exceptions/ArgumentInvalidException.h"
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "Subscribtions/ISubscribtionManager.h"
 
 using namespace std;
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 
@@ -19,11 +20,11 @@ MessageBus::MessageBus(IMessageBusPublisher_SPtr publisher, ISubscribtionManager
     : m_publisher(publisher),
       m_manager(manager) {
   if (m_publisher == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBus because 'publisher' is null!", "publisher");
+    throw ArgumentInvalidException("Can't create MessageBus because 'publisher' is null!", "publisher");
   }
 
   if (m_manager == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBus because 'manager' is null!", "manager");
+    throw ArgumentInvalidException("Can't create MessageBus because 'manager' is null!", "manager");
   }
 }
 

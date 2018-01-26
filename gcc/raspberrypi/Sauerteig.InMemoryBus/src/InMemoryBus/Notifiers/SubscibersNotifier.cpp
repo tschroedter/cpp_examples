@@ -8,11 +8,13 @@
 #include "SubscibersNotifier.h"
 #include "ISubscriberFunctionCaller.h"
 #include "Common/Interfaces/ILogger.h"
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "../Common/BaseMessage.h"
-#include "../Exceptions/ArgumentInvalidException.h"
 #include "../Subscribtions/ISubscribtionManager.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
 #include "../Subscribtions/Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
+
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -23,15 +25,15 @@ SubscibersNotifier::SubscibersNotifier(ILogger_SPtr logger, ISubscribtionManager
       m_manager(manager),
       m_caller(caller) {
   if (m_logger == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifier because 'logger' is null!", "logger");
+    throw ArgumentInvalidException("Can't create SubscibersNotifier because 'logger' is null!", "logger");
   }
 
   if (m_manager == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifier because 'manager' is null!", "manager");
+    throw ArgumentInvalidException("Can't create SubscibersNotifier because 'manager' is null!", "manager");
   }
 
   if (m_caller == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifier because 'caller' is null!", "caller");
+    throw ArgumentInvalidException("Can't create SubscibersNotifier because 'caller' is null!", "caller");
   }
 
   m_logger->set_prefix("SubscibersNotifier");

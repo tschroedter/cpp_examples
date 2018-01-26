@@ -6,9 +6,11 @@
  */
 
 #include "SubscriberFunctionCaller.h"
-#include "../Common/BaseMessage.h"
-#include "../Exceptions/ArgumentInvalidException.h"
 #include "Failed/IFailedToNotifyManager.h"
+#include "Common/Exceptions/ArgumentInvalidExceptions.h"
+#include "../Common/BaseMessage.h"
+
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -16,7 +18,7 @@ namespace Notifiers {
 SubscriberFunctionCaller::SubscriberFunctionCaller(IFailedToNotifyManager_SPtr manager)
     : m_manager(manager) {
   if (m_manager == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscriberFunctionCaller because 'manager' is null!",
+    throw ArgumentInvalidException("Can't create SubscriberFunctionCaller because 'manager' is null!",
                                                "manager");
   }
 }

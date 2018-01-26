@@ -12,6 +12,8 @@
 #include "IFailedToNotify.h"
 #include "IFailedToNotifyQueue.h"
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Notifiers {
 namespace Failed {
@@ -26,7 +28,7 @@ class FailedToNotifyQueue : public IFailedToNotifyQueue {
   size_t size() override;
 
  private:
-  std::queue<IFailedToNotify_SPtr> m_queue;
+  queue<IFailedToNotify_SPtr> m_queue;
 };
 
 }

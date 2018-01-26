@@ -33,8 +33,8 @@ class ISubscriberInformationEntity : public InMemoryBus::Common::BaseEntity {
 }
 }
 
-typedef std::shared_ptr<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity> ISubscriberInformationEntity_SPtr;
-typedef std::vector<ISubscriberInformationEntity_SPtr> ISubscriberInformationEntityVector;
-typedef std::shared_ptr<ISubscriberInformationEntityVector> ISubscriberInformationEntityVector_SPtr;
+typedef shared_ptr<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity> ISubscriberInformationEntity_SPtr;
+typedef vector<ISubscriberInformationEntity_SPtr> ISubscriberInformationEntityVector;
+typedef shared_ptr<ISubscriberInformationEntityVector> ISubscriberInformationEntityVector_SPtr;
 
 #endif /* INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITY_H_ */
