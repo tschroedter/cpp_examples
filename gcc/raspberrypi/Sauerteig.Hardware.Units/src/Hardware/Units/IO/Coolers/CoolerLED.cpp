@@ -12,12 +12,13 @@
 
 #define DEFAULT_SSR_OUTPUT_PIN ((ssroutputpin) 1)
 
+using namespace Common::Exceptions;
 using namespace Hardware::Units::IO::Coolers;
 
 CoolerLED::CoolerLED(ISSRLEDFlashing_SPtr led)
         : m_led(led) {
     if (m_led == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create CoolerLED because 'm_led' is null!", "m_led");
+        throw ArgumentInvalidException("Can't create CoolerLED because 'm_led' is null!", "m_led");
     }
 
     m_led->initialize(DEFAULT_SSR_OUTPUT_PIN);

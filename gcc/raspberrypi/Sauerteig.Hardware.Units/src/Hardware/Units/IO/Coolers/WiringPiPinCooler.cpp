@@ -12,12 +12,13 @@
 
 #define WIRING_PI_PIN_TYPE_OUTPUT 1 // this should match wiringPi OUTPUT
 
+using namespace Common::Exceptions;
 using namespace Hardware::Units::IO::Coolers;
 
 WiringPiPinCooler::WiringPiPinCooler(IWiringPiPin_SPtr pin)
         : m_pin(pin) {
     if (m_pin == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create WiringPiPinCooler because 'm_pin' is null!",
+        throw ArgumentInvalidException("Can't create WiringPiPinCooler because 'm_pin' is null!",
                                                            "m_pin");
     }
 }

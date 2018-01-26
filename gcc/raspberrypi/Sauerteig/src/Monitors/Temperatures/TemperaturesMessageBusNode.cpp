@@ -15,6 +15,10 @@
 #include "InMemoryBus/Common/BaseMessage.h"
 #include "../../Messages/TemperaturesMessage.h"
 
+using namespace InMemoryBus::Common;
+using namespace Common::Exceptions;
+using namespace Sauerteig::Messages;
+
 namespace Sauerteig {
 namespace Monitors {
 namespace Temperatures {
@@ -23,19 +27,19 @@ TemperaturesMessageBusNode::TemperaturesMessageBusNode(
         ILogger_SPtr logger,
         IBus_SPtr bus,
         std::string subscriber_id)
-: InMemoryBus::Common::BusNode(bus, subscriber_id, TEMPERATURESMESSAGE_MESSAGE_TYPE), m_logger(logger), m_bus(bus), m_subscriber_id(subscriber_id) {
+: BusNode(bus, subscriber_id, TEMPERATURESMESSAGE_MESSAGE_TYPE), m_logger(logger), m_bus(bus), m_subscriber_id(subscriber_id) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'logger' is null!",
+        throw ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'logger' is null!",
                                                            "logger");
     }
 
     if (m_bus == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'bus' is null!",
+        throw ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'bus' is null!",
                                                            "bus");
     }
 
     if (subscriber_id.length() == 0) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'subscriber_id' is empty!",
+        throw ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'subscriber_id' is empty!",
                                                            "subscriber_id");
     }
 
@@ -43,7 +47,7 @@ TemperaturesMessageBusNode::TemperaturesMessageBusNode(
 }
 
 void TemperaturesMessageBusNode::onNotify(BaseMessage_SPtr p_base_message) {
-  TemperaturesMessage_SPtr message = std::dynamic_pointer_cast<Messages::TemperaturesMessage>(p_base_message);
+  TemperaturesMessage_SPtr message = std::dynamic_pointer_cast<TemperaturesMessage>(p_base_message);
 
   m_mutex.lock();
 

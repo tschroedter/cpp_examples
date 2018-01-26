@@ -13,18 +13,19 @@
 #include "Common/Exceptions/Tmp36Exception.h"
 #include "Common/Interfaces/ILogger.h"
 
+using namespace Common::Exceptions;
 using namespace Hardware::IO::Sensors;
 
 Tmp36::Tmp36(ILogger_SPtr logger, ITmp36Logic_SPtr logic)
         : m_logger(logger),
           m_logic(logic) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create Tmp36 because 'm_logger' is null!",
+        throw ArgumentInvalidException("Can't create Tmp36 because 'm_logger' is null!",
                                                            "m_logger");
     }
 
     if (m_logic == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create Tmp36 because 'm_logic' is null!", "m_logic");
+        throw ArgumentInvalidException("Can't create Tmp36 because 'm_logic' is null!", "m_logic");
     }
 
     m_logger->set_prefix("Tmp36");
@@ -38,7 +39,7 @@ void Tmp36::initialize(IADC_SPtr adc, adcchannel channel) {
     m_channel = channel;
 
     if (m_adc == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't initialize Tmp36 because 'm_adc' is null!", "m_adc");
+        throw ArgumentInvalidException("Can't initialize Tmp36 because 'm_adc' is null!", "m_adc");
     }
 }
 
@@ -55,7 +56,7 @@ void Tmp36::do_refresh() {
 
 void Tmp36::refresh() {
     if (m_adc == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
+        throw ArgumentInvalidException(
                 "Can't refresh Tmp36 because 'm_adc' is null! Call initialize first!", "m_adc");
     }
 
@@ -63,8 +64,8 @@ void Tmp36::refresh() {
         m_logger->debug("Refreshing...");
 
         do_refresh();
-    } catch (Common::Exceptions::ADCException & ex) {
-        throw Common::Exceptions::Tmp36Exception("Can't refresh Tmp36 because of an ADCExeption: " + ex.get_message());
+    } catch (ADCException & ex) {
+        throw Tmp36Exception("Can't refresh Tmp36 because of an ADCExeption: " + ex.get_message());
     }
 }
 

@@ -13,10 +13,12 @@
 #include "../../Interfaces/IO/Sensors/ITmp36Logic.h"
 #include "../../Interfaces/IO/AnalogeDigitalConverters/IADC.h"
 
+using namespace Hardware::Interfaces::IO::Sensors;
+
 namespace Hardware {
 namespace IO {
 namespace Sensors {
-class Tmp36 : public Hardware::Interfaces::IO::Sensors::ITmp36 {
+class Tmp36 : public ITmp36 {
  public:
     Tmp36(ILogger_SPtr logger, ITmp36Logic_SPtr logic);
     virtual ~Tmp36();

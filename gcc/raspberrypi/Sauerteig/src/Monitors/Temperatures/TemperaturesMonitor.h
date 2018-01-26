@@ -17,10 +17,13 @@
 #include "../../Interfaces/Monitors/Temperatures/ITemperatureSensorToStringConverter.h"
 #include "../../Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
 
+using namespace std;
+using namespace Sauerteig::Interfaces::Monitors::Temperatures;
+
 namespace Sauerteig {
 namespace Monitors {
 namespace Temperatures {
-class TemperaturesMonitor : public Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor {
+class TemperaturesMonitor : public ITemperaturesMonitor {
  public:
     TemperaturesMonitor(ILogger_SPtr logger,
                         IThreadInformationProvider_SPtr provider,
@@ -29,17 +32,17 @@ class TemperaturesMonitor : public Sauerteig::Interfaces::Monitors::Temperatures
     virtual ~TemperaturesMonitor() = default;
 
     void operator()() override {
-        std::string pid = m_provider->get_thread_process_id_as_string();
+        string pid = m_provider->get_thread_process_id_as_string();
         m_logger->info("TemperaturesMonitor PID: " + pid);
 
         while (1) {
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            this_thread::sleep_for(chrono::seconds(1));
 
             m_logger->info(to_string());
         }
     }
 
-    std::string to_string() const override;
+    string to_string() const override;
 
  private:
     ILogger_SPtr m_logger = nullptr;

@@ -5,12 +5,14 @@
  *      Author: tom
  */
 
-#ifndef SAUERTEIG_COMMON_ILOGGER_H_
-#define SAUERTEIG_COMMON_ILOGGER_H_
+#ifndef SRC_SAUERTEIG_COMMON_ILOGGER_H_
+#define SRC_SAUERTEIG_COMMON_ILOGGER_H_
 
 #include <memory>
 #include <string>
 #include "../LogLevel.h"
+
+using namespace std;
 
 namespace Common {
 namespace Interfaces {
@@ -19,12 +21,12 @@ class ILogger {
  public:
   virtual ~ILogger() = default;
 
-  virtual void debug(std::string message) = 0;
-  virtual void error(std::string message) = 0;
-  virtual void warn(std::string message) = 0;
-  virtual void info(std::string message) = 0;
+  virtual void debug(string message) = 0;
+  virtual void error(string message) = 0;
+  virtual void warn(string message) = 0;
+  virtual void info(string message) = 0;
 
-  virtual void set_prefix(std::string prefix) = 0;
+  virtual void set_prefix(string prefix) = 0;
 
   virtual LogLevel get_log_level() const = 0;
   virtual void set_log_level(LogLevel level) = 0;
@@ -33,6 +35,6 @@ class ILogger {
 }
 }
 
-typedef std::shared_ptr<Common::Interfaces::ILogger> ILogger_SPtr;
+typedef shared_ptr<Common::Interfaces::ILogger> ILogger_SPtr;
 
-#endif /* SAUERTEIG_COMMON_ILOGGER_H_ */
+#endif /* SRC_SAUERTEIG_COMMON_ILOGGER_H_ */

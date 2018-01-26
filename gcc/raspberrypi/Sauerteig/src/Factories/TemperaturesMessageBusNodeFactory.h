@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef FACTORIES_TEMPERATURESMESSAGEBUSNODEFACTORY_H_
-#define FACTORIES_TEMPERATURESMESSAGEBUSNODEFACTORY_H_
+#ifndef SRC_FACTORIES_TEMPERATURESMESSAGEBUSNODEFACTORY_H_
+#define SRC_FACTORIES_TEMPERATURESMESSAGEBUSNODEFACTORY_H_
 
 #include <string.h>
 #include "Common/Interfaces/ILogger.h"
@@ -14,10 +14,12 @@
 #include "../Interfaces/Factories/ITemperaturesMessageBusNodeFactory.h"
 #include "../Monitors/Temperatures/TemperaturesMessageBusNode.h"
 
+using namespace Sauerteig::Interfaces::Factories;
+
 namespace Sauerteig {
 namespace Factories {
 
-class TemperaturesMessageBusNodeFactory : public ::Sauerteig::Interfaces::Factories::ITemperaturesMessageBusNodeFactory {
+class TemperaturesMessageBusNodeFactory : public ITemperaturesMessageBusNodeFactory {
  public:
     TemperaturesMessageBusNodeFactory(ILogger_SPtr logger, IBus_SPtr bus);
     virtual ~TemperaturesMessageBusNodeFactory() = default;
@@ -33,4 +35,4 @@ class TemperaturesMessageBusNodeFactory : public ::Sauerteig::Interfaces::Factor
 }
 }
 
-#endif /* FACTORIES_TEMPERATURESMESSAGEBUSNODEFACTORY_H_ */
+#endif /* SRC_FACTORIES_TEMPERATURESMESSAGEBUSNODEFACTORY_H_ */

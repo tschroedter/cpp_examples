@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INTERFACES_PUBLISHERS_ITEMPERATURESPUBLISHER_H_
-#define INTERFACES_PUBLISHERS_ITEMPERATURESPUBLISHER_H_
+#ifndef SRC_INTERFACES_PUBLISHERS_ITEMPERATURESPUBLISHER_H_
+#define SRC_INTERFACES_PUBLISHERS_ITEMPERATURESPUBLISHER_H_
 
 #include <memory>
 
@@ -28,4 +28,4 @@ class ITemperaturesPublisher {
 
 typedef std::shared_ptr<Sauerteig::Interfaces::Publishers::ITemperaturesPublisher> ITemperaturesPublisher_SPtr;
 
-#endif /* INTERFACES_PUBLISHERS_ITEMPERATURESPUBLISHER_H_ */
+#endif /* SRC_INTERFACES_PUBLISHERS_ITEMPERATURESPUBLISHER_H_ */

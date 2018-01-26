@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef HARDWARE_UNITS_IO_HEATERS_SSRHEATER_H_
-#define HARDWARE_UNITS_IO_HEATERS_SSRHEATER_H_
+#ifndef SCR_HARDWARE_UNITS_IO_HEATERS_SSRHEATER_H_
+#define SCR_HARDWARE_UNITS_IO_HEATERS_SSRHEATER_H_
 
 #include "Common/CommonTypes.h"
 #include "../../Interfaces/IO/Heaters/ISSRHeater.h"
@@ -36,4 +36,4 @@ class SSRHeater : public Hardware::Units::Interfaces::IO::Heaters::ISSRHeater {
 }
 }
 
-#endif /* HARDWARE_UNITS_IO_HEATERS_SSRHEATER_H_ */
+#endif /* SCR_HARDWARE_UNITS_IO_HEATERS_SSRHEATER_H_ */

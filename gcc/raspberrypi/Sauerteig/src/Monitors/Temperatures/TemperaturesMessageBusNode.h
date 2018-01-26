@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef MONITORS_TEMPERATURES_TEMPERATURESMESSAGEBUSNODE_H_
-#define MONITORS_TEMPERATURES_TEMPERATURESMESSAGEBUSNODE_H_
+#ifndef SRC_MONITORS_TEMPERATURES_TEMPERATURESMESSAGEBUSNODE_H_
+#define SRC_MONITORS_TEMPERATURES_TEMPERATURESMESSAGEBUSNODE_H_
 
 #include <memory.h>
 #include <mutex>
@@ -15,13 +15,16 @@
 #include "InMemoryBus/Common/BusNode.h"
 #include "../../Messages/TemperaturesMessage.h"
 
+using namespace std;
+using namespace InMemoryBus::Common;
+
 namespace Sauerteig {
 namespace Monitors {
 namespace Temperatures {
 
-class TemperaturesMessageBusNode : public InMemoryBus::Common::BusNode  {
+class TemperaturesMessageBusNode : public BusNode  {
  public:
-    TemperaturesMessageBusNode(ILogger_SPtr logger, IBus_SPtr bus, std::string subscriber_id);
+    TemperaturesMessageBusNode(ILogger_SPtr logger, IBus_SPtr bus, string subscriber_id);
     virtual ~TemperaturesMessageBusNode() = default;
 
     virtual void onNotify(BaseMessage_SPtr p_base_message) override;
@@ -34,9 +37,9 @@ class TemperaturesMessageBusNode : public InMemoryBus::Common::BusNode  {
  private:
     ILogger_SPtr m_logger = nullptr;
     IBus_SPtr m_bus = nullptr;
-    std::string m_subscriber_id = nullptr;
+    string m_subscriber_id = nullptr;
 
-    std::mutex m_mutex{};
+    mutex m_mutex{};
 
     celsius m_inside_average_value = 0.0;
     celsius m_inside_average__percent_valid = 0.0;
@@ -48,6 +51,6 @@ class TemperaturesMessageBusNode : public InMemoryBus::Common::BusNode  {
 }
 }
 
-typedef std::shared_ptr<Sauerteig::Monitors::Temperatures::TemperaturesMessageBusNode> TemperaturesMessageBusNode_SPtr;
+typedef shared_ptr<Sauerteig::Monitors::Temperatures::TemperaturesMessageBusNode> TemperaturesMessageBusNode_SPtr;
 
-#endif /* MONITORS_TEMPERATURES_TEMPERATURESMESSAGEBUSNODE_H_ */
+#endif /* SRC_MONITORS_TEMPERATURES_TEMPERATURESMESSAGEBUSNODE_H_ */

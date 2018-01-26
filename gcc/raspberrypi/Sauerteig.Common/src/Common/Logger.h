@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_LOGGER_H_
-#define INMEMORYBUS_COMMON_LOGGER_H_
+#ifndef SRC_INMEMORYBUS_COMMON_LOGGER_H_
+#define SRC_INMEMORYBUS_COMMON_LOGGER_H_
 
 #include <string>
 #include <mutex>
@@ -15,42 +15,45 @@
 #include "LogLevel.h"
 #include "Interfaces/IThreadInformationProvider.h"
 
+using namespace std;
+using namespace Common::Interfaces;
+
 namespace Common {
 
-class Logger : public ::Common::Interfaces::ILogger {
+class Logger : public ILogger {
  public:
   Logger(IThreadInformationProvider_SPtr provider);
   virtual ~Logger() = default;
 
-  void debug(std::string message) override;
-  void error(std::string message) override;
-  void warn(std::string message) override;
-  void info(std::string message) override;
+  void debug(string message) override;
+  void error(string message) override;
+  void warn(string message) override;
+  void info(string message) override;
 
-  void set_prefix(std::string prefix) override;
+  void set_prefix(string prefix) override;
 
   LogLevel get_log_level() const override;
   void set_log_level(LogLevel level) override;
 
  protected:
-  Logger(IThreadInformationProvider_SPtr provider, std::ostream& out);
+  Logger(IThreadInformationProvider_SPtr provider, ostream& out);
 
  private:
   IThreadInformationProvider_SPtr m_provider = nullptr;
 
   static LogLevel m_log_level;
 
-  std::ostream& m_cout = std::cout;
-  std::recursive_mutex m_mutex { };
+  ostream& m_cout = cout;
+  recursive_mutex m_mutex { };
 
-  std::string m_prefix = "";
+  string m_prefix = "";
 
-  void write_log_line(std::string debug_level, std::string message) const;
-  std::string create_timestamp() const;
-  std::string create_log_line(std::string debug_level, std::string message) const;
-  std::string create_thread_pid() const;
+  void write_log_line(string debug_level, string message) const;
+  string create_timestamp() const;
+  string create_log_line(string debug_level, string message) const;
+  string create_thread_pid() const;
 };
 
 }
 
-#endif /* INMEMORYBUS_COMMON_LOGGER_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_LOGGER_H_ */

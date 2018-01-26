@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef HARDWARE_UNITS_IO_COOLERS_WIRINGPIPINCOOLER_H_
-#define HARDWARE_UNITS_IO_COOLERS_WIRINGPIPINCOOLER_H_
+#ifndef SRC_HARDWARE_UNITS_IO_COOLERS_WIRINGPIPINCOOLER_H_
+#define SRC_HARDWARE_UNITS_IO_COOLERS_WIRINGPIPINCOOLER_H_
 
 #include "../../Interfaces/IO/Coolers/IWiringPiPinCooler.h"
 #include "Hardware/Abstract/Interfaces/IO/IWiringPiPin.h"
@@ -35,4 +35,4 @@ class WiringPiPinCooler : public Hardware::Units::Interfaces::IO::Coolers::IWiri
 }
 }
 
-#endif /* HARDWARE_UNITS_IO_COOLERS_WIRINGPIPINCOOLER_H_ */
+#endif /* SRC_HARDWARE_UNITS_IO_COOLERS_WIRINGPIPINCOOLER_H_ */

@@ -19,9 +19,10 @@
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
 #include "Messages/TemperaturesMessage.h"
 
+using namespace Hypodermic;
 using namespace Sauerteig;
 
-void Installer::register_components(Hypodermic::ContainerBuilder& builder) {
+void Installer::register_components(ContainerBuilder& builder) {
     builder.registerType<Factories::TemperaturesMessageBusNodeFactory>()
             .as<Interfaces::Factories::ITemperaturesMessageBusNodeFactory>();
     builder.registerType<Monitors::Temperatures::TemperaturesMessageHandler>()

@@ -5,25 +5,27 @@
  *      Author: tom
  */
 
-#ifndef PUBLISHERS_TEMPERATURESPUBLISHER_H_
-#define PUBLISHERS_TEMPERATURESPUBLISHER_H_
+#ifndef SRC_PUBLISHERS_TEMPERATURESPUBLISHER_H_
+#define SRC_PUBLISHERS_TEMPERATURESPUBLISHER_H_
 
 #define INTERVAL_IN_SECONDS 1
 
 #include <thread>
 #include <chrono>
-#include "../Interfaces/Publishers/ITemperaturesPublisher.h"
 #include "Common/Interfaces/ILogger.h"
 #include "Hardware/Abstract/Interfaces/IO/Sensors/ITemperatureSensorWithStatistics.h"
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureInside.h"
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureOutside.h"
 #include "InMemoryBus/IBus.h"
 #include "Common/Interfaces/IThreadInformationProvider.h"
+#include "../Interfaces/Publishers/ITemperaturesPublisher.h"
+
+using namespace Sauerteig::Interfaces::Publishers;
 
 namespace Sauerteig {
 namespace Publishers {
 
-class TemperaturesPublisher : public Sauerteig::Interfaces::Publishers::ITemperaturesPublisher {
+class TemperaturesPublisher : public ITemperaturesPublisher {
  public:
     // TODO constructor is getting to big
     TemperaturesPublisher(ILogger_SPtr logger,
@@ -60,4 +62,4 @@ class TemperaturesPublisher : public Sauerteig::Interfaces::Publishers::ITempera
 }
 }
 
-#endif /* PUBLISHERS_TEMPERATURESPUBLISHER_H_ */
+#endif /* SRC_PUBLISHERS_TEMPERATURESPUBLISHER_H_ */

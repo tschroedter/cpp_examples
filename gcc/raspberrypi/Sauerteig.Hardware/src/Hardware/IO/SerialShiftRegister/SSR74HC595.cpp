@@ -18,6 +18,7 @@
 #define DEFAULT_PIN_ST_CP ((wiringpipin)28)
 #define DEFAULT_PIN_SH_CP ((wiringpipin)29)
 
+using namespace Common::Exceptions;
 using namespace Hardware::IO::SerialShiftRegisters;
 
 SSR74HC595::SSR74HC595(ILogger_SPtr logger)
@@ -27,7 +28,7 @@ SSR74HC595::SSR74HC595(ILogger_SPtr logger)
           m_pin_sh_cp(DEFAULT_PIN_SH_CP),
           m_value(0) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create SSR74HC595 because 'm_logger' is null!",
+        throw ArgumentInvalidException("Can't create SSR74HC595 because 'm_logger' is null!",
                                                            "m_logger");
     }
 

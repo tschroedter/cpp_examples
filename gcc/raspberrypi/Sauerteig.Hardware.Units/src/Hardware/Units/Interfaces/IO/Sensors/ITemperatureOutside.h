@@ -12,12 +12,14 @@
 #include "Hardware/Abstract/Interfaces/IO/Sensors/ITemperatureSensor.h"
 #include "Common/CommonTypes.h"
 
+using namespace Hardware::Abstract::Interfaces::IO::Sensors;
+
 namespace Hardware {
 namespace Units {
 namespace Interfaces {
 namespace IO {
 namespace Sensors {
-class ITemperatureOutside : public Hardware::Abstract::Interfaces::IO::Sensors::ITemperatureSensor {
+class ITemperatureOutside : public ITemperatureSensor {
  public:
     virtual ~ITemperatureOutside() = default;
 };

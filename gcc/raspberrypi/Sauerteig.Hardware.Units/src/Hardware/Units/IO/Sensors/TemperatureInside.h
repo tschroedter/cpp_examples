@@ -12,11 +12,13 @@
 #include "Hardware/Abstract/Interfaces/IO/Sensors/IADCTmp36.h"
 #include "../../Interfaces/IO/Sensors/ITemperatureInside.h"
 
+using namespace Hardware::Units::Interfaces::IO::Sensors;
+
 namespace Hardware {
 namespace Units {
 namespace IO {
 namespace Sensors {
-class TemperatureInside : public Hardware::Units::Interfaces::IO::Sensors::ITemperatureInside {
+class TemperatureInside : public ITemperatureInside {
  public:
     TemperatureInside(IADCTmp36_SPtr tmp36);
     virtual ~TemperatureInside() = default;

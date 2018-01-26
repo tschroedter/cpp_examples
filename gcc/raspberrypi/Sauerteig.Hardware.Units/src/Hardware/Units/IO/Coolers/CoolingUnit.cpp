@@ -13,6 +13,7 @@
 #include "../../Interfaces/IO/Heaters/IHeater.h"
 #include "../../Interfaces/IO/Heaters/IHeaterLED.h"
 
+using namespace Common::Exceptions;
 using namespace Hardware::Units::IO::Coolers;
 
 CoolingUnit::CoolingUnit(ILogger_SPtr logger, ICooler_SPtr cooler, ICoolerLED_SPtr led)
@@ -20,17 +21,17 @@ CoolingUnit::CoolingUnit(ILogger_SPtr logger, ICooler_SPtr cooler, ICoolerLED_SP
           m_cooler(cooler),
           m_led(led) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create CoolingUnit because 'm_logger' is null!",
+        throw ArgumentInvalidException("Can't create CoolingUnit because 'm_logger' is null!",
                                                            "m_logger");
     }
 
     if (m_cooler == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create CoolingUnit because 'm_cooler' is null!",
+        throw ArgumentInvalidException("Can't create CoolingUnit because 'm_cooler' is null!",
                                                            "m_cooler");
     }
 
     if (m_led == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create CoolingUnit because 'm_led' is null!",
+        throw ArgumentInvalidException("Can't create CoolingUnit because 'm_led' is null!",
                                                            "m_led");
     }
 

@@ -11,10 +11,12 @@
 #include "Common/CommonTypes.h"
 #include "../../Interfaces/IO/Sensors/ITmp36Logic.h"
 
+using namespace Hardware::Interfaces::IO::Sensors;
+
 namespace Hardware {
 namespace IO {
 namespace Sensors {
-class Tmp36Logic : public Hardware::Interfaces::IO::Sensors::ITmp36Logic {
+class Tmp36Logic : public ITmp36Logic {
  public:
     Tmp36Logic() = default;
     virtual ~Tmp36Logic() = default;

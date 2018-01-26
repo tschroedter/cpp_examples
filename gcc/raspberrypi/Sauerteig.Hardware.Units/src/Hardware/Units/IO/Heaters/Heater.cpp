@@ -13,18 +13,19 @@
 
 #define DEFAULT_SSR_OUTPUT_PIN ((ssroutputpin) 2)
 
+using namespace Common::Exceptions;
 using namespace Hardware::Units::IO::Heaters;
 
 Heater::Heater(ILogger_SPtr logger, ISSRHeater_SPtr heater)
         : m_logger(logger),
           m_heater(heater) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create Heater because 'm_logger' is null!",
+        throw ArgumentInvalidException("Can't create Heater because 'm_logger' is null!",
                                                            "m_logger");
     }
 
     if (m_heater == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create Heater because 'm_heater' is null!",
+        throw ArgumentInvalidException("Can't create Heater because 'm_heater' is null!",
                                                            "m_heater");
     }
 

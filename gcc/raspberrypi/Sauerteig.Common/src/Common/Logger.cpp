@@ -19,6 +19,8 @@
 #include "Exceptions/ArgumentInvalidExceptions.h"
 #include "Interfaces/IThreadInformationProvider.h"
 
+using namespace Common::Exceptions;
+
 namespace Common {
 
 LogLevel Logger::m_log_level = LogLevel::DEBUG;
@@ -28,7 +30,7 @@ using namespace std;
 Logger::Logger(IThreadInformationProvider_SPtr provider)
 : m_provider(provider) {
     if (m_provider == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create Logger because 'provider' is null!",
+        throw ArgumentInvalidException("Can't create Logger because 'provider' is null!",
                                                            "provider");
     }
 }
@@ -37,12 +39,12 @@ Logger::Logger(IThreadInformationProvider_SPtr provider, std::ostream& out)
     : m_provider(provider),
       m_cout(out) {
     if (m_provider == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create Logger because 'provider' is null!",
+        throw ArgumentInvalidException("Can't create Logger because 'provider' is null!",
                                                            "provider");
     }
 
     if (m_cout == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create Logger because 'out' is null!",
+        throw ArgumentInvalidException("Can't create Logger because 'out' is null!",
                                                            "out");
     }
 }

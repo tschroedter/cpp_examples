@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef HARDWARE_UNITS_IO_HEATERS_HEATERLED_H_
-#define HARDWARE_UNITS_IO_HEATERS_HEATERLED_H_
+#ifndef SCR_HARDWARE_UNITS_IO_HEATERS_HEATERLED_H_
+#define SCR_HARDWARE_UNITS_IO_HEATERS_HEATERLED_H_
 
 #include "../../Interfaces/IO/Heaters/IHeaterLED.h"
 #include "Hardware/Abstract/Interfaces/IO/LEDs/ISSRLEDFlashing.h"
@@ -42,4 +42,4 @@ class HeaterLED : public Hardware::Units::Interfaces::IO::Heaters::IHeaterLED {
 }
 }
 
-#endif /* HARDWARE_UNITS_IO_HEATERS_HEATERLED_H_ */
+#endif /* SCR_HARDWARE_UNITS_IO_HEATERS_HEATERLED_H_ */

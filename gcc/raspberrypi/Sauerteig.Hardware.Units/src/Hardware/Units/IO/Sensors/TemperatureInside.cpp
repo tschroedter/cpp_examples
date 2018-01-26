@@ -12,12 +12,13 @@
 
 #define CHANNEL_0 ((adcchannel) 0)
 
+using namespace Common::Exceptions;
 using namespace Hardware::Units::IO::Sensors;
 
 TemperatureInside::TemperatureInside(IADCTmp36_SPtr tmp36)
         : m_tmp36(tmp36) {
     if (m_tmp36 == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperatureInside because 'm_tmp36' is null!",
+        throw ArgumentInvalidException("Can't create TemperatureInside because 'm_tmp36' is null!",
                                                            "m_tmp36");
     }
 

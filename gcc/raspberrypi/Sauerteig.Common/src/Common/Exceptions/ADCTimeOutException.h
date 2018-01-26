@@ -10,11 +10,13 @@
 
 #include "ADCException.h"
 
+using namespace std;
+
 namespace Common {
 namespace Exceptions {
 class ADCTimeOutException : public ADCException {
  public:
-    ADCTimeOutException(std::string & message)
+    ADCTimeOutException(string & message)
             : ADCException(message) {
     }
     virtual ~ADCTimeOutException() = default;

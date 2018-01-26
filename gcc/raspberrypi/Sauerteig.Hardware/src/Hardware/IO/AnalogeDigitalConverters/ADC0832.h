@@ -17,10 +17,12 @@
 #define DEFAULT_ADC_PIN_DIO 1
 #define DEFAULT_ADC_CLK     2
 
+using namespace Hardware::Interfaces::IO::AnalogeDigitalConverters;
+
 namespace Hardware {
 namespace IO {
 namespace AnalogeDigitalConverters {
-class ADC0832 : public Hardware::Interfaces::IO::AnalogeDigitalConverters::IADC0832 {
+class ADC0832 : public IADC0832 {
  public:
     ADC0832(ILogger_SPtr logger);
     ADC0832(adcchannel number_of_channels, wiringpipin pin_cs, wiringpipin pin_dio, wiringpipin pin_clk);

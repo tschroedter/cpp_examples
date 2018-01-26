@@ -8,12 +8,13 @@
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "SSRHeater.h"
 
+using namespace Common::Exceptions;
 using namespace Hardware::Units::IO::Heaters;
 
 SSRHeater::SSRHeater(ISSROutputs_SPtr ssr)
         : m_ssr(ssr) {
     if (m_ssr == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create SSRHeater because 'm_ssr' is null!", "m_ssr");
+        throw ArgumentInvalidException("Can't create SSRHeater because 'm_ssr' is null!", "m_ssr");
     }
 }
 

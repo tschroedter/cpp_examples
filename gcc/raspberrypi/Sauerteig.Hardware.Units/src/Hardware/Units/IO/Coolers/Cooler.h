@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef HARDWARE_UNITS_IO_COOLERS_HEATER_H_
-#define HARDWARE_UNITS_IO_COOLERS_HEATER_H_
+#ifndef SRC_HARDWARE_UNITS_IO_COOLERS_HEATER_H_
+#define SRC_HARDWARE_UNITS_IO_COOLERS_HEATER_H_
 
 #include "Common/Interfaces/ILogger.h"
 #include "../../Interfaces/IO/Coolers/ICooler.h"
@@ -35,4 +35,4 @@ class Cooler : public Hardware::Units::Interfaces::IO::Coolers::ICooler {
 }
 }
 
-#endif /* HARDWARE_UNITS_IO_COOLERS_HEATER_H_ */
+#endif /* SRC_HARDWARE_UNITS_IO_COOLERS_HEATER_H_ */

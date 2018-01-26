@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef HARDWARE_UNITS_IO_COOLERS_HEATERLED_H_
-#define HARDWARE_UNITS_IO_COOLERS_HEATERLED_H_
+#ifndef SRC_HARDWARE_UNITS_IO_COOLERS_HEATERLED_H_
+#define SRC_HARDWARE_UNITS_IO_COOLERS_HEATERLED_H_
 
 #include "../../Interfaces/IO/Coolers/ICoolerLED.h"
 #include "Hardware/Abstract/Interfaces/IO/LEDs/ISSRLEDFlashing.h"
@@ -42,4 +42,4 @@ class CoolerLED : public Hardware::Units::Interfaces::IO::Coolers::ICoolerLED {
 }
 }
 
-#endif /* HARDWARE_UNITS_IO_COOLERS_HEATERLED_H_ */
+#endif /* SRC_HARDWARE_UNITS_IO_COOLERS_HEATERLED_H_ */

@@ -11,9 +11,11 @@
 #include "Hypodermic/ContainerBuilder.h"
 #include "./Common/Interfaces/IInstaller.h"
 
+using namespace Common::Interfaces;
+
 namespace Hardware {
 namespace Abstract {
-class Installer : public Common::Interfaces::IInstaller {
+class Installer : public IInstaller {
  public:
     Installer() = default;
     virtual ~Installer() = default;

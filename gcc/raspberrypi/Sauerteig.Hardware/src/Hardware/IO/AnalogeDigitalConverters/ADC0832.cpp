@@ -9,13 +9,12 @@
 #include <stdio.h>
 #include <vector>
 #include "ADC0832.h"
-
 #include <Common/Exceptions/ADCChannelInvalidException.h>
-
 #include "../../Interfaces/IO/AnalogeDigitalConverters/IADC0832.h"
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "Common/Interfaces/ILogger.h"
 
+using namespace Common::Exceptions;
 using namespace Hardware::IO::AnalogeDigitalConverters;
 
 void ADC0832::initialize(adcchannel number_of_channels, wiringpipin pin_cs, wiringpipin pin_dio, wiringpipin pin_clk) {
@@ -40,7 +39,7 @@ void ADC0832::initialize_with_default_values() {
 ADC0832::ADC0832(ILogger_SPtr logger)
         : m_logger(logger) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create ADC0832 because 'm_logger' is null!",
+        throw ArgumentInvalidException("Can't create ADC0832 because 'm_logger' is null!",
                                                            "m_logger");
     }
 

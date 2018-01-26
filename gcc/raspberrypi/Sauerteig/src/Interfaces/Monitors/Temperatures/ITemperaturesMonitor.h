@@ -5,10 +5,12 @@
  *      Author: tom
  */
 
-#ifndef INTERFACES_MONITORS_TEMPERATURES_ITEMPERATURESMONITOR_H_
-#define INTERFACES_MONITORS_TEMPERATURES_ITEMPERATURESMONITOR_H_
+#ifndef SRC_INTERFACES_MONITORS_TEMPERATURES_ITEMPERATURESMONITOR_H_
+#define SRC_INTERFACES_MONITORS_TEMPERATURES_ITEMPERATURESMONITOR_H_
 
 #include <memory>
+
+using namespace std;
 
 namespace Sauerteig {
 namespace Interfaces {
@@ -19,13 +21,13 @@ class ITemperaturesMonitor {
     virtual ~ITemperaturesMonitor() = default;
 
     virtual void operator()() = 0;
-    virtual std::string to_string() const = 0;
+    virtual string to_string() const = 0;
 };
 }
 }
 }
 }
 
-typedef std::shared_ptr<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor> ITemperaturesMonitor_SPtr;
+typedef shared_ptr<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor> ITemperaturesMonitor_SPtr;
 
-#endif /* INTERFACES_MONITORS_TEMPERATURES_ITEMPERATURESMONITOR_H_ */
+#endif /* SRC_INTERFACES_MONITORS_TEMPERATURES_ITEMPERATURESMONITOR_H_ */

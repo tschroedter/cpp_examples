@@ -5,19 +5,21 @@
  *      Author: tom
  */
 
-#ifndef HARDWARE_UNITS_INTERFACES_IO_HEATERS_IWIRINGPIPINHEATER_H_
-#define HARDWARE_UNITS_INTERFACES_IO_HEATERS_IWIRINGPIPINHEATER_H_
+#ifndef SRC_HARDWARE_UNITS_INTERFACES_IO_HEATERS_IWIRINGPIPINHEATER_H_
+#define SRC_HARDWARE_UNITS_INTERFACES_IO_HEATERS_IWIRINGPIPINHEATER_H_
 
 #include <memory>
 #include "Common/CommonTypes.h"
 #include "IHeater.h"
+
+using namespace Hardware::Units::Interfaces::IO::Heaters;
 
 namespace Hardware {
 namespace Units {
 namespace Interfaces {
 namespace IO {
 namespace Heaters {
-class IWiringPiPinHeater : public Hardware::Units::Interfaces::IO::Heaters::IHeater {
+class IWiringPiPinHeater : public IHeater {
  public:
     virtual ~IWiringPiPinHeater() = default;
 
@@ -31,4 +33,4 @@ class IWiringPiPinHeater : public Hardware::Units::Interfaces::IO::Heaters::IHea
 
 typedef std::shared_ptr<Hardware::Units::Interfaces::IO::Heaters::IWiringPiPinHeater> IWiringPiPinHeater_SPtr;
 
-#endif /* HARDWARE_UNITS_INTERFACES_IO_HEATERS_IWIRINGPIPINHEATER_H_ */
+#endif /* SRC_HARDWARE_UNITS_INTERFACES_IO_HEATERS_IWIRINGPIPINHEATER_H_ */

@@ -16,9 +16,10 @@
 #include "Interfaces/IO/AnalogeDigitalConverters/IADC0832.h"
 #include "Interfaces/IO/SerialShiftRegister/I74HC595.h"
 
+using namespace Hypodermic;
 using namespace Hardware;
 
-void Installer::register_components(Hypodermic::ContainerBuilder& builder) {
+void Installer::register_components(ContainerBuilder& builder) {
 
     builder.registerType<IO::AnalogeDigitalConverters::ADC0832>().as<Interfaces::IO::AnalogeDigitalConverters::IADC0832>();
     builder.registerType<IO::Sensors::Tmp36>().as<Interfaces::IO::Sensors::ITmp36>();

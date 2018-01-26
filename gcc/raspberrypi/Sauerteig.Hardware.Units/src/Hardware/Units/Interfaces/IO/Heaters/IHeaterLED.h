@@ -5,18 +5,20 @@
  *      Author: tom
  */
 
-#ifndef HARDWARE_UNITS_INTERFACES_IO_HEATERS_IHEATERLED_H_
-#define HARDWARE_UNITS_INTERFACES_IO_HEATERS_IHEATERLED_H_
+#ifndef SRC_HARDWARE_UNITS_INTERFACES_IO_HEATERS_IHEATERLED_H_
+#define SRC_HARDWARE_UNITS_INTERFACES_IO_HEATERS_IHEATERLED_H_
 
 #include <memory>
 #include "Hardware/Abstract/Interfaces/IO/IFlashable.h"
+
+using namespace Hardware::Abstract::Interfaces::IO;
 
 namespace Hardware {
 namespace Units {
 namespace Interfaces {
 namespace IO {
 namespace Heaters {
-class IHeaterLED : public Hardware::Abstract::Interfaces::IO::IFlashable {
+class IHeaterLED : public IFlashable {
  public:
     virtual ~IHeaterLED() = default;
 };
@@ -28,4 +30,4 @@ class IHeaterLED : public Hardware::Abstract::Interfaces::IO::IFlashable {
 
 typedef std::shared_ptr<Hardware::Units::Interfaces::IO::Heaters::IHeaterLED> IHeaterLED_SPtr;
 
-#endif /* HARDWARE_UNITS_INTERFACES_IO_HEATERS_IHEATERLED_H_ */
+#endif /* SRC_HARDWARE_UNITS_INTERFACES_IO_HEATERS_IHEATERLED_H_ */

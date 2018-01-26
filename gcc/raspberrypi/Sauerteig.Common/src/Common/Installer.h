@@ -11,13 +11,16 @@
 #include "Hypodermic/ContainerBuilder.h"
 #include "Interfaces/IInstaller.h"
 
+using namespace Hypodermic;
+using namespace Common::Interfaces;
+
 namespace Common {
-class Installer : public Interfaces::IInstaller {
+class Installer : public IInstaller {
  public:
     Installer() = default;
     virtual ~Installer() = default;
 
-    void register_components(Hypodermic::ContainerBuilder& builder) override;
+    void register_components(ContainerBuilder& builder) override;
 };
 }
 

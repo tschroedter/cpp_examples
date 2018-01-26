@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef IOCCONTAINERBUILDER_H_
-#define IOCCONTAINERBUILDER_H_
+#ifndef SRC_IOCCONTAINERBUILDER_H_
+#define SRC_IOCCONTAINERBUILDER_H_
 
 #include "Hypodermic/ContainerBuilder.h"
 
@@ -25,4 +25,4 @@ class IOCContainerBuilder {
 };
 }
 
-#endif /* IOCCONTAINERBUILDER_H_ */
+#endif /* SRC_IOCCONTAINERBUILDER_H_ */

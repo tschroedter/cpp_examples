@@ -14,10 +14,12 @@
 #include <memory>
 #include <chrono>
 
-#define LOG std::cout
-#define NL std::endl
+#define LOG cout
+#define NL endl
 
-// Helpers to convert lambda into std::function
+using namespace std;
+
+// Helpers to convert lambda into function
 
 template<typename Function>
 struct function_traits : public function_traits<decltype(&Function::operator())> {
@@ -36,16 +38,16 @@ typename function_traits<Function>::function to_function(Function& lambda) {
 
 // Aspect logging duration of execution
 template<typename R, typename ...Args>
-std::function<R(Args...)> logged(std::string name, std::function<R(Args...)> f) {
+function<R(Args...)> logged(string name, function<R(Args...)> f) {
     return [f,name](Args... args) {
 
         LOG << name << " start" << NL;
-        auto start = std::chrono::high_resolution_clock::now();
+        auto start = chrono::high_resolution_clock::now();
 
-        R result = f(std::forward<Args>(args)...);
+        R result = f(forward<Args>(args)...);
 
-        auto end = std::chrono::high_resolution_clock::now();
-        auto total = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+        auto end = chrono::high_resolution_clock::now();
+        auto total = chrono::duration_cast<chrono::microseconds>(end - start).count();
         LOG << "Elapsed: " << total << "us" << NL;
 
         return result;

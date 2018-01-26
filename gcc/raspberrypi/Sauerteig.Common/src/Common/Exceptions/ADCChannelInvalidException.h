@@ -10,11 +10,13 @@
 
 #include "ADCException.h"
 
+using namespace std;
+
 namespace Common {
 namespace Exceptions {
 class ADCChannelInvalidException : public ADCException {
  public:
-    ADCChannelInvalidException(const std::string & message)
+    ADCChannelInvalidException(const string & message)
             : ADCException(message) {
     }
     ;

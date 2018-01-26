@@ -16,6 +16,8 @@
 
 #define SUBSCRIBER_ID "TemperaturesMessageHandler"
 
+using namespace Common::Exceptions;
+
 namespace Sauerteig {
 namespace Monitors {
 namespace Temperatures {
@@ -25,19 +27,19 @@ TemperaturesMessageHandler::TemperaturesMessageHandler(
         ITemperaturesMessageBusNodeFactory_SPtr bus_node_factory)
 : m_logger(logger) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'logger' is null!",
+        throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'logger' is null!",
                                                            "logger");
     }
 
     if (bus_node_factory == nullptr) {
-         throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'bus_node_factory' is null!",
+         throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'bus_node_factory' is null!",
                                                             "bus_node_factory");
     }
 
     m_bus_node = bus_node_factory->create(SUBSCRIBER_ID);
 
     if (m_bus_node == nullptr) {
-         throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'bus_node' is null!",
+         throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'bus_node' is null!",
                                                             "bus_node");
     }
 

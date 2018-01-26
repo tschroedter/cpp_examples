@@ -5,20 +5,21 @@
  *      Author: tom
  */
 
-#ifndef HARDWARE_UNITS_INTERFACES_IO_COOLERS_IWIRINGPIPINCOOLER_H_
-#define HARDWARE_UNITS_INTERFACES_IO_COOLERS_IWIRINGPIPINCOOLER_H_
+#ifndef SRC_HARDWARE_UNITS_INTERFACES_IO_COOLERS_IWIRINGPIPINCOOLER_H_
+#define SRC_HARDWARE_UNITS_INTERFACES_IO_COOLERS_IWIRINGPIPINCOOLER_H_
 
 #include <memory>
 #include "Common/CommonTypes.h"
-
 #include "ICooler.h"
+
+using namespace Hardware::Units::Interfaces::IO::Coolers;
 
 namespace Hardware {
 namespace Units {
 namespace Interfaces {
 namespace IO {
 namespace Coolers {
-class IWiringPiPinCooler : public Hardware::Units::Interfaces::IO::Coolers::ICooler {
+class IWiringPiPinCooler : public ICooler {
  public:
     virtual ~IWiringPiPinCooler() = default;
 
@@ -32,4 +33,4 @@ class IWiringPiPinCooler : public Hardware::Units::Interfaces::IO::Coolers::ICoo
 
 typedef std::shared_ptr<Hardware::Units::Interfaces::IO::Coolers::IWiringPiPinCooler> IWiringPiPinCooler_SPtr;
 
-#endif /* HARDWARE_UNITS_INTERFACES_IO_COOLERS_IWIRINGPIPINCOOLER_H_ */
+#endif /* SRC_HARDWARE_UNITS_INTERFACES_IO_COOLERS_IWIRINGPIPINCOOLER_H_ */

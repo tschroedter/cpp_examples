@@ -12,15 +12,17 @@
 #include <string>
 #include <exception>
 
+using namespace std;
+
 namespace Common {
 namespace Exceptions {
-class ArgumentInvalidException : public std::exception {
+class ArgumentInvalidException : public exception {
  public:
-    ArgumentInvalidException(const std::string & parameter_name) {
+    ArgumentInvalidException(const string & parameter_name) {
         m_message = create_message("", parameter_name);
     }
 
-    ArgumentInvalidException(const std::string & error_message, const std::string & parameter_name) {
+    ArgumentInvalidException(const string & error_message, const string & parameter_name) {
         m_message = create_message(error_message, parameter_name);
     }
 
@@ -32,15 +34,15 @@ class ArgumentInvalidException : public std::exception {
         return (m_message.c_str());
     }
 
-    std::string get_message() const {
+    string get_message() const {
         return (m_message);
     }
 
  private:
-    std::string m_message;
+    string m_message;
 
-    std::string create_message(const std::string & error_message, const std::string & parameter_name) const {
-        std::string message = "Parameter '" + parameter_name + "' is invalid!";
+    string create_message(const string & error_message, const string & parameter_name) const {
+        string message = "Parameter '" + parameter_name + "' is invalid!";
         ;
 
         if (!error_message.empty()) {

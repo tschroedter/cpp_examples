@@ -13,9 +13,10 @@
 #include "Hardware/Units/Installer.h"
 #include "InMemoryBus/Installer.h"
 
+using namespace Hypodermic;
 using namespace Sauerteig;
 
-void IOCContainerBuilder::register_components(Hypodermic::ContainerBuilder& builder) {
+void IOCContainerBuilder::register_components(ContainerBuilder& builder) {
 
     Installer installer { };
     installer.register_components(builder);

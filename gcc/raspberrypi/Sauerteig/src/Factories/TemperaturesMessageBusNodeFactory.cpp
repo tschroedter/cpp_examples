@@ -13,6 +13,9 @@
 #include "InMemoryBus/IBus.h"
 #include "../Monitors/Temperatures/TemperaturesMessageBusNode.h"
 
+using namespace std;
+using namespace Common::Exceptions;
+
 namespace Sauerteig {
 namespace Factories {
 
@@ -21,18 +24,18 @@ TemperaturesMessageBusNodeFactory::TemperaturesMessageBusNodeFactory(
         IBus_SPtr bus)
     : m_logger(logger), m_bus(bus) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'logger' is null!",
+        throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'logger' is null!",
                                                            "logger");
     }
 
     if (m_bus == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'bus' is null!",
+        throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'bus' is null!",
                                                            "bus");
     }
 }
 
-TemperaturesMessageBusNode_SPtr TemperaturesMessageBusNodeFactory::create(std::string subscriber_id) {
-    auto instance = std::make_shared<Monitors::Temperatures::TemperaturesMessageBusNode>(m_logger, m_bus, subscriber_id);
+TemperaturesMessageBusNode_SPtr TemperaturesMessageBusNodeFactory::create(string subscriber_id) {
+    auto instance = make_shared<Monitors::Temperatures::TemperaturesMessageBusNode>(m_logger, m_bus, subscriber_id);
 
     return instance;
 }

@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef MONITORS_TEMPERATURES_TEMPERATURESMESSAGEHANDLER_H_
-#define MONITORS_TEMPERATURES_TEMPERATURESMESSAGEHANDLER_H_
+#ifndef SRC_MONITORS_TEMPERATURES_TEMPERATURESMESSAGEHANDLER_H_
+#define SRC_MONITORS_TEMPERATURES_TEMPERATURESMESSAGEHANDLER_H_
 
 #include <memory.h>
 #include <functional>
@@ -20,11 +20,13 @@
 
 #define INTERVAL_IN_SECONDS 1
 
+using namespace Sauerteig::Interfaces::Monitors::Temperatures;
+
 namespace Sauerteig {
 namespace Monitors {
 namespace Temperatures {
 
-class TemperaturesMessageHandler : public ::Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMessageHandler {
+class TemperaturesMessageHandler : public ITemperaturesMessageHandler {
  public:
     TemperaturesMessageHandler(ILogger_SPtr logger,
                                ITemperaturesMessageBusNodeFactory_SPtr factory);
@@ -44,4 +46,4 @@ class TemperaturesMessageHandler : public ::Sauerteig::Interfaces::Monitors::Tem
 }
 }
 
-#endif /* MONITORS_TEMPERATURES_TEMPERATURESMESSAGEHANDLER_H_ */
+#endif /* SRC_MONITORS_TEMPERATURES_TEMPERATURESMESSAGEHANDLER_H_ */

@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef COMMON_COMMONTYPES_H_
-#define COMMON_COMMONTYPES_H_
+#ifndef SRC_COMMON_COMMONTYPES_H_
+#define SRC_COMMON_COMMONTYPES_H_
 
 typedef unsigned char uchar;
 typedef unsigned int uint;
@@ -16,4 +16,4 @@ typedef unsigned int ssroutputpin;
 typedef double celsius;
 typedef double voltage;
 
-#endif /* COMMONTYPES_H_ */
+#endif /* SRC_COMMONTYPES_H_ */

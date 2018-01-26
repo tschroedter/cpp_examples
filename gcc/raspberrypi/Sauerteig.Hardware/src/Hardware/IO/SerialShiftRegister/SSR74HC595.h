@@ -10,13 +10,14 @@
 
 #include "Common/CommonTypes.h"
 #include "Common/Interfaces/ILogger.h"
-
 #include "../../Interfaces/IO/SerialShiftRegister/I74HC595.h"
+
+using namespace Hardware::Interfaces::IO::SerialShiftRegister;
 
 namespace Hardware {
 namespace IO {
 namespace SerialShiftRegisters {
-class SSR74HC595 : public Hardware::Interfaces::IO::SerialShiftRegister::I74HC595 {
+class SSR74HC595 : public I74HC595 {
  public:
     SSR74HC595(ILogger_SPtr logger);
     virtual ~SSR74HC595() = default;

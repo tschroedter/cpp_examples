@@ -16,6 +16,10 @@
 #include "InMemoryBus/IBus.h"
 #include "../Messages/TemperaturesMessage.h"
 
+using namespace std;
+using namespace Common::Exceptions;
+using namespace Sauerteig::Messages;
+
 namespace Sauerteig {
 namespace Publishers {
 
@@ -33,37 +37,37 @@ TemperaturesPublisher::TemperaturesPublisher(
           m_inside(inside_with_statistics),
           m_outside(outside_with_statistics) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMonitor because 'logger' is null!",
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'logger' is null!",
                                                            "logger");
     }
 
     if (m_bus == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMonitor because 'bus' is null!",
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'bus' is null!",
                                                            "bus");
     }
 
     if (m_provider == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMonitor because 'provider' is null!",
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'provider' is null!",
                                                            "provider");
     }
 
     if (inside == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperaturesMonitor because 'inside' is null!",
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'inside' is null!",
                                                            "inside");
     }
 
     if (outside == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
+        throw ArgumentInvalidException(
                 "Can't create TemperaturesMonitor because 'outside' is null!", "outside");
     }
 
     if (m_inside == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
+        throw ArgumentInvalidException(
                 "Can't create TemperaturesMonitor because 'inside_with_statistics' is null!", "inside_with_statistics");
     }
 
     if (m_outside == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
+        throw ArgumentInvalidException(
                 "Can't create TemperaturesMonitor because 'outside_with_statistics' is null!",
                 "outside_with_statistics");
     }
@@ -77,7 +81,7 @@ void TemperaturesPublisher::publish() {
     m_inside->refresh();
     m_outside->refresh();
 
-    auto message = std::make_shared<Messages::TemperaturesMessage>();
+    auto message = make_shared<TemperaturesMessage>();
 
     message->inside_average_value = m_inside->get_average_value();
     message->inside_average_percent_valid =m_inside->get_average_percent_valid();

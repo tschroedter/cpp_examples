@@ -13,9 +13,10 @@
 #include "Interfaces/IThreadInformationProvider.h"
 #include "ThreadInformationProvider.h"
 
+using namespace Hypodermic;
 using namespace Common;
 
-void Installer::register_components(Hypodermic::ContainerBuilder& builder) {
+void Installer::register_components(ContainerBuilder& builder) {
     builder.registerType<Logger>().as<Interfaces::ILogger>();
     builder.registerType<ThreadInformationProvider>().as<Interfaces::IThreadInformationProvider>();
 }

@@ -11,11 +11,13 @@
 #include <string>
 #include <exception>
 
+using namespace std;
+
 namespace Common {
 namespace Exceptions {
-class ADCException : public std::exception {
+class ADCException : public exception {
  public:
-    ADCException(const std::string & message)
+    ADCException(const string & message)
             : m_message(message) {
     }
 
@@ -26,12 +28,12 @@ class ADCException : public std::exception {
         return (m_message.c_str());
     }
 
-    std::string get_message() const {
+    string get_message() const {
         return (m_message);
     }
 
  private:
-    std::string m_message;
+    string m_message;
 };
 }
 }
