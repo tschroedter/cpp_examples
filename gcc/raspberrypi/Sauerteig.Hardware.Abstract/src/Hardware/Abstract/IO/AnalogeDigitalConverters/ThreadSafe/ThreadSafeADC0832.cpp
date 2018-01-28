@@ -16,8 +16,7 @@ ThreadSafeADC0832::ThreadSafeADC0832(IADC0832_SPtr adc0832)
         : m_adc0832(adc0832) {
     if (m_adc0832 == nullptr) {
         throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create ThreadSafeADC0832 because 'm_adc0832' is null!",
-                "m_adc0832");
+                "Can't create ThreadSafeADC0832 because 'm_adc0832' is null!", "m_adc0832");
     }
 }
 
@@ -55,8 +54,7 @@ uint ThreadSafeADC0832::get_pin_clk() const {
     return (m_adc0832->get_pin_clk());
 }
 
-void ThreadSafeADC0832::initialize(adcchannel number_of_channels,
-                                   wiringpipin pin_cs, wiringpipin pin_dio,
+void ThreadSafeADC0832::initialize(adcchannel number_of_channels, wiringpipin pin_cs, wiringpipin pin_dio,
                                    wiringpipin pin_clk) {
     m_mutex.lock();
 
@@ -71,9 +69,8 @@ void ThreadSafeADC0832::set_adc0832(IADC0832_SPtr adc0832) {
     m_adc0832 = adc0832;
 
     if (m_adc0832 == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create ThreadSafeADC0832 because 'adc0832' is null!",
-                "adc0832");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create ThreadSafeADC0832 because 'adc0832' is null!",
+                                                           "adc0832");
     }
 
     m_mutex.unlock();

@@ -47,40 +47,25 @@ using namespace Hardware::Abstract;
 
 void Installer::register_components(Hypodermic::ContainerBuilder& builder) {
     builder.registerType<IO::AnalogeDigitalConverters::ADCInputs>()
-            .as<Interfaces::IO::AnalogeDigitalConverters::IADCInputs>()
+            .as<Interfaces::IO::AnalogeDigitalConverters::IADCInputs>().singleInstance();
+    builder.registerType<IO::SerialShiftRegister::SSROutputs>().as<Interfaces::IO::SerialShiftRegister::ISSROutputs>()
             .singleInstance();
-    builder.registerType<IO::SerialShiftRegister::SSROutputs>()
-            .as<Interfaces::IO::SerialShiftRegister::ISSROutputs>()
-            .singleInstance();
-    builder
-            .registerType<
-                    IO::SerialShiftRegister::ThreadSafe::ThreadSafeSerialShiftRegisterManager>()
-            .as<
-                    Interfaces::IO::SerialShiftRegister::ThreadSafe::IThreadSafeSerialShiftRegisterManager>();
-    builder
-            .registerType<
-                    IO::AnalogeDigitalConverters::ThreadSafe::ThreadSafeADC0832>()
-            .as<
-                    Interfaces::IO::AnalogeDigitalConverters::ThreadSafe::IThreadSafeADC0832>();
-    builder.registerType<IO::LEDs::WiringPiPinLED>()
-            .as<Interfaces::IO::LEDs::ILED>();
-    builder.registerType<IO::PulseGeneratoreServer>()
-            .as<Interfaces::IO::IPulseGeneratoreServer>();
+    builder.registerType<IO::SerialShiftRegister::ThreadSafe::ThreadSafeSerialShiftRegisterManager>()
+            .as<Interfaces::IO::SerialShiftRegister::ThreadSafe::IThreadSafeSerialShiftRegisterManager>();
+    builder.registerType<IO::AnalogeDigitalConverters::ThreadSafe::ThreadSafeADC0832>()
+            .as<Interfaces::IO::AnalogeDigitalConverters::ThreadSafe::IThreadSafeADC0832>();
+    builder.registerType<IO::LEDs::WiringPiPinLED>().as<Interfaces::IO::LEDs::ILED>();
+    builder.registerType<IO::PulseGeneratoreServer>().as<Interfaces::IO::IPulseGeneratoreServer>();
     builder.registerType<IO::WiringPiPin>().as<Interfaces::IO::IWiringPiPin>();
     builder.registerType<IO::SerialShiftRegister::ThreadSafe::ThreadSafe74HC595>()
-            .as<
-                    Interfaces::IO::SerialShiftRegister::ThreadSafe::IThreadSafe74HC595>();
+            .as<Interfaces::IO::SerialShiftRegister::ThreadSafe::IThreadSafe74HC595>();
     builder.registerType<IO::SerialShiftRegister::SerialShiftRegisterManager>()
             .as<Interfaces::IO::SerialShiftRegister::ISerialShiftRegisterManager>();
     builder.registerType<IO::LEDs::SSRLED>().as<Interfaces::IO::LEDs::ISSRLED>();
-    builder.registerType<IO::Sensors::ADCTmp36>()
-            .as<Interfaces::IO::Sensors::IADCTmp36>();
-    builder.registerType<IO::SwitchableFlashingServer>()
-            .as<Interfaces::IO::ISwitchableFlashingServer>();
-    builder.registerType<IO::LEDs::SSRLEDFlashing>()
-            .as<Interfaces::IO::LEDs::ISSRLEDFlashing>();
-    builder.registerType<IO::Sensors::TemperatureSensorHistory>()
-            .as<Interfaces::IO::Sensors::ITemperatureSensorHistory>();
+    builder.registerType<IO::Sensors::ADCTmp36>().as<Interfaces::IO::Sensors::IADCTmp36>();
+    builder.registerType<IO::SwitchableFlashingServer>().as<Interfaces::IO::ISwitchableFlashingServer>();
+    builder.registerType<IO::LEDs::SSRLEDFlashing>().as<Interfaces::IO::LEDs::ISSRLEDFlashing>();
+    builder.registerType<IO::Sensors::TemperatureSensorHistory>().as<Interfaces::IO::Sensors::ITemperatureSensorHistory>();
     builder.registerType<IO::Sensors::TemperatureSensorWithStatistics>()
             .as<Interfaces::IO::Sensors::ITemperatureSensorWithStatistics>();
     builder.registerType<IO::Sensors::TemperatureSensorHistoryData>()

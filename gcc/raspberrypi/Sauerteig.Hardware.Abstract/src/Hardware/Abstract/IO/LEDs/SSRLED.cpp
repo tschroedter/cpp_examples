@@ -14,8 +14,7 @@ using namespace Hardware::Abstract::IO::LEDs;
 SSRLED::SSRLED(ISSROutputs_SPtr ssr)
         : m_ssr(ssr) {
     if (m_ssr == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create SSRLED because 'm_ssr' is null!", "m_ssr");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create SSRLED because 'm_ssr' is null!", "m_ssr");
     }
 }
 

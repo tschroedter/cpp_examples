@@ -26,7 +26,6 @@ class ISwitchableFlashingServer : public IFlashable {
 }
 }
 
-typedef std::shared_ptr<
-        Hardware::Abstract::Interfaces::IO::ISwitchableFlashingServer> ISwitchableFlashingServer_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::Interfaces::IO::ISwitchableFlashingServer> ISwitchableFlashingServer_SPtr;
 
 #endif /* SRC_HARDWARE_ABSTRACT_INTERFACES_IO_ISWITCHABLEFLASHINGSERVER_H_ */

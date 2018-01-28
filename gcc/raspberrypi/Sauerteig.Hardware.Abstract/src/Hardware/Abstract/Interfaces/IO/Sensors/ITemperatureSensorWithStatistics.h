@@ -16,8 +16,7 @@ namespace Abstract {
 namespace Interfaces {
 namespace IO {
 namespace Sensors {
-class ITemperatureSensorWithStatistics :
-        public Hardware::Abstract::Interfaces::IO::Sensors::ITemperatureSensor {
+class ITemperatureSensorWithStatistics : public Hardware::Abstract::Interfaces::IO::Sensors::ITemperatureSensor {
  public:
     virtual ~ITemperatureSensorWithStatistics() = default;
 
@@ -34,7 +33,6 @@ class ITemperatureSensorWithStatistics :
 }
 }
 
-typedef std::shared_ptr<
-        Hardware::Abstract::Interfaces::IO::Sensors::ITemperatureSensorWithStatistics> ITemperatureSensorWithStatistics_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::Interfaces::IO::Sensors::ITemperatureSensorWithStatistics> ITemperatureSensorWithStatistics_SPtr;
 
 #endif /* HARDWARE_ABSTRACT_INTERFACES_IO_SENSORS_ITEMPERATURESENSORWITHSTATISTICS_H_ */

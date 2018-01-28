@@ -23,20 +23,22 @@ namespace Messages {
 
 class TemperaturesMessage : public BaseMessage {
  public:
-    TemperaturesMessage() : BaseMessage(TEMPERATURESMESSAGE_MESSAGE_TYPE) {};
+    TemperaturesMessage()
+            : BaseMessage(TEMPERATURESMESSAGE_MESSAGE_TYPE) {
+    }
+    ;
     virtual ~TemperaturesMessage() = default;
 
-    celsius inside_average_value = (celsius)0;
+    celsius inside_average_value = (celsius) 0;
     double inside_average_percent_valid = 0.0;
-    celsius outside_average_value = (celsius)0;
+    celsius outside_average_value = (celsius) 0;
     double outside_average_percent_valid = 0.0;
 
     string to_string() {
-        string result =
-                "Inside Temperature = " + std::to_string(inside_average_value) + "C, " +
-                "Valid = " + std::to_string(inside_average_percent_valid) + "%, " +
-                "Outside Temperature = " + std::to_string(outside_average_value) + "C, " +
-                "Valid = " + std::to_string(outside_average_percent_valid) + "%";
+        string result = "Inside Temperature = " + std::to_string(inside_average_value) + "C, " + "Valid = "
+                + std::to_string(inside_average_percent_valid) + "%, " + "Outside Temperature = "
+                + std::to_string(outside_average_value) + "C, " + "Valid = "
+                + std::to_string(outside_average_percent_valid) + "%";
 
         return result;
     }

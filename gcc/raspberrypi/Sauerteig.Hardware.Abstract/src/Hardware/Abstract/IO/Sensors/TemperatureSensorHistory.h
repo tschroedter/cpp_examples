@@ -27,8 +27,7 @@ class TemperatureSensorHistory : public ITemperatureSensorHistory {
     void push_back(ITemperatureSensorHistoryData_SPtr data) override;
     void pop_front() override;
     size_t size() const override;
-    ITemperatureSensorHistoryData_SPtr get_element_at(uint index) const
-            override;
+    ITemperatureSensorHistoryData_SPtr get_element_at(uint index) const override;
     void set_number_of_samples(uint number_of_samples) override;
     uint get_number_of_samples() const override;
     void clear() override;

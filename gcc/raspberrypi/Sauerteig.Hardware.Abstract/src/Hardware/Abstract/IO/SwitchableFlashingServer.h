@@ -19,8 +19,7 @@ using namespace Hardware::Abstract;
 namespace Hardware {
 namespace Abstract {
 namespace IO {
-class SwitchableFlashingServer :
-        public Interfaces::IO::ISwitchableFlashingServer {
+class SwitchableFlashingServer : public Interfaces::IO::ISwitchableFlashingServer {
  public:
     SwitchableFlashingServer(IPulseGeneratoreServer_SPtr server);
     virtual ~SwitchableFlashingServer();

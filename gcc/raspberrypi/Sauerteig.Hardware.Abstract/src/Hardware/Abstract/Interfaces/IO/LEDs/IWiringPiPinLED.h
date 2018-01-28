@@ -28,7 +28,6 @@ class IWiringPiPinLED : public ILED {
 }
 }
 
-typedef std::shared_ptr<
-        Hardware::Abstract::Interfaces::IO::LEDs::IWiringPiPinLED> IWiringPiPinLED_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::Interfaces::IO::LEDs::IWiringPiPinLED> IWiringPiPinLED_SPtr;
 
 #endif /* HARDWARE_ABSTRACT_INTERFACES_IO_LEDS_IWIRINGPIPINLED_H_ */

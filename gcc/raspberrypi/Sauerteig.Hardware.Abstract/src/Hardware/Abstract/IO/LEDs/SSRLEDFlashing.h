@@ -17,8 +17,7 @@ namespace Hardware {
 namespace Abstract {
 namespace IO {
 namespace LEDs {
-class SSRLEDFlashing :
-        public Hardware::Abstract::Interfaces::IO::LEDs::ISSRLEDFlashing {
+class SSRLEDFlashing : public Hardware::Abstract::Interfaces::IO::LEDs::ISSRLEDFlashing {
  public:
     SSRLEDFlashing(ISSRLED_SPtr led, ISwitchableFlashingServer_SPtr server);
     virtual ~SSRLEDFlashing() = default;

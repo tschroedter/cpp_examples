@@ -10,20 +10,17 @@
 
 using namespace Hardware::Abstract::IO::LEDs;
 
-SSRLEDFlashing::SSRLEDFlashing(ISSRLED_SPtr led,
-                               ISwitchableFlashingServer_SPtr server)
+SSRLEDFlashing::SSRLEDFlashing(ISSRLED_SPtr led, ISwitchableFlashingServer_SPtr server)
         : m_led(led),
           m_server(server) {
     if (m_led == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create SSRLEDFlashing because 'm_led' is null!",
-                "m_led");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create SSRLEDFlashing because 'm_led' is null!",
+                                                           "m_led");
     }
 
     if (m_server == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create SSRLEDFlashing because 'm_server' is null!",
-                "m_server");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create SSRLEDFlashing because 'm_server' is null!",
+                                                           "m_server");
     }
 
     m_server->initialize(m_led);

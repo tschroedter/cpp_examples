@@ -20,9 +20,8 @@ using namespace Hardware::Abstract::IO::SerialShiftRegister;
 SSROutputs::SSROutputs(IThreadSafeSerialShiftRegisterManager_SPtr manager)
         : m_manager(manager) {
     if (m_manager == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create SSROutputs because 'm_manager' is null!",
-                "m_manager");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create SSROutputs because 'm_manager' is null!",
+                                                           "m_manager");
     }
 
     m_manager->initialize(DEFAULT_PIN_DS, DEFAULT_PIN_SH_CP, DEFAULT_PIN_ST_CP);  // TODO set with number of bit Q0-Q7 = 8 bits

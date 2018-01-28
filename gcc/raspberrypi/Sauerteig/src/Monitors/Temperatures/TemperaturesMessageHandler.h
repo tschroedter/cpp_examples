@@ -28,8 +28,7 @@ namespace Temperatures {
 
 class TemperaturesMessageHandler : public ITemperaturesMessageHandler {
  public:
-    TemperaturesMessageHandler(ILogger_SPtr logger,
-                               ITemperaturesMessageBusNodeFactory_SPtr factory);
+    TemperaturesMessageHandler(ILogger_SPtr logger, ITemperaturesMessageBusNodeFactory_SPtr factory);
     virtual ~TemperaturesMessageHandler() = default;
 
     celsius get_inside_average_value() const override;

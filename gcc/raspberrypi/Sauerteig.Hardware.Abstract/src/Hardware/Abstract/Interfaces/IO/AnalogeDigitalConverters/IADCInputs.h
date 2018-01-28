@@ -29,7 +29,6 @@ class IADCInputs : public IADC {
 }
 }
 
-typedef std::shared_ptr<
-        Hardware::Abstract::Interfaces::IO::AnalogeDigitalConverters::IADCInputs> IADCInputs_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::Interfaces::IO::AnalogeDigitalConverters::IADCInputs> IADCInputs_SPtr;
 
 #endif /* SRC_HARDWARE_ABSTRACT_INTERFACES_IO_ANALOGEDIGITALCONVERTERS__IADCTEMPERATURES_H_ */

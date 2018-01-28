@@ -18,8 +18,7 @@ using namespace std;
 using namespace Common::Exceptions;
 using namespace Sauerteig::Monitors::Temperatures;
 
-TemperaturesMonitor::TemperaturesMonitor(ILogger_SPtr logger,
-                                         IThreadInformationProvider_SPtr provider,
+TemperaturesMonitor::TemperaturesMonitor(ILogger_SPtr logger, IThreadInformationProvider_SPtr provider,
                                          ITemperaturesMessageHandler_SPtr handler,
                                          ITemperatureSensorToStringConverter_SPtr converter)
         : m_logger(logger),
@@ -27,23 +26,19 @@ TemperaturesMonitor::TemperaturesMonitor(ILogger_SPtr logger,
           m_handler(handler),
           m_converter(converter) {
     if (m_logger == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'logger' is null!",
-                                                           "logger");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'logger' is null!", "logger");
     }
 
     if (m_provider == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'provider' is null!",
-                                                           "provider");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'provider' is null!", "provider");
     }
 
     if (m_handler == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'handler' is null!",
-                                                           "handler");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'handler' is null!", "handler");
     }
 
     if (m_converter == nullptr) {
-        throw ArgumentInvalidException(
-                "Can't create TemperaturesMonitor because 'converter' is null!", "converter");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'converter' is null!", "converter");
     }
 
     m_logger->set_prefix("TemperaturesMonitor");

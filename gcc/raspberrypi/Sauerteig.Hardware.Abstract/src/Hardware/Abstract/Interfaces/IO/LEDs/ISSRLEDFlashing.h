@@ -27,7 +27,6 @@ class ISSRLEDFlashing : public Hardware::Abstract::Interfaces::IO::IFlashable {
 }
 }
 
-typedef std::shared_ptr<
-        Hardware::Abstract::Interfaces::IO::LEDs::ISSRLEDFlashing> ISSRLEDFlashing_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::Interfaces::IO::LEDs::ISSRLEDFlashing> ISSRLEDFlashing_SPtr;
 
 #endif /* HARDWARE_ABSTRACT_INTERFACES_IO_LEDS_ISSRLEDFLASHING_H_ */

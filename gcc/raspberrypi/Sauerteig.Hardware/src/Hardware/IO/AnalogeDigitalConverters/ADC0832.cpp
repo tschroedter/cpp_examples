@@ -39,8 +39,7 @@ void ADC0832::initialize_with_default_values() {
 ADC0832::ADC0832(ILogger_SPtr logger)
         : m_logger(logger) {
     if (m_logger == nullptr) {
-        throw ArgumentInvalidException("Can't create ADC0832 because 'm_logger' is null!",
-                                                           "m_logger");
+        throw ArgumentInvalidException("Can't create ADC0832 because 'm_logger' is null!", "m_logger");
     }
 
     m_logger->set_prefix("ADC0832");

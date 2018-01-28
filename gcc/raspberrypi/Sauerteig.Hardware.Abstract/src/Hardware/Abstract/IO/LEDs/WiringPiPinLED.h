@@ -16,8 +16,7 @@ namespace Hardware {
 namespace Abstract {
 namespace IO {
 namespace LEDs {
-class WiringPiPinLED :
-        public Hardware::Abstract::Interfaces::IO::LEDs::IWiringPiPinLED {
+class WiringPiPinLED : public Hardware::Abstract::Interfaces::IO::LEDs::IWiringPiPinLED {
  public:
     WiringPiPinLED(IWiringPiPin_SPtr pin);
     virtual ~WiringPiPinLED() = default;

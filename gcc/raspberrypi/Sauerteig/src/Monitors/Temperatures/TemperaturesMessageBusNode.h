@@ -22,7 +22,7 @@ namespace Sauerteig {
 namespace Monitors {
 namespace Temperatures {
 
-class TemperaturesMessageBusNode : public BusNode  {
+class TemperaturesMessageBusNode : public BusNode {
  public:
     TemperaturesMessageBusNode(ILogger_SPtr logger, IBus_SPtr bus, string subscriber_id);
     virtual ~TemperaturesMessageBusNode() = default;
@@ -39,7 +39,7 @@ class TemperaturesMessageBusNode : public BusNode  {
     IBus_SPtr m_bus = nullptr;
     string m_subscriber_id = nullptr;
 
-    mutex m_mutex{};
+    mutex m_mutex { };
 
     celsius m_inside_average_value = 0.0;
     celsius m_inside_average__percent_valid = 0.0;

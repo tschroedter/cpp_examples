@@ -22,36 +22,36 @@ namespace Common {
 
 class Logger : public ILogger {
  public:
-  Logger(IThreadInformationProvider_SPtr provider);
-  virtual ~Logger() = default;
+    Logger(IThreadInformationProvider_SPtr provider);
+    virtual ~Logger() = default;
 
-  void debug(string message) override;
-  void error(string message) override;
-  void warn(string message) override;
-  void info(string message) override;
+    void debug(string message) override;
+    void error(string message) override;
+    void warn(string message) override;
+    void info(string message) override;
 
-  void set_prefix(string prefix) override;
+    void set_prefix(string prefix) override;
 
-  LogLevel get_log_level() const override;
-  void set_log_level(LogLevel level) override;
+    LogLevel get_log_level() const override;
+    void set_log_level(LogLevel level) override;
 
  protected:
-  Logger(IThreadInformationProvider_SPtr provider, ostream& out);
+    Logger(IThreadInformationProvider_SPtr provider, ostream& out);
 
  private:
-  IThreadInformationProvider_SPtr m_provider = nullptr;
+    IThreadInformationProvider_SPtr m_provider = nullptr;
 
-  static LogLevel m_log_level;
+    static LogLevel m_log_level;
 
-  ostream& m_cout = cout;
-  recursive_mutex m_mutex { };
+    ostream& m_cout = cout;
+    recursive_mutex m_mutex { };
 
-  string m_prefix = "";
+    string m_prefix = "";
 
-  void write_log_line(string debug_level, string message) const;
-  string create_timestamp() const;
-  string create_log_line(string debug_level, string message) const;
-  string create_thread_pid() const;
+    void write_log_line(string debug_level, string message) const;
+    string create_timestamp() const;
+    string create_log_line(string debug_level, string message) const;
+    string create_thread_pid() const;
 };
 
 }

@@ -35,11 +35,7 @@
 #include "InMemoryBus/Notifiers/Failed/IFailedMessageQueueProcessor.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
 
-//#include <syscall.h>
-//#include <unistd.h>
-
-void make_linker_happy()
-{
+void make_linker_happy() {
     uuid_t id;
     uuid_generate(id);
 
@@ -57,11 +53,6 @@ void make_linker_happy()
 
     std::cout << compare << std::endl;
 }
-
-//pid_t gettid (void)
-//{
-//        return syscall(__NR_gettid);
-//}
 
 int main(void) {
     make_linker_happy();
@@ -86,13 +77,15 @@ int main(void) {
         // start ibus
         auto notifier_pool = container->resolve<::InMemoryBus::Notifiers::INotifierThreadPool>();
         notifier_pool->initialize(4);
-        auto failed_messages_processor =
-                container->resolve<::InMemoryBus::Notifiers::Failed::IFailedMessageQueueProcessor>();
+        auto failed_messages_processor = container
+                ->resolve<::InMemoryBus::Notifiers::Failed::IFailedMessageQueueProcessor>();
         failed_messages_processor->initialize();
 
         // start publishing messages
-        ITemperaturesPublisher_SPtr temperatures_publisher = container->resolve<Sauerteig::Interfaces::Publishers::ITemperaturesPublisher>();
-        std::thread temperatures_publisher_thread { std::thread([temperatures_publisher]() {(*temperatures_publisher)();}) };
+        ITemperaturesPublisher_SPtr temperatures_publisher = container
+                ->resolve<Sauerteig::Interfaces::Publishers::ITemperaturesPublisher>();
+        std::thread temperatures_publisher_thread { std::thread(
+                [temperatures_publisher]() {(*temperatures_publisher)();}) };
 
         ITemperaturesMonitor_SPtr monitor = container
                 ->resolve<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor>();

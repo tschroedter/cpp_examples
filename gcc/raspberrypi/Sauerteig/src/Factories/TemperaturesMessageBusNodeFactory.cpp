@@ -19,18 +19,15 @@ using namespace Common::Exceptions;
 namespace Sauerteig {
 namespace Factories {
 
-TemperaturesMessageBusNodeFactory::TemperaturesMessageBusNodeFactory(
-        ILogger_SPtr logger,
-        IBus_SPtr bus)
-    : m_logger(logger), m_bus(bus) {
+TemperaturesMessageBusNodeFactory::TemperaturesMessageBusNodeFactory(ILogger_SPtr logger, IBus_SPtr bus)
+        : m_logger(logger),
+          m_bus(bus) {
     if (m_logger == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'logger' is null!",
-                                                           "logger");
+        throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'logger' is null!", "logger");
     }
 
     if (m_bus == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'bus' is null!",
-                                                           "bus");
+        throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'bus' is null!", "bus");
     }
 }
 

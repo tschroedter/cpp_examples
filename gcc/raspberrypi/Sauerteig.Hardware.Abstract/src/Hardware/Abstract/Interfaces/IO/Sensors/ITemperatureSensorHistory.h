@@ -23,8 +23,7 @@ class ITemperatureSensorHistory {
     virtual void push_back(ITemperatureSensorHistoryData_SPtr data) = 0;
     virtual void pop_front() = 0;
     virtual size_t size() const = 0;
-    virtual ITemperatureSensorHistoryData_SPtr get_element_at(
-            uint index) const = 0;
+    virtual ITemperatureSensorHistoryData_SPtr get_element_at(uint index) const = 0;
     virtual void set_number_of_samples(uint number_of_samples) = 0;
     virtual uint get_number_of_samples() const = 0;
     virtual void clear() = 0;
@@ -35,7 +34,6 @@ class ITemperatureSensorHistory {
 }
 }
 
-typedef std::shared_ptr<
-        Hardware::Abstract::Interfaces::IO::Sensors::ITemperatureSensorHistory> ITemperatureSensorHistory_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::Interfaces::IO::Sensors::ITemperatureSensorHistory> ITemperatureSensorHistory_SPtr;
 
 #endif /* HARDWARE_ABSTRACT_INTERFACES_IO_SENSORS_ITEMPERATURESENSORHISTORY_H_ */

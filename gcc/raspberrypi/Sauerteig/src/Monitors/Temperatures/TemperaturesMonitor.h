@@ -25,10 +25,8 @@ namespace Monitors {
 namespace Temperatures {
 class TemperaturesMonitor : public ITemperaturesMonitor {
  public:
-    TemperaturesMonitor(ILogger_SPtr logger,
-                        IThreadInformationProvider_SPtr provider,
-                        ITemperaturesMessageHandler_SPtr handler,
-                        ITemperatureSensorToStringConverter_SPtr converter);
+    TemperaturesMonitor(ILogger_SPtr logger, IThreadInformationProvider_SPtr provider,
+                        ITemperaturesMessageHandler_SPtr handler, ITemperatureSensorToStringConverter_SPtr converter);
     virtual ~TemperaturesMonitor() = default;
 
     void operator()() override {

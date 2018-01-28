@@ -13,20 +13,18 @@
 
 using namespace Hardware::Abstract::IO;
 
-PulseGeneratoreServer::PulseGeneratoreServer(
-        ILogger_SPtr logger,
-        IThreadInformationProvider_SPtr provider)
+PulseGeneratoreServer::PulseGeneratoreServer(ILogger_SPtr logger, IThreadInformationProvider_SPtr provider)
         : m_logger(logger),
           m_provider(provider),
           m_switchable(nullptr) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create PulseGeneratoreServer because 'logger' is null!",
-                                                           "logger");
+        throw Common::Exceptions::ArgumentInvalidException(
+                "Can't create PulseGeneratoreServer because 'logger' is null!", "logger");
     }
 
     if (m_provider == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException("Can't create PulseGeneratoreServer because 'provider' is null!",
-                                                           "provider");
+        throw Common::Exceptions::ArgumentInvalidException(
+                "Can't create PulseGeneratoreServer because 'provider' is null!", "provider");
     }
 
     m_logger->set_prefix("PulseGeneratoreServer");
@@ -43,8 +41,7 @@ void PulseGeneratoreServer::initialize(ISwitchable_SPtr switchable) {
 
     if (m_switchable == nullptr) {
         throw Common::Exceptions::ArgumentInvalidException(
-                "Can't initialize PulseGeneratoreServer because 'm_switchable' is null!",
-                "m_switchable");
+                "Can't initialize PulseGeneratoreServer because 'm_switchable' is null!", "m_switchable");
     }
 
     m_switchable->off();
@@ -61,13 +58,11 @@ PulseGeneratoreServer::~PulseGeneratoreServer() {
 void PulseGeneratoreServer::do_one_flash() {
     m_switchable->on();
 
-    std::this_thread::sleep_for(
-            std::chrono::milliseconds(m_interval_on_in_msec.load()));
+    std::this_thread::sleep_for(std::chrono::milliseconds(m_interval_on_in_msec.load()));
 
     m_switchable->off();
 
-    std::this_thread::sleep_for(
-            std::chrono::milliseconds(m_interval_off_in_msec.load()));
+    std::this_thread::sleep_for(std::chrono::milliseconds(m_interval_off_in_msec.load()));
 }
 
 void PulseGeneratoreServer::run() {

@@ -17,8 +17,7 @@ using namespace Hardware::Abstract::IO::LEDs;
 WiringPiPinLED::WiringPiPinLED(IWiringPiPin_SPtr pin)
         : m_pin(pin) {
     if (m_pin == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create LED because 'm_pin' is null!", "m_pin");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create LED because 'm_pin' is null!", "m_pin");
     }
 }
 

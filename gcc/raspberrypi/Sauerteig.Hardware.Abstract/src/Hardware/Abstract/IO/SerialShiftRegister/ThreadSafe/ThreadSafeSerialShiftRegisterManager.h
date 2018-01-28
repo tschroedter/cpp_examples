@@ -20,12 +20,10 @@ namespace ThreadSafe {
 class ThreadSafeSerialShiftRegisterManager :
         public Hardware::Abstract::Interfaces::IO::SerialShiftRegister::ThreadSafe::IThreadSafeSerialShiftRegisterManager {
  public:
-    ThreadSafeSerialShiftRegisterManager(
-            ISerialShiftRegisterManager_SPtr manager);
+    ThreadSafeSerialShiftRegisterManager(ISerialShiftRegisterManager_SPtr manager);
     virtual ~ThreadSafeSerialShiftRegisterManager() = default;
 
-    void initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp,
-                    wiringpipin pin_sh_cp) override;
+    void initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp, wiringpipin pin_sh_cp) override;
     void high(ssroutputpin pin) override;
     void low(ssroutputpin pin) override;
     bool is_high(ssroutputpin pin) override;

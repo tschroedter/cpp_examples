@@ -18,13 +18,12 @@ ADCTmp36::ADCTmp36(IADCInputs_SPtr adc, ITmp36_SPtr tmp36)
         : m_adc(adc),
           m_tmp36(tmp36) {
     if (m_adc == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create ADCTmp36 because 'm_adc' is null!", "m_adc");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create ADCTmp36 because 'm_adc' is null!", "m_adc");
     }
 
     if (m_tmp36 == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create ADCTmp36 because 'm_tmp36' is null!", "m_tmp36");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create ADCTmp36 because 'm_tmp36' is null!",
+                                                           "m_tmp36");
     }
 }
 

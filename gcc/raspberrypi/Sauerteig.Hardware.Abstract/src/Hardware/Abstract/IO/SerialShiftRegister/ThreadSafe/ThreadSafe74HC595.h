@@ -18,8 +18,7 @@ namespace Abstract {
 namespace IO {
 namespace SerialShiftRegister {
 namespace ThreadSafe {
-class ThreadSafe74HC595 :
-        public Hardware::Abstract::Interfaces::IO::SerialShiftRegister::ThreadSafe::IThreadSafe74HC595 {
+class ThreadSafe74HC595 : public Hardware::Abstract::Interfaces::IO::SerialShiftRegister::ThreadSafe::IThreadSafe74HC595 {
  public:
     ThreadSafe74HC595(I74HC595_SPtr ssr);
     virtual ~ThreadSafe74HC595() = default;
@@ -27,8 +26,7 @@ class ThreadSafe74HC595 :
     wiringpipin get_pin_ds() const override;
     wiringpipin get_pin_st_cp() const override;
     wiringpipin get_pin_sh_cp() const override;
-    void initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp,
-                    wiringpipin pin_sh_cp) override;
+    void initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp, wiringpipin pin_sh_cp) override;
     void set_value(int value) override;
     int get_value() override;
 

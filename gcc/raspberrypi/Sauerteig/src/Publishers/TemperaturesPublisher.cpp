@@ -23,53 +23,44 @@ using namespace Sauerteig::Messages;
 namespace Sauerteig {
 namespace Publishers {
 
-TemperaturesPublisher::TemperaturesPublisher(
-        ILogger_SPtr logger,
-        IBus_SPtr bus,
-        IThreadInformationProvider_SPtr provider,
-        ITemperatureInside_SPtr inside,
-        ITemperatureOutside_SPtr outside,
-        ITemperatureSensorWithStatistics_SPtr inside_with_statistics,
-        ITemperatureSensorWithStatistics_SPtr outside_with_statistics)
+TemperaturesPublisher::TemperaturesPublisher(ILogger_SPtr logger, IBus_SPtr bus,
+                                             IThreadInformationProvider_SPtr provider, ITemperatureInside_SPtr inside,
+                                             ITemperatureOutside_SPtr outside,
+                                             ITemperatureSensorWithStatistics_SPtr inside_with_statistics,
+                                             ITemperatureSensorWithStatistics_SPtr outside_with_statistics)
         : m_logger(logger),
           m_bus(bus),
           m_provider(provider),
           m_inside(inside_with_statistics),
           m_outside(outside_with_statistics) {
     if (m_logger == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'logger' is null!",
-                                                           "logger");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'logger' is null!", "logger");
     }
 
     if (m_bus == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'bus' is null!",
-                                                           "bus");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'bus' is null!", "bus");
     }
 
     if (m_provider == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'provider' is null!",
-                                                           "provider");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'provider' is null!", "provider");
     }
 
     if (inside == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'inside' is null!",
-                                                           "inside");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'inside' is null!", "inside");
     }
 
     if (outside == nullptr) {
-        throw ArgumentInvalidException(
-                "Can't create TemperaturesMonitor because 'outside' is null!", "outside");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'outside' is null!", "outside");
     }
 
     if (m_inside == nullptr) {
-        throw ArgumentInvalidException(
-                "Can't create TemperaturesMonitor because 'inside_with_statistics' is null!", "inside_with_statistics");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'inside_with_statistics' is null!",
+                                       "inside_with_statistics");
     }
 
     if (m_outside == nullptr) {
-        throw ArgumentInvalidException(
-                "Can't create TemperaturesMonitor because 'outside_with_statistics' is null!",
-                "outside_with_statistics");
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'outside_with_statistics' is null!",
+                                       "outside_with_statistics");
     }
 
     m_logger->set_prefix("TemperaturesPublisher");
@@ -84,7 +75,7 @@ void TemperaturesPublisher::publish() {
     auto message = make_shared<TemperaturesMessage>();
 
     message->inside_average_value = m_inside->get_average_value();
-    message->inside_average_percent_valid =m_inside->get_average_percent_valid();
+    message->inside_average_percent_valid = m_inside->get_average_percent_valid();
     message->outside_average_value = m_outside->get_average_value();
     message->outside_average_percent_valid = m_outside->get_average_percent_valid();
 

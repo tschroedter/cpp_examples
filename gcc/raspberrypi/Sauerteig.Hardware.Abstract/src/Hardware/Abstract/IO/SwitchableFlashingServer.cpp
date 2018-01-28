@@ -13,13 +13,11 @@
 
 using namespace Hardware::Abstract::IO;
 
-SwitchableFlashingServer::SwitchableFlashingServer(
-        IPulseGeneratoreServer_SPtr server)
+SwitchableFlashingServer::SwitchableFlashingServer(IPulseGeneratoreServer_SPtr server)
         : m_server(server) {
     if (m_server == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create LEDFlashingServer because 'm_server' is null!",
-                "m_server");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create LEDFlashingServer because 'm_server' is null!",
+                                                           "m_server");
     }
 }
 
@@ -32,8 +30,7 @@ void SwitchableFlashingServer::initialize(ISwitchable_SPtr switchable) {
 
     if (m_switchable == nullptr) {
         throw Common::Exceptions::ArgumentInvalidException(
-                "Can't initialize SwitchableFlashingServer because 'm_switchable' is null!",
-                "m_switchable");
+                "Can't initialize SwitchableFlashingServer because 'm_switchable' is null!", "m_switchable");
     }
 
     m_server->initialize(switchable);

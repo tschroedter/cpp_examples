@@ -30,7 +30,6 @@ class ISSROutputs {
 }
 }
 
-typedef std::shared_ptr<
-        Hardware::Abstract::Interfaces::IO::SerialShiftRegister::ISSROutputs> ISSROutputs_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::Interfaces::IO::SerialShiftRegister::ISSROutputs> ISSROutputs_SPtr;
 
 #endif /* HARDWARE_ABSTRACT_INTERFACES_IO_SERIALSHIFTREGISTER_ISSROUTPUTS_H_ */

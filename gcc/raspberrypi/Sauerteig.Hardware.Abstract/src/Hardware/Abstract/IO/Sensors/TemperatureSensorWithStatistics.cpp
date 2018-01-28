@@ -18,32 +18,28 @@
 
 using namespace Hardware::Abstract::IO::Sensors;
 
-TemperatureSensorWithStatistics::TemperatureSensorWithStatistics(
-        ILogger_SPtr logger, ITemperatureSensorHistory_SPtr history)
+TemperatureSensorWithStatistics::TemperatureSensorWithStatistics(ILogger_SPtr logger,
+                                                                 ITemperatureSensorHistory_SPtr history)
         : m_logger(logger),
           m_history(history) {
     if (m_logger == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create TemperatureInside because 'm_logger' is null!",
-                "m_logger");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create TemperatureInside because 'm_logger' is null!",
+                                                           "m_logger");
     }
 
     if (m_history == nullptr) {
         throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create TemperatureSensorWithStatistics because 'm_history' is null!",
-                "m_history");
+                "Can't create TemperatureSensorWithStatistics because 'm_history' is null!", "m_history");
     }
 }
 
 void TemperatureSensorWithStatistics::validate_sensor() const {
     if (m_sensor == nullptr) {
         throw Common::Exceptions::ArgumentInvalidException(
-                "TemperatureSensorWithStatistics is invalid because 'm_sensor' is null!",
-                "m_sensor");
+                "TemperatureSensorWithStatistics is invalid because 'm_sensor' is null!", "m_sensor");
     }
 }
-void TemperatureSensorWithStatistics::initialize(
-        ITemperatureSensor_SPtr sensor) {
+void TemperatureSensorWithStatistics::initialize(ITemperatureSensor_SPtr sensor) {
     m_history->clear();
 
     m_sensor = sensor;
@@ -97,8 +93,7 @@ double TemperatureSensorWithStatistics::get_average_percent_valid() const {
     return m_temperature_valid_percentage;
 }
 
-void TemperatureSensorWithStatistics::set_number_of_samples(
-        uint number_of_samples) {
+void TemperatureSensorWithStatistics::set_number_of_samples(uint number_of_samples) {
     m_history->set_number_of_samples(number_of_samples);
 }
 

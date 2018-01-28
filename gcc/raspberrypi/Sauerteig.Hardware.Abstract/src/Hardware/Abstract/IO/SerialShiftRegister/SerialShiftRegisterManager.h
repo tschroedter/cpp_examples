@@ -22,8 +22,7 @@ class SerialShiftRegisterManager :
     SerialShiftRegisterManager(IThreadSafe74HC595_SPtr ssr);
     virtual ~SerialShiftRegisterManager() = default;
 
-    void initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp,
-                    wiringpipin pin_sh_cp) override;
+    void initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp, wiringpipin pin_sh_cp) override;
     void high(ssroutputpin pin) override;
     void low(ssroutputpin pin) override;
     bool is_high(ssroutputpin pin) const override;

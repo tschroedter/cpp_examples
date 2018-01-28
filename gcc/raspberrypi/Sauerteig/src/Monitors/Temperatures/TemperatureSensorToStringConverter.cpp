@@ -42,8 +42,7 @@ string TemperatureSensorToStringConverter::format_number(celsius value) const {
 
     string spaces;
 
-    for(size_t i = 3; i > digits_before_dot; i--)
-    {
+    for (size_t i = 3; i > digits_before_dot; i--) {
         spaces += " ";
     }
 

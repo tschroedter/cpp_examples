@@ -28,11 +28,8 @@ namespace Publishers {
 class TemperaturesPublisher : public ITemperaturesPublisher {
  public:
     // TODO constructor is getting to big
-    TemperaturesPublisher(ILogger_SPtr logger,
-                          IBus_SPtr bus,
-                          IThreadInformationProvider_SPtr provider,
-                          ITemperatureInside_SPtr inside,
-                          ITemperatureOutside_SPtr outside,
+    TemperaturesPublisher(ILogger_SPtr logger, IBus_SPtr bus, IThreadInformationProvider_SPtr provider,
+                          ITemperatureInside_SPtr inside, ITemperatureOutside_SPtr outside,
                           ITemperatureSensorWithStatistics_SPtr inside_with_statistics,
                           ITemperatureSensorWithStatistics_SPtr outside_with_statistics);
 

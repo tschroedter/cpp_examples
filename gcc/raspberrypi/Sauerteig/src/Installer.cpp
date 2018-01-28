@@ -32,6 +32,6 @@ void Installer::register_components(ContainerBuilder& builder) {
             .as<Interfaces::Monitors::Temperatures::ITemperatureSensorToStringConverter>();
     builder.registerType<Monitors::Temperatures::TemperaturesMonitor>()
             .as<Interfaces::Monitors::Temperatures::ITemperaturesMonitor>().singleInstance();
-    builder.registerType<Publishers::TemperaturesPublisher>()
-            .as<Interfaces::Publishers::ITemperaturesPublisher>().singleInstance();
+    builder.registerType<Publishers::TemperaturesPublisher>().as<Interfaces::Publishers::ITemperaturesPublisher>()
+            .singleInstance();
 }

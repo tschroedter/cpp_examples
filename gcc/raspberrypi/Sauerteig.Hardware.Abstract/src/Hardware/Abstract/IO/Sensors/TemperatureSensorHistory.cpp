@@ -12,8 +12,7 @@
 
 using namespace Hardware::Abstract::IO::Sensors;
 
-void TemperatureSensorHistory::push_back(
-        ITemperatureSensorHistoryData_SPtr data) {
+void TemperatureSensorHistory::push_back(ITemperatureSensorHistoryData_SPtr data) {
     m_past_data.push_back(data);
 
     if (m_past_data.size() > m_number_of_samples) {
@@ -29,8 +28,7 @@ size_t TemperatureSensorHistory::size() const {
     return m_past_data.size();
 }
 
-ITemperatureSensorHistoryData_SPtr TemperatureSensorHistory::get_element_at(
-        uint index) const {
+ITemperatureSensorHistoryData_SPtr TemperatureSensorHistory::get_element_at(uint index) const {
     return m_past_data[index];
 }
 

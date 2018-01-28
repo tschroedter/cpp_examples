@@ -19,17 +19,17 @@ namespace Interfaces {
 
 class ILogger {
  public:
-  virtual ~ILogger() = default;
+    virtual ~ILogger() = default;
 
-  virtual void debug(string message) = 0;
-  virtual void error(string message) = 0;
-  virtual void warn(string message) = 0;
-  virtual void info(string message) = 0;
+    virtual void debug(string message) = 0;
+    virtual void error(string message) = 0;
+    virtual void warn(string message) = 0;
+    virtual void info(string message) = 0;
 
-  virtual void set_prefix(string prefix) = 0;
+    virtual void set_prefix(string prefix) = 0;
 
-  virtual LogLevel get_log_level() const = 0;
-  virtual void set_log_level(LogLevel level) = 0;
+    virtual LogLevel get_log_level() const = 0;
+    virtual void set_log_level(LogLevel level) = 0;
 };
 
 }

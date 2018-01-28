@@ -21,8 +21,7 @@ class IThreadSafeSerialShiftRegisterManager {
  public:
     virtual ~IThreadSafeSerialShiftRegisterManager() = default;
 
-    virtual void initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp,
-                            wiringpipin pin_sh_cp) = 0;
+    virtual void initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp, wiringpipin pin_sh_cp) = 0;
     virtual void high(ssroutputpin pin) = 0;
     virtual void low(ssroutputpin pin) = 0;
     virtual bool is_high(ssroutputpin pin) = 0;

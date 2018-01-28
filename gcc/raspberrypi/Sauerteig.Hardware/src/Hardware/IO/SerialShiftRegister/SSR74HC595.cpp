@@ -28,8 +28,7 @@ SSR74HC595::SSR74HC595(ILogger_SPtr logger)
           m_pin_sh_cp(DEFAULT_PIN_SH_CP),
           m_value(0) {
     if (m_logger == nullptr) {
-        throw ArgumentInvalidException("Can't create SSR74HC595 because 'm_logger' is null!",
-                                                           "m_logger");
+        throw ArgumentInvalidException("Can't create SSR74HC595 because 'm_logger' is null!", "m_logger");
     }
 
     m_logger->set_prefix("SSR74HC595");

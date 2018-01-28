@@ -23,8 +23,7 @@ namespace IO {
 namespace Sensors {
 class TemperatureSensorWithStatistics : public ITemperatureSensorWithStatistics {
  public:
-    TemperatureSensorWithStatistics(ILogger_SPtr logger,
-                                    ITemperatureSensorHistory_SPtr history);
+    TemperatureSensorWithStatistics(ILogger_SPtr logger, ITemperatureSensorHistory_SPtr history);
     virtual ~TemperatureSensorWithStatistics() = default;
 
     celsius get_value() const override;

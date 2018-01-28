@@ -41,8 +41,7 @@ class PulseGeneratoreServer : public Interfaces::IO::IPulseGeneratoreServer {
     void set_on_interval_in_msec(uint interval) override;
     void set_off_interval_in_msec(uint interval) override;
     uint get_on_interval_in_msec() override;
-    uint get_off_interval_in_msec() override;bool is_flashing_enable() const
-            override;
+    uint get_off_interval_in_msec() override;bool is_flashing_enable() const override;
 
     void do_one_flash();
 

@@ -16,8 +16,7 @@ namespace Hardware {
 namespace Abstract {
 namespace IO {
 namespace SerialShiftRegister {
-class SSROutputs :
-        public Hardware::Abstract::Interfaces::IO::SerialShiftRegister::ISSROutputs {
+class SSROutputs : public Hardware::Abstract::Interfaces::IO::SerialShiftRegister::ISSROutputs {
  public:
     SSROutputs(IThreadSafeSerialShiftRegisterManager_SPtr manager);
     virtual ~SSROutputs() = default;

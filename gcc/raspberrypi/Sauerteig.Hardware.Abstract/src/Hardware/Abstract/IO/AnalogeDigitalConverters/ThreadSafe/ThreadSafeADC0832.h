@@ -19,8 +19,7 @@ namespace Abstract {
 namespace IO {
 namespace AnalogeDigitalConverters {
 namespace ThreadSafe {
-class ThreadSafeADC0832 :
-        public Interfaces::IO::AnalogeDigitalConverters::ThreadSafe::IThreadSafeADC0832 {
+class ThreadSafeADC0832 : public Interfaces::IO::AnalogeDigitalConverters::ThreadSafe::IThreadSafeADC0832 {
  public:
     ThreadSafeADC0832(IADC0832_SPtr adc0832);
     virtual ~ThreadSafeADC0832() = default;
@@ -32,8 +31,8 @@ class ThreadSafeADC0832 :
     uint get_pin_cs() const override;
     uint get_pin_dio() const override;
     uint get_pin_clk() const override;
-    void initialize(adcchannel number_of_channels, wiringpipin pin_cs,
-                    wiringpipin pin_dio, wiringpipin pin_clk) override;
+    void initialize(adcchannel number_of_channels, wiringpipin pin_cs, wiringpipin pin_dio, wiringpipin pin_clk)
+            override;
     void set_adc0832(IADC0832_SPtr adc0832) override;
 
  private:
@@ -47,7 +46,6 @@ class ThreadSafeADC0832 :
 }
 // TODO AnalogeDigitalConvertes
 //      AnalogeDigitalConverters
-typedef std::shared_ptr<
-        Hardware::Abstract::IO::AnalogeDigitalConverters::ThreadSafe::ThreadSafeADC0832> ThreadSafeADC0832_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::IO::AnalogeDigitalConverters::ThreadSafe::ThreadSafeADC0832> ThreadSafeADC0832_SPtr;
 
 #endif /* SRC_HARDWARE_ABSTRACT_IO_ANALOGEDIGITALCONVERTERS_THREADSAFE_THREADSAFEADC0832_H_ */

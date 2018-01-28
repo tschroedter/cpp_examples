@@ -40,7 +40,6 @@ class IPulseGeneratoreServer {
 }
 }
 
-typedef std::shared_ptr<
-        Hardware::Abstract::Interfaces::IO::IPulseGeneratoreServer> IPulseGeneratoreServer_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::Interfaces::IO::IPulseGeneratoreServer> IPulseGeneratoreServer_SPtr;
 
 #endif /* SRC_HARDWARE_ABSTRACT_INTERFACES_IO_IPULSEGENERATORESERVER_H_ */

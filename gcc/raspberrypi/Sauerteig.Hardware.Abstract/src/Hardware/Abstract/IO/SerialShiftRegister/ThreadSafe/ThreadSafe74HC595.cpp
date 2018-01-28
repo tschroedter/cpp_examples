@@ -16,9 +16,8 @@ using namespace Hardware::Abstract::IO::SerialShiftRegister::ThreadSafe;
 ThreadSafe74HC595::ThreadSafe74HC595(I74HC595_SPtr ssr)
         : m_ssr(ssr) {
     if (m_ssr == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create ThreadSafe74HC595 because 'm_ssr' is null!",
-                "m_ssr");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create ThreadSafe74HC595 because 'm_ssr' is null!",
+                                                           "m_ssr");
     }
 }
 
@@ -34,8 +33,7 @@ wiringpipin ThreadSafe74HC595::get_pin_sh_cp() const {
     return m_ssr->get_pin_sh_cp();
 }
 
-void ThreadSafe74HC595::initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp,
-                                   wiringpipin pin_sh_cp) {
+void ThreadSafe74HC595::initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp, wiringpipin pin_sh_cp) {
     m_mutex.lock();
 
     m_ssr->initialize(pin_ds, pin_sh_dp, pin_sh_cp);

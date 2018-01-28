@@ -20,8 +20,7 @@ Tmp36::Tmp36(ILogger_SPtr logger, ITmp36Logic_SPtr logic)
         : m_logger(logger),
           m_logic(logic) {
     if (m_logger == nullptr) {
-        throw ArgumentInvalidException("Can't create Tmp36 because 'm_logger' is null!",
-                                                           "m_logger");
+        throw ArgumentInvalidException("Can't create Tmp36 because 'm_logger' is null!", "m_logger");
     }
 
     if (m_logic == nullptr) {
@@ -56,8 +55,7 @@ void Tmp36::do_refresh() {
 
 void Tmp36::refresh() {
     if (m_adc == nullptr) {
-        throw ArgumentInvalidException(
-                "Can't refresh Tmp36 because 'm_adc' is null! Call initialize first!", "m_adc");
+        throw ArgumentInvalidException("Can't refresh Tmp36 because 'm_adc' is null! Call initialize first!", "m_adc");
     }
 
     try {

@@ -23,9 +23,8 @@ using namespace Hardware::Abstract::IO::AnalogeDigitalConverters;
 ADCInputs::ADCInputs(IThreadSafeADC0832_SPtr adc0832)
         : m_adc0832(adc0832) {
     if (m_adc0832 == nullptr) {
-        throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create ADCTemperatures because 'm_adc0832' is null!",
-                "m_adc0832");
+        throw Common::Exceptions::ArgumentInvalidException("Can't create ADCTemperatures because 'm_adc0832' is null!",
+                                                           "m_adc0832");
     }
 
     m_adc0832->initialize(DEFAULT_NUMBER_OF_CHANNELS,

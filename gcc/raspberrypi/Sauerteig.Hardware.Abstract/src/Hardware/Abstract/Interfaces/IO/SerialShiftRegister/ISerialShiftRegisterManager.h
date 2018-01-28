@@ -20,8 +20,7 @@ class ISerialShiftRegisterManager {
  public:
     virtual ~ISerialShiftRegisterManager() = default;
 
-    virtual void initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp,
-                            wiringpipin pin_sh_cp) = 0;
+    virtual void initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp, wiringpipin pin_sh_cp) = 0;
     virtual void high(ssroutputpin pin) = 0;
     virtual void low(ssroutputpin pin) = 0;
     virtual bool is_high(ssroutputpin pin) const = 0;
@@ -32,7 +31,6 @@ class ISerialShiftRegisterManager {
 }
 }
 
-typedef std::shared_ptr<
-        Hardware::Abstract::Interfaces::IO::SerialShiftRegister::ISerialShiftRegisterManager> ISerialShiftRegisterManager_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::Interfaces::IO::SerialShiftRegister::ISerialShiftRegisterManager> ISerialShiftRegisterManager_SPtr;
 
 #endif /* HARDWARE_ABSTRACT_INTERFACES_IO_SERIALSHIFTREGISTER_ISERIALSHIFTREGISTERMANAGER_H_ */

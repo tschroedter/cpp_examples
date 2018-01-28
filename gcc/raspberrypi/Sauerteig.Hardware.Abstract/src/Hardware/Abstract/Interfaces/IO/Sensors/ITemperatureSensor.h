@@ -30,7 +30,6 @@ class ITemperatureSensor {
 }
 }
 
-typedef std::shared_ptr<
-        Hardware::Abstract::Interfaces::IO::Sensors::ITemperatureSensor> ITemperatureSensor_SPtr;
+typedef std::shared_ptr<Hardware::Abstract::Interfaces::IO::Sensors::ITemperatureSensor> ITemperatureSensor_SPtr;
 
 #endif /* SRC_HARDWARE_ABSTRACT_INTERFACES_IO_SENSORS_ITEMPERATURE_H_ */

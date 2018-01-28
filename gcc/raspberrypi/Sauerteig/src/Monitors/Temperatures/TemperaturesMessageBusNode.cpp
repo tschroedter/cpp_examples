@@ -23,41 +23,39 @@ namespace Sauerteig {
 namespace Monitors {
 namespace Temperatures {
 
-TemperaturesMessageBusNode::TemperaturesMessageBusNode(
-        ILogger_SPtr logger,
-        IBus_SPtr bus,
-        std::string subscriber_id)
-: BusNode(bus, subscriber_id, TEMPERATURESMESSAGE_MESSAGE_TYPE), m_logger(logger), m_bus(bus), m_subscriber_id(subscriber_id) {
+TemperaturesMessageBusNode::TemperaturesMessageBusNode(ILogger_SPtr logger, IBus_SPtr bus, std::string subscriber_id)
+        : BusNode(bus, subscriber_id, TEMPERATURESMESSAGE_MESSAGE_TYPE),
+          m_logger(logger),
+          m_bus(bus),
+          m_subscriber_id(subscriber_id) {
     if (m_logger == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'logger' is null!",
-                                                           "logger");
+        throw ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'logger' is null!", "logger");
     }
 
     if (m_bus == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'bus' is null!",
-                                                           "bus");
+        throw ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'bus' is null!", "bus");
     }
 
     if (subscriber_id.length() == 0) {
         throw ArgumentInvalidException("Can't create TemperaturesMessageBusNode because 'subscriber_id' is empty!",
-                                                           "subscriber_id");
+                                       "subscriber_id");
     }
 
     m_logger->set_prefix("TemperaturesMessageBusNode");
 }
 
 void TemperaturesMessageBusNode::onNotify(BaseMessage_SPtr p_base_message) {
-  TemperaturesMessage_SPtr message = std::dynamic_pointer_cast<TemperaturesMessage>(p_base_message);
+    TemperaturesMessage_SPtr message = std::dynamic_pointer_cast<TemperaturesMessage>(p_base_message);
 
-  m_mutex.lock();
+    m_mutex.lock();
 
-  m_inside_average_value = message->inside_average_value;
-  m_inside_average__percent_valid = message->inside_average_percent_valid;
+    m_inside_average_value = message->inside_average_value;
+    m_inside_average__percent_valid = message->inside_average_percent_valid;
 
-  m_outside_average_value = message->outside_average_value;
-  m_outside_average__percent_valid = message->outside_average_percent_valid;
+    m_outside_average_value = message->outside_average_value;
+    m_outside_average__percent_valid = message->outside_average_percent_valid;
 
-  m_mutex.unlock();
+    m_mutex.unlock();
 }
 
 celsius TemperaturesMessageBusNode::get_inside_average_value() {

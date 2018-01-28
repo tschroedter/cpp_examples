@@ -12,18 +12,15 @@
 
 using namespace Hardware::Abstract::IO::SerialShiftRegister::ThreadSafe;
 
-ThreadSafeSerialShiftRegisterManager::ThreadSafeSerialShiftRegisterManager(
-        ISerialShiftRegisterManager_SPtr manager)
+ThreadSafeSerialShiftRegisterManager::ThreadSafeSerialShiftRegisterManager(ISerialShiftRegisterManager_SPtr manager)
         : m_manager(manager) {
     if (m_manager == nullptr) {
         throw Common::Exceptions::ArgumentInvalidException(
-                "Can't create ThreadSafeSerialShiftRegisterManager because 'm_manager' is null!",
-                "m_manager");
+                "Can't create ThreadSafeSerialShiftRegisterManager because 'm_manager' is null!", "m_manager");
     }
 }
 
-void ThreadSafeSerialShiftRegisterManager::initialize(wiringpipin pin_ds,
-                                                      wiringpipin pin_sh_dp,
+void ThreadSafeSerialShiftRegisterManager::initialize(wiringpipin pin_ds, wiringpipin pin_sh_dp,
                                                       wiringpipin pin_sh_cp) {
     m_mutex.lock();
 
