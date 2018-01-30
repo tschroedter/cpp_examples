@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_BASEMESSAGE_H_
-#define INMEMORYBUS_COMMON_BASEMESSAGE_H_
+#ifndef SRC_INMEMORYBUS_COMMON_BASEMESSAGE_H_
+#define SRC_INMEMORYBUS_COMMON_BASEMESSAGE_H_
 
 #include <string>
 #include <memory>
@@ -31,4 +31,4 @@ class BaseMessage {
 
 typedef std::shared_ptr<InMemoryBus::Common::BaseMessage> BaseMessage_SPtr;
 
-#endif /* INMEMORYBUS_COMMON_BASEMESSAGE_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_BASEMESSAGE_H_ */

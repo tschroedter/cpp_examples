@@ -7,8 +7,10 @@
 
 #include "FailedToNotify.h"
 #include "../../Common/BaseMessage.h"
-#include "../../Exceptions/ArgumentInvalidException.h"
+#include "../../Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "../../Subscribtions/Subscribers/ISubscriberInformationEntity.h"
+
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -19,12 +21,12 @@ FailedToNotify::FailedToNotify(ISubscriberInformationEntity_SPtr information, Ba
       m_message(message),
       m_number_of_tries(0) {
   if (m_information == nullptr) {
-    throw InMemoryBus::Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create FailedToNotify because 'information' is null!", "information");
   }
 
   if (m_message == nullptr) {
-    throw InMemoryBus::Exceptions::ArgumentInvalidException("Can't create FailedToNotify because 'message' is null!",
+    throw ArgumentInvalidException("Can't create FailedToNotify because 'message' is null!",
                                                             "message");
   }
 }

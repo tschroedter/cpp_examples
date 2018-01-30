@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_BASEREPOSITORY_H_
-#define INMEMORYBUS_COMMON_BASEREPOSITORY_H_
+#ifndef SRC_INMEMORYBUS_COMMON_BASEREPOSITORY_H_
+#define SRC_INMEMORYBUS_COMMON_BASEREPOSITORY_H_
 
 #include <memory>
 #include <vector>
@@ -110,5 +110,5 @@ class BaseRepository {
 }
 }
 
-#endif /* INMEMORYBUS_COMMON_BASEREPOSITORY_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_BASEREPOSITORY_H_ */
 

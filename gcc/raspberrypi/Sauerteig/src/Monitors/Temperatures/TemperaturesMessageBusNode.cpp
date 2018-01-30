@@ -13,11 +13,12 @@
 #include "InMemoryBus/IBus.h"
 #include "InMemoryBus/Common/BusNode.h"
 #include "InMemoryBus/Common/BaseMessage.h"
-#include "../../Messages/TemperaturesMessage.h"
+#include "../../Publishers/Messages/TemperaturesMessage.h"
+
 
 using namespace InMemoryBus::Common;
 using namespace Common::Exceptions;
-using namespace Sauerteig::Messages;
+using namespace Sauerteig::Publishers::Messages;
 
 namespace Sauerteig {
 namespace Monitors {

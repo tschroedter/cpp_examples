@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORY_PUBLISHERS_IMESSAGEBUSPUBLISHER_H_
-#define INMEMORY_PUBLISHERS_IMESSAGEBUSPUBLISHER_H_
+#ifndef SRC_INMEMORY_PUBLISHERS_IMESSAGEBUSPUBLISHER_H_
+#define SRC_INMEMORY_PUBLISHERS_IMESSAGEBUSPUBLISHER_H_
 
 #include <memory>
 #include "../Common/BaseMessage.h"
@@ -24,4 +24,4 @@ class IMessageBusPublisher {
 
 typedef std::shared_ptr<InMemoryBus::Publishers::IMessageBusPublisher> IMessageBusPublisher_SPtr;
 
-#endif /* INMEMORY_PUBLISHERS_IMESSAGEBUSPUBLISHER_H_ */
+#endif /* SRC_INMEMORY_PUBLISHERS_IMESSAGEBUSPUBLISHER_H_ */

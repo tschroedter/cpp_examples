@@ -5,12 +5,14 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYQUEUE_H_
-#define INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYQUEUE_H_
+#ifndef SRC_INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYQUEUE_H_
+#define SRC_INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYQUEUE_H_
 
 #include <queue>
 #include "IFailedToNotify.h"
 #include "IFailedToNotifyQueue.h"
+
+using namespace std;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -26,11 +28,11 @@ class FailedToNotifyQueue : public IFailedToNotifyQueue {
   size_t size() override;
 
  private:
-  std::queue<IFailedToNotify_SPtr> m_queue;
+  queue<IFailedToNotify_SPtr> m_queue;
 };
 
 }
 }
 }
 
-#endif /* INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYQUEUE_H_ */
+#endif /* SRC_INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYQUEUE_H_ */

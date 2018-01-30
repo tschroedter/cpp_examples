@@ -5,27 +5,31 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_BUSNODE_H_
-#define INMEMORYBUS_COMMON_BUSNODE_H_
+#ifndef SRC_INMEMORYBUS_COMMON_BUSNODE_H_
+#define SRC_INMEMORYBUS_COMMON_BUSNODE_H_
 
+#include <string>
+#include <functional>
 #include "../IBus.h"
+
+using namespace std;
 
 namespace InMemoryBus {
 namespace Common {
 
 class BusNode {
  public:
-  BusNode(IBus_SPtr bus, std::string subscriber_id, std::string message_type);
+  BusNode(IBus_SPtr bus, string subscriber_id, string message_type);
   virtual ~BusNode();
 
   virtual void update();
 
  protected:
   IBus_SPtr m_bus;
-  std::string m_subscriber_id;
-  std::string m_message_type;
+  string m_subscriber_id;
+  string m_message_type;
 
-  std::function<void(BaseMessage_SPtr)> get_notify_function();
+  function<void(BaseMessage_SPtr)> get_notify_function();
   void send(BaseMessage_SPtr message);
   virtual void onNotify(BaseMessage_SPtr message);
 };
@@ -33,4 +37,4 @@ class BusNode {
 }
 }
 
-#endif /* INMEMORYBUS_COMMON_BUSNODE_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_BUSNODE_H_ */

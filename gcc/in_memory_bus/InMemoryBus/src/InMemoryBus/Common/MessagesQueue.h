@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_MESSAGESQUEUE_H_
-#define INMEMORYBUS_COMMON_MESSAGESQUEUE_H_
+#ifndef SRC_INMEMORYBUS_COMMON_MESSAGESQUEUE_H_
+#define SRC_INMEMORYBUS_COMMON_MESSAGESQUEUE_H_
 
 #include <queue>
 #include "concurrentqueue.h"
@@ -32,4 +32,4 @@ class MessagesQueue : public IMessagesQueue {
 }
 }
 
-#endif /* INMEMORYBUS_MESSAGESQUEUE_H_ */
+#endif /* SRC_INMEMORYBUS_MESSAGESQUEUE_H_ */

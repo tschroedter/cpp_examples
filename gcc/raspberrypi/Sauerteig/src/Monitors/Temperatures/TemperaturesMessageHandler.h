@@ -12,11 +12,10 @@
 #include <functional>
 #include <thread>
 #include <chrono>
-#include "../../Interfaces/Factories/ITemperaturesMessageBusNodeFactory.h"
-#include "../../Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
-#include "../../Messages/TemperaturesMessage.h"
 #include "Common/Interfaces/ILogger.h"
 #include "TemperaturesMessageBusNode.h"
+#include "../../Interfaces/Factories/ITemperaturesMessageBusNodeFactory.h"
+#include "../../Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
 
 #define INTERVAL_IN_SECONDS 1
 

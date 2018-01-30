@@ -12,7 +12,6 @@
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "Common/Interfaces/ILogger.h"
 #include "../../Interfaces/Factories/ITemperaturesMessageBusNodeFactory.h"
-#include "../../Messages/TemperaturesMessage.h"
 
 #define SUBSCRIBER_ID "TemperaturesMessageHandler"
 

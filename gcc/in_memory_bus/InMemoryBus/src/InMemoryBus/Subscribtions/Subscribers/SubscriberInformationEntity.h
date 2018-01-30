@@ -5,16 +5,16 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_SUBSCRIBERINFORMATIONENTITY_H_
-#define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_SUBSCRIBERINFORMATIONENTITY_H_
+#ifndef SRC_INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_SUBSCRIBERINFORMATIONENTITY_H_
+#define SRC_INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_SUBSCRIBERINFORMATIONENTITY_H_
 
 #include <memory>
 #include <string>
 #include <vector>
 #include <mutex>
+#include "ISubscriberInformationEntity.h"
 #include "../../Common/BaseEntity.h"
 #include "../../Common/SubscriberFunction.h"
-#include "ISubscriberInformationEntity.h"
 
 namespace InMemoryBus {
 namespace Subscribtions {
@@ -50,4 +50,4 @@ class SubscriberInformationEntity : public ISubscriberInformationEntity {
 }
 }
 
-#endif /* INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_SUBSCRIBERINFORMATIONENTITY_H_ */
+#endif /* SRC_INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_SUBSCRIBERINFORMATIONENTITY_H_ */

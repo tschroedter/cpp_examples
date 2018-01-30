@@ -6,12 +6,14 @@
  */
 
 #include <string>
+#include "../../Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "MessageToSubscribersEntity.h"
 #include "IMessageToSubscribersEntity.h"
-#include "../../Exceptions/ArgumentInvalidException.h"
+
 #include "../Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 
 using namespace std;
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Subscribtions {
@@ -21,12 +23,12 @@ MessageToSubscribersEntity::MessageToSubscribersEntity(const string message_type
     : m_message_type(message_type),
       m_subscribers(subscribers) {
   if (message_type.empty()) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageToSubscribers because 'message_type' is empty!",
+    throw ArgumentInvalidException("Can't create MessageToSubscribers because 'message_type' is empty!",
                                                "message_type");
   }
 
   if (subscribers == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageToSubscribers because 'subscribers' is null!",
+    throw ArgumentInvalidException("Can't create MessageToSubscribers because 'subscribers' is null!",
                                                "subscribers");
   }
 }

@@ -5,14 +5,16 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_NOTIFIERS_FACTORIES_IMESSAGEBUSNOTIFIERFACTORY_H_
-#define INMEMORYBUS_NOTIFIERS_FACTORIES_IMESSAGEBUSNOTIFIERFACTORY_H_
+#ifndef SRC_INMEMORYBUS_NOTIFIERS_FACTORIES_IMESSAGEBUSNOTIFIERFACTORY_H_
+#define SRC_INMEMORYBUS_NOTIFIERS_FACTORIES_IMESSAGEBUSNOTIFIERFACTORY_H_
 
 #include <memory>
 #include "../IMessageBusNotifier.h"
 #include "../ISubscibersNotifier.h"
 #include "../../Common/MessageBusSynchronization.h"
 #include "../../Common/IMessagesQueue.h"
+
+using namespace std;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -29,6 +31,6 @@ class IMessageBusNotifierFactory {
 }
 }
 
-typedef std::shared_ptr<InMemoryBus::Notifiers::Factories::IMessageBusNotifierFactory> IMessageBusNotifierFactory_SPtr;
+typedef shared_ptr<InMemoryBus::Notifiers::Factories::IMessageBusNotifierFactory> IMessageBusNotifierFactory_SPtr;
 
-#endif /* INMEMORYBUS_NOTIFIERS_FACTORIES_IMESSAGEBUSNOTIFIERFACTORY_H_ */
+#endif /* SRC_INMEMORYBUS_NOTIFIERS_FACTORIES_IMESSAGEBUSNOTIFIERFACTORY_H_ */

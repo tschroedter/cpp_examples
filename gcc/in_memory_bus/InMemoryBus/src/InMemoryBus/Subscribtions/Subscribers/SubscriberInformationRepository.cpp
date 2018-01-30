@@ -7,18 +7,19 @@
 
 #include <vector>
 #include "uuid/uuid.h"
+#include "../../Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "SubscriberInformationRepository.h"
-#include "../../Exceptions/ArgumentInvalidException.h"
 #include "ISubscriberInformationEntity.h"
 
 using namespace std;
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Subscribtions {
 namespace Subscribers {
 SubscriberInformationRepository::SubscriberInformationRepository(ISubscriberInformationEntityVector_SPtr informations) {
   if (informations == nullptr) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create SubscriberInformationRepository because 'informations' is null!", "informations");
   }
 

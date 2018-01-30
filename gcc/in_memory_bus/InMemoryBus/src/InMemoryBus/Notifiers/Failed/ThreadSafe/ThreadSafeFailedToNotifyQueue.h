@@ -5,12 +5,14 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_NOTIFIERS_FAILED_THREADSAFE_THREADSAFEFAILEDTONOTIFYQUEUE_H_
-#define INMEMORYBUS_NOTIFIERS_FAILED_THREADSAFE_THREADSAFEFAILEDTONOTIFYQUEUE_H_
+#ifndef SRC_INMEMORYBUS_NOTIFIERS_FAILED_THREADSAFE_THREADSAFEFAILEDTONOTIFYQUEUE_H_
+#define SRC_INMEMORYBUS_NOTIFIERS_FAILED_THREADSAFE_THREADSAFEFAILEDTONOTIFYQUEUE_H_
 
 #include <mutex>
 #include "IThreadSafeFailedToNotifyQueue.h"
 #include "../IFailedToNotifyQueue.h"
+
+using namespace std;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -28,7 +30,7 @@ class ThreadSafeFailedToNotifyQueue : public IThreadSafeFailedToNotifyQueue {
 
  private:
   IFailedToNotifyQueue_SPtr m_queue = nullptr;
-  std::recursive_mutex m_mutex;
+  recursive_mutex m_mutex;
 };
 
 }
@@ -36,4 +38,4 @@ class ThreadSafeFailedToNotifyQueue : public IThreadSafeFailedToNotifyQueue {
 }
 }
 
-#endif /* INMEMORYBUS_NOTIFIERS_FAILED_THREADSAFE_THREADSAFEFAILEDTONOTIFYQUEUE_H_ */
+#endif /* SRC_INMEMORYBUS_NOTIFIERS_FAILED_THREADSAFE_THREADSAFEFAILEDTONOTIFYQUEUE_H_ */

@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_NOTIFIERS_ISUBSCIBERSNOTIFIER_H_
-#define INMEMORYBUS_NOTIFIERS_ISUBSCIBERSNOTIFIER_H_
+#ifndef SRC_INMEMORYBUS_NOTIFIERS_ISUBSCIBERSNOTIFIER_H_
+#define SRC_INMEMORYBUS_NOTIFIERS_ISUBSCIBERSNOTIFIER_H_
 
 #include <memory>
 #include "../Common/BaseMessage.h"
@@ -25,4 +25,4 @@ class ISubscibersNotifier {
 
 typedef std::shared_ptr<InMemoryBus::Notifiers::ISubscibersNotifier> ISubscibersNotifier_SPtr;
 
-#endif /* INMEMORYBUS_NOTIFIERS_ISUBSCIBERSNOTIFIER_H_ */
+#endif /* SRC_INMEMORYBUS_NOTIFIERS_ISUBSCIBERSNOTIFIER_H_ */

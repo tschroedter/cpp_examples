@@ -10,10 +10,10 @@
 #include <thread>
 #include <sstream>
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Common {
-
-using namespace std;
 
 string thread_id_to_string(thread::id id) {
   stringstream ss { };

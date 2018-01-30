@@ -5,50 +5,55 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_LOGGER_H_
-#define INMEMORYBUS_COMMON_LOGGER_H_
+#ifndef SRC_INMEMORYBUS_COMMON_LOGGER_H_
+#define SRC_INMEMORYBUS_COMMON_LOGGER_H_
 
 #include <string>
 #include <mutex>
 #include <iostream>
-#include "ILogger.h"
+#include "Interfaces/ILogger.h"
 #include "LogLevel.h"
-
-namespace InMemoryBus {
-namespace Common {
+#include "Interfaces/IThreadInformationProvider.h"
 
 using namespace std;
+using namespace Common::Interfaces;
 
-class Logger : public ILogger {
+namespace Common {
+
+class Logger : public ILogger { // Todo check if testing all methods
  public:
-  Logger() = default;
-  virtual ~Logger() = default;
+    Logger(IThreadInformationProvider_SPtr provider);
+    virtual ~Logger() = default;
 
-  void debug(string message) override;
-  void error(string message) override;
-  void warn(string message) override;
-  void info(string message) override;
+    void debug(string message) override;
+    void error(string message) override;
+    void warn(string message) override;
+    void info(string message) override;
 
-  void set_prefix(string prefix) override;
+    void set_prefix(string prefix) override;
 
-  LogLevel get_log_level() const override;
-  void set_log_level(LogLevel level) override;
+    LogLevel get_log_level() const override;
+    void set_log_level(LogLevel level) override;
 
  protected:
-  Logger(std::ostream& out);
+    Logger(IThreadInformationProvider_SPtr provider, ostream& out);
 
  private:
-  std::ostream& m_cout = std::cout;
-  recursive_mutex m_mutex { };
-  LogLevel m_log_level { LogLevel::DEBUG };
+    IThreadInformationProvider_SPtr m_provider = nullptr;
 
-  string m_prefix = "";
+    static LogLevel m_log_level;
 
-  string create_timestamp() const;
-  string create_header() const;
+    ostream& m_cout = cout;
+    recursive_mutex m_mutex { };
+
+    string m_prefix = "";
+
+    void write_log_line(string debug_level, string message) const;
+    string create_timestamp() const;
+    string create_log_line(string debug_level, string message) const;
+    string create_thread_pid() const;
 };
 
 }
-}
 
-#endif /* INMEMORYBUS_COMMON_LOGGER_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_LOGGER_H_ */

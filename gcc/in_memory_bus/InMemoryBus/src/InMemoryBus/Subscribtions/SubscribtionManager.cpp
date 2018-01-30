@@ -5,9 +5,9 @@
  *      Author: tom
  */
 #include <memory>
+#include "../Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "../Common/SubscriberFunction.h"
 #include "SubscribtionManager.h"
-#include "../Exceptions/ArgumentInvalidException.h"
 #include "MessageToSubscribers/MessageToSubscribersEntity.h"
 #include "MessageToSubscribers/IMessageToSubscribersRepository.h"
 #include "MessageToSubscribers/IMessageToSubscribersEntity.h"
@@ -21,6 +21,7 @@
 #include "Subscribers/Threadsafe/IThreadSafeSubscriberInformationRepository.h"
 
 using namespace std;
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Subscribtions {
@@ -34,22 +35,22 @@ SubscribtionManager::SubscribtionManager(IMessageToSubscribersRepository_SPtr re
       m_unknown(unknown) {
 
   if (m_repository == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'repository' is null!",
+    throw ArgumentInvalidException("Can't create SubscribtionManager because 'repository' is null!",
                                                "repository");
   }
 
   if (m_information_factory == nullptr) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create SubscribtionManager because 'information_factory' is null!", "information_factory");
   }
 
   if (m_message_factory == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'message_factory' is null!",
+    throw ArgumentInvalidException("Can't create SubscribtionManager because 'message_factory' is null!",
                                                "message_factory");
   }
 
   if (m_unknown == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscribtionManager because 'unknown' is null!",
+    throw ArgumentInvalidException("Can't create SubscribtionManager because 'unknown' is null!",
                                                "unknown");
   }
 }

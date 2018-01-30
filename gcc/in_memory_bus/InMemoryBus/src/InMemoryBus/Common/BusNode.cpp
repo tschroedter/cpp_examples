@@ -12,10 +12,12 @@
 #include "BaseMessage.h"
 #include "../IBus.h"
 
+using namespace std;
+
 namespace InMemoryBus {
 namespace Common {
 
-BusNode::BusNode(IBus_SPtr bus, std::string subscriber_id, std::string message_type)
+BusNode::BusNode(IBus_SPtr bus, string subscriber_id, string message_type)
     : m_bus(bus),
       m_subscriber_id(subscriber_id),
       m_message_type(message_type) {

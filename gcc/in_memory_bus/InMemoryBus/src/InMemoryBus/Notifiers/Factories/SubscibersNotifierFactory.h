@@ -5,14 +5,14 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_NOTIFIERS_FACTORIES_SUBSCIBERSNOTIFIERFACTORY_H_
-#define INMEMORYBUS_NOTIFIERS_FACTORIES_SUBSCIBERSNOTIFIERFACTORY_H_
+#ifndef SRC_INMEMORYBUS_NOTIFIERS_FACTORIES_SUBSCIBERSNOTIFIERFACTORY_H_
+#define SRC_INMEMORYBUS_NOTIFIERS_FACTORIES_SUBSCIBERSNOTIFIERFACTORY_H_
 
 #include "ISubscibersNotifierFactory.h"
 #include "../ISubscibersNotifier.h"
 #include "../Failed/IFailedToNotifyManager.h"
-#include "../../Common/ILogger.h"
 #include "../../Subscribtions/ISubscribtionManager.h"
+#include "../../Common/Interfaces/ILogger.h"
 
 namespace InMemoryBus {
 namespace Notifiers {

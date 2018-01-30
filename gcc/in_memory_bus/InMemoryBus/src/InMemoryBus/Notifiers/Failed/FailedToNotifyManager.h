@@ -5,15 +5,14 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYMANAGER_H_
-#define INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYMANAGER_H_
+#ifndef SRC_INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYMANAGER_H_
+#define SRC_INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYMANAGER_H_
 
-#include <thread>
 #include "IFailedToNotifyManager.h"
-#include "ThreadSafe/IThreadSafeFailedToNotifyQueue.h"
-#include "../../Common/ILogger.h"
-#include "../../Common/MessageBusSynchronization.h"
 #include "IFailedSubscriberFunctionCaller.h"
+#include "ThreadSafe/IThreadSafeFailedToNotifyQueue.h"
+#include "../../Common/Interfaces/ILogger.h"
+#include "../../Common/MessageBusSynchronization.h"
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -23,7 +22,7 @@ class FailedToNotifyManager : public IFailedToNotifyManager {
  public:
   FailedToNotifyManager(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
                         IThreadSafeFailedToNotifyQueue_SPtr messages, IFailedSubscriberFunctionCaller_SPtr caller);
-  virtual ~FailedToNotifyManager();
+  virtual ~FailedToNotifyManager() = default;
 
   void handle_failed_notification(const ISubscriberInformationEntity_SPtr& info, BaseMessage_SPtr& message) override;
 
@@ -32,12 +31,10 @@ class FailedToNotifyManager : public IFailedToNotifyManager {
   MessageBusSynchronization_SPtr m_synchronization = nullptr;
   IThreadSafeFailedToNotifyQueue_SPtr m_messages = nullptr;
   IFailedSubscriberFunctionCaller_SPtr m_caller = nullptr;
-
-  std::thread m_thread;
 };
 
 }
 }
 }
 
-#endif /* INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYMANAGER_H_ */
+#endif /* SRC_INMEMORYBUS_NOTIFIERS_FAILED_FAILEDTONOTIFYMANAGER_H_ */

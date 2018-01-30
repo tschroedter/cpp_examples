@@ -4,14 +4,14 @@
  *  Created on: 23 Aug. 2017
  *      Author: tom
  */
-
 #include "BaseEntity.h"
-#include "uuid/uuid.h"
+#include <uuid/uuid.h>
 #include <memory>
 #include <string>
 #include <iostream>
-#include "uuid/uuid.h"
-#include "../Exceptions/ArgumentInvalidException.h"
+#include "Exceptions/ArgumentInvalidExceptions.h"
+
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Common {
@@ -21,10 +21,11 @@ BaseEntity::BaseEntity() {
 }
 
 BaseEntity::BaseEntity(const std::string& uuid_as_text) {
+
   int result = uuid_parse(uuid_as_text.c_str(), m_id);
 
   if (result != 0) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create BaseEntity because 'uuid_as_text' is '" + uuid_as_text + "'!", "uuid_as_text");
   }
 }

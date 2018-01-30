@@ -14,11 +14,11 @@
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureInside.h"
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureOutside.h"
 #include "InMemoryBus/IBus.h"
-#include "../Messages/TemperaturesMessage.h"
+#include "../Publishers/Messages/TemperaturesMessage.h"
 
 using namespace std;
 using namespace Common::Exceptions;
-using namespace Sauerteig::Messages;
+using namespace Sauerteig::Publishers::Messages;
 
 namespace Sauerteig {
 namespace Publishers {

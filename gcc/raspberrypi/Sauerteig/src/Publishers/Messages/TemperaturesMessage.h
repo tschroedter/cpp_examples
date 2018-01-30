@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef SRC_PUBLISHERS_TEMPERATURESMESSAGE_H_
-#define SRC_PUBLISHERS_TEMPERATURESMESSAGE_H_
+#ifndef SRC_PUBLISHERS_MESSAGES_TEMPERATURESMESSAGE_H_
+#define SRC_PUBLISHERS_MESSAGES_TEMPERATURESMESSAGE_H_
 
 #define TEMPERATURESMESSAGE_MESSAGE_TYPE "TemperaturesMessage"
 
@@ -19,6 +19,7 @@ using namespace std;
 using namespace InMemoryBus::Common;
 
 namespace Sauerteig {
+namespace Publishers {
 namespace Messages {
 
 class TemperaturesMessage : public BaseMessage {
@@ -46,7 +47,8 @@ class TemperaturesMessage : public BaseMessage {
 
 }
 }
+}
 
-typedef shared_ptr<Sauerteig::Messages::TemperaturesMessage> TemperaturesMessage_SPtr;
+typedef shared_ptr<Sauerteig::Publishers::Messages::TemperaturesMessage> TemperaturesMessage_SPtr;
 
-#endif /* SRC_PUBLISHERS_TEMPERATURESMESSAGE_H_ */
+#endif /* SRC_PUBLISHERS_MESSAGES_TEMPERATURESMESSAGE_H_ */

@@ -5,13 +5,13 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_
-#define INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_
+#ifndef SRC_INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_
+#define SRC_INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_
 
 #include "ISubscibersNotifier.h"
 #include "ISubscriberFunctionCaller.h"
 #include "../Common/BaseMessage.h"
-#include "../Common/ILogger.h"
+#include "../Common/Interfaces/ILogger.h"
 #include "../Subscribtions/ISubscribtionManager.h"
 #include "../Subscribtions/Subscribers/SubscriberInformationEntity.h"
 
@@ -40,4 +40,4 @@ class SubscibersNotifier : public ISubscibersNotifier {
 }
 }
 
-#endif /* INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_ */
+#endif /* SRC_INMEMORYBUS_NOTIFIERS_SUBSCIBERSNOTIFIER_H_ */

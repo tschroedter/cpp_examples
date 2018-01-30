@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITY_H_
-#define INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITY_H_
+#ifndef SRC_INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITY_H_
+#define SRC_INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITY_H_
 
 #include <memory>
 #include <vector>
@@ -33,8 +33,8 @@ class ISubscriberInformationEntity : public InMemoryBus::Common::BaseEntity {
 }
 }
 
-typedef std::shared_ptr<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity> ISubscriberInformationEntity_SPtr;
-typedef std::vector<ISubscriberInformationEntity_SPtr> ISubscriberInformationEntityVector;
-typedef std::shared_ptr<ISubscriberInformationEntityVector> ISubscriberInformationEntityVector_SPtr;
+typedef shared_ptr<InMemoryBus::Subscribtions::Subscribers::ISubscriberInformationEntity> ISubscriberInformationEntity_SPtr;
+typedef vector<ISubscriberInformationEntity_SPtr> ISubscriberInformationEntityVector;
+typedef shared_ptr<ISubscriberInformationEntityVector> ISubscriberInformationEntityVector_SPtr;
 
-#endif /* INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITY_H_ */
+#endif /* SRC_INMEMORYBUS_SUBSCRIBTIONS_SUBSCRIBERS_ISUBSCRIBERINFORMATIONENTITY_H_ */

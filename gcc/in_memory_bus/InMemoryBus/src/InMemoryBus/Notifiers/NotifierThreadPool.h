@@ -5,20 +5,18 @@
  *      Author: tom
  */
 
-#ifndef INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_
-#define INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_
+#ifndef SRC_INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_
+#define SRC_INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_
 
 #include <thread>
 #include <vector>
 #include "INotifierThreadPool.h"
-#include "ISubscibersNotifier.h"
 #include "Factories/IMessageBusNotifierFactory.h"
-#include "../Common/SubscriberFunction.h"
-#include "../Common/ILogger.h"
-#include "../Common/IMessagesQueue.h"
 #include "../Common/MessageBusSynchronization.h"
-#include "../Subscribtions/ISubscribtionManager.h"
+#include "../Common/Interfaces/ILogger.h"
 #include "../Publishers/IMessageBusPublisher.h"
+
+using namespace std;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -27,7 +25,8 @@ namespace Notifiers {
 
 class NotifierThreadPool : public INotifierThreadPool {
  public:
-  NotifierThreadPool(ILogger_SPtr logger, MessageBusSynchronization_SPtr synchronization,
+  NotifierThreadPool(ILogger_SPtr logger,
+                     MessageBusSynchronization_SPtr synchronization,
                      IMessageBusPublisher_SPtr publisher, IMessageBusNotifierFactory_SPtr factory);
   virtual ~NotifierThreadPool() = default;
 
@@ -41,13 +40,13 @@ class NotifierThreadPool : public INotifierThreadPool {
   IMessageBusNotifierFactory_SPtr m_factory = nullptr;
 
   int m_number_of_threads = DEFAULT_NUMBER_OF_THREADS;
-  std::vector<std::thread> m_threads { };
+  vector<thread> m_threads { };
 
   void join_threads();
   void create_threads();
-  void do_join_thread(std::thread& thread);
+  void do_join_thread(thread& thread);
 };
 }
 }
 
-#endif /* INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_ */
+#endif /* SRC_INMEMORY_NOTIFIERS_NOTIFIERTHREADPOOL_H_ */

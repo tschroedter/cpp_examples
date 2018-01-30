@@ -10,10 +10,10 @@
 
 #include <memory.h>
 #include <mutex>
+#include "Common/CommonTypes.h"
 #include "Common/Interfaces/ILogger.h"
 #include "InMemoryBus/IBus.h"
 #include "InMemoryBus/Common/BusNode.h"
-#include "../../Messages/TemperaturesMessage.h"
 
 using namespace std;
 using namespace InMemoryBus::Common;

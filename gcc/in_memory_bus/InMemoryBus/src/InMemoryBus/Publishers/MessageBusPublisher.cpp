@@ -6,11 +6,13 @@
  */
 #include <mutex>
 #include "MessageBusPublisher.h"
+#include "../Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "../Common/MessageBusSynchronization.h"
 #include "../Common/BaseMessage.h"
 #include "../Common/IMessagesQueue.h"
 #include "../Common/SubscriberFunction.h"
-#include "../Exceptions/ArgumentInvalidException.h"
+
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Publishers {
@@ -18,18 +20,18 @@ MessageBusPublisher::MessageBusPublisher(MessageBusSynchronization_SPtr synchron
     : m_synchronization(synchronization),
       m_messages(messages) {
   if (m_synchronization == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusPublisher because 'synchronization' is null!",
+    throw ArgumentInvalidException("Can't create MessageBusPublisher because 'synchronization' is null!",
                                                "synchronization");
   }
 
   if (m_messages == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create MessageBusPublisher because 'messages' is null!",
+    throw ArgumentInvalidException("Can't create MessageBusPublisher because 'messages' is null!",
                                                "messages");
   }
 }
 
 void MessageBusPublisher::publish(BaseMessage_SPtr message) {
-  std::lock_guard<std::mutex> guard(m_synchronization->mutex);
+  std::lock_guard<std::mutex> guard(m_synchronization->mutex_thread_pool);
 
   m_messages->enqueue(message);
 

@@ -5,12 +5,14 @@
  *      Author: tom
  */
 
-#ifndef INMEMORYBUS_COMMON_BASEENTITY_H_
-#define INMEMORYBUS_COMMON_BASEENTITY_H_
+#ifndef SRC_INMEMORYBUS_COMMON_BASEENTITY_H_
+#define SRC_INMEMORYBUS_COMMON_BASEENTITY_H_
 
-#include "uuid/uuid.h"
+#include <uuid/uuid.h>
 #include <memory>
 #include <string>
+
+using namespace std;
 
 namespace InMemoryBus {
 namespace Common {
@@ -18,7 +20,7 @@ namespace Common {
 class BaseEntity {
  public:
   BaseEntity();
-  BaseEntity(const std::string& uuid_as_text);
+  BaseEntity(const string& uuid_as_text);
   virtual ~BaseEntity() = default;
 
   void get_id(uuid_t& id) const;
@@ -31,4 +33,4 @@ class BaseEntity {
 }
 }
 
-#endif /* INMEMORYBUS_COMMON_BASEENTITY_H_ */
+#endif /* SRC_INMEMORYBUS_COMMON_BASEENTITY_H_ */

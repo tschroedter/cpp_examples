@@ -11,7 +11,10 @@
 #include "../ISubscibersNotifier.h"
 #include "../SubscriberFunctionCaller.h"
 #include "../ISubscriberFunctionCaller.h"
-#include "../../Exceptions/ArgumentInvalidException.h"
+#include "../../Common/Exceptions/ArgumentInvalidExceptions.h"
+
+using namespace std;
+using namespace Common::Exceptions;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -23,26 +26,26 @@ SubscibersNotifierFactory::SubscibersNotifierFactory(ILogger_SPtr logger, ISubsc
       m_manager(manager),
       m_failed_manager(failed_manager) {
   if (m_logger == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifierFactory because 'logger' is null!",
+    throw ArgumentInvalidException("Can't create SubscibersNotifierFactory because 'logger' is null!",
                                                "logger");
   }
 
   if (m_manager == nullptr) {
-    throw Exceptions::ArgumentInvalidException("Can't create SubscibersNotifierFactory because 'manager' is null!",
+    throw ArgumentInvalidException("Can't create SubscibersNotifierFactory because 'manager' is null!",
                                                "manager");
   }
 
   if (m_failed_manager == nullptr) {
-    throw Exceptions::ArgumentInvalidException(
+    throw ArgumentInvalidException(
         "Can't create SubscibersNotifierFactory because 'failed_manager' is null!", "failed_manager");
   }
 
 }
 
 ISubscibersNotifier_SPtr SubscibersNotifierFactory::create() {
-  ISubscriberFunctionCaller_SPtr caller = std::make_shared<SubscriberFunctionCaller>(m_failed_manager);
+  ISubscriberFunctionCaller_SPtr caller = make_shared<SubscriberFunctionCaller>(m_failed_manager);
 
-  ISubscibersNotifier_SPtr notifier = std::make_shared<SubscibersNotifier>(m_logger, m_manager, caller);
+  ISubscibersNotifier_SPtr notifier = make_shared<SubscibersNotifier>(m_logger, m_manager, caller);
 
   return notifier;
 }

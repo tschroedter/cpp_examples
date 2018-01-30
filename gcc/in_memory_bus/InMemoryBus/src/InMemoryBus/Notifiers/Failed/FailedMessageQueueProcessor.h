@@ -11,8 +11,10 @@
 #include <thread>
 #include "FailedMessageBusNotifier.h"
 #include "IFailedMessageQueueProcessor.h"
+#include "../../Common/Interfaces/ILogger.h"
 #include "../../Common/MessageBusSynchronization.h"
-#include "../../Common/ILogger.h"
+
+using namespace std;
 
 namespace InMemoryBus {
 namespace Notifiers {
@@ -32,7 +34,7 @@ class FailedMessageQueueProcessor : public IFailedMessageQueueProcessor {  // To
   MessageBusSynchronization_SPtr m_synchronization = nullptr;
   IFailedMessageBusNotifier_SPtr m_notifier = nullptr;
 
-  std::thread m_thread;
+  thread m_thread;
 };
 
 }

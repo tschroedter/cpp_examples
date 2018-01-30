@@ -8,10 +8,10 @@
 #ifndef SRC_INMEMORYBUS_NOTIFIERS_FAILED_FAILEDSUBSCRIBERFUNCTIONCALLER_H_
 #define SRC_INMEMORYBUS_NOTIFIERS_FAILED_FAILEDSUBSCRIBERFUNCTIONCALLER_H_
 
-#include "../../Subscribtions/Subscribers/ISubscriberInformationEntity.h"
-#include "../../Common/BaseMessage.h"
-#include "../../Common/ILogger.h"
 #include "IFailedSubscriberFunctionCaller.h"
+#include "../../Common/BaseMessage.h"
+#include "../../Common/Interfaces/ILogger.h"
+#include "../../Subscribtions/Subscribers/ISubscriberInformationEntity.h"
 
 namespace InMemoryBus {
 namespace Notifiers {

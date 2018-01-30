@@ -17,7 +17,7 @@
 #include "Interfaces/Monitors/Temperatures/ITemperatureSensorToStringConverter.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
-#include "Messages/TemperaturesMessage.h"
+#include "Publishers/Messages/TemperaturesMessage.h"
 
 using namespace Hypodermic;
 using namespace Sauerteig;
@@ -27,7 +27,7 @@ void Installer::register_components(ContainerBuilder& builder) {
             .as<Interfaces::Factories::ITemperaturesMessageBusNodeFactory>();
     builder.registerType<Monitors::Temperatures::TemperaturesMessageHandler>()
             .as<Interfaces::Monitors::Temperatures::ITemperaturesMessageHandler>();
-    builder.registerType<Messages::TemperaturesMessage>();
+    builder.registerType<Publishers::Messages::TemperaturesMessage>();
     builder.registerType<Monitors::Temperatures::TemperatureSensorToStringConverter>()
             .as<Interfaces::Monitors::Temperatures::ITemperatureSensorToStringConverter>();
     builder.registerType<Monitors::Temperatures::TemperaturesMonitor>()
