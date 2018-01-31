@@ -14,7 +14,7 @@
 #include <chrono>
 #include "Common/Interfaces/ILogger.h"
 #include "TemperaturesMessageBusNode.h"
-#include "../../Interfaces/Factories/ITemperaturesMessageBusNodeFactory.h"
+#include "../../Interfaces/Factories/IMessageBusNodeFactory.h"
 #include "../../Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
 
 #define INTERVAL_IN_SECONDS 1
@@ -27,7 +27,7 @@ namespace Temperatures {
 
 class TemperaturesMessageHandler : public ITemperaturesMessageHandler {
  public:
-    TemperaturesMessageHandler(ILogger_SPtr logger, ITemperaturesMessageBusNodeFactory_SPtr factory);
+    TemperaturesMessageHandler(ILogger_SPtr logger, IMessageBusNodeFactory_SPtr<Sauerteig::Monitors::Temperatures::TemperaturesMessageBusNode> factory);
     virtual ~TemperaturesMessageHandler() = default;
 
     celsius get_inside_average_value() const override;

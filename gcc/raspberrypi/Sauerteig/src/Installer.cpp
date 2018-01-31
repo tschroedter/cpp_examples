@@ -7,24 +7,26 @@
 
 #include "Installer.h"
 #include "Hypodermic/ContainerBuilder.h"
-#include "Factories/TemperaturesMessageBusNodeFactory.h"
+#include "Factories/MessageBusNodeFactory.h"
 #include "Monitors/Temperatures/TemperaturesMonitor.h"
 #include "Monitors/Temperatures/TemperatureSensorToStringConverter.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
+#include "Publishers/TemperaturesSetCorrectionMessageBusNode.h"
 #include "Publishers/TemperaturesPublisher.h"
-#include "Interfaces/Factories/ITemperaturesMessageBusNodeFactory.h"
+#include "Publishers/Messages/TemperaturesMessage.h"
+#include "Interfaces/Factories/IMessageBusNodeFactory.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
 #include "Interfaces/Monitors/Temperatures/ITemperatureSensorToStringConverter.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
-#include "Publishers/Messages/TemperaturesMessage.h"
 
 using namespace Hypodermic;
 using namespace Sauerteig;
+using namespace Sauerteig::Monitors::Temperatures;
 
 void Installer::register_components(ContainerBuilder& builder) {
-    builder.registerType<Factories::TemperaturesMessageBusNodeFactory>()
-            .as<Interfaces::Factories::ITemperaturesMessageBusNodeFactory>();
+    builder.registerType<Factories::MessageBusNodeFactory<TemperaturesMessageBusNode>>()
+            .as<Interfaces::Factories::IMessageBusNodeFactory<TemperaturesMessageBusNode>>();
     builder.registerType<Monitors::Temperatures::TemperaturesMessageHandler>()
             .as<Interfaces::Monitors::Temperatures::ITemperaturesMessageHandler>();
     builder.registerType<Publishers::Messages::TemperaturesMessage>();

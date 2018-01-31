@@ -11,7 +11,7 @@
 #include "TemperaturesMessageHandler.h"
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "Common/Interfaces/ILogger.h"
-#include "../../Interfaces/Factories/ITemperaturesMessageBusNodeFactory.h"
+#include "../../Interfaces/Factories/IMessageBusNodeFactory.h"
 
 #define SUBSCRIBER_ID "TemperaturesMessageHandler"
 
@@ -22,18 +22,18 @@ namespace Monitors {
 namespace Temperatures {
 
 TemperaturesMessageHandler::TemperaturesMessageHandler(ILogger_SPtr logger,
-                                                       ITemperaturesMessageBusNodeFactory_SPtr bus_node_factory)
+                                                       IMessageBusNodeFactory_SPtr<Sauerteig::Monitors::Temperatures::TemperaturesMessageBusNode> factory)
         : m_logger(logger) {
     if (m_logger == nullptr) {
         throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'logger' is null!", "logger");
     }
 
-    if (bus_node_factory == nullptr) {
-        throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'bus_node_factory' is null!",
-                                       "bus_node_factory");
+    if (factory == nullptr) {
+        throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'factory' is null!",
+                                       "factory");
     }
 
-    m_bus_node = bus_node_factory->create(SUBSCRIBER_ID);
+    m_bus_node = factory->create(SUBSCRIBER_ID);
 
     if (m_bus_node == nullptr) {
         throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'bus_node' is null!",
