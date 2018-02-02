@@ -17,7 +17,6 @@
 #include "../Publishers/Messages/TemperaturesMessage.h"
 #include "../Publishers/Messages/TemperaturesSetCorrectionMessage.h"
 #include "../Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
-#include "../Interfaces/Publishers/ITemperaturesPublisherSettings.h"
 #include "TemperaturesSetCorrectionMessageBusNode.h"
 
 #define SUBSCRIPTION_ID "TemperaturesPublisher"
@@ -85,11 +84,6 @@ TemperaturesPublisher::TemperaturesPublisher(ILogger_SPtr logger, IBus_SPtr bus,
     m_logger->set_prefix("TemperaturesPublisher");
     m_inside->initialize(inside);
     m_outside->initialize(outside);
-
-    auto message = make_shared<TemperaturesSetCorrectionMessage>();
-    message->inside_average_value_correction = (celsius) 100.0;
-    message->outside_average_value_correction = (celsius) 200.0;
-    m_bus->publish(message);
 }
 
 void TemperaturesPublisher::publish() {

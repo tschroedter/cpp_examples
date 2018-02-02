@@ -71,7 +71,7 @@ void TemperaturesSetCorrectionMessageBusNode::onNotify(BaseMessage_SPtr p_base_m
     m_settings->set_inside_average_value_correction(inside);
     m_settings->set_outside_average_value_correction(outside);
 
-    string text = corrections_to_string(inside, outside);
+    string text = corrections_to_string(inside, outside);   // todo change custom to_string() methods to <<
 
     m_logger->info(text);
 }

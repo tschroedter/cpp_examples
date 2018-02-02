@@ -35,6 +35,10 @@
 #include "InMemoryBus/Notifiers/INotifierThreadPool.h"
 #include "InMemoryBus/Notifiers/Failed/IFailedMessageQueueProcessor.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
+#include "Interfaces/Publishers/ITemperaturesPublisherSettings.h"
+#include "Publishers/Messages/TemperaturesSetCorrectionMessage.h"
+
+using namespace std;
 
 void make_linker_happy() {
     uuid_t id;
@@ -72,8 +76,10 @@ int main(void) {
         logger->set_prefix("Sauerteig");
         logger->set_log_level(Common::LogLevel::Enum::INFO);
 
-        IThreadInformationProvider_SPtr provider = container->resolve<Common::Interfaces::IThreadInformationProvider>();
+        auto provider = container->resolve<Common::Interfaces::IThreadInformationProvider>();
         logger->info("Sauerteig Main PID: " + provider->get_thread_process_id_as_string());
+
+        auto bus = container->resolve<InMemoryBus::IBus>();
 
         // start ibus
         auto notifier_pool = container->resolve<::InMemoryBus::Notifiers::INotifierThreadPool>();
@@ -95,6 +101,13 @@ int main(void) {
                 ->resolve<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor>();
         std::thread temperatures_monitor_thread { std::thread([monitor]() {(*monitor)();}) };
 
+        // Sauerteig init...
+        auto message = make_shared<Sauerteig::Publishers::Messages::TemperaturesSetCorrectionMessage>();
+        message->inside_average_value_correction = (celsius) 100.0;
+        message->outside_average_value_correction = (celsius) 200.0;
+        bus->publish(message);
+
+        // Sauerteig run...
         IHeatingUnit_SPtr heading_unit = container->resolve<Hardware::Units::Interfaces::IO::Heaters::IHeatingUnit>();
         ICoolingUnit_SPtr cooling_unit = container->resolve<Hardware::Units::Interfaces::IO::Coolers::ICoolingUnit>();
 
