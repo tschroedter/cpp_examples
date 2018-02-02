@@ -9,6 +9,7 @@
 #define SRC_PUBLISHERS_TEMPERATURESSETCORRECTIONMESSAGEBUSNODE_H_
 
 #include <memory.h>
+#include <string>
 #include "Common/CommonTypes.h"
 #include "Common/Interfaces/ILogger.h"
 #include "InMemoryBus/IBus.h"
@@ -36,6 +37,8 @@ class TemperaturesSetCorrectionMessageBusNode : public BusNode {
  private:
     ILogger_SPtr m_logger = nullptr;
     ITemperaturesPublisherSettings_SPtr m_settings = nullptr;
+
+    string corrections_to_string(celsius inside, celsius outside);
 };
 
 }

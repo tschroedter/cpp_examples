@@ -6,6 +6,8 @@
  */
 #include <memory.h>
 #include <mutex>
+#include <string>
+#include <sstream>
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "Common/CommonTypes.h"
 #include "Common/Interfaces/ILogger.h"
@@ -51,6 +53,15 @@ TemperaturesSetCorrectionMessageBusNode::TemperaturesSetCorrectionMessageBusNode
     m_logger->set_prefix("TemperaturesSetCorrectionMessageBusNode");
 }
 
+string TemperaturesSetCorrectionMessageBusNode::corrections_to_string(celsius inside, celsius outside) {
+    stringstream ss { };
+
+    ss << "Inside Correction: " << to_string(inside) << " "
+       << "Outside Correction: " << to_string(outside);
+
+    return ss.str();
+}
+
 void TemperaturesSetCorrectionMessageBusNode::onNotify(BaseMessage_SPtr p_base_message) {
     TemperaturesSetCorrectionMessage_SPtr message = std::dynamic_pointer_cast<TemperaturesSetCorrectionMessage>(p_base_message);
 
@@ -60,7 +71,9 @@ void TemperaturesSetCorrectionMessageBusNode::onNotify(BaseMessage_SPtr p_base_m
     m_settings->set_inside_average_value_correction(inside);
     m_settings->set_outside_average_value_correction(outside);
 
-    m_logger->info("Updated temperatures corrections!");
+    string text = corrections_to_string(inside, outside);
+
+    m_logger->info(text);
 }
 
 }
