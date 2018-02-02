@@ -20,6 +20,7 @@
 #define INTERVAL_IN_SECONDS 1
 
 using namespace Sauerteig::Interfaces::Monitors::Temperatures;
+using namespace Sauerteig::Monitors::Temperatures;
 
 namespace Sauerteig {
 namespace Monitors {
@@ -27,7 +28,7 @@ namespace Temperatures {
 
 class TemperaturesMessageHandler : public ITemperaturesMessageHandler {
  public:
-    TemperaturesMessageHandler(ILogger_SPtr logger, IMessageBusNodeFactory_SPtr<Sauerteig::Monitors::Temperatures::TemperaturesMessageBusNode> factory);
+    TemperaturesMessageHandler(ILogger_SPtr logger, IMessageBusNodeFactory_SPtr<TemperaturesMessageBusNode> factory);
     virtual ~TemperaturesMessageHandler() = default;
 
     celsius get_inside_average_value() const override;

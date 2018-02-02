@@ -25,7 +25,7 @@ class BusNode {
   virtual void update();
 
  protected:
-  IBus_SPtr m_bus;
+  IBus_SPtr m_bus = nullptr;
   string m_subscriber_id;
   string m_message_type;
 

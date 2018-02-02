@@ -16,13 +16,14 @@
 #define SUBSCRIBER_ID "TemperaturesMessageHandler"
 
 using namespace Common::Exceptions;
+using namespace Sauerteig::Monitors::Temperatures;
 
 namespace Sauerteig {
 namespace Monitors {
 namespace Temperatures {
 
 TemperaturesMessageHandler::TemperaturesMessageHandler(ILogger_SPtr logger,
-                                                       IMessageBusNodeFactory_SPtr<Sauerteig::Monitors::Temperatures::TemperaturesMessageBusNode> factory)
+                                                       IMessageBusNodeFactory_SPtr<TemperaturesMessageBusNode> factory)
         : m_logger(logger) {
     if (m_logger == nullptr) {
         throw ArgumentInvalidException("Can't create TemperaturesMessageHandler because 'logger' is null!", "logger");
