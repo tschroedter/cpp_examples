@@ -15,6 +15,12 @@
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureOutside.h"
 #include "InMemoryBus/IBus.h"
 #include "../Publishers/Messages/TemperaturesMessage.h"
+#include "../Publishers/Messages/TemperaturesSetCorrectionMessage.h"
+#include "../Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
+#include "../Interfaces/Publishers/ITemperaturesPublisherSettings.h"
+#include "TemperaturesSetCorrectionMessageBusNode.h"
+
+#define SUBSCRIPTION_ID "TemperaturesPublisher"
 
 using namespace std;
 using namespace Common::Exceptions;
@@ -27,7 +33,8 @@ TemperaturesPublisher::TemperaturesPublisher(ILogger_SPtr logger, IBus_SPtr bus,
                                              IThreadInformationProvider_SPtr provider, ITemperatureInside_SPtr inside,
                                              ITemperatureOutside_SPtr outside,
                                              ITemperatureSensorWithStatistics_SPtr inside_with_statistics,
-                                             ITemperatureSensorWithStatistics_SPtr outside_with_statistics)
+                                             ITemperatureSensorWithStatistics_SPtr outside_with_statistics,
+                                             ITemperaturesSetCorrectionMessageBusNodeFactory_SPtr factory)
         : m_logger(logger),
           m_bus(bus),
           m_provider(provider),
@@ -63,9 +70,26 @@ TemperaturesPublisher::TemperaturesPublisher(ILogger_SPtr logger, IBus_SPtr bus,
                                        "outside_with_statistics");
     }
 
+    if (factory == nullptr) {
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'factory' is null!",
+                                       "factory");
+    }
+
+    m_bus_node = factory->create(SUBSCRIPTION_ID);
+
+    if (m_bus_node == nullptr) {
+        throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'm_busnode' is null!",
+                                       "m_busnode");
+    }
+
     m_logger->set_prefix("TemperaturesPublisher");
     m_inside->initialize(inside);
     m_outside->initialize(outside);
+
+    auto message = make_shared<TemperaturesSetCorrectionMessage>();
+    message->inside_average_value_correction = (celsius) 100.0;
+    message->outside_average_value_correction = (celsius) 200.0;
+    m_bus->publish(message);
 }
 
 void TemperaturesPublisher::publish() {

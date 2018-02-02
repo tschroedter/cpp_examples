@@ -21,6 +21,7 @@
 #include "Common/Interfaces/IThreadInformationProvider.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
+#include "Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
 #include "Hardware/Abstract/Interfaces/IO/IFlashable.h"
 #include "Hardware/Abstract/Interfaces/IO/LEDs/ISSRLEDFlashing.h"
 #include "Hardware/Units/Interfaces/IO/Heaters/IHeatingUnit.h"
@@ -82,6 +83,9 @@ int main(void) {
         failed_messages_processor->initialize();
 
         // start publishing messages
+        auto settings = container->resolve<Sauerteig::Interfaces::Publishers::ITemperaturesPublisherSettings>();
+        auto factory = container->resolve<Sauerteig::Interfaces::Factories::ITemperaturesSetCorrectionMessageBusNodeFactory>();
+
         ITemperaturesPublisher_SPtr temperatures_publisher = container
                 ->resolve<Sauerteig::Interfaces::Publishers::ITemperaturesPublisher>();
         std::thread temperatures_publisher_thread { std::thread(

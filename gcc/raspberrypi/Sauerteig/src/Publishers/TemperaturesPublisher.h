@@ -19,6 +19,9 @@
 #include "InMemoryBus/IBus.h"
 #include "Common/Interfaces/IThreadInformationProvider.h"
 #include "../Interfaces/Publishers/ITemperaturesPublisher.h"
+#include "../Interfaces/Publishers/ITemperaturesPublisherSettings.h"
+#include "../Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
+#include "TemperaturesSetCorrectionMessageBusNode.h"
 
 using namespace Sauerteig::Interfaces::Publishers;
 
@@ -31,7 +34,8 @@ class TemperaturesPublisher : public ITemperaturesPublisher {
     TemperaturesPublisher(ILogger_SPtr logger, IBus_SPtr bus, IThreadInformationProvider_SPtr provider,
                           ITemperatureInside_SPtr inside, ITemperatureOutside_SPtr outside,
                           ITemperatureSensorWithStatistics_SPtr inside_with_statistics,
-                          ITemperatureSensorWithStatistics_SPtr outside_with_statistics);
+                          ITemperatureSensorWithStatistics_SPtr outside_with_statistics,
+                          ITemperaturesSetCorrectionMessageBusNodeFactory_SPtr factory);
 
     virtual ~TemperaturesPublisher() = default;
 
@@ -54,6 +58,7 @@ class TemperaturesPublisher : public ITemperaturesPublisher {
     IThreadInformationProvider_SPtr m_provider = nullptr;
     ITemperatureSensorWithStatistics_SPtr m_inside = nullptr;
     ITemperatureSensorWithStatistics_SPtr m_outside = nullptr;
+    TemperaturesSetCorrectionMessageBusNode_SPtr m_bus_node = nullptr;
 };
 
 }
