@@ -33,7 +33,7 @@ TemperaturesPublisher::TemperaturesPublisher(ILogger_SPtr logger, IBus_SPtr bus,
                                              ITemperatureOutside_SPtr outside,
                                              ITemperatureSensorWithStatistics_SPtr inside_with_statistics,
                                              ITemperatureSensorWithStatistics_SPtr outside_with_statistics,
-                                             ITemperaturesSetCorrectionMessageBusNodeFactory_SPtr factory)
+                                             ITemperaturesSetCorrectionMessageBusNodeFactory_SPtr factory) // Todo general class creating these
         : m_logger(logger),
           m_bus(bus),
           m_provider(provider),

@@ -9,6 +9,8 @@
 #define SRC_INTERFACES_FACTORIES_IMESSAGEBUSNODEFACTORY_H_
 
 #include <memory>
+#include <assert.h>
+#include <string>
 
 using namespace std;
 
@@ -23,7 +25,7 @@ class IMessageBusNodeFactory {
 
     virtual shared_ptr<T> create(string subscriber_id) = 0;
     virtual void release(shared_ptr<T> bus_node) = 0;
-};
+    };
 
 }
 }
