@@ -20,6 +20,7 @@
 #include "Common/LogLevel.h"
 #include "Common/Interfaces/IThreadInformationProvider.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
+#include "Interfaces/Monitors/Settings/ISettingsMonitor.h"
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
 #include "Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
 #include "Hardware/Abstract/Interfaces/IO/IFlashable.h"
@@ -34,9 +35,10 @@
 #include "InMemoryBus/Subscribtions/Subscribers/UnknownSubscriberInformationEntityEntity.h"
 #include "InMemoryBus/Notifiers/INotifierThreadPool.h"
 #include "InMemoryBus/Notifiers/Failed/IFailedMessageQueueProcessor.h"
+
+#include "Interfaces/ISettings.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
-#include "Interfaces/Publishers/ITemperaturesPublisherSettings.h"
-#include "Publishers/Messages/TemperaturesSetCorrectionMessage.h"
+#include "Messages/TemperaturesSetCorrectionMessage.h"
 
 using namespace std;
 
@@ -88,21 +90,22 @@ int main(void) {
                 ->resolve<::InMemoryBus::Notifiers::Failed::IFailedMessageQueueProcessor>();
         failed_messages_processor->initialize();
 
-        // start publishing messages
-        auto settings = container->resolve<Sauerteig::Interfaces::Publishers::ITemperaturesPublisherSettings>();
-        auto factory = container->resolve<Sauerteig::Interfaces::Factories::ITemperaturesSetCorrectionMessageBusNodeFactory>();
-
+        // Sauerteig init...
         ITemperaturesPublisher_SPtr temperatures_publisher = container
                 ->resolve<Sauerteig::Interfaces::Publishers::ITemperaturesPublisher>();
         std::thread temperatures_publisher_thread { std::thread(
                 [temperatures_publisher]() {(*temperatures_publisher)();}) };
 
-        ITemperaturesMonitor_SPtr monitor = container
+        ITemperaturesMonitor_SPtr temperatures_monitor = container
                 ->resolve<Sauerteig::Interfaces::Monitors::Temperatures::ITemperaturesMonitor>();
-        std::thread temperatures_monitor_thread { std::thread([monitor]() {(*monitor)();}) };
+        std::thread temperatures_monitor_thread { std::thread([temperatures_monitor]() {(*temperatures_monitor)();}) };
 
-        // Sauerteig init...
-        auto message = make_shared<Sauerteig::Publishers::Messages::TemperaturesSetCorrectionMessage>();
+        ISettingsMonitor_SPtr settings_monitor = container
+                ->resolve<Sauerteig::Interfaces::Monitors::Settings::ISettingsMonitor>();
+        std::thread settings_monitor_thread { std::thread([settings_monitor]() {(*settings_monitor)();}) };
+
+        // Sauerteig run...
+        auto message = make_shared<Sauerteig::Messages::TemperaturesSetCorrectionMessage>();
         message->inside_average_value_correction = (celsius) 100.0;
         message->outside_average_value_correction = (celsius) 200.0;
         bus->publish(message);

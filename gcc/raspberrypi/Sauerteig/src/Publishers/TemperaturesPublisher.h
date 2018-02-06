@@ -19,9 +19,9 @@
 #include "InMemoryBus/IBus.h"
 #include "Common/Interfaces/IThreadInformationProvider.h"
 #include "../Interfaces/Publishers/ITemperaturesPublisher.h"
-#include "../Interfaces/Publishers/ITemperaturesPublisherSettings.h"
+#include "../Interfaces/ISettings.h"
 #include "../Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
-#include "TemperaturesSetCorrectionMessageBusNode.h"
+#include "../BusNodes/TemperaturesSetCorrectionMessageBusNode.h"
 
 using namespace Sauerteig::Interfaces::Publishers;
 

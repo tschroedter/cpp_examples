@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef SRC_MONITORS_TEMPERATURES_TEMPERATURESMESSAGEBUSNODE_H_
-#define SRC_MONITORS_TEMPERATURES_TEMPERATURESMESSAGEBUSNODE_H_
+#ifndef SRC_BUSNODES_TEMPERATURESMESSAGEBUSNODE_H_
+#define SRC_BUSNODES_TEMPERATURESMESSAGEBUSNODE_H_
 
 #include <memory.h>
 #include <mutex>
@@ -19,8 +19,7 @@ using namespace std;
 using namespace InMemoryBus::Common;
 
 namespace Sauerteig {
-namespace Monitors {
-namespace Temperatures {
+namespace BusNodes {
 
 class TemperaturesMessageBusNode : public BusNode {
  public:
@@ -49,8 +48,7 @@ class TemperaturesMessageBusNode : public BusNode {
 
 }
 }
-}
 
-typedef shared_ptr<Sauerteig::Monitors::Temperatures::TemperaturesMessageBusNode> TemperaturesMessageBusNode_SPtr;
+typedef shared_ptr<Sauerteig::BusNodes::TemperaturesMessageBusNode> TemperaturesMessageBusNode_SPtr;
 
-#endif /* SRC_MONITORS_TEMPERATURES_TEMPERATURESMESSAGEBUSNODE_H_ */
+#endif /* SRC_BUSNODES_TEMPERATURESMESSAGEBUSNODE_H_ */

@@ -5,10 +5,10 @@
  *      Author: tom
  */
 
-#ifndef SRC_PUBLISHERS_MESSAGES_TEMPERATURESSETCORRECTIONMESSAGE_H_
-#define SRC_PUBLISHERS_MESSAGES_TEMPERATURESSETCORRECTIONMESSAGE_H_
+#ifndef SRC_MESSAGES_TEMPERATURESSETCORRECTIONMESSAGE_H_
+#define SRC_MESSAGES_TEMPERATURESSETCORRECTIONMESSAGE_H_
 
-#define MESSAGE_TYPE "TemperaturesSetCorrectionMessage"
+#define TEMPERATURESSETCORRECTION_MESSAGE_TYPE "TemperaturesSetCorrectionMessage"
 
 #include <memory.h>
 #include <string.h>
@@ -19,13 +19,12 @@ using namespace std;
 using namespace InMemoryBus::Common;
 
 namespace Sauerteig {
-namespace Publishers {
 namespace Messages {
 
 class TemperaturesSetCorrectionMessage : public BaseMessage {
  public:
     TemperaturesSetCorrectionMessage()
-            : BaseMessage(MESSAGE_TYPE) {
+            : BaseMessage(TEMPERATURESSETCORRECTION_MESSAGE_TYPE) {
     };
 
     virtual ~TemperaturesSetCorrectionMessage() = default;
@@ -47,8 +46,7 @@ class TemperaturesSetCorrectionMessage : public BaseMessage {
 
 }
 }
-}
 
-typedef shared_ptr<Sauerteig::Publishers::Messages::TemperaturesSetCorrectionMessage> TemperaturesSetCorrectionMessage_SPtr;
+typedef shared_ptr<Sauerteig::Messages::TemperaturesSetCorrectionMessage> TemperaturesSetCorrectionMessage_SPtr;
 
-#endif /* SRC_PUBLISHERS_MESSAGES_TEMPERATURESSETCORRECTIONMESSAGE_H_ */
+#endif /* SRC_MESSAGES_TEMPERATURESSETCORRECTIONMESSAGE_H_ */

@@ -24,7 +24,7 @@ TemperaturesMonitor::TemperaturesMonitor(ILogger_SPtr logger, IThreadInformation
         : m_logger(logger),
           m_provider(provider),
           m_handler(handler),
-          m_converter(converter) {
+          m_converter(converter){
     if (m_logger == nullptr) {
         throw ArgumentInvalidException("Can't create TemperaturesMonitor because 'logger' is null!", "logger");
     }

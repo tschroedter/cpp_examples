@@ -13,14 +13,14 @@
 #include <thread>
 #include <chrono>
 #include "Common/Interfaces/ILogger.h"
-#include "TemperaturesMessageBusNode.h"
+#include "../../BusNodes/TemperaturesMessageBusNode.h"
 #include "../../Interfaces/Factories/IMessageBusNodeFactory.h"
 #include "../../Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
 
 #define INTERVAL_IN_SECONDS 1
 
 using namespace Sauerteig::Interfaces::Monitors::Temperatures;
-using namespace Sauerteig::Monitors::Temperatures;
+using namespace Sauerteig::BusNodes;
 
 namespace Sauerteig {
 namespace Monitors {

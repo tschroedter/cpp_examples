@@ -13,19 +13,18 @@
 #include "InMemoryBus/IBus.h"
 #include "InMemoryBus/Common/BusNode.h"
 #include "InMemoryBus/Common/BaseMessage.h"
-#include "../../Publishers/Messages/TemperaturesMessage.h"
+#include "../Messages/TemperaturesMessage.h"
 
 
 using namespace InMemoryBus::Common;
 using namespace Common::Exceptions;
-using namespace Sauerteig::Publishers::Messages;
+using namespace Sauerteig::Messages;
 
 namespace Sauerteig {
-namespace Monitors {
-namespace Temperatures {
+namespace BusNodes {
 
 TemperaturesMessageBusNode::TemperaturesMessageBusNode(ILogger_SPtr logger, IBus_SPtr bus, std::string subscriber_id)
-        : BusNode(bus, subscriber_id, TEMPERATURESMESSAGE_MESSAGE_TYPE),
+        : BusNode(bus, subscriber_id, TEMPERATURES_MESSAGE_TYPE),
           m_logger(logger),
           m_bus(bus),
           m_subscriber_id(subscriber_id) {
@@ -98,7 +97,6 @@ celsius TemperaturesMessageBusNode::get_outside_average__percent_valid() {
     return value;
 }
 
-}
 }
 }
 

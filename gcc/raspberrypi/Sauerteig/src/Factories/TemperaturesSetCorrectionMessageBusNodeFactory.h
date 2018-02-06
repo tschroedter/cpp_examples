@@ -11,9 +11,9 @@
 #include "Common/Interfaces/ILogger.h"
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "InMemoryBus/IBus.h"
-#include "../Publishers/TemperaturesPublisherSettings.h"
+#include "../Settings.h"
 #include "../Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
-#include "../Interfaces/Publishers/ITemperaturesPublisherSettings.h"
+#include "../Interfaces/ISettings.h"
 
 using namespace std;
 using namespace Common::Exceptions;
@@ -28,7 +28,7 @@ class TemperaturesSetCorrectionMessageBusNodeFactory : public ITemperaturesSetCo
     TemperaturesSetCorrectionMessageBusNodeFactory(
             ILogger_SPtr logger,
             IBus_SPtr bus,
-            ITemperaturesPublisherSettings_SPtr settings)
+            ISettings_SPtr settings)
          : m_logger(logger),
            m_bus(bus),
            m_settings(settings) {
@@ -59,7 +59,7 @@ class TemperaturesSetCorrectionMessageBusNodeFactory : public ITemperaturesSetCo
  private:
     ILogger_SPtr m_logger = nullptr;
     IBus_SPtr m_bus = nullptr;
-    ITemperaturesPublisherSettings_SPtr m_settings = nullptr;
+    ISettings_SPtr m_settings = nullptr;
 };
 
 }

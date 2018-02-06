@@ -10,7 +10,7 @@
 
 #include <Common/Interfaces/IThreadInformationProvider.h>
 #include <thread>
-#include <string.h>
+#include <string>
 #include <iostream>
 #include "Common/Interfaces/ILogger.h"
 #include "../../Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"

@@ -14,16 +14,16 @@
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureInside.h"
 #include "Hardware/Units/Interfaces/IO/Sensors/ITemperatureOutside.h"
 #include "InMemoryBus/IBus.h"
-#include "../Publishers/Messages/TemperaturesMessage.h"
-#include "../Publishers/Messages/TemperaturesSetCorrectionMessage.h"
+#include "../Messages/TemperaturesMessage.h"
+#include "../Messages/TemperaturesSetCorrectionMessage.h"
 #include "../Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
-#include "TemperaturesSetCorrectionMessageBusNode.h"
+#include "../BusNodes/TemperaturesSetCorrectionMessageBusNode.h"
 
 #define SUBSCRIPTION_ID "TemperaturesPublisher"
 
 using namespace std;
 using namespace Common::Exceptions;
-using namespace Sauerteig::Publishers::Messages;
+using namespace Sauerteig::Messages;
 
 namespace Sauerteig {
 namespace Publishers {

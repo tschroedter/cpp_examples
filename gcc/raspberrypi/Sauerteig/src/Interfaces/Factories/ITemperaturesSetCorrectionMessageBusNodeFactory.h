@@ -10,10 +10,10 @@
 
 #include <memory>
 #include "IMessageBusNodeFactory.h"
-#include "../../Publishers/TemperaturesSetCorrectionMessageBusNode.h"
+#include "../../BusNodes/TemperaturesSetCorrectionMessageBusNode.h"
 
 using namespace std;
-using namespace Sauerteig::Publishers;
+using namespace Sauerteig::BusNodes;
 
 namespace Sauerteig {
 namespace Interfaces {

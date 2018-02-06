@@ -5,10 +5,10 @@
  *      Author: tom
  */
 
-#ifndef SRC_PUBLISHERS_MESSAGES_TEMPERATURESMESSAGE_H_
-#define SRC_PUBLISHERS_MESSAGES_TEMPERATURESMESSAGE_H_
+#ifndef SRC_MESSAGES_TEMPERATURESMESSAGE_H_
+#define SRC_MESSAGES_TEMPERATURESMESSAGE_H_
 
-#define TEMPERATURESMESSAGE_MESSAGE_TYPE "TemperaturesMessage"
+#define TEMPERATURES_MESSAGE_TYPE "TemperaturesMessage"
 
 #include <memory.h>
 #include <string.h>
@@ -19,13 +19,12 @@ using namespace std;
 using namespace InMemoryBus::Common;
 
 namespace Sauerteig {
-namespace Publishers {
 namespace Messages {
 
 class TemperaturesMessage : public BaseMessage {
  public:
     TemperaturesMessage()
-            : BaseMessage(TEMPERATURESMESSAGE_MESSAGE_TYPE) {
+            : BaseMessage(TEMPERATURES_MESSAGE_TYPE) {
     }
     ;
     virtual ~TemperaturesMessage() = default;
@@ -47,8 +46,7 @@ class TemperaturesMessage : public BaseMessage {
 
 }
 }
-}
 
-typedef shared_ptr<Sauerteig::Publishers::Messages::TemperaturesMessage> TemperaturesMessage_SPtr;
+typedef shared_ptr<Sauerteig::Messages::TemperaturesMessage> TemperaturesMessage_SPtr;
 
-#endif /* SRC_PUBLISHERS_MESSAGES_TEMPERATURESMESSAGE_H_ */
+#endif /* SRC_MESSAGES_TEMPERATURESMESSAGE_H_ */
