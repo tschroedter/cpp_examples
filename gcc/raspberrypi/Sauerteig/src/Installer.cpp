@@ -12,14 +12,23 @@
 #include "Monitors/Temperatures/TemperatureSensorToStringConverter.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
 #include "Monitors/Settings/SettingsMonitor.h"
+#include "Monitors/Units/HeaterOffMessageHandler.h"
+#include "Monitors/Units/HeaterOnMessageHandler.h"
 #include "BusNodes/TemperaturesSetCorrectionMessageBusNode.h"
+#include "BusNodes/HeaterOffMessageBusNode.h"
+#include "BusNodes/HeaterOnMessageBusNode.h"
 #include "Publishers/TemperaturesPublisher.h"
 #include "Messages/TemperaturesMessage.h"
 #include "Messages/TemperaturesSetCorrectionMessage.h"
+#include "Messages/HeaterOffMessage.h"
+#include "Messages/HeaterOnMessage.h"
 #include "Interfaces/Factories/IMessageBusNodeFactory.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
 #include "Interfaces/Monitors/Temperatures/ITemperatureSensorToStringConverter.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
+#include "Interfaces/Monitors/Units/IHeaterMonitor.h"
+#include "Interfaces/Monitors/Units/IHeaterOffMessageHandler.h"
+#include "Interfaces/Monitors/Units/IHeaterOnMessageHandler.h"
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
 #include "Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
 #include "Interfaces/Monitors/Settings/ISettingsMonitor.h"
@@ -35,19 +44,34 @@ using namespace Sauerteig::Publishers;
 void Installer::register_components(ContainerBuilder& builder) {
     builder.registerType<Messages::TemperaturesMessage>();
     builder.registerType<Messages::TemperaturesSetCorrectionMessage>();
+    builder.registerType<Messages::HeaterOnMessage>();
+    builder.registerType<Messages::HeaterOffMessage>();
 
     builder.registerType<Factories::MessageBusNodeFactory<TemperaturesMessageBusNode>>()
             .as<Interfaces::Factories::IMessageBusNodeFactory<TemperaturesMessageBusNode>>();
+    builder.registerType<Factories::MessageBusNodeFactory<HeaterOffMessageBusNode>>()
+            .as<Interfaces::Factories::IMessageBusNodeFactory<HeaterOffMessageBusNode>>();
+    builder.registerType<Factories::MessageBusNodeFactory<HeaterOnMessageBusNode>>()
+            .as<Interfaces::Factories::IMessageBusNodeFactory<HeaterOnMessageBusNode>>();
+
+    /*
     builder.registerType<Factories::MessageBusNodeFactory<TemperaturesSetCorrectionMessageBusNode>>()
             .as<Interfaces::Factories::IMessageBusNodeFactory<TemperaturesSetCorrectionMessageBusNode>>();
+            */
 
     builder.registerType<Factories::TemperaturesSetCorrectionMessageBusNodeFactory>()
             .as<Interfaces::Factories::ITemperaturesSetCorrectionMessageBusNodeFactory>();
 
     builder.registerType<Monitors::Settings::SettingsMonitor>()
                 .as<Interfaces::Monitors::Settings::ISettingsMonitor>();
+
     builder.registerType<Monitors::Temperatures::TemperaturesMessageHandler>()
             .as<Interfaces::Monitors::Temperatures::ITemperaturesMessageHandler>();
+    builder.registerType<Monitors::Units::HeaterOffMessageHandler>()
+            .as<Interfaces::Monitors::Units::IHeaterOffMessageHandler>();
+    builder.registerType<Monitors::Units::HeaterOnMessageHandler>()
+            .as<Interfaces::Monitors::Units::IHeaterOnMessageHandler>();
+
     builder.registerType<Monitors::Temperatures::TemperatureSensorToStringConverter>()
             .as<Interfaces::Monitors::Temperatures::ITemperatureSensorToStringConverter>();
 
