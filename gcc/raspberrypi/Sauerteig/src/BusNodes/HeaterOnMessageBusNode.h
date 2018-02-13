@@ -28,7 +28,7 @@ class HeaterOnMessageBusNode : public BusNode {
 
     virtual void onNotify(BaseMessage_SPtr p_base_message) override;
 
-    virtual chrono::system_clock::time_point get_received();
+    virtual long get_received();
 
  private:
     ILogger_SPtr m_logger = nullptr;
@@ -37,7 +37,7 @@ class HeaterOnMessageBusNode : public BusNode {
 
     mutex m_mutex{};
 
-    chrono::system_clock::time_point m_received = chrono::system_clock::now();
+    long m_received = chrono::high_resolution_clock::now().time_since_epoch().count();
 };
 
 }

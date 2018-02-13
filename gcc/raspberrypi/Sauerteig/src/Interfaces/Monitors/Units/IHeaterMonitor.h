@@ -20,6 +20,9 @@ namespace Units {
 class IHeaterMonitor {
  public:
     virtual ~IHeaterMonitor() = default;
+
+    virtual void operator()() = 0;
+    virtual string to_string() const = 0;
 };
 
 }

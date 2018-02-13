@@ -12,6 +12,7 @@
 #include "Monitors/Temperatures/TemperatureSensorToStringConverter.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
 #include "Monitors/Settings/SettingsMonitor.h"
+#include "Monitors/Units/HeaterMonitor.h"
 #include "Monitors/Units/HeaterOffMessageHandler.h"
 #include "Monitors/Units/HeaterOnMessageHandler.h"
 #include "BusNodes/TemperaturesSetCorrectionMessageBusNode.h"
@@ -64,6 +65,8 @@ void Installer::register_components(ContainerBuilder& builder) {
 
     builder.registerType<Monitors::Settings::SettingsMonitor>()
                 .as<Interfaces::Monitors::Settings::ISettingsMonitor>();
+    builder.registerType<Monitors::Units::HeaterMonitor>()
+                .as<Interfaces::Monitors::Units::IHeaterMonitor>();
 
     builder.registerType<Monitors::Temperatures::TemperaturesMessageHandler>()
             .as<Interfaces::Monitors::Temperatures::ITemperaturesMessageHandler>();

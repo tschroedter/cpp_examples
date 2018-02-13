@@ -22,7 +22,7 @@ class IHeaterOffMessageHandler {
  public:
     virtual ~IHeaterOffMessageHandler() = default;
 
-    virtual std::chrono::system_clock::time_point get_received() = 0;
+    virtual long get_received() = 0;
 };
 
 }

@@ -30,7 +30,7 @@ class HeaterOffMessageHandler : public IHeaterOffMessageHandler {
     HeaterOffMessageHandler(ILogger_SPtr logger, IMessageBusNodeFactory_SPtr<HeaterOffMessageBusNode> factory);
     virtual ~HeaterOffMessageHandler() = default;
 
-    chrono::system_clock::time_point get_received() override;
+    long get_received() override;
 
  private:
     ILogger_SPtr m_logger = nullptr;

@@ -21,6 +21,7 @@
 #include "Common/Interfaces/IThreadInformationProvider.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
 #include "Interfaces/Monitors/Settings/ISettingsMonitor.h"
+#include "Interfaces/Monitors/Units/IHeaterMonitor.h"
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
 #include "Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
 #include "Hardware/Abstract/Interfaces/IO/IFlashable.h"
@@ -38,6 +39,8 @@
 
 #include "Interfaces/ISettings.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
+#include "Messages/HeaterOffMessage.h"
+#include "Messages/HeaterOnMessage.h"
 #include "Messages/TemperaturesSetCorrectionMessage.h"
 
 using namespace std;
@@ -104,11 +107,23 @@ int main(void) {
                 ->resolve<Sauerteig::Interfaces::Monitors::Settings::ISettingsMonitor>();
         std::thread settings_monitor_thread { std::thread([settings_monitor]() {(*settings_monitor)();}) };
 
+        IHeaterMonitor_SPtr heater_monitor = container
+                ->resolve<Sauerteig::Interfaces::Monitors::Units::IHeaterMonitor>();
+        std::thread heater_monitor_thread { std::thread([heater_monitor]() {(*heater_monitor)();}) };
+
         // Sauerteig run...
-        auto message = make_shared<Sauerteig::Messages::TemperaturesSetCorrectionMessage>();
-        message->inside_average_value_correction = (celsius) 100.0;
-        message->outside_average_value_correction = (celsius) 200.0;
-        bus->publish(message);
+        auto message1 = make_shared<Sauerteig::Messages::TemperaturesSetCorrectionMessage>();
+        message1->inside_average_value_correction = (celsius) 100.0;
+        message1->outside_average_value_correction = (celsius) 200.0;
+        bus->publish(message1);
+
+        auto message2 = make_shared<Sauerteig::Messages::HeaterOffMessage>();
+        bus->publish(message2);
+
+        // std::this_thread::sleep_for(std::chrono::seconds(5));
+
+        auto message3 = make_shared<Sauerteig::Messages::HeaterOnMessage>();
+        bus->publish(message3);
 
         // Sauerteig run...
         IHeatingUnit_SPtr heading_unit = container->resolve<Hardware::Units::Interfaces::IO::Heaters::IHeatingUnit>();
@@ -129,3 +144,4 @@ int main(void) {
 
     return (0);
 }
+

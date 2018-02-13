@@ -43,7 +43,7 @@ HeaterOnMessageHandler::HeaterOnMessageHandler(ILogger_SPtr logger,
     m_logger->set_prefix("HeaterOnMessageHandler");
 }
 
-chrono::system_clock::time_point HeaterOnMessageHandler::get_received() {
+long HeaterOnMessageHandler::get_received() {
     return m_bus_node->get_received();
 }
 

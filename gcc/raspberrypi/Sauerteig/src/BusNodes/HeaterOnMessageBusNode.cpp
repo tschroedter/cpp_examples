@@ -51,12 +51,12 @@ void HeaterOnMessageBusNode::onNotify(BaseMessage_SPtr p_base_message) {
 
     m_mutex.lock();
 
-    m_received = chrono::system_clock::now();
+    m_received = chrono::high_resolution_clock::now().time_since_epoch().count();
 
     m_mutex.unlock();
 }
 
-chrono::system_clock::time_point HeaterOnMessageBusNode::get_received() {
+long HeaterOnMessageBusNode::get_received() {
 
     m_mutex.lock();
 
