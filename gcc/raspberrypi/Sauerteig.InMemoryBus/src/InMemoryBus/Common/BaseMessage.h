@@ -10,6 +10,9 @@
 
 #include <string>
 #include <memory>
+#include <atomic>
+
+typedef ulong MessageIdType;
 
 namespace InMemoryBus {
 namespace Common {
@@ -23,7 +26,13 @@ class BaseMessage {
  public:
   BaseMessage(const string messageType);
   virtual ~BaseMessage() = default;
-  virtual string getType() const;
+  virtual string getType() const;   // todo rename to get_type
+  virtual MessageIdType get_id() const;
+  virtual void create_new_id();
+
+ protected:
+  MessageIdType m_id = 0;
+  static atomic_ulong next_id;
 };
 
 }

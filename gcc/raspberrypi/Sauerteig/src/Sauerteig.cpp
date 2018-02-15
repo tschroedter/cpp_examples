@@ -45,6 +45,8 @@
 
 using namespace std;
 
+std::atomic_ulong InMemoryBus::Common::BaseMessage::next_id(0);
+
 void make_linker_happy() {
     uuid_t id;
     uuid_generate(id);
@@ -117,24 +119,22 @@ int main(void) {
         message1->outside_average_value_correction = (celsius) 200.0;
         bus->publish(message1);
 
-        auto message2 = make_shared<Sauerteig::Messages::HeaterOffMessage>();
-        bus->publish(message2);
-
-        // std::this_thread::sleep_for(std::chrono::seconds(5));
-
-        auto message3 = make_shared<Sauerteig::Messages::HeaterOnMessage>();
-        bus->publish(message3);
-
         // Sauerteig run...
         IHeatingUnit_SPtr heading_unit = container->resolve<Hardware::Units::Interfaces::IO::Heaters::IHeatingUnit>();
         ICoolingUnit_SPtr cooling_unit = container->resolve<Hardware::Units::Interfaces::IO::Coolers::ICoolingUnit>();
 
+        auto message_on = make_shared<Sauerteig::Messages::HeaterOnMessage>();
+        auto message_off = make_shared<Sauerteig::Messages::HeaterOffMessage>();
+
         while (1) {
             heading_unit->on();
             cooling_unit->on();
+            bus->publish(message_off);
             std::this_thread::sleep_for(std::chrono::seconds(5));
+
             heading_unit->off();
             cooling_unit->off();
+            bus->publish(message_on);
             std::this_thread::sleep_for(std::chrono::seconds(5));
         }
     } catch (std::exception & ex) {

@@ -50,20 +50,21 @@ void HeaterOffMessageBusNode::onNotify(BaseMessage_SPtr p_base_message) {
 
     m_mutex.lock();
 
-    m_received = chrono::high_resolution_clock::now().time_since_epoch().count();
+    m_last_message_id = p_base_message->get_id();
 
     m_mutex.unlock();
 }
 
-long HeaterOffMessageBusNode::get_received() {
+MessageIdType HeaterOffMessageBusNode::get_last_message_id() {
 
     m_mutex.lock();
 
-    auto value = m_received;
+    auto value = m_last_message_id;
 
     m_mutex.unlock();
 
     return value;
 }
+
 }
 }

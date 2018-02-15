@@ -12,6 +12,7 @@
 #include "HeaterOffMessageHandler.h"
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "Common/Interfaces/ILogger.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 #include "../../BusNodes/HeaterOffMessageBusNode.h"
 #include "../../Interfaces/Factories/IMessageBusNodeFactory.h"
 
@@ -43,8 +44,8 @@ HeaterOffMessageHandler::HeaterOffMessageHandler(ILogger_SPtr logger,
     m_logger->set_prefix("HeaterOffMessageHandler");
 }
 
-long HeaterOffMessageHandler::get_received() {
-    return m_bus_node->get_received();
+MessageIdType HeaterOffMessageHandler::get_last_message_id() {
+    return m_bus_node->get_last_message_id();
 }
 
 }

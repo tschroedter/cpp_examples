@@ -14,12 +14,20 @@ namespace Common {
 using namespace std;
 
 BaseMessage::BaseMessage(const string messageType) {
-  this->m_messageType = messageType;
-
+  m_messageType = messageType;
 }
 
 string BaseMessage::getType() const {
-  return (this->m_messageType);
+  return (m_messageType);
+}
+
+MessageIdType BaseMessage::get_id() const {
+  return m_id;
+}
+
+void BaseMessage::create_new_id() {
+    next_id++;
+    m_id = next_id.load();
 }
 
 }

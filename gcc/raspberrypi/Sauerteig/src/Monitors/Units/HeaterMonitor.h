@@ -19,7 +19,7 @@
 #include "../../Interfaces/Monitors/Units/IHeaterOffMessageHandler.h"
 #include "../../Interfaces/Monitors/Units/IHeaterOnMessageHandler.h"
 
-#define HEATER_MONITOR_SLEEP_TIME_IN_SECONDS 30
+#define HEATER_MONITOR_SLEEP_TIME_IN_SECONDS 2 // todo set back to 30
 
 using namespace std;
 using namespace Sauerteig::Interfaces::Monitors::Units;

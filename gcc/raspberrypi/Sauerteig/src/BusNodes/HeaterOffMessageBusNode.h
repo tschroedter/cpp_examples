@@ -14,6 +14,7 @@
 #include "Common/Interfaces/ILogger.h"
 #include "InMemoryBus/IBus.h"
 #include "InMemoryBus/Common/BusNode.h"
+#include "InMemoryBus/Common/BaseMessage.h"
 
 using namespace std;
 using namespace InMemoryBus::Common;
@@ -28,7 +29,7 @@ class HeaterOffMessageBusNode : public BusNode {
 
     virtual void onNotify(BaseMessage_SPtr p_base_message) override;
 
-    virtual long get_received();
+    virtual MessageIdType get_last_message_id();
 
  private:
     ILogger_SPtr m_logger = nullptr;
@@ -37,7 +38,7 @@ class HeaterOffMessageBusNode : public BusNode {
 
     mutex m_mutex{};
 
-    long m_received = chrono::high_resolution_clock::now().time_since_epoch().count();
+    MessageIdType m_last_message_id = 0;
 };
 
 }

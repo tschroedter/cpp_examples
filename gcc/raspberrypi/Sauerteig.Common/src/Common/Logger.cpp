@@ -92,11 +92,22 @@ string Logger::create_log_line(string debug_level, string message) const {
     ss << " " << message;
 
     return (ss.str());
+
+    /*
+     auto m_received = chrono::high_resolution_clock::now().time_since_epoch().count();
+
+    auto tpse = chrono::high_resolution_clock::now().time_since_epoch();
+
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(tpse).count() % 1000;   // todo maybe use this in logger
+
+    std::cout << "*****" << ms;
+     *
+     */
 }
 
 string Logger::create_timestamp() const {
-    auto now = chrono::system_clock::now();
-    time_t now_time_t = chrono::system_clock::to_time_t(now);
+    auto now = chrono::high_resolution_clock::now();
+    time_t now_time_t = chrono::high_resolution_clock::to_time_t(now);
 
     string datetime { ctime(&now_time_t) };
     string datetime_without_return = datetime.substr(0, datetime.length() - 1);

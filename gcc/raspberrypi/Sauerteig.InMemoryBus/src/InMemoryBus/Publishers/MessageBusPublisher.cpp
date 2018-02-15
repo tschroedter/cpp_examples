@@ -33,6 +33,8 @@ MessageBusPublisher::MessageBusPublisher(MessageBusSynchronization_SPtr synchron
 void MessageBusPublisher::publish(BaseMessage_SPtr message) {
   std::lock_guard<std::mutex> guard(m_synchronization->mutex_thread_pool);
 
+  message->create_new_id();
+
   m_messages->enqueue(message);
 
   m_synchronization->is_messages_avalable_for_thread_pool = true;

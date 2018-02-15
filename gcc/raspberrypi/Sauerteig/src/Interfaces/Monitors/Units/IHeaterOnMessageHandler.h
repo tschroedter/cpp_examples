@@ -10,6 +10,7 @@
 
 #include <memory>
 #include <chrono>
+#include "InMemoryBus/Common/BaseMessage.h"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ class IHeaterOnMessageHandler {
  public:
     virtual ~IHeaterOnMessageHandler() = default;
 
-    virtual long get_received() = 0;
+    virtual MessageIdType get_last_message_id() = 0;
 };
 
 }

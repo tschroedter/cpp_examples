@@ -50,11 +50,10 @@ HeaterMonitor::HeaterMonitor(ILogger_SPtr logger, IThreadInformationProvider_SPt
 
 void HeaterMonitor::update()
 {
-    using namespace std::chrono;
-        long on = m_on_handler->get_received();
-        long off = m_off_handler->get_received();
+    auto on = m_on_handler->get_last_message_id();
+    auto off = m_off_handler->get_last_message_id();
 
-        m_is_heater_on = (on > off);
+    m_is_heater_on = (on > off);
 }
 
 string HeaterMonitor::to_string() const {
