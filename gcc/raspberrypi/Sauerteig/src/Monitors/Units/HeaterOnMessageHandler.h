@@ -10,6 +10,7 @@
 
 #include <memory>
 #include <chrono>
+#include "BaseOnOffMessageHandler.h"
 #include "Common/Interfaces/ILogger.h"
 #include "InMemoryBus/Common/BaseMessage.h"
 #include "../../BusNodes/HeaterOnMessageBusNode.h"
@@ -26,16 +27,12 @@ namespace Sauerteig {
 namespace Monitors {
 namespace Units {
 
-class HeaterOnMessageHandler : public IHeaterOnMessageHandler {
+class HeaterOnMessageHandler : public BaseOnOffMessageHandler<HeaterOnMessageBusNode>, public IHeaterOnMessageHandler {
  public:
     HeaterOnMessageHandler(ILogger_SPtr logger, IMessageBusNodeFactory_SPtr<HeaterOnMessageBusNode> factory);
     virtual ~HeaterOnMessageHandler() = default;
 
     MessageIdType get_last_message_id() override;
-
- private:
-    ILogger_SPtr m_logger = nullptr;
-    HeaterOnMessageBusNode_SPtr m_bus_node = nullptr;
 };
 
 }

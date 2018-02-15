@@ -9,8 +9,7 @@
 #define SRC_INTERFACES_MONITORS_UNITS_IHEATEROFFMESSAGEHANDLER_H_
 
 #include <memory>
-#include <chrono>
-#include "InMemoryBus/Common/BaseMessage.h"
+#include "IOnOffMessageHandler.h"
 
 using namespace std;
 
@@ -19,11 +18,9 @@ namespace Interfaces {
 namespace Monitors {
 namespace Units {
 
-class IHeaterOffMessageHandler {
+class IHeaterOffMessageHandler : public IOnOffMessageHandler {
  public:
     virtual ~IHeaterOffMessageHandler() = default;
-
-    virtual MessageIdType get_last_message_id() = 0;
 };
 
 }

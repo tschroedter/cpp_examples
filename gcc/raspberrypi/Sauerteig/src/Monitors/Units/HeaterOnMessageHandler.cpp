@@ -10,6 +10,7 @@
 #include <thread>
 #include <chrono>
 #include "HeaterOnMessageHandler.h"
+#include "BaseOnOffMessageHandler.h"
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
 #include "Common/Interfaces/ILogger.h"
 #include "InMemoryBus/Common/BaseMessage.h"
@@ -26,21 +27,7 @@ namespace Units {
 
 HeaterOnMessageHandler::HeaterOnMessageHandler(ILogger_SPtr logger,
                                                IMessageBusNodeFactory_SPtr<HeaterOnMessageBusNode> factory)
-        : m_logger(logger) {
-    if (m_logger == nullptr) {
-        throw ArgumentInvalidException("Can't create HeaterOnMessageHandler because 'logger' is null!", "logger");
-    }
-
-    if (factory == nullptr) {
-        throw ArgumentInvalidException("Can't create HeaterOnMessageHandler because 'factory' is null!", "factory");
-    }
-
-    m_bus_node = factory->create(HEATER_ON_MESSAGE_HANDLER_SUBSCRIBER_ID);
-
-    if (m_bus_node == nullptr) {
-        throw ArgumentInvalidException("Can't create HeaterOnMessageHandler because 'bus_node' is null!", "bus_node");
-    }
-
+: BaseOnOffMessageHandler(logger, factory, HEATER_ON_MESSAGE_HANDLER_SUBSCRIBER_ID) {
     m_logger->set_prefix("HeaterOnMessageHandler");
 }
 

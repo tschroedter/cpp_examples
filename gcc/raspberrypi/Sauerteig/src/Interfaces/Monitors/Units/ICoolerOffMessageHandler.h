@@ -8,6 +8,7 @@
 #ifndef SRC_INTERFACES_MONITORS_UNITS_ICOOLEROFFMESSAGEHANDLER_H_
 #define SRC_INTERFACES_MONITORS_UNITS_ICOOLEROFFMESSAGEHANDLER_H_
 
+#include <memory>
 #include "IOnOffMessageHandler.h"
 
 using namespace std;
