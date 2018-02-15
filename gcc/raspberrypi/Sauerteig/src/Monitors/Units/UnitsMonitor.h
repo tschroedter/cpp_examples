@@ -18,6 +18,8 @@
 #include "../../Interfaces/Monitors/Units/IUnitsMonitor.h"
 #include "../../Interfaces/Monitors/Units/IHeaterOffMessageHandler.h"
 #include "../../Interfaces/Monitors/Units/IHeaterOnMessageHandler.h"
+#include "../../Interfaces/Monitors/Units/ICoolerOffMessageHandler.h"
+#include "../../Interfaces/Monitors/Units/ICoolerOnMessageHandler.h"
 
 #define HEATER_MONITOR_SLEEP_TIME_IN_SECONDS 2 // todo set back to 30
 
@@ -33,7 +35,9 @@ class UnitsMonitor : public IUnitsMonitor {   // todo create one thread for heat
     UnitsMonitor(ILogger_SPtr logger,
                  IThreadInformationProvider_SPtr provider,
                  IHeaterOnMessageHandler_SPtr heater_on_handler,
-                 IHeaterOffMessageHandler_SPtr heater_off_handler);
+                 IHeaterOffMessageHandler_SPtr heater_off_handler,
+                 ICoolerOnMessageHandler_SPtr cooler_on_handler,
+                 ICoolerOffMessageHandler_SPtr cooler_off_handler);
     virtual ~UnitsMonitor() = default;
 
     void operator()() override {
@@ -54,11 +58,14 @@ class UnitsMonitor : public IUnitsMonitor {   // todo create one thread for heat
  private:
     ILogger_SPtr m_logger = nullptr;
     IThreadInformationProvider_SPtr m_provider = nullptr;
-    IHeaterOnMessageHandler_SPtr m_on_handler = nullptr;
-    IHeaterOffMessageHandler_SPtr m_off_handler = nullptr;
+    IHeaterOnMessageHandler_SPtr m_heater_on_handler = nullptr;
+    IHeaterOffMessageHandler_SPtr m_heater_off_handler = nullptr;
+    ICoolerOnMessageHandler_SPtr m_cooler_on_handler = nullptr;
+    ICoolerOffMessageHandler_SPtr m_cooler_off_handler = nullptr;
 
     void update();
     bool m_is_heater_on = false;
+    bool m_is_cooler_on = false;
 };
 
 }
