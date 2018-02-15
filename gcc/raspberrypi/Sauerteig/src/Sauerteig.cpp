@@ -24,6 +24,7 @@
 #include "Interfaces/Monitors/Units/IHeaterMonitor.h"
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
 #include "Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
+#include "Interfaces/Monitors/Units/ICoolerOnMessageHandler.h"
 #include "Hardware/Abstract/Interfaces/IO/IFlashable.h"
 #include "Hardware/Abstract/Interfaces/IO/LEDs/ISSRLEDFlashing.h"
 #include "Hardware/Units/Interfaces/IO/Heaters/IHeatingUnit.h"
@@ -42,6 +43,8 @@
 #include "Messages/HeaterOffMessage.h"
 #include "Messages/HeaterOnMessage.h"
 #include "Messages/TemperaturesSetCorrectionMessage.h"
+#include "BusNodes/CoolerOnMessageBusNode.h"
+#include "Monitors/Units/CoolerOnMessageHandler.h"
 
 using namespace std;
 
@@ -87,6 +90,20 @@ int main(void) {
         logger->info("Sauerteig Main PID: " + provider->get_thread_process_id_as_string());
 
         auto bus = container->resolve<InMemoryBus::IBus>();
+
+        auto test = container->resolve<IMessageBusNodeFactory_SPtr<CoolerOnMessageBusNode>>();
+
+        if (test != nullptr)
+        {
+            std::cout << "test exists\n";
+        }
+
+        auto test1 = container->resolve<Sauerteig::Interfaces::Monitors::Units::ICoolerOnMessageHandler>();
+
+        if (test1 != nullptr)
+        {
+            std::cout << "ICoolerOnMessageHandler exists\n";
+        }
 
         // start ibus
         auto notifier_pool = container->resolve<::InMemoryBus::Notifiers::INotifierThreadPool>();
