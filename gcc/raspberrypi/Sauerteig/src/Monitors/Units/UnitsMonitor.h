@@ -30,7 +30,10 @@ namespace Units {
 
 class UnitsMonitor : public IUnitsMonitor {   // todo create one thread for heater, cooler, status
  public:
-    UnitsMonitor(ILogger_SPtr logger, IThreadInformationProvider_SPtr provider, IHeaterOnMessageHandler_SPtr on_handler, IHeaterOffMessageHandler_SPtr off_handler);
+    UnitsMonitor(ILogger_SPtr logger,
+                 IThreadInformationProvider_SPtr provider,
+                 IHeaterOnMessageHandler_SPtr heater_on_handler,
+                 IHeaterOffMessageHandler_SPtr heater_off_handler);
     virtual ~UnitsMonitor() = default;
 
     void operator()() override {
