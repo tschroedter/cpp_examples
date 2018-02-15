@@ -5,16 +5,17 @@
  *      Author: tom
  */
 
+#include "UnitsMonitor.h"
+
 #include <thread>
 #include <string>
 #include <chrono>
 #include <ctime>
 #include <iostream>
-#include "HeaterMonitor.h"
 #include "Common/Interfaces/IThreadInformationProvider.h"
 #include "Common/Interfaces/ILogger.h"
 #include "Common/Exceptions/ArgumentInvalidExceptions.h"
-#include "../../Interfaces/Monitors/Units/IHeaterMonitor.h"
+#include "../../Interfaces/Monitors/Units/IUnitsMonitor.h"
 
 using namespace std;
 using namespace Common::Exceptions;
@@ -24,7 +25,7 @@ namespace Sauerteig {
 namespace Monitors {
 namespace Units {
 
-HeaterMonitor::HeaterMonitor(ILogger_SPtr logger, IThreadInformationProvider_SPtr provider, IHeaterOnMessageHandler_SPtr on_handler, IHeaterOffMessageHandler_SPtr off_handler)
+UnitsMonitor::UnitsMonitor(ILogger_SPtr logger, IThreadInformationProvider_SPtr provider, IHeaterOnMessageHandler_SPtr on_handler, IHeaterOffMessageHandler_SPtr off_handler)
         : m_logger(logger),
           m_provider(provider),
           m_on_handler(on_handler),
@@ -48,7 +49,7 @@ HeaterMonitor::HeaterMonitor(ILogger_SPtr logger, IThreadInformationProvider_SPt
     m_logger->set_prefix("HeaterMonitor");
 }
 
-void HeaterMonitor::update()
+void UnitsMonitor::update()
 {
     auto on = m_on_handler->get_last_message_id();
     auto off = m_off_handler->get_last_message_id();
@@ -56,7 +57,7 @@ void HeaterMonitor::update()
     m_is_heater_on = (on > off);
 }
 
-string HeaterMonitor::to_string() const {
+string UnitsMonitor::to_string() const {
     string status = m_is_heater_on ? "On" : "Off";
 
     return "Heater is " + status;

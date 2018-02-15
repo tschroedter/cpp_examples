@@ -21,7 +21,6 @@
 #include "Common/Interfaces/IThreadInformationProvider.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
 #include "Interfaces/Monitors/Settings/ISettingsMonitor.h"
-#include "Interfaces/Monitors/Units/IHeaterMonitor.h"
 #include "Interfaces/Publishers/ITemperaturesPublisher.h"
 #include "Interfaces/Factories/ITemperaturesSetCorrectionMessageBusNodeFactory.h"
 #include "Interfaces/Monitors/Units/ICoolerOnMessageHandler.h"
@@ -44,6 +43,7 @@
 #include "Messages/HeaterOnMessage.h"
 #include "Messages/TemperaturesSetCorrectionMessage.h"
 #include "BusNodes/CoolerOnMessageBusNode.h"
+#include "Interfaces/Monitors/Units/IUnitsMonitor.h"
 #include "Monitors/Units/CoolerOnMessageHandler.h"
 
 using namespace std;
@@ -127,7 +127,7 @@ int main(void) {
         std::thread settings_monitor_thread { std::thread([settings_monitor]() {(*settings_monitor)();}) };
 
         IHeaterMonitor_SPtr heater_monitor = container
-                ->resolve<Sauerteig::Interfaces::Monitors::Units::IHeaterMonitor>();
+                ->resolve<Sauerteig::Interfaces::Monitors::Units::IUnitsMonitor>();
         std::thread heater_monitor_thread { std::thread([heater_monitor]() {(*heater_monitor)();}) };
 
         // Sauerteig run...

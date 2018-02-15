@@ -12,7 +12,6 @@
 #include "Monitors/Temperatures/TemperatureSensorToStringConverter.h"
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
 #include "Monitors/Settings/SettingsMonitor.h"
-#include "Monitors/Units/HeaterMonitor.h"
 #include "Monitors/Units/HeaterOffMessageHandler.h"
 #include "Monitors/Units/HeaterOnMessageHandler.h"
 #include "Monitors/Units/CoolerOffMessageHandler.h"
@@ -33,7 +32,6 @@
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMonitor.h"
 #include "Interfaces/Monitors/Temperatures/ITemperatureSensorToStringConverter.h"
 #include "Interfaces/Monitors/Temperatures/ITemperaturesMessageHandler.h"
-#include "Interfaces/Monitors/Units/IHeaterMonitor.h"
 #include "Interfaces/Monitors/Units/IHeaterOffMessageHandler.h"
 #include "Interfaces/Monitors/Units/IHeaterOnMessageHandler.h"
 #include "Interfaces/Monitors/Units/ICoolerOffMessageHandler.h"
@@ -43,6 +41,8 @@
 #include "Interfaces/Monitors/Settings/ISettingsMonitor.h"
 #include "Factories/TemperaturesSetCorrectionMessageBusNodeFactory.h"
 #include "Interfaces/ISettings.h"
+#include "Interfaces/Monitors/Units/IUnitsMonitor.h"
+#include "Monitors/Units/UnitsMonitor.h"
 #include "Settings.h"
 
 using namespace Hypodermic;
@@ -79,8 +79,8 @@ void Installer::register_components(ContainerBuilder& builder) {
 
     builder.registerType<Monitors::Settings::SettingsMonitor>()
                 .as<Interfaces::Monitors::Settings::ISettingsMonitor>();
-    builder.registerType<Monitors::Units::HeaterMonitor>()
-                .as<Interfaces::Monitors::Units::IHeaterMonitor>();
+    builder.registerType<Monitors::Units::UnitsMonitor>()
+                .as<Interfaces::Monitors::Units::IUnitsMonitor>();
 
     builder.registerType<Monitors::Temperatures::TemperaturesMessageHandler>()
             .as<Interfaces::Monitors::Temperatures::ITemperaturesMessageHandler>();

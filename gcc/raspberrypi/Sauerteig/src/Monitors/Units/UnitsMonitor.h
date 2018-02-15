@@ -5,8 +5,8 @@
  *      Author: tom
  */
 
-#ifndef SRC_MONITORS_UNITS_HEATERMONITOR_H_
-#define SRC_MONITORS_UNITS_HEATERMONITOR_H_
+#ifndef SRC_MONITORS_UNITS_UNITSMONITOR_H_
+#define SRC_MONITORS_UNITS_UNITSMONITOR_H_
 
 #include <thread>
 #include <string>
@@ -15,7 +15,7 @@
 #include <iostream>
 #include "Common/Interfaces/IThreadInformationProvider.h"
 #include "Common/Interfaces/ILogger.h"
-#include "../../Interfaces/Monitors/Units/IHeaterMonitor.h"
+#include "../../Interfaces/Monitors/Units/IUnitsMonitor.h"
 #include "../../Interfaces/Monitors/Units/IHeaterOffMessageHandler.h"
 #include "../../Interfaces/Monitors/Units/IHeaterOnMessageHandler.h"
 
@@ -28,10 +28,10 @@ namespace Sauerteig {
 namespace Monitors {
 namespace Units {
 
-class HeaterMonitor : public IHeaterMonitor {   // todo create one thread for heater, cooler, status
+class UnitsMonitor : public IUnitsMonitor {   // todo create one thread for heater, cooler, status
  public:
-    HeaterMonitor(ILogger_SPtr logger, IThreadInformationProvider_SPtr provider, IHeaterOnMessageHandler_SPtr on_handler, IHeaterOffMessageHandler_SPtr off_handler);
-    virtual ~HeaterMonitor() = default;
+    UnitsMonitor(ILogger_SPtr logger, IThreadInformationProvider_SPtr provider, IHeaterOnMessageHandler_SPtr on_handler, IHeaterOffMessageHandler_SPtr off_handler);
+    virtual ~UnitsMonitor() = default;
 
     void operator()() override {
         string pid = m_provider->get_thread_process_id_as_string();
@@ -62,4 +62,4 @@ class HeaterMonitor : public IHeaterMonitor {   // todo create one thread for he
 }
 }
 
-#endif /* SRC_MONITORS_UNITS_HEATERMONITOR_H_ */
+#endif /* SRC_MONITORS_UNITS_UNITSMONITOR_H_ */
