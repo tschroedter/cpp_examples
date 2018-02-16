@@ -20,7 +20,7 @@ namespace BusNodes {
 
 CoolerOffMessageBusNode::CoolerOffMessageBusNode(ILogger_SPtr logger, IBus_SPtr bus, string subscriber_id)
     : BaseOnOffMessageBusNode(logger, bus, subscriber_id, COOLEROFF_MESSAGE_TYPE) {
-    m_logger->set_prefix("CoolerOnMessageBusNode");
+    m_logger->set_prefix("CoolerOffMessageBusNode");
 }
 
 }

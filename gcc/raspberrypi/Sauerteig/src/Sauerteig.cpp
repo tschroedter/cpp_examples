@@ -41,6 +41,8 @@
 #include "Monitors/Temperatures/TemperaturesMessageHandler.h"
 #include "Messages/HeaterOffMessage.h"
 #include "Messages/HeaterOnMessage.h"
+#include "Messages/CoolerOffMessage.h"
+#include "Messages/CoolerOnMessage.h"
 #include "Messages/TemperaturesSetCorrectionMessage.h"
 #include "BusNodes/CoolerOnMessageBusNode.h"
 #include "Interfaces/Monitors/Units/IUnitsMonitor.h"
@@ -91,20 +93,6 @@ int main(void) {
 
         auto bus = container->resolve<InMemoryBus::IBus>();
 
-        auto test = container->resolve<IMessageBusNodeFactory_SPtr<CoolerOnMessageBusNode>>();
-
-        if (test != nullptr)
-        {
-            std::cout << "test exists\n";
-        }
-
-        auto test1 = container->resolve<Sauerteig::Interfaces::Monitors::Units::ICoolerOnMessageHandler>();
-
-        if (test1 != nullptr)
-        {
-            std::cout << "ICoolerOnMessageHandler exists\n";
-        }
-
         // start ibus
         auto notifier_pool = container->resolve<::InMemoryBus::Notifiers::INotifierThreadPool>();
         notifier_pool->initialize(4);
@@ -140,18 +128,22 @@ int main(void) {
         IHeatingUnit_SPtr heading_unit = container->resolve<Hardware::Units::Interfaces::IO::Heaters::IHeatingUnit>();
         ICoolingUnit_SPtr cooling_unit = container->resolve<Hardware::Units::Interfaces::IO::Coolers::ICoolingUnit>();
 
-        auto message_on = make_shared<Sauerteig::Messages::HeaterOnMessage>();
-        auto message_off = make_shared<Sauerteig::Messages::HeaterOffMessage>();
+        auto message_heater_on = make_shared<Sauerteig::Messages::HeaterOnMessage>();
+        auto message_heater_off = make_shared<Sauerteig::Messages::HeaterOffMessage>();
+        auto message_cooler_on = make_shared<Sauerteig::Messages::CoolerOnMessage>();
+        auto message_cooler_off = make_shared<Sauerteig::Messages::CoolerOffMessage>();
 
         while (1) {
             heading_unit->on();
             cooling_unit->on();
-            bus->publish(message_off);
+            bus->publish(message_heater_off);
+            bus->publish(message_cooler_off);
             std::this_thread::sleep_for(std::chrono::seconds(5));
 
             heading_unit->off();
             cooling_unit->off();
-            bus->publish(message_on);
+            bus->publish(message_heater_on);
+            bus->publish(message_cooler_on);
             std::this_thread::sleep_for(std::chrono::seconds(5));
         }
     } catch (std::exception & ex) {

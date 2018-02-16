@@ -9,7 +9,7 @@
 #define SRC_MONITORS_UNITS_COOLEROFFMESSAGEHANDLER_H_
 
 #include "BaseOnOffMessageHandler.h"
-#include "../../BusNodes/CoolerOnMessageBusNode.h"
+#include "../../BusNodes/CoolerOffMessageBusNode.h"
 #include "../../Interfaces/Monitors/Units/ICoolerOffMessageHandler.h"
 
 #define COOLER_OFF_MESSAGE_HANDLER_SUBSCRIBER_ID "CoolerOffMessageHandler"
@@ -21,9 +21,9 @@ namespace Sauerteig {
 namespace Monitors {
 namespace Units {
 
-class CoolerOffMessageHandler : public BaseOnOffMessageHandler<CoolerOnMessageBusNode>, public ICoolerOffMessageHandler {
+class CoolerOffMessageHandler : public BaseOnOffMessageHandler<CoolerOffMessageBusNode>, public ICoolerOffMessageHandler {
  public:
-    CoolerOffMessageHandler(ILogger_SPtr logger, IMessageBusNodeFactory_SPtr<CoolerOnMessageBusNode> factory);
+    CoolerOffMessageHandler(ILogger_SPtr logger, IMessageBusNodeFactory_SPtr<CoolerOffMessageBusNode> factory);
     virtual ~CoolerOffMessageHandler() = default;
 
     MessageIdType get_last_message_id() override;

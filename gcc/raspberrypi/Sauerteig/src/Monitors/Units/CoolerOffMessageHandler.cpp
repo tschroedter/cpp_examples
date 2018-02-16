@@ -16,7 +16,7 @@ namespace Sauerteig {
 namespace Monitors {
 namespace Units {
 
-CoolerOffMessageHandler::CoolerOffMessageHandler(ILogger_SPtr logger, IMessageBusNodeFactory_SPtr<CoolerOnMessageBusNode> factory)
+CoolerOffMessageHandler::CoolerOffMessageHandler(ILogger_SPtr logger, IMessageBusNodeFactory_SPtr<CoolerOffMessageBusNode> factory)
     : BaseOnOffMessageHandler(logger, factory, COOLER_OFF_MESSAGE_HANDLER_SUBSCRIBER_ID)
 {
     logger->set_prefix("CoolerOffMessageHandler");
